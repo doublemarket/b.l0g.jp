@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+      渋谷ではたらくインフラエンジニアのブログ &middot; 
+    
+  </title>
+
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <link rel="alternate" type="application/atom+xml" title="渋谷ではたらくインフラエンジニアのブログ" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="container content">
+      <header class="masthead">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">渋谷ではたらくインフラエンジニアのブログ</a>
+          <small></small>
+        </h3>
+      </header>
+
+      <main>
+        <div class="posts">
+  
+  <article class="post">
+    <h1 class="post-title">
+      <a href="/mysql/mysql-cluster-casual-talks-memo/">
+        MySQL Cluster Casual Talksメモ
+      </a>
+    </h1>
+
+    <time datetime="2013-09-27T02:25:33-07:00" class="post-date">27 Sep 2013</time>
+
+    <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/mysql/mysql-cluster-casual-talks-memo/" class="hatena-bookmark-button" data-hatena-bookmark-title="MySQL Cluster Casual Talksメモ" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/mysql/mysql-cluster-casual-talks-memo/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/mysql/mysql-cluster-casual-talks-memo/" data-text="MySQL Cluster Casual Talksメモ" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/mysql/mysql-cluster-casual-talks-memo/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p><strong><a href="http://atnd.org/events/42911" target="_blank">MySQL Cluster Casual Talks</a></strong></p>
+
+<p>一応仕事でMySQLをよく触っている身として、軽く検証はしてみたものの、担当している業務では参照メインのDBが多いこともあって実運用では使ったことがなかったMySQL Cluster。改めて利点も欠点も聞いておきたいと思ったのと、会社からすぐ近くのGMOさんが会場ということもあって参加してみた。</p>
+
+<p>MySQL Clusterの本も書かれている@nippondanjiこと奥野さんから、MySQL Clusterは何に向いていて、どう使えばよさを引き出せるのかを聞いたうえで、そのサポートを受けながら4年間運用されている@tsakuradaさんの実運用上のハマりどころを聞くことで、どういうところにMySQL Clusterを使えばいいのかイメージが浮かんだので、非常に今後の役に立ちそう。</p>
+
+<p>発表者のみなさま、会場提供していただいたGMOのみなさまありがとうございましたm(__)m さくらのクラウド2万円分クーポンももらったし、GMOクラウドのキャラクタのシールもたくさんもらったので宣伝しますｗ</p>
+
+<p>既にまとめは<a href="http://twitter.com/76whizkidz" target="_blank">garage-kid</a>さんが<a href="http://d.hatena.ne.jp/garage-kid/20130926/mysqlclustercasualtalks" target="_blank">書いてくれている</a>ので、これは個人的なポイントのまとめ。</p>
+
+<h2 id="a-hrefhttptwittercomrkajiyama-targetblankrkajiyamaa-mysql-cluster5656"><a href="http://twitter.com/RKajiyama" target="_blank">@RKajiyama</a>さん MySQL Cluster大地に立つ！「5.6とは違うのだよ、5.6とは！」</h2>
+
+<ul>
+  <li>MySQL Clusterの概要
+    <ul>
+      <li>分散型、共有ディスク不要のHAクラスタ</li>
+    </ul>
+  </li>
+  <li>使用しているユーザ
+    <ul>
+      <li>元々はモバイル通信の位置情報をリアルタイムかつ高可用性を持って保存するためにできた</li>
+      <li>SQLインタフェースは昨今ゲーム業界などで使われ始めてから追加されてきた機能</li>
+      <li>艦○れでも使われている？</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="a-hrefhttptwittercomnippondanji-targetblanknippondanjia-mysql-cluster"><a href="http://twitter.com/nippondanji" target="_blank">@nippondanji</a>さん カジュアルにMySQL Clusterを使ってみよう</h2>
+
+<div style="margin-bottom:5px">
+  <strong> <a href="https://www.slideshare.net/nippondanji/mcct" title="カジュアルにMySQL Clusterを使ってみよう@MySQL Cluster Casual Talks 2013.09" target="_blank">カジュアルにMySQL Clusterを使ってみよう@MySQL Cluster Casual Talks 2013.09</a> </strong> from <strong><a href="http://www.slideshare.net/nippondanji" target="_blank">Mikiya Okuno</a></strong>
+</div>
+
+<p>データノード、SQLノード、管理ノードの3種類からなる</p>
+
+<ul>
+  <li>1台だけならndb(MySQL Clusterのエンジン)よりInnoDBの方が速い</li>
+  <li>ただしNDB APIを使うならClusterの方が圧倒的に速い</li>
+  <li>ノードを増やすとスケールしていく点に優位性があるが、いつでも速くなるとは限らない(後述)</li>
+  <li>新しいバージョン使いましょう</li>
+</ul>
+
+<p>シェアードナッシング型</p>
+
+<ul>
+  <li>データノードは2台ペアでノードグループを構成</li>
+  <li>データをフラグメントに分けて、それをノードグループ内で同期レプリする</li>
+  <li>RAID10的な感じでグループ内で1台落ちてもデータは保全される</li>
+</ul>
+
+<p>InnoDBとは特性が違う &amp; いつでもノードを増やせばスケールするとは限らない</p>
+
+<ul>
+  <li>主キーを使った検索 → データノード数に応じてスケール</li>
+  <li><strong>(少数の行を取ってくる)スキャンは苦手</strong>
+    <ul>
+      <li>データがノードに分散しているので複数ノードをスキャンする必要があるため</li>
+      <li>フェッチするレコードが多いと並列処理できるので早くなる</li>
+      <li>Engine Condition Pushdown : where句部分を丸ごとデータノードに渡して並列処理して高速化する仕組み</li>
+      <li>sysbenchをただ走らせると遅いのはこのせい</li>
+    </ul>
+  </li>
+  <li>ユーザ定義パーティション
+    <ul>
+      <li>スキャンを高速化させる仕組み</li>
+      <li>2つのテーブルの関連を考慮してデータノードへの分散を定義すれば、読み書きを特定のノードに抑えられるので高速に</li>
+    </ul>
+  </li>
+  <li>レプリケーション
+    <ul>
+      <li><strong>ndbに不得意な処理があるならInnoDB</strong>のスレーブを作るという手もある</li>
+      <li>データノードが書き込みしたことをSQLノードに通知し、それをbinlogに書き込んでスレーブに送るという仕組み</li>
+      <li>通知を受け取るのがbinlog injector thread</li>
+    </ul>
+  </li>
+  <li><strong>インメモリDBだけど永続化処理が多いのでディスク書き込み多い＝速いディスクがいい</strong></li>
+  <li><strong>blobを別テーブルに保存するのでJOIN的処理が発生して遅くなる</strong>
+    <ul>
+      <li>varcharで頑張ろう</li>
+    </ul>
+  </li>
+  <li>NoSQLインタフェースを使えば爆速
+    <ul>
+      <li>各種言語のインタフェースあり</li>
+      <li>InnoDBのmemcachedインタフェースよりMySQL Clusterの方が現時点では賢い</li>
+    </ul>
+  </li>
+</ul>
+
+<p>まとめ(MySQL Clusterの使いどころ)</p>
+
+<ul>
+  <li>大量の更新をさばきたい</li>
+  <li>HA機能が欲しい</li>
+  <li>高速JOINしたい</li>
+</ul>
+
+<h2 id="a-hrefhttptwittercomtsakurada-targetblanktsakuradaa-mysql-clusterversion-73"><a href="http://twitter.com/tsakurada" target="_blank">@tsakurada</a>さん MySQL Clusterと丸４年の付き合いを振り返ってのよもやま話と、Version 7.3への期待（もっとユーザが増えるといいな～）</h2>
+
+<div style="margin-bottom: 5px;">
+  <strong> <a title="MCCT20130926 tsakuradac" href="https://www.slideshare.net/TakeshiSakurada/mcct20130926-tsakuradac" target="_blank">MCCT20130926 tsakuradac</a> </strong> from <strong><a href="http://www.slideshare.net/TakeshiSakurada" target="_blank">Takeshi Sakurada</a></strong>
+</div>
+
+<p>使用開始時の期待と使ってみたギャップ、現在の期待</p>
+
+<ul>
+  <li>インメモリだから速いはず
+    <ul>
+      <li><strong>参照に関していえばFIO+InnoDBでも変わらないかも</strong></li>
+    </ul>
+  </li>
+  <li>スケールアウト簡単
+    <ul>
+      <li><strong>構成によってはスケールしない</strong>こともあるので要考慮</li>
+    </ul>
+  </li>
+  <li>高可用性
+    <ul>
+      <li>期待通り、フェイルオーバーは数秒で完了</li>
+    </ul>
+  </li>
+  <li>ライセンスがGPLでオープンソース</li>
+  <li>7.3でInnoとの互換性が上がって期待</li>
+</ul>
+
+<p>サーバの構成</p>
+
+<ul>
+  <li>SQLノードと管理ノードは同居してもよい、データノード2台と合わせて最低4台からが現実的</li>
+  <li>データが多いならデータノードを増やす(が制約はあるので注意)</li>
+  <li>アクセスが多いならSQLノードを増やす。制約は少ないので割と簡単</li>
+  <li>せっかくのMySQL ClusterなんだからHW構成上もSPOFを減らそう</li>
+  <li><strong>クエリがキャンセルされた時それを検出して後続処理をやるアプリ作り込み必須</strong>
+    <ul>
+      <li>ノード障害時にクエリがキャンセルされるため</li>
+    </ul>
+  </li>
+</ul>
+
+<p>InnoDBとの組み合わせ</p>
+
+<ul>
+  <li>Innoと同じ感覚でテーブル設計してもよいか？
+    <ul>
+      <li>場合による。最近のバージョンではやってみる価値あり</li>
+    </ul>
+  </li>
+  <li>InnoDBスレーブとの組み合わせ
+    <ul>
+      <li>分離レベルが違う点は要注意だがおおむね問題なし</li>
+    </ul>
+  </li>
+</ul>
+
+<p>ハマりどころ(資料が詳しいのでそちら参照)</p>
+
+<ul>
+  <li>GCP Stop</li>
+  <li>ローリングリスタート</li>
+  <li>ボトルネックが見えづらい</li>
+  <li>データのライフサイクルを考えよう</li>
+  <li>リストアが大変</li>
+</ul>
+
+<p>4年間でだいぶ地雷を踏んだのでもう大丈夫ｗ 皆さんMySQL Cluster使いましょう</p>
+
+<h2 id="a-hrefhttptwittercomyyamasaki1-targetblankyyamasaki1a-mysql-cluster-auto-installer"><a href="http://twitter.com/yyamasaki1" target="_blank">@yyamasaki1</a>さん MySQL Cluster Auto-Installerのデモ</h2>
+
+<div style="margin-bottom:5px">
+  <strong> <a href="https://www.slideshare.net/yoyamasaki/5mysql-cluster" title="5分で作るMySQL Cluster環境" target="_blank">5分で作るMySQL Cluster環境</a> </strong> from <strong><a href="http://www.slideshare.net/yoyamasaki" target="_blank">yoyamasaki</a></strong>
+</div>
+
+<p>Auto-Installer簡単なので使いましょう</p>
+
+<ul>
+  <li>ブラウザベースでぽちぽちやればインストール可能</li>
+  <li>初期パラメータをいくつかいじった方がいい</li>
+</ul>
+
+<h2 id="a-hrefhttptwittercomyoku0825-targetblankyoku0825a-ndbcluster"><a href="http://twitter.com/yoku0825" target="_blank">@yoku0825</a>さん ウチがNDBCLUSTERを使わない理由をもう一度考える</h2>
+
+<p>MySQL Clusterというと紛らわしいので、NDB Clusterと言いましょう&lt;table border=0&gt;</p>
+
+<p>&lt;/table&gt;</p>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+  </article>
+  
+  <article class="post">
+    <h1 class="post-title">
+      <a href="/nagios/pynag-introduction/">
+        Nagiosのプラグイン作成や設定ファイル操作にpynagが超便利！
+      </a>
+    </h1>
+
+    <time datetime="2013-06-12T02:51:05-07:00" class="post-date">12 Jun 2013</time>
+
+    <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/nagios/pynag-introduction/" class="hatena-bookmark-button" data-hatena-bookmark-title="Nagiosのプラグイン作成や設定ファイル操作にpynagが超便利！" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/nagios/pynag-introduction/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/nagios/pynag-introduction/" data-text="Nagiosのプラグイン作成や設定ファイル操作にpynagが超便利！" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/nagios/pynag-introduction/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p>Nagiosの設定ファイルをパースする簡単な方法ないかなと思って調べてたら、<a href="http://pynag.org/" title="pynag.org" target="_blank">pynag</a>という超便利なパッケージ発見。日本語の情報ほとんどないけど、Fedoraの標準パッケージになっているってことは割と一般的なんだろうか。</p>
+
+<ul>
+  <li>Nagiosのプラグインを簡単に作りたい</li>
+  <li>Nagiosの設定ファイルをパースして値を取りたい</li>
+  <li>Nagiosの設定をコマンドラインやプログラムから取得・変更したい</li>
+</ul>
+
+<p>って時に重宝する。pynagという名の通り、pythonで書かれている。公式ページのそのまんま訳に近いけど、使い方ご紹介。</p>
+
+<h2 id="section">インストール</h2>
+
+<p>Fedoraの最近のバージョンには標準で含まれており、CentOSやRHELならepelを使えるようにしておけばyumでインストールできる。</p>
+
+<p>[shell]</p>
+
+<p>$ sudo yum install http://ftp-srv2.kddilabs.jp/Linux/distributions/fedora/epel/6/x86_64/epel-release-6-8.noarch.rpm</p>
+
+<p>$ sudo yum install pynag</p>
+
+<p>[/shell]</p>
+
+<p>pipが使えるならpipでもインストールできる。</p>
+
+<p>[shell]</p>
+
+<p>$ sudo pip install pynag</p>
+
+<p>[/shell]</p>
+
+<h2 id="section-1">設定ファイルのパース</h2>
+
+<p>pynagパッケージのModelモジュールを使えば、 /etc/nagios など代表的なパスから nagios.cfg を探し出して読み込んでくれる。含まれるホストとそのホストに関連づいたContact groupを表示する例。</p>
+
+<p>[python]</p>
+
+<p>from pynag import Model</p>
+
+<p># Get all hosts</p>
+
+<p>all_hosts = Model.Host.objects.all</p>
+
+<p>for i in all_hosts:</p>
+
+<p>print i.host_name, i.contact_groups</p>
+
+<p>[/python]</p>
+
+<h2 id="section-2">設定書き換え</h2>
+
+<p>同じようにして、設定を保存することもできる。ホスト名がexamplehostのホストのContact groupを「mycontactgroup」にする例。</p>
+
+<p>[python]</p>
+
+<p>from pynag import Model</p>
+
+<p>services = Model.Service.objects.filter(host_name=’examplehost’)</p>
+
+<p>for i in services:</p>
+
+<p>i.contactgroups = “mycontactgroup”</p>
+
+<p>i.save()</p>
+
+<p>[/python]</p>
+
+<h2 id="section-3">ステータスの取得</h2>
+
+<p>監視結果が保存されているstatus.datファイルのパースもしてくれるので、ホストやサービスのステータス取得もできる。</p>
+
+<p>ホストグループ名とサービス名を引数に与えてやると、ホストグループに所属するホスト全てに関するサービスのステータスを返すスクリプト。</p>
+
+<p>[python]</p>
+
+<p>import sys</p>
+
+<p>from pynag import Model</p>
+
+<p>from pynag.Parsers import status</p>
+
+<p>argvs = sys.argv</p>
+
+<p>argc = len(argvs)</p>
+
+<p>status = status()</p>
+
+<p>if (argc != 3):</p>
+
+<p>print</p>
+
+<p>print(“Usage: ./%s hostgroup service” % argvs[0])</p>
+
+<p>print</p>
+
+<p>sys.exit()</p>
+
+<p>hostgroups = Model.Hostgroup.objects.filter(hostgroup_name=argvs[1])</p>
+
+<p>for hostgroup in hostgroups:</p>
+
+<p>print(“Hostgroup: %s” % hostgroup.hostgroup_name)</p>
+
+<p>print(“Member:”)</p>
+
+<p>for host in hostgroup.members.split(‘,’):</p>
+
+<p>print(“%s %s” % (host, status.get_servicestatus(host, argvs[2])[‘current_state’]))</p>
+
+<p>[/python]</p>
+
+<p>status.datのパースにはやや時間がかかるので、監視対象サーバの台数が多いと使用に耐えない。そういう場合は、高速にステータスを取得できる<a href="http://mathias-kettner.de/checkmk_livestatus.html" title="MK Livestatus" target="_blank">MK Livestatus</a>と組み合わせることもできる。インストール方法は割愛するのでWebページを参照するべし。MK Livestatusを使って、上のスクリプトと同じようにホストグループとサービス名を引数に与えてホストのステータスを取得する例。</p>
+
+<p>[python]</p>
+
+<p>import sys</p>
+
+<p>from pynag import Model</p>
+
+<p>from pynag.Parsers import mk_livestatus</p>
+
+<p>argvs = sys.argv</p>
+
+<p>argc = len(argvs)</p>
+
+<p>livestatus = mk_livestatus()</p>
+
+<p>if (argc != 3):</p>
+
+<p>print</p>
+
+<p>print(“Usage: ./%s hostgroup service” % argvs[0])</p>
+
+<p>print</p>
+
+<p>sys.exit()</p>
+
+<p>hostgroups = Model.Hostgroup.objects.filter(hostgroup_name=argvs[1])</p>
+
+<p>for hostgroup in hostgroups:</p>
+
+<p>print(“Hostgroup: %s” % hostgroup.hostgroup_name)</p>
+
+<p>print(“Member:”)</p>
+
+<p>for host in hostgroup.members.split(‘,’):</p>
+
+<p>print(host)</p>
+
+<p>print(livestatus.get_service(host,argvs[2])[‘host_services_with_info’])</p>
+
+<p>[/python]</p>
+
+<h2 id="section-4">コマンドラインから使う</h2>
+
+<p>Pythonのスクリプト内だけでなく、pynagコマンドとしてシェルから直接使うこともできる。where句で対象を絞ることが可能。</p>
+
+<p>全ホストオブジェクトを表示する例。</p>
+
+<p>[shell]</p>
+
+<p>$ pynag list where object_type=host</p>
+
+<p>object_type shortname filename</p>
+
+<p>——————————————————————————–</p>
+
+<p>host server01 /etc/nagios/Default_collector/hosts.cfg</p>
+
+<p>host server02 /etc/nagios/Default_collector/hosts.cfg</p>
+
+<p>(中略)</p>
+
+<p>———-123 objects matches search condition———————————-</p>
+
+<p>[/shell]</p>
+
+<p>MySQL_Connect_cというサービスのチェックコマンドを表示する例。</p>
+
+<p>[shell]</p>
+
+<p>$ pynag list effective_command_line where service_description=MySQL_Connect_c</p>
+
+<p>effective_command_line</p>
+
+<p>——————————————————————————–</p>
+
+<p>/usr/lib64/nagios/plugins/check_mysql_health –hostname –user nagios –password nagios –mode connection-time –database test –critical 1</p>
+
+<p>———-1 objects matches search condition————————————</p>
+
+<p>[/shell]</p>
+
+<p>もちろんコマンドラインから設定の変更も可能。ホスト名server01をserver02に変更する例。</p>
+
+<p>[shell]</p>
+
+<p>$ pynag update set host_name=server02 where host_name=server01 and object_type=host</p>
+
+<p>[/shell]</p>
+
+<p>where句にはlikeのような部分一致が使えないようだ。複雑なクエリを発行したいときは、pythonスクリプトとして作った方がいいかもしれない。コマンドラインでの使い方は<a href="https://github.com/pynag/pynag/wiki/Pynag-command-line-utility" title="pynag wiki" target="_blank">Wiki</a>にもう少し詳しく書いてある。</p>
+
+<h2 id="nagios">Nagiosプラグイン作成時に使う</h2>
+
+<p>個人的に一番ツボなのがこの機能。自作のプラグインに、Nagiosのプラグインを書く際のガイドラインに準じた引数の処理などを簡単に加えることができる。</p>
+
+<p>/proc/loadavgの中身から、ロードアベレージを引いてくる簡単な例。</p>
+
+<p>[python]</p>
+
+<p>#!/usr/bin/python</p>
+
+<p>import os,sys</p>
+
+<p>## プラグインのオプションを生成</p>
+
+<p>np = Plugin()</p>
+
+<p>## コマンドライン引数を追加</p>
+
+<p>np.add_arg(“l”,”load-file”, “Enter a load average file”, required=None)</p>
+
+<p>## プラグインをアクティベート</p>
+
+<p>np.activate()</p>
+
+<p>## load-fileオプションが指定されたらそのファイルからLAを読み込む</p>
+
+<p>## デバッグと、add_argメソッドのサンプルとして</p>
+
+<p>if np[‘load-file’]:</p>
+
+<p>load_file = np[‘load-file’]</p>
+
+<p>else:</p>
+
+<p>load_file = “/proc/loadavg”</p>
+
+<p>## ちょっとしたエラーチェック</p>
+
+<p>if not os.path.isfile(load_file):</p>
+
+<p>np.nagios_exit(np.UNKNOWN, “Missing Load average file %s” % load_file)</p>
+
+<p>## チェックに使う値を取得</p>
+
+<p>current_load = os.popen(“cat %s” % load_file).readline().split()[0]</p>
+
+<p>## パフォーマンスデータを付加</p>
+
+<p>np.add_perfdata(“1min”, current_load)</p>
+
+<p>## チェック実行</p>
+
+<p>np.check_range(current_load)</p>
+
+<p>[/python]</p>
+
+<p>上のスクリプトをcheck_cpu.pyとして保存しておく。5行目のPlugin()で、プラグインとして必要なオプションが用意されるので、以下のようにスクリプトに引数を指定しないで実行しただけで、簡易ヘルプが表示される。</p>
+
+<p>[shell]</p>
+
+<p>$ ./check_load.py</p>
+
+<p>usage: check_load.py [options]</p>
+
+<p>check_load.py: error: You must provide a WARNING and/or CRITICAL value</p>
+
+<p>[/shell]</p>
+
+<p>さらに、-hオプションをつけると、詳細なヘルプが表示される。</p>
+
+<p>[shell]</p>
+
+<p>$ ./check_load.py -h</p>
+
+<p>usage: check_load.py [options]</p>
+
+<p>options:</p>
+
+<p>-h, –help show this help message and exit</p>
+
+<p>-l LOAD-FILE, –load-file=LOAD-FILE</p>
+
+<p>Enter a load average file</p>
+
+<p>-v VERBOSE, –verbose=VERBOSE</p>
+
+<p>Verbosity Level</p>
+
+<p>-H HOST, –host=HOST Target Host</p>
+
+<p>-t TIMEOUT, –timeout=TIMEOUT</p>
+
+<p>Connection Timeout</p>
+
+<p>-c CRITICAL, –critical=CRITICAL</p>
+
+<p>Critical Threshhold</p>
+
+<p>-w WARNING, –warning=WARNING</p>
+
+<p>Warn Threshhold</p>
+
+<p>[/shell]</p>
+
+<p>ここで、スクリプト内の8行目、add_argメソッドで追加したオプションが、ヘルプの中に「-l LOAD-FILE, –load-file=LOAD-FILE」として表示されている。また、-Hでの監視対象ホスト指定や-c,-wによる閾値の指定オプションがはじめから用意されていることがわかる。自作スクリプトを書くたびにオプションのパースから書いていた事を考えれば、なんという簡単さ！</p>
+
+<p>もちろん、ヘルプでみたとおりのオプションを与えてやれば、プラグインとして使用可能。</p>
+
+<p>[shell]</p>
+
+<p>$ uptime</p>
+
+<p>13:16:19 up 396 days, 22:32, 3 users, load average: 0.60, 1.08, 1.04</p>
+
+<p>$ ./check_load.py -w 1 127.0.0.1</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>OK: 0.60 is inside warning=1 and critical=None</td>
+      <td>‘1min’=0.60;;;;</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>[/shell]</p>
+
+<p>元々やりたかったのは「同一ホストグループ内のある台数のチェック失敗まではWARNING、その台数以上のチェック失敗でCRITICALアラートを上げたい」ということだったのだが、以下のような短いプラグインスクリプトで実現できた。</p>
+
+<p>[python]</p>
+
+<p>#!/usr/bin/python</p>
+
+<p>import sys</p>
+
+<p>from pynag import Model</p>
+
+<p>from pynag.Parsers import status</p>
+
+<p>from pynag.Plugins import simple as Plugin</p>
+
+<p>np = Plugin()</p>
+
+<p>status = status()</p>
+
+<p>np.add_arg(“g”, “hostgroup”, “Hostgroup name”, required=1)</p>
+
+<p>np.add_arg(“s”, “service”, “Service name”, required=1)</p>
+
+<p>np.activate()</p>
+
+<p>errornum = 0</p>
+
+<p>hostgroups = Model.Hostgroup.objects.filter(hostgroup_name=np[‘hostgroup’])</p>
+
+<p>for hostgroup in hostgroups:</p>
+
+<p>for host in hostgroup.members.split(‘,’):</p>
+
+<p>if status.get_servicestatus(host, np[‘service’])[‘current_state’] != “0”:</p>
+
+<p>errornum = errornum + 1</p>
+
+<p>np.add_perfdata(“WARN/CRIT”, errornum)</p>
+
+<p>np.check_range(errornum)</p>
+
+<p>[/python]</p>
+
+<p>2台のチェックに失敗している時の例。</p>
+
+<p>[shell]</p>
+
+<p># 2より多いとwarn、3より多いとcrit</p>
+
+<p>$ python check_wipeout.py –hostgroup=common_dbs –service=ifSpeed_eth0_w -w 2 -c 3</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>OK: 2 is inside warning=2 and critical=3</td>
+      <td>‘WARN/CRIT’=2;;;;</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>$ echo $?</p>
+
+<p># 1より多いとwarn、3より多いとcrit</p>
+
+<p>$ python check_wipeout.py –hostgroup=common_dbs –service=ifSpeed_eth0_w -w 1 -c 3</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>WARNING: 2 is outside warning range: 1</td>
+      <td>‘WARN/CRIT’=2;;;;</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>$ echo $?</p>
+
+<p>1</p>
+
+<p># 1より多いとcrit</p>
+
+<p>$ python check_wipeout.py –hostgroup=common_dbs –service=ifSpeed_eth0_w -c 1</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>CRITICAL: 2 is outside critical range: 1</td>
+      <td>‘WARN/CRIT’=2;;;;</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>$ echo $?</p>
+
+<p>2</p>
+
+<p>[/shell]</p>
+
+<p>というわけで、pynagがあるとNagiosプラグインを書くのが超簡単になる！ pynag万歳！</p>
+
+<p>ドキュメントは<a href="https://github.com/pynag/pynag/wiki" title="pynag wiki" target="_blank">Github上のWiki</a>を見るとよい。Wikiからだと分からない部分も多いが、<a href="https://github.com/pynag/pynag" title="pynag" target="_blank">ソース自体</a>はそれほど複雑ではないので読んでみればわかるのでは。&lt;table norder=0&gt;</p>
+
+<p>&lt;/table&gt;</p>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+  </article>
+  
+  <article class="post">
+    <h1 class="post-title">
+      <a href="/nagios/setup-nconf/">
+        Nagiosの設定ファイル生成ツールnconfが使いやすいのであーる
+      </a>
+    </h1>
+
+    <time datetime="2013-06-09T08:49:25-07:00" class="post-date">09 Jun 2013</time>
+
+    <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/nagios/setup-nconf/" class="hatena-bookmark-button" data-hatena-bookmark-title="Nagiosの設定ファイル生成ツールnconfが使いやすいのであーる" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/nagios/setup-nconf/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/nagios/setup-nconf/" data-text="Nagiosの設定ファイル生成ツールnconfが使いやすいのであーる" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/nagios/setup-nconf/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p>Nagiosの設定ファイルを編集するツールには、<a title="NagiosQL" href="http://www.nagiosql.org/" target="_blank">NagiosQL</a>など<a title="Nagios Config Tools" href="http://www.nagios.org/projects/nagiosconfigtools" target="_blank">いくつかある</a>が、あれこれ触ってみた感じ<a title="nconf" href="http://www.nconf.org/dokuwiki/doku.php" target="_blank">nconf</a>がよさげだった。JQueryなどを適宜使って動きは軽快だし、メニューの構成などもストレートで直感的に使えるところがNagiosQLよりも気にいった。</p>
+
+<p>監視の設定はできる限り自動生成するくらいが大規模なシステムでは最近の主流かもしれないが、そこまでの大きさのシステムではない時でも、設定ファイルを手で編集するのはいただけない。Nagiosを使うならとりあえずnconfも一緒に入れて設定すべし。</p>
+
+<p>最新版が2011年で開発が活発でないのは気になるが、基本的な機能は網羅されており不自由は感じないので、しばらく使っている。ってことで、CentOS6.4にNagiosとnconfをインストールして、監視を始めるまでの手順。</p>
+
+<h2 id="nagios">Nagiosのインストール</h2>
+
+<p>epelリポジトリにNagiosが含まれているので、epelをインストールしてからNagiosと、監視に使うプラグインをインストール。</p>
+
+<p>[shell]</p>
+
+<p>$ sudo yum install http://ftp-srv2.kddilabs.jp/Linux/distributions/fedora/epel/6/x86_64/epel-release-6-8.noarch.rpm</p>
+
+<p>$ sudo yum install nagios nagios-plugins</p>
+
+<p>[/shell]</p>
+
+<p>Nagiosと一緒に、PHPやPerl、Apacheなども一緒にインストールされる。</p>
+
+<p>[shell]</p>
+
+<p>$ sudo /etc/init.d/nagios start</p>
+
+<p>$ sudo /etc/init.d/httpd start</p>
+
+<p>[/shell]</p>
+
+<p>NagiosとApacheを起動したら、 http://(サーバのIP)/nagios をブラウザで開いて、ユーザ名 nagiosadmin、パスワード nagiosadmin でログインするとNagios管理画面が開ければNagiosの準備は一旦終わり。</p>
+
+<p><a href="http://b.l0g.jp/wp-content/uploads/2013/06/Nagios-Core.png" target="_blank"><img class="alignnone  wp-image-1484" style="border: 0px;" alt="Nagios Core" src="http://b.l0g.jp/wp-content/uploads/2013/06/Nagios-Core.png" width="408" height="245" /></a></p>
+
+<h2 id="mysql">MySQLのインストール</h2>
+
+<p>nconfの特徴として、設定をMySQLに入れておいて、そこからNagiosの設定ファイルを生成することが挙げられる。そのためにMySQLをインストール。nconfはPHPで書かれており、PHPからMySQLへ接続するためのphp-mysqlも一緒にインストール。</p>
+
+<p>[shell]</p>
+
+<p>$ sudo yum install mysql-server php-mysql</p>
+
+<p>[/shell]</p>
+
+<p>mysql, mysql-libsなどもインストールされる。</p>
+
+<p><a href="http://b.l0g.jp/mysql/install-cacti-to-monitor-mysql-1/">この辺</a>参照して、/etc/my.cnf の [mysqld] セクションに最低限の設定をしてから、MySQLを起動。</p>
+
+<p>[shell]</p>
+
+<p>$ sudo /etc/init.d/mysqld start</p>
+
+<p>[/shell]</p>
+
+<p>nconf用データベースと、MySQLへ接続するためのアカウントも作成。以下の例では、データベース名がnconf、ユーザ名がnconf、パスワードはnconfpasswordとしているが、任意のものにできるので適宜変更すべし。</p>
+
+<p>[shell]</p>
+
+<p>$ mysql -uroot</p>
+
+<p>mysql&gt; create database nconf;</p>
+
+<p>Query OK, 1 row affected (0.00 sec)</p>
+
+<p>mysql&gt; grant SELECT, INSERT, UPDATE, DELETE, CREATE, ALTER, DROP on nconf.* to ‘nconf’@’localhost’ identified by ‘nconfpassword’;</p>
+
+<p>Query OK, 0 rows affected (0.00 sec)</p>
+
+<p>[/shell]</p>
+
+<h2 id="nconf">nconfのインストール</h2>
+
+<p><a href="http://www.nconf.org/">nconfのサイト</a>のDownloadからnconf-1.3.0-0.tgzをダウンロードして適当なディレクトリに配置。CentOSのApacheのDocumentRootに展開する。</p>
+
+<p>[shell]</p>
+
+<p>cd /var/www/html</p>
+
+<p>sudo tar zxvf /fuga/hoge/nconf-1.3.0-0.tgz</p>
+
+<p>chown -R apache. nconf</p>
+
+<p>[/shell]</p>
+
+<p>インストールに必要な設定は、GUIで行える。http://(サーバのIP)/nconf/ をブラウザで開く。</p>
+
+<p><a href="http://b.l0g.jp/wp-content/uploads/2013/06/nconf01.png" target="_blank"><img class="alignnone  wp-image-1488" style="border: 0px;" alt="nconf01" src="http://b.l0g.jp/wp-content/uploads/2013/06/nconf01.png" width="665" height="430" /></a></p>
+
+<p>ここで画面がforbiddenになる場合、SELinuxが有効になっている可能性がある(/var/log/audit/audit.logにその旨出力されているはずなので確認すべし)。そんな時は頑張って動くように設定するか、そっと/etc/sysconfig/selinuxのSELINUX=enabledをdisabledに書き換えてOSを再起動する。</p>
+
+<p>必須のパッケージが全てインストールされていれば、最初の画面でOKが並ぶので、Nextをクリック。</p>
+
+<p><a href="http://b.l0g.jp/wp-content/uploads/2013/06/nconf02.png" target="_blank"><img class="alignnone  wp-image-1489" style="border: 0px;" alt="nconf02" src="http://b.l0g.jp/wp-content/uploads/2013/06/nconf02.png" width="665" height="430" /></a></p>
+
+<p>前項でMySQLに作成したデータベース名とアカウントを入力してNextを押すとチェックが走るので、OKが並んだらNext。</p>
+
+<p><a href="http://b.l0g.jp/wp-content/uploads/2013/06/nconf03.png" target="_blank"><img class="alignnone  wp-image-1490" style="border: 0px;" alt="nconf03" src="http://b.l0g.jp/wp-content/uploads/2013/06/nconf03.png" width="665" height="430" /></a></p>
+
+<p>nconfの接続に認証を必要とするかどうかの設定。後でも変更できるので一旦そのまま(AUTH_ENABLEDがFALSE)でNext。</p>
+
+<p><a href="http://b.l0g.jp/wp-content/uploads/2013/06/nconf04.png" target="_blank"><img class="alignnone  wp-image-1491" style="border: 0px;" alt="nconf04" src="http://b.l0g.jp/wp-content/uploads/2013/06/nconf04.png" width="665" height="430" /></a></p>
+
+<p>全て完了したらFinishをクリック。</p>
+
+<p><a href="http://b.l0g.jp/wp-content/uploads/2013/06/nconf05.png" target="_blank"><img class="alignnone  wp-image-1492" style="border: 0px;" alt="nconf05" src="http://b.l0g.jp/wp-content/uploads/2013/06/nconf05.png" width="665" height="430" /></a></p>
+
+<p>インストールしたディレクトリ内のファイル、ディレクトリを削除しろというメッセージが出るので、リネームする(別に使わないと思うが一応)。</p>
+
+<p>[shell]</p>
+
+<p>$ cd /var/www/html/nconf</p>
+
+<p>$ sudo mv INSTALL INSTALL.org</p>
+
+<p>$ sudo mv INSTALL.php INSTALL.php.org</p>
+
+<p>$ sudo mv UPDATE UPDATE.org</p>
+
+<p>$ sudo mv UPDATE.php UPDATE.php.org</p>
+
+<p>[/shell]</p>
+
+<p>ここまででnconfの設定画面にはアクセスできるようになる。</p>
+
+<p><a href="http://b.l0g.jp/wp-content/uploads/2013/06/nconf07.png" target="_blank"><img class="alignnone  wp-image-1504" style="border: 0px;" alt="nconf07" src="http://b.l0g.jp/wp-content/uploads/2013/06/nconf07.png" width="665" height="430" /></a></p>
+
+<h2 id="nconfnagios">nconfの設定・Nagiosの追加設定</h2>
+
+<p>前述の通りnconfはMySQLに設定を書いていて、それをNagiosの設定ファイルとして書き出し、Nagiosを再起動して設定を反映させるところまでnconfでやることができる。そのための追加設定がここから。</p>
+
+<p>/var/www/html/nconf/config/nconf.php (nconfのメイン設定ファイル)を以下の通り書き換え。</p>
+
+<p>23行目。Nagios本体のパスを指定する。</p>
+
+<p>[text]</p>
+
+<p># 変更前</p>
+
+<p>define(‘NAGIOS_BIN’, ‘/var/www/html/nconf/bin/nagios’);</p>
+
+<p># 変更後</p>
+
+<p>define(‘NAGIOS_BIN’, ‘/usr/sbin/nagios’);</p>
+
+<p>[/text]</p>
+
+<p>75行目。Nagiosのメイン設定ファイル(nagios.cfg)の構文チェックを無効化。手元の環境では、有効にしてしまうと、正しいはずの設定ファイルのチェックがどうしてもエラーになってしまったのでやむなく。</p>
+
+<p>[text]</p>
+
+<p># 変更前</p>
+
+<p>define(‘CHECK_STATIC_SYNTAX’, 1);</p>
+
+<p># 変更後</p>
+
+<p>define(‘CHECK_STATIC_SYNTAX’, 0);</p>
+
+<p>[/text]</p>
+
+<p>80行目。この配列に入っているユーザが、通知先などに自動で追加されてしまうので削除。</p>
+
+<p>[text]</p>
+
+<p># 変更前</p>
+
+<p>$SUPERADMIN_GROUPS = array (“+admins”);</p>
+
+<p># 変更後</p>
+
+<p>$SUPERADMIN_GROUPS = array (“”);</p>
+
+<p>[/text]</p>
+
+<p>/var/www/html/nconf/config/deployment.ini (nconfの自動デプロイ設定ファイル)を以下の通り書き換え。</p>
+
+<p>「;; LOCAL deployment ;;」の下、6行目から29行目までの以下のセクションの行頭のセミコロンを外して有効化。</p>
+
+<p>[text]</p>
+
+<p>;[extract config]</p>
+
+<p>;[copy collector config]</p>
+
+<p>;[copy global config]</p>
+
+<p>;[copy nagios.cfg]</p>
+
+<p>[/text]</p>
+
+<p>また、nconfが生成するNagios設定ファイルのアーカイブを指定する、8行目を以下のとおり変更。</p>
+
+<p>[text]</p>
+
+<p># 変更前</p>
+
+<p>source_file = “/var/www/nconf/output/NagiosConfig.tgz”</p>
+
+<p># 変更後</p>
+
+<p>source_file = “/var/www/html/nconf/output/NagiosConfig.tgz”</p>
+
+<p>[/text]</p>
+
+<p>Apacheの起動ユーザapacheがNagiosを再起動できるようにsudoersを編集。</p>
+
+<p>[shell]</p>
+
+<p>$ sudo visudo</p>
+
+<p>[/shell]</p>
+
+<p>以下の1行を末尾に追加。</p>
+
+<p>[text]</p>
+
+<p>apache ALL=(ALL)NOPASSWD: /etc/rc.d/init.d/nagios reload</p>
+
+<p>[/text]</p>
+
+<p>nconfが生成した設定ファイルをNagiosの設定ファイルディレクトリ(/etc/nagios)に配置できるように細々した設定。</p>
+
+<p>[shell]</p>
+
+<p>$ cd /etc/nagios</p>
+
+<p>$ sudo mkdir Default_collector global</p>
+
+<p>$ sudo chown apache. Default_collector global nagios.cfg</p>
+
+<p>[/shell]</p>
+
+<p>nconfからnagios.cfgを編集・配置することもできるので、一応nconfのディレクトリ以下にnagios.cfgを置いておく。</p>
+
+<p>[shell]</p>
+
+<p>$ sudo cp /etc/nagios/nagios.cfg /var/www/html/nconf/static_cfg/</p>
+
+<p>[/shell]</p>
+
+<p>nconfが配置するファイルを設定ファイルとして使用するように、コピーした先の/var/www/html/nconf/static_cfg/nagios.cfgを編集。</p>
+
+<p>[text]</p>
+
+<p># cfg_fileとcfg_dirを全てコメントアウトして以下の2行を追加。</p>
+
+<p>cfg_dir=/etc/nagios/global</p>
+
+<p>cfg_dir=/etc/nagios/Default_collector</p>
+
+<p>[/text]</p>
+
+<p>これで設定はおしまい。ApacheとNagiosを再起動して一息つく。</p>
+
+<p>[shell]</p>
+
+<p>$ sudo /etc/init.d/httpd stop</p>
+
+<p>$ sudo /etc/init.d/nagios restart</p>
+
+<p>$ sudo /etc/init.d/httpd start</p>
+
+<p>[/shell]</p>
+
+<h2 id="section">動作確認</h2>
+
+<p>http://(サーバのIP)/nagios/ を開いて、左側のCurrent Status → Servicesをクリックすると、Nagios側では以下のようにデフォルトでlocalhostの監視のみが設定されている。</p>
+
+<p><a href="http://b.l0g.jp/wp-content/uploads/2013/06/nagios02.png" target="_blank"><img class="alignnone  wp-image-1493" style="border: 0px;" alt="nagios02" src="http://b.l0g.jp/wp-content/uploads/2013/06/nagios02.png" width="680" height="409" /></a></p>
+
+<p>一方、 http://(サーバのIP)/nconf/ を開いて、左側のBasic Items → Hostsをクリックすると、nconf側ではlocalhost以外にサンプルとしてhplj2605dnなど合わせて4台分の設定が入っていることが分かる。</p>
+
+<p><a href="http://b.l0g.jp/wp-content/uploads/2013/06/nconf08.png" target="_blank"><img class="alignnone  wp-image-1494" style="border: 0px;" alt="nconf08" src="http://b.l0g.jp/wp-content/uploads/2013/06/nconf08.png" width="665" height="430" /></a></p>
+
+<p>ここで、nconfの左側のメニューからBasic Items → Generate Nagios configをクリックすると、設定ファイルが生成される。以下の画面で「Deploy」をクリックする。</p>
+
+<p><a href="http://b.l0g.jp/wp-content/uploads/2013/06/nconf09.png" target="_blank"><img class="alignnone  wp-image-1495" style="border: 0px;" alt="nconf09" src="http://b.l0g.jp/wp-content/uploads/2013/06/nconf09.png" width="665" height="430" /></a></p>
+
+<p>以下の画面のように、全てOKになれば、設定ファイルのデプロイとNagiosの再起動が終わっているはず。</p>
+
+<p><a href="http://b.l0g.jp/wp-content/uploads/2013/06/nconf10.png" target="_blank"><img class="alignnone  wp-image-1496" style="border: 0px;" alt="nconf10" src="http://b.l0g.jp/wp-content/uploads/2013/06/nconf10.png" width="665" height="430" /></a></p>
+
+<p>ここで、Nagiosの画面を開くと、以下のようにnconfに入っていた設定が有効になって、ホストが増えていれば成功。</p>
+
+<p><a href="http://b.l0g.jp/wp-content/uploads/2013/06/nagios03.png" target="_blank"><img class="alignnone  wp-image-1506" style="border: 0px;" alt="nagios03" src="http://b.l0g.jp/wp-content/uploads/2013/06/nagios03.png" width="680" height="380" /></a></p>
+
+<p>後は、nconfからあれこれ設定を入れて監視を始めるべし。</p>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+  </article>
+  
+</div>
+
+<div class="pagination">
+  
+    <a class="pagination-item older" href="/page5">Older</a>
+  
+  
+    <a class="pagination-item newer" href="/page3">Newer</a>
+  
+</div>
+
+      </main>
+
+      <footer class="footer">
+        <small>
+          &copy; <time datetime="2016-04-01T10:52:50-07:00">2016</time>. All rights reserved.
+        </small>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>

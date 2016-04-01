@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+      渋谷ではたらくインフラエンジニアのブログ &middot; 
+    
+  </title>
+
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <link rel="alternate" type="application/atom+xml" title="渋谷ではたらくインフラエンジニアのブログ" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="container content">
+      <header class="masthead">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">渋谷ではたらくインフラエンジニアのブログ</a>
+          <small></small>
+        </h3>
+      </header>
+
+      <main>
+        <div class="posts">
+  
+  <article class="post">
+    <h1 class="post-title">
+      <a href="/mysql/mysql-casual-talks-7/">
+        MySQL Casual Talks Vol. 7まとめ
+      </a>
+    </h1>
+
+    <time datetime="2014-12-15T01:11:16-08:00" class="post-date">15 Dec 2014</time>
+
+    <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/mysql/mysql-casual-talks-7/" class="hatena-bookmark-button" data-hatena-bookmark-title="MySQL Casual Talks Vol. 7まとめ" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/mysql/mysql-casual-talks-7/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/mysql/mysql-casual-talks-7/" data-text="MySQL Casual Talks Vol. 7まとめ" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/mysql/mysql-casual-talks-7/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p>ふう、<a href="http://mysql-casual.connpass.com/event/9767/">MySQL Casual Talks Vol. 7</a>行って参りました。前回は<a href="http://www.slideshare.net/doublemarket/mysqlcasual6fabric">自分が発表者</a>でもあったので、正直なところ他の人の発表を聞く余裕はなく(汗) 今回は、同僚の発表もあったので楽しみにしていったら、相変わらずの濃ゆい話が盛りだくさんで、非常に楽しめました。毎度の事ながら、<a href="https://twitter.com/myfinder">@myfinderさん</a>始め、会場提供・準備していただいたLINE</p>
+
+<p>のみなさま、Oracleのみなさまに感謝です。</p>
+
+<ul>
+  <li><a href="http://togetter.com/li/756928">Togetter</a></li>
+</ul>
+
+<h1 id="yoku0825httpstwittercomyoku0825-mysql-fabric"><a href="https://twitter.com/yoku0825">yoku0825さん</a> MySQL Fabricつらい</h1>
+
+<div style="margin-bottom:5px">
+  <strong> <a href="//www.slideshare.net/yoku0825/mysql-fabric-42641503" title="MySQL Fabricつらい" target="_blank">MySQL Fabricつらい</a> </strong> from <strong><a href="//www.slideshare.net/yoku0825" target="_blank">yoku0825</a></strong>
+</div>
+
+<ul>
+  <li>GAから半年なのに誰も使ってない</li>
+  <li>アメリカのイベントでは、MySQL Fabricだけに布がプレゼントされた(白目</li>
+  <li>Fabric対応コネクタが各種言語向けに用意されてる</li>
+  <li><a href="https://github.com/yoku0825/DBD-mysql/tree/support_mysql_fabric">yokuさん謹製fabric対応mysqlクライアント</a>
+    <ul>
+      <li>fabricとConnector/C経由で通信する</li>
+      <li>ro(スレーブ、分散される)とrw(マスタ、当然1台)のモードがある</li>
+      <li>マスタを落とすとちゃんと切り替わりますよ(デモ)</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="tatsuruhttpstwittercomtatsuru-mysql-on-ec2"><a href="https://twitter.com/tatsuru">tatsuruさん</a> MySQL on EC2</h1>
+
+<ul>
+  <li>3年ぐらい運用、結構消耗</li>
+  <li>MHA組んでおく
+    <ul>
+      <li>ENIをつけておいて、マスタ切り替えはそれを付け替える</li>
+    </ul>
+  </li>
+  <li>Mackerelでモニタリング</li>
+  <li>バックアップスレーブでsnapshotとってる</li>
+  <li>スレーブ作る
+    <ul>
+      <li>snapshotから作る</li>
+      <li>dumpから作る</li>
+      <li>落ちたら捨てる前提(信頼性落とす、ダウンしたら捨てる)</li>
+    </ul>
+  </li>
+  <li>取りあえず2セット作って入れ替える、が可能なのがよい</li>
+  <li>スレーブのオートスケールは結構難しい
+    <ul>
+      <li>warmup難しい</li>
+      <li>5.7はできそう(buffer poolリストア)</li>
+    </ul>
+  </li>
+  <li>データはEBSに置いている
+    <ul>
+      <li>IOできなくなって死ぬことがある</li>
+      <li>ヘルスチェック工夫しよう</li>
+    </ul>
+  </li>
+  <li>RDSはちょっと高いけど楽
+    <ul>
+      <li>フェイルオーバーが長い</li>
+      <li>可用性がちょっと微妙でやめた(2012年ぐらいの話なので古いかも)</li>
+    </ul>
+  </li>
+  <li>ELBはDNSベースなのでちょっとってことでhaproxyで分散している</li>
+  <li>もはや自前でMySQL運用する時代じゃないよね</li>
+</ul>
+
+<h1 id="mita2httpstwittercommita2-percona-live"><a href="https://twitter.com/mita2">ヤフー三谷さん @mita2</a> Percona Live行ってきた</h1>
+
+<ul>
+  <li>Oracle(200セット), MySQL/Percona(300セット)を運用中
+    <ul>
+      <li>Exadataとかも</li>
+    </ul>
+  </li>
+  <li>Percona Live 10月にロンドンで開催されたのに参加してきた</li>
+  <li>XtraDB Cluster
+    <ul>
+      <li>ActiveActiveの構成、高い冗長性</li>
+      <li>ヨーロッパでは広く普及</li>
+      <li>OpenStackのバックエンドに使われている</li>
+      <li>本家のGroup Replicationと似てる</li>
+      <li>どのノードに書いても同期レプリされる</li>
+      <li>MySQL Clusterよりは本家MySQLに近くてハードル低い</li>
+      <li>Writeのスケールはできない(MySQL Cluster使おう)</li>
+      <li>SST(丸ごとコピー)、IST(差分)でDonorからデータを送る</li>
+      <li>ノードへの分散はHAProxyとか使う</li>
+      <li>ヘルスチェックの仕組みもXtraDB型に準備されてる</li>
+      <li>書き込みは楽観的ロック</li>
+      <li>コミットしてノード間の情報が食い違ってるとコミット時にエラー</li>
+      <li>従って書き込みはできるだけ1台がいい</li>
+      <li>オンラインalterはできない(今後サポート予定)ので、ローリングで変更していく</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="okumura-hfmhttpstwittercomhfm-mysql-40"><a href="https://twitter.com/hfm">ペパボ okumuraさん @hfm</a> MySQL 4.0をリプレイスした</h1>
+
+<div style="margin-bottom:5px">
+  <strong> <a href="//www.slideshare.net/hifumis/mysql-casual-42634961" title="MySQL 4.0で9年動き続けたサーバを リプレイスしてバージョンアップした話" target="_blank">MySQL 4.0で9年動き続けたサーバを リプレイスしてバージョンアップした話</a> </strong> from <strong><a href="//www.slideshare.net/hifumis" target="_blank">Takahiro Okumura</a></strong>
+</div>
+
+<ul>
+  <li><a href="http://blog.hifumi.info/2014/12/13/mysql-casual-vol-7/">ブログ記事</a></li>
+  <li>2005年 4.0.25 -&gt; 9年 -&gt; 5.0.96にバージョンアップ</li>
+  <li>@tnmt 氏がカジュアルに5.6バージョンアップを指示するイシューを投げたところから始まった</li>
+  <li>しかしやる事になった時は何にも知識ありませんでした</li>
+  <li>たくさんの爆弾が仕込まれていた。。
+    <ul>
+      <li>マスタとスレーブの食い違いなどなど</li>
+      <li>ハードもソフトも古い</li>
+    </ul>
+  </li>
+  <li>検証の過程で色んなバージョンをインストールしたので、MySQL-AllStarというbox提供してます(4.0から5.6まで全部入り)</li>
+  <li>結局5.0まで上げることに</li>
+  <li>6/20 イベントがあるとレンタルサーバのアクセスが減るからwという理由でメンテ実施
+    <ul>
+      <li>ダンプからリストア、切り替えまで同じタイミングでやった</li>
+      <li>insertを実行するとbinlogが壊れることが発覚</li>
+      <li>失敗として切り戻し</li>
+      <li>5.0系を特定のgccでコンパイルすると起きるバグ？</li>
+      <li>gccの最適化のレベルによってテストが通ったり通らなかったり</li>
+    </ul>
+  </li>
+  <li>その後別のバグ発生
+    <ul>
+      <li>rpmbuild中に必要なファイルが消える</li>
+      <li>邪魔してたパッケージ消してビルド成功</li>
+    </ul>
+  </li>
+  <li>8/22無事バージョンアップ成功</li>
+  <li>4.0に入っていたデータの一部がリカバリできなかったのは手動で戻した</li>
+</ul>
+
+<h1 id="strsk-httpstwittercomstrsk-db"><a href="https://twitter.com/strsk">サイバーエージェント @strsk さん</a> ソーシャルゲームDBの危機回避</h1>
+
+<ul>
+  <li><a href="http://strsk.hatenablog.com/entry/2014/12/15/123211">ブログ記事</a></li>
+  <li>ギフトとかカードの情報が増えまくる
+    <ul>
+      <li>1日数十GB、論削だけで物理削除してなかったり</li>
+      <li>削除するのではなく、必要なデータだけをINSERT SELECTで抽出してテーブルを作り直すと速い</li>
+      <li>deleteしてもテーブル容量減らない(MVCCのバージョン管理のため)</li>
+      <li>pt-online-schema-changeでテーブル再構築</li>
+    </ul>
+  </li>
+  <li>レプリ遅延
+    <ul>
+      <li>truncateすると遅れる(deleteより遅い)</li>
+      <li>バッファプールを大きく使ってると遅くなるというバグ</li>
+      <li>結局deleteしました</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="ryopeko-httpstwittercomryopeko-q4m"><a href="https://twitter.com/ryopeko">@ryopeko さん</a> Q4M</h1>
+
+<ul>
+  <li><a href="http://qiita.com/ryopeko/items/f42b65a11d7f1f74311e">ブログ記事</a></li>
+  <li>パーフェクトRuby出しました</li>
+  <li>Rubyの人はRedis使う人多い(sidekiqで)けどQ4M
+    <ul>
+      <li><a href="https://github.com/ryopeko/shinq">shinq</a></li>
+      <li>ActiveJobを利用</li>
+      <li>Rails 4.2に入る予定のキュー機能</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="kakerukaeru-httpstwittercomkakerukaeru-continuous-restore"><a href="https://twitter.com/kakerukaeru">サイバーエージェント @kakerukaeru さん</a> continuous restore</h1>
+
+<ul>
+  <li><a href="http://kakerukaeru.hatenablog.com/entry/2014/12/13/213342">ブログ記事</a></li>
+  <li>DBのバックアップだけじゃなくてリストアも繰り返しやって、復旧可能性を担保</li>
+  <li>バァーン、バァーン、バババァーン</li>
+</ul>
+
+<h1 id="ijin-httpstwittercomijin-consulmysql"><a href="https://twitter.com/ijin">@ijin さん</a> ConsulでMySQLのフェイルオーバー</h1>
+
+<ul>
+  <li><a href="http://ijin.github.io/blog/2014/07/11/mysql-failover-with-consul/">元ネタのブログ記事</a></li>
+  <li>consulはraftを使ってcap定理のcpを実現している</li>
+  <li>MHA発動時に実行されるfailover scriptでconsulのAPIを叩いてマスタのDNS名を変更する</li>
+  <li>consul event
+    <ul>
+      <li>eventをノードに伝えると伝播される(no guarantee)</li>
+      <li>watchで検知してスクリプトを動かす</li>
+    </ul>
+  </li>
+  <li>consul templateを使いましょう</li>
+</ul>
+
+<h1 id="kazeburo-httpstwittercomkazeburo-isuconmysql"><a href="https://twitter.com/kazeburo">@kazeburo さん</a> isuconのためのMySQLチューニング</h1>
+
+<div style="margin-bottom:5px">
+  <strong> <a href="//www.slideshare.net/kazeburo/mysql-casual7isucon" title="ISUCON4 予選問題で(中略)、”my.cnf”に1行だけ足して予選通過ラインを突破するの術" target="_blank">ISUCON4 予選問題で(中略)、”my.cnf”に1行だけ足して予選通過ラインを突破するの術</a> </strong> from <strong><a href="//www.slideshare.net/kazeburo" target="_blank">Masahiro Nagano</a></strong>
+</div>
+
+<ul>
+  <li>my.cnfをチューニングする
+    <ul>
+      <li>innodb_flush_log_at_trx_commit=2で結構上がる</li>
+      <li>innodb_flush_method=nosync/O_DIRECTでも上がる</li>
+      <li>この2つのオプションさえちゃんとやっておけばおk</li>
+      <li>データ量に応じてinnodb_buffer_pool_sizeも</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="neofact-httpstwittercomneofact-kuwatw-httpstwittercomkuwatw-nvmfs"><a href="https://twitter.com/neofact">@neofact さん</a>、 <a href="https://twitter.com/kuwa_tw">@kuwa_tw さん</a> NVMFS</h1>
+
+<div style="margin-bottom:5px">
+  <strong> <a href="//www.slideshare.net/akuwano/ca-nvmfs-42665725" title="NVMFS 使ってみたとか 言っちゃって マジカジュアルな奴" target="_blank">NVMFS 使ってみたとか 言っちゃって マジカジュアルな奴</a> </strong> from <strong><a href="//www.slideshare.net/akuwano" target="_blank">Akihiro Kuwano</a></strong>
+</div>
+
+<ul>
+  <li><a href="http://d.hatena.ne.jp/akuwano/20141215">ブログ記事</a></li>
+  <li>圧縮効いて8〜6割の性能</li>
+  <li>容量的には半分ぐらいに圧縮できた</li>
+  <li>圧縮伸長でCPU食う(元々ioDriveではCPUバウンドだけどさらにきつくなる)</li>
+</ul>
+
+<h1 id="doaki-httpstwittercomdoaki-n1"><a href="https://twitter.com/do_aki">@do_aki さん</a> N:1レプリケーション</h1>
+
+<ul>
+  <li>いつもの</li>
+  <li>特に進捗なし</li>
+  <li>Raspberry piでN:1 replication動きましたw</li>
+</ul>
+
+<h1 id="kamipo-httpstwittercomkamipo-activerecord"><a href="https://twitter.com/kamipo">@kamipo さん</a> ActiveRecord</h1>
+
+<ul>
+  <li>
+    <p><a href="http://kamipo.github.io/talks/20141212-mysqlcasual7/#/title">発表資料</a></p>
+  </li>
+  <li>
+    <p>ARのメンテナはみんなPostgreSQL派で、MySQLのプルリクは放置される傾向にある</p>
+  </li>
+  <li><a href="https://github.com/rails/rails/pulls/kamipo">いっぱいMySQLのプルリク投げた！</a>
+    <ul>
+      <li>For MySQLってつけたの全部放置されてるorz</li>
+      <li>機能をバックポートして<a href="http://qiita.com/kamipo/items/11b55caf329210923a9a">activerecord-mysql-awesome作った</a></li>
+    </ul>
+  </li>
+  <li>kamipoさんはすごいひと</li>
+</ul>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+  </article>
+  
+  <article class="post">
+    <h1 class="post-title">
+      <a href="/chef/chef-meetup-20140919/">
+        日本Chefユーザ会 Meetup メモ
+      </a>
+    </h1>
+
+    <time datetime="2014-09-19T06:23:12-07:00" class="post-date">19 Sep 2014</time>
+
+    <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/chef/chef-meetup-20140919/" class="hatena-bookmark-button" data-hatena-bookmark-title="日本Chefユーザ会 Meetup メモ" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/chef/chef-meetup-20140919/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/chef/chef-meetup-20140919/" data-text="日本Chefユーザ会 Meetup メモ" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/chef/chef-meetup-20140919/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p><a href="https://www.getchef.com/" target="_blank"><img class="alignnone wp-image-1613 size-thumbnail" src="http://b.l0g.jp/wp-content/uploads/2014/09/Chef_Vertical_Website_Reg-150x150.png" alt="Chef_Vertical_Website_Reg" width="150" height="150" srcset="http://b.l0g.jp/wp-content/uploads/2014/09/Chef_Vertical_Website_Reg-150x150.png 150w, http://b.l0g.jp/wp-content/uploads/2014/09/Chef_Vertical_Website_Reg-144x144.png 144w" sizes="(max-width: 150px) 100vw, 150px" /></a></p>
+
+<p><a title="日本Chefユーザ会" href="https://www.facebook.com/groups/272530339574523/" target="_blank">日本Chefユーザ会</a>なるものがいつの間にかできていたようで、Chef社の人も招いて<a title="日本Chefユーザー会主催のMeet up!" href="http://connpass.com/event/8605/" target="_blank">Meetup</a>が開催されると聞き、参加してきた。</p>
+
+<p>先日発表された<a title="Chef Releases Chef 12 to Power DevOps Practices in the Enterprise" href="https://www.getchef.com/blog/2014/09/08/chef-releases-chef-12-to-power-devops-practices-in-the-enterprise/" target="_blank">Chef 12</a>(<a title="Chef 12がリリース。商用版とオープンソース版の一本化で25ノードまで無償に。Docker対応、VMware vSphere、Microsoft Azureにも対応" href="http://www.publickey1.jp/blog/14/chef_1225dockervmware_vspheremicrosoft_azure.html" target="_blank">参考日本語記事</a>)の簡単な紹介と、Chefのテスト環境に流れを追っての概要とデモがあった。新しい情報はそれほどなかったように思ったが、テストについてのデモ後は質問が活発に出たりしてなかなか面白かったので、メモ公開。</p>
+
+<p>ちなみに、Chefユーザ会のハッシュタグは <a href="https://twitter.com/search?src=typd&amp;q=%23getchef_ja">#getchef_ja</a> だそうなので、日本語のChefに関連するつぶやきはここを見ておくのがよさそう。</p>
+
+<h2 id="chef-12-a-hrefhttpstwittercommfdii-targetblankmichael-ducya">Chef 12の紹介 (<a href="https://twitter.com/mfdii" target="_blank">Michael Ducyさん</a>)</h2>
+
+<ul>
+  <li>新しくなったchef server
+    <ul>
+      <li>従来1組織しか管理できなかったがmulti tenantサポート</li>
+    </ul>
+  </li>
+  <li>chef client
+    <ul>
+      <li>chef pushというクライアント側へのプッシュ機能が付く予定</li>
+    </ul>
+  </li>
+  <li>Chef development kitがバージョンアップ
+    <ul>
+      <li>test-kichenやfoodcriticなどを含む</li>
+    </ul>
+  </li>
+  <li>Enterprise版の機能
+    <ul>
+      <li>HA</li>
+      <li>replication
+        <ul>
+          <li>複数のchefサーバを立てて同期できる</li>
+        </ul>
+      </li>
+      <li>analytics</li>
+      <li>25ノードまでは有料版の機能を無料で使える
+        <ul>
+          <li>さらに30日間はサポートも無料</li>
+        </ul>
+      </li>
+      <li>日本でEnterprise版を使いたければ、まず<a title="クリエーションライン" href="http://www.creationline.com/" target="_blank">クリエーションライン</a>さんに問い合わせ</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="a-hrefhttpstwittercomcheeseplus-targetblankseth-thomasa">テストについて (<a href="https://twitter.com/cheeseplus" target="_blank">Seth Thomasさん</a>)</h2>
+
+<ul>
+  <li>クックブックのテストをする時は、以下のツールを使っていくことが多いよ、という話</li>
+  <li><a href="http://kitchen.ci/" target="_blank"> test-kitchen</a>
+    <ul>
+      <li>chef dev kitの一部</li>
+      <li>仮想マシンでクックブックをテスト</li>
+    </ul>
+  </li>
+  <li><a href="http://acrmp.github.io/foodcritic/" target="_blank">foodcritic</a>
+    <ul>
+      <li>chef dev kitの一部</li>
+      <li>chefのお作法に沿った文法かチェック</li>
+    </ul>
+  </li>
+  <li><a href="https://github.com/bbatsov/rubocop" target="_blank">rubocop</a>
+    <ul>
+      <li>Rubyのお作法チェック</li>
+    </ul>
+  </li>
+  <li><a href="https://github.com/guard/guard" target="_blank">guard</a>
+    <ul>
+      <li>ファイルシステム変更確認</li>
+      <li>これでcookbookの変更とかをチェックして、test-kichenやfoodcritic、rubocopとか走らせる</li>
+      <li>下の質問にもあるが、ローカル環境で動かしておいて、コミット前のテストを自動化するのに使う</li>
+    </ul>
+  </li>
+  <li><a href="http://serverspec.org/" target="_blank">serverspec</a>
+    <ul>
+      <li>クックブックを実行した後に、対象のノードがどうなったかのチェックするのに使う</li>
+      <li>chefspecは、どうなるべきかクックブックで実装できてるかをチェックするツール</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="section">質問</h3>
+
+<ul>
+  <li>クラスタがちゃんとセットアップできたかのチェックとかやりたいんだけど
+    <ul>
+      <li><a href="https://github.com/opscode/chef-metal">chef metal</a>を使えばできる</li>
+      <li>ただしまだベータです</li>
+    </ul>
+  </li>
+  <li>serverspecのspecファイルはどこに置くの
+    <ul>
+      <li>mysqlだとクックブックのディレクトリのtest/integration以下に置いてる</li>
+      <li><a href="https://github.com/opscode-cookbooks/mysql" target="_blank">MySQLのクックブック</a>が一番ちゃんとテストしてあって色々な点で参考になる。読むなら一番いい</li>
+      <li>test-kitchenのサンプルとしてもMySQLがいい</li>
+    </ul>
+  </li>
+  <li>Windowsで使いにくいんだけど
+    <ul>
+      <li>手順とか公開してます</li>
+    </ul>
+  </li>
+  <li>serverspecは全部実行した後にやると思うけどchefspec, test-kitchenとかはどのタイミングでかける？
+    <ul>
+      <li>chefspecはlocalで実行する</li>
+      <li>その後test-kitchenで確認する</li>
+    </ul>
+  </li>
+  <li>guardはどう使う感じ？
+    <ul>
+      <li>基本はローカルで動かしておいてコミット前のチェックまで自動でやるもの</li>
+      <li>リモートで動かして使うことももちろんできる</li>
+    </ul>
+  </li>
+  <li>cookbook内のattributeをserverspecで使いたい時はどうしたらいい？
+    <ul>
+      <li>serverspec側を何とかいじってattributeの書いてあるファイルを見るとかする他ない</li>
+    </ul>
+  </li>
+  <li>test-kitchenするのにいいのありますか？(EC2だとお金かかっちゃうから)
+    <ul>
+      <li>DigitalOceanは(chef社からは)速いよ(ただし西海岸は。DigitalOceanはChefのユーザでもあるし)</li>
+      <li>速いところを探して使うしかない</li>
+      <li>test-kitchen –parallelを使えば並列実行できて速い</li>
+    </ul>
+  </li>
+  <li>kitchen.yamlでnodeの情報にアクセスしたい
+    <ul>
+      <li>chef-zeroを使えばいい</li>
+      <li><strong>chef-soloは将来的にdeprecatedになる予定</strong></li>
+    </ul>
+  </li>
+  <li>日本でのchefコミュニティを活性化させるにはどうしたらよいと思うか？
+    <ul>
+      <li>ビールが必要(笑)</li>
+      <li>頻繁に勉強会やmeetupやっていきたい</li>
+    </ul>
+  </li>
+  <li>(逆に参加者への質問)女性chef関係者はいないのか？w</li>
+</ul>
+
+<p><a href="http://tech.rakuten.co.jp/" target="_blank">10/25の楽天テクノロジーカンファレンス</a>でも、Michealさんが話をするそうで、参加者へのアンケート(？)の結果、Dockerと関連してChefを使う話を予定しているとのこと。</p>
+
+<p>この後、Chef社とクリエーションライン社のおごりで、楽しくビールを飲みながらChefの話をしてお開き。</p>
+
+<p>発表いただいたChef社の方、会場の準備などしていただいたクリエーションラインの方々、ありがとうございました。ビールごちそうさまでした。</p>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+  </article>
+  
+  <article class="post">
+    <h1 class="post-title">
+      <a href="/misc/webdb-press-vol-79/">
+        WEB+DB PRESS vol. 79の記事を書きました
+      </a>
+    </h1>
+
+    <time datetime="2014-02-21T01:00:06-08:00" class="post-date">21 Feb 2014</time>
+
+    <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/misc/webdb-press-vol-79/" class="hatena-bookmark-button" data-hatena-bookmark-title="WEB+DB PRESS vol. 79の記事を書きました" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/misc/webdb-press-vol-79/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/misc/webdb-press-vol-79/" data-text="WEB+DB PRESS vol. 79の記事を書きました" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/misc/webdb-press-vol-79/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p><a href="http://b.l0g.jp/wp-content/uploads/2014/02/cover.jpg"><img class="size-medium wp-image-1594 alignnone" style="border: 0px;" alt="cover" src="http://b.l0g.jp/wp-content/uploads/2014/02/cover-225x300.jpg" width="225" height="300" srcset="http://b.l0g.jp/wp-content/uploads/2014/02/cover-225x300.jpg 225w, http://b.l0g.jp/wp-content/uploads/2014/02/cover-768x1024.jpg 768w, http://b.l0g.jp/wp-content/uploads/2014/02/cover-900x1200.jpg 900w, http://b.l0g.jp/wp-content/uploads/2014/02/cover.jpg 1224w" sizes="(max-width: 225px) 100vw, 225px" /></a></p>
+
+<p>同じ会社で働いてる <a href="https://twitter.com/kuwa_tw">@kuwa_tw</a> さんから紹介いただいて、<a title="WEB+DB PRESS vol. 79" href="http://gihyo.jp/magazine/wdpress/archive/2014/vol79" target="_blank">WEB+DB PRESS vol. 79</a>の記事を書かせていただきました。雑誌に、というか印刷物に自分の書いたものが掲載されるのは初めての経験です。あまり歓迎されないけれども避けては通れない、メンテナンスという切り口で書かせていただいています。</p>
+
+<p>始め、執筆の話をもらった時は、自分の書いた文章が印刷されて世に出るなんて想像もつかない出来事だなあと思っていましたが、実際手元に届いても、これが広く読者の方々に読まれるというのがどういうことなのかよくわかっておりませんｗ 皆さんからマサカリが飛んできて初めて理解できるものなのかもしれません。ご意見などありましたら <a href="https://twitter.com/dblmkt">@dblmkt</a> までいただけるとうれしいです。</p>
+
+<p>執筆のチャンスをくれた <a href="https://twitter.com/kuwa_tw">@kuwa_tw</a> さんを始め、不慣れな我々をサポートしてくれた技術評論社の編集者の方、一緒に記事を執筆し色々なアドバイスをくれた同僚達にこの場を借りて感謝を表したいと思います。ありがとうございました！</p>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+  </article>
+  
+</div>
+
+<div class="pagination">
+  
+    <a class="pagination-item older" href="/page3">Older</a>
+  
+  
+    <a class="pagination-item newer" href="/">Newer</a>
+  
+</div>
+
+      </main>
+
+      <footer class="footer">
+        <small>
+          &copy; <time datetime="2016-04-01T10:52:50-07:00">2016</time>. All rights reserved.
+        </small>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>

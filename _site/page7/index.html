@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+      渋谷ではたらくインフラエンジニアのブログ &middot; 
+    
+  </title>
+
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <link rel="alternate" type="application/atom+xml" title="渋谷ではたらくインフラエンジニアのブログ" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="container content">
+      <header class="masthead">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">渋谷ではたらくインフラエンジニアのブログ</a>
+          <small></small>
+        </h3>
+      </header>
+
+      <main>
+        <div class="posts">
+  
+  <article class="post">
+    <h1 class="post-title">
+      <a href="/linux/buffercache-and-page-cache/">
+        Linuxのバッファキャッシュとページキャッシュの違いは？
+      </a>
+    </h1>
+
+    <time datetime="2012-10-24T15:56:15-07:00" class="post-date">24 Oct 2012</time>
+
+    <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/linux/buffercache-and-page-cache/" class="hatena-bookmark-button" data-hatena-bookmark-title="Linuxのバッファキャッシュとページキャッシュの違いは？" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/linux/buffercache-and-page-cache/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/linux/buffercache-and-page-cache/" data-text="Linuxのバッファキャッシュとページキャッシュの違いは？" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/linux/buffercache-and-page-cache/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p>Linuxが管理するキャッシュ領域には、バッファキャッシュとページキャッシュ領域があって、topコマンドや/proc/meminfoの「bufferes」「cached」という項目を見れば、現在のそれぞれのキャッシュ領域がどの程度なのかを確認することができる。</p>
+
+<p>どちらも、ディスクの読み書きをキャッシュしてデータへのアクセスを高速化するという点では同じだが、それぞれがどのような意味で、どういう違いがあるのかについて、<a href="http://www.quora.com/Linux-Kernel/In-Linux-what-is-the-major-difference-between-the-buffer-cache-and-the-page-cache-Why-were-they-separate-entities-in-older-kernels-Why-were-they-merged-later-on">Quoraに分かりやすい解説</a>があったので、翻訳してみた。</p>
+
+<blockquote>
+  <p>ページキャッシュは、ファイルI/Oを最適化するために、ファイルのページをキャッシュする。バッファキャッシュは、ブロックI/Oを最適化するために、ディスクブロックをキャッシュする。</p>
+
+  <p>Linuxカーネル2.4よりも前では、2つのキャッシュは明白に違うものだった。ファイルはページキャッシュに、ディスクブロックはバッファキャッシュに載せられていた。ほとんどのファイルがディスク上のファイルシステムによって扱われているとすると、データは2回、すなわち両方のキャッシュそれぞれに取り扱われる。多くのUnixシステムはこれと同じようなパターンを採用している。</p>
+
+  <p>これはシンプルな実装だが、明らかに洗練されていないし、非効率である。Linuxカーネル2.4からは、2つのキャッシュのコンテンツは統合された。VM(Virtual Memory)サブシステムがI/Oを司るようになり、それはページキャッシュからデータを取り出す。キャッシュされたデータがファイルとブロックの両方のかたちをとる(ほとんどのデータがそうだが)場合、バッファキャッシュは単純にページキャッシュを指し示す。つまり、データは1つだけがメモリにキャッシュされていることになる。ページキャッシュは、ディスクキャッシュのことを考えた通りのものだ。それは、後続のI/Oを高速化するために、ディスクからデータをキャッシュする。</p>
+
+  <p>バッファキャッシュはいまだに残っているが、それは、カーネルは現在もページ単位ではなくブロック単位のブロックI/Oを行う必要があるからだ。ほとんどのブロックはファイルデータのかたちを取っているため、バッファキャッシュの多くはページキャッシュと同等である。しかし、少量のブロックデータ、例えばメタデータやrawブロックI/Oなどは、ファイルを前提にしたものではなく、もっぱらバッファキャッシュによって取り扱われる。</p>
+</blockquote>
+
+<p>現在のかたちに至った経緯まで含めて説明できるのは、経験豊かな人ならではというべきか。</p>
+
+<table border="0" cellpadding="5">
+  <tr>
+    <td valign="top">
+      <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4873115019/l0gjp-22/ref=nosim/" target="_blank" rel="nofollow"><img src="http://ecx.images-amazon.com/images/I/51blzciVfIL._SL160_.jpg" border="0" alt="Linuxカーネル Hacks ―パフォーマンス改善、開発効率向上、省電力化のためのテクニック" style="border: 0px;" /></a>
+    </td>
+    
+    <td valign="top">
+      <font size="-1"><a href="http://www.amazon.co.jp/Linux%E3%82%AB%E3%83%BC%E3%83%8D%E3%83%AB-Hacks-%E2%80%95%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9%E6%94%B9%E5%96%84%E3%80%81%E9%96%8B%E7%99%BA%E5%8A%B9%E7%8E%87%E5%90%91%E4%B8%8A%E3%80%81%E7%9C%81%E9%9B%BB%E5%8A%9B%E5%8C%96%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E3%83%86%E3%82%AF%E3%83%8B%E3%83%83%E3%82%AF-%E6%B1%A0%E7%94%B0-%E5%AE%97%E5%BA%83/dp/4873115019%3FSubscriptionId%3D15SMZCTB9V8NGR2TW082%26tag%3Dl0gjp-22%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D4873115019" target="_blank" rel="nofollow">Linuxカーネル Hacks ―パフォーマンス改善、開発効率向上、省電力化のためのテクニック</a><img src="http://www.assoc-amazon.jp/e/ir?t=l0gjp-22&#038;l=ur2&#038;o=9" width="1" height="1" style="border: none;" alt="" /><br />池田 宗広 大岩 尚宏 島本 裕志 竹部 晶雄 平松 雅巳 高橋 浩和  
+      
+      <p>
+        オライリージャパン 2011-07-26<br />売り上げランキング : 95520
+      </p>
+      
+      <p>
+        <a href="http://www.amazon.co.jp/Linux%E3%82%AB%E3%83%BC%E3%83%8D%E3%83%AB-Hacks-%E2%80%95%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9%E6%94%B9%E5%96%84%E3%80%81%E9%96%8B%E7%99%BA%E5%8A%B9%E7%8E%87%E5%90%91%E4%B8%8A%E3%80%81%E7%9C%81%E9%9B%BB%E5%8A%9B%E5%8C%96%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E3%83%86%E3%82%AF%E3%83%8B%E3%83%83%E3%82%AF-%E6%B1%A0%E7%94%B0-%E5%AE%97%E5%BA%83/dp/4873115019%3FSubscriptionId%3D15SMZCTB9V8NGR2TW082%26tag%3Dl0gjp-22%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D4873115019" target="_blank" rel="nofollow">Amazonで詳しく見る</a> <font size="-2">by <a href="http://www.goodpic.com/mt/aws/index.html">G-Tools</a></font>   
+        
+        <hr />
+        
+        <p>
+          <b>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</b>
+        </p>
+</p></font></td></tr></table>
+
+  </article>
+  
+  <article class="post">
+    <h1 class="post-title">
+      <a href="/shell/readline-shortcut-keys/">
+        readlineのショートカットまとめ
+      </a>
+    </h1>
+
+    <time datetime="2012-10-20T10:11:42-07:00" class="post-date">20 Oct 2012</time>
+
+    <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/shell/readline-shortcut-keys/" class="hatena-bookmark-button" data-hatena-bookmark-title="readlineのショートカットまとめ" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/shell/readline-shortcut-keys/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/shell/readline-shortcut-keys/" data-text="readlineのショートカットまとめ" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/shell/readline-shortcut-keys/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p><a href="http://tiswww.case.edu/php/chet/readline/rltop.html"><img src="http://b.l0g.jp/wp-content/uploads/2012/10/gnu-head-sm.jpg" alt="" title="gnu-head-sm" width="129" height="122" class="alignleft size-full wp-image-1310" style="border: 0px; margin-left: 8px; margin-right: 8px;" /></a></p>
+
+<blockquote class="twitter-tweet tw-align-center" lang="ja">
+  <p>
+    mysqlコマンドのプロンプトで使えるキーボードショートカットについて探してたら、readline使ってるからbashとかと同じになるのか。今さら気付いて恥ずかしいが当たり前といえば当たり前かｗ
+  </p>
+  
+  <p>
+    &mdash; doublemarketさん (@dblmkt) <a href="https://twitter.com/dblmkt/status/259533796645425153" data-datetime="2012-10-20T05:57:33+00:00">10月 20, 2012</a>
+  </p>
+</blockquote>
+
+<p>ということで、調べたついでなのでreadlineのキーボードショートカットをまとめてみた。知らなかったのもあって意外と勉強になる。なお、使っているターミナルによってはAltの代わりに”Esc→キー”を使う必要がある。</p>
+
+<p>ちなみに、readlineを使っているのはbash, zsh, ksh, mysql, psql, ftp, bcなど色々あるがこれらのコマンドラインツールでは基本的に以下のショートカットキーが使える(ソフトウェアによっては全部が全部使えるわけではない)。</p>
+
+<h2 id="section">カーソル移動系</h2>
+
+<p>さすがにここは定番すぎる。</p>
+
+<table class="article">
+  <tr>
+    <th>
+      キー入力
+    </th>
+    
+    <th>
+      動作
+    </th>
+  </tr>
+  
+  <tr>
+    <td>
+      Ctrl-b
+    </td>
+    
+    <td>
+      カーソルを左に1文字移動
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Ctrl-f
+    </td>
+    
+    <td>
+      カーソルを右に1文字移動
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Alt-b
+    </td>
+    
+    <td>
+      カーソルを左に1単語移動
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Alt-f
+    </td>
+    
+    <td>
+      カーソルを右に1単語移動
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Ctrl-a
+    </td>
+    
+    <td>
+      カーソルを行頭に移動
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Ctrl-e
+    </td>
+    
+    <td>
+      カーソルを行末に移動
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Ctrl-x-x
+    </td>
+    
+    <td>
+      入力を始めた位置と現時点のカーソル位置を交互に移動
+    </td>
+  </tr>
+</table>
+
+<h2 id="section-1">削除系</h2>
+
+<p>この辺は、知っておくと素早くコマンドを修正できるがなかなか覚えられない。</p>
+
+<table class="article">
+  <tr>
+    <th>
+      キー入力
+    </th>
+    
+    <th>
+      動作
+    </th>
+  </tr>
+  
+  <tr>
+    <td>
+      Back space
+    </td>
+    
+    <td>
+      カーソルの左の文字を削除
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Delete<br />Ctrl-d
+    </td>
+    
+    <td>
+      カーソル位置の文字を削除
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Ctrl-u
+    </td>
+    
+    <td>
+      行頭からカーソル位置までの文字を削除
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Ctrl-k
+    </td>
+    
+    <td>
+      カーソル位置から行末までの文字を削除
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Alt-d
+    </td>
+    
+    <td>
+      カーソル位置から次のスペースまでの文字を削除
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Ctrl-w
+    </td>
+    
+    <td>
+      直前の空白からカーソル位置の1文字前までの文字を削除
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Ctrl-y
+    </td>
+    
+    <td>
+      直前に上の削除コマンドで削除した文字をカーソル位置にペースト
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Alt-y
+    </td>
+    
+    <td>
+      n回前に削除した文字をカーソル位置にペースト(入力するたびに前に戻っていく)
+    </td>
+  </tr>
+</table>
+
+<h2 id="section-2">ヒストリ系</h2>
+
+<p>最後の2つ、引数をペーストするのは知らなかった。そんなに使う感じしないけど。</p>
+
+<table class="article">
+  <tr>
+    <th>
+      キー入力
+    </th>
+    
+    <th>
+      動作
+    </th>
+  </tr>
+  
+  <tr>
+    <td>
+      Ctrl-p
+    </td>
+    
+    <td>
+      1回前に実行されたコマンドを表示
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Ctrl-n
+    </td>
+    
+    <td>
+      1回後に実行されたコマンドを表示
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Alt-&gt;
+    </td>
+    
+    <td>
+      元々入力されていたコマンドを表示
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Ctrl-r
+    </td>
+    
+    <td>
+      現在表示されているものより前に実行されたコマンドをインクリメンタルサーチ
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Ctrl-s
+    </td>
+    
+    <td>
+      現在表示されているものより後に実行されたコマンドをインクリメンタルサーチ
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Ctrl-J
+    </td>
+    
+    <td>
+      インクリメンタルサーチを終了
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Ctrl-G
+    </td>
+    
+    <td>
+      インクリメンタルサーチを中止して元に戻る
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Alt-Ctrl-y
+    </td>
+    
+    <td>
+      直前のコマンドの第1引数をカーソル位置にペースト
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Alt-.<br />Alt-_
+    </td>
+    
+    <td>
+      直前のコマンドの最後の引数をカーソル位置にペースト
+    </td>
+  </tr>
+</table>
+
+<h2 id="undo">Undo系</h2>
+
+<table class="article">
+  <tr>
+    <th>
+      キー入力
+    </th>
+    
+    <th>
+      動作
+    </th>
+  </tr>
+  
+  <tr>
+    <td>
+      Ctrl-_<br />Ctrl-x Ctrl-u
+    </td>
+    
+    <td>
+      入力しているコマンドを全部削除
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Alt-r
+    </td>
+    
+    <td>
+      入力している行を全部削除(複数行入力している時にその行だけを消す)
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Ctrl-l
+    </td>
+    
+    <td>
+      表示を全部消して現在入力している行を一番上に表示
+    </td>
+  </tr>
+</table>
+
+<h2 id="section-3">オートコンプリート系</h2>
+
+<p>Alt-*とかどういう時に使う想定なんだろうか。</p>
+
+<table class="article">
+  <tr>
+    <th>
+      キー入力
+    </th>
+    
+    <th>
+      動作
+    </th>
+  </tr>
+  
+  <tr>
+    <td>
+      Tab
+    </td>
+    
+    <td>
+      入力をオートコンプリート
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Alt-?<br />Tab Tab
+    </td>
+    
+    <td>
+      オートコンプリートの候補を表示
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Alt-*
+    </td>
+    
+    <td>
+      オートコンプリートの候補を全部入力
+    </td>
+  </tr>
+</table>
+
+<h2 id="section-4">入れ替え系</h2>
+
+<p>このコマンドどちらも知らなかったが、オプションの順序を間違えた時に簡単に入れ替えたりするのにとても重宝する！</p>
+
+<table class="article">
+  <tr>
+    <th>
+      キー入力
+    </th>
+    
+    <th>
+      動作
+    </th>
+  </tr>
+  
+  <tr>
+    <td>
+      Ctrl-t
+    </td>
+    
+    <td>
+      カーソルの直前の文字とカーソル位置の文字を入れ替える
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Alt-t
+    </td>
+    
+    <td>
+      カーソル位置の前の単語とカーソル位置の単語を入れ替える
+    </td>
+  </tr>
+</table>
+
+<h2 id="section-5">その他編集系</h2>
+
+<p>これも知らなかった。そんなに使用頻度多くない人もいるだろうが、SQLを入力する時に予約語を大文字で入力したい人とか便利なんじゃないか。</p>
+
+<table class="article">
+  <tr>
+    <th>
+      キー入力
+    </th>
+    
+    <th>
+      動作
+    </th>
+  </tr>
+  
+  <tr>
+    <td>
+      Alt-u
+    </td>
+    
+    <td>
+      カーソル位置の単語の、カーソル位置より後を大文字にし、カーソルは単語の最後に移動
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Alt-l
+    </td>
+    
+    <td>
+      カーソル位置の単語の、カーソル位置より後を小文字にし、カーソルは単語の最後に移動
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Alt-c
+    </td>
+    
+    <td>
+      カーソル位置の単語の先頭文字を大文字にし、カーソルは単語の最後に移動
+    </td>
+  </tr>
+</table>
+
+<p>参考1 : <a href="http://www.bigsmoke.us/readline/shortcuts">Readline shortcuts</a></p>
+
+<p>参考2 : <a href="http://tiswww.case.edu/php/chet/readline/readline.html">GNU Readline Library Documentation</a></p>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+  </article>
+  
+  <article class="post">
+    <h1 class="post-title">
+      <a href="/linux/check-fs-cache-hitrate-with-stap/">
+        systemtapでファイルシステムキャッシュのヒット率を見る
+      </a>
+    </h1>
+
+    <time datetime="2012-06-18T05:23:01-07:00" class="post-date">18 Jun 2012</time>
+
+    <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/linux/check-fs-cache-hitrate-with-stap/" class="hatena-bookmark-button" data-hatena-bookmark-title="systemtapでファイルシステムキャッシュのヒット率を見る" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/linux/check-fs-cache-hitrate-with-stap/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/linux/check-fs-cache-hitrate-with-stap/" data-text="systemtapでファイルシステムキャッシュのヒット率を見る" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/linux/check-fs-cache-hitrate-with-stap/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p><img src="http://b.l0g.jp/wp-content/uploads/2012/06/systemtaplogo1.png" title="systemtaplogo1" width="165" height="25" class="alignleft size-full wp-image-1280" style="border: 0px; margin-left: 8px; margin-right: 8px;" /></p>
+
+<p>Linuxでは、自動的にメモリの空き容量をファイルシステムキャッシュ(以下単にキャッシュ)として使用するような仕組みが用意されている。MySQLでMyISAMを使う時のようにOSのキャッシュを使用するような仕組みを使っていたり、単にファイルをNFSで公開しているファイルサーバなどでは、このキャッシュがどの程度効くかによってかなりパフォーマンスが違ってくる。</p>
+
+<p>多数のファイルが読みだされ、かつ読み出し対象ファイルの総容量が物理メモリ容量より多い場合(普通そうだと思うが)、どのくらいのキャッシュヒット率になっているかを知っておくのは、パフォーマンス改善の一助になる。しかし、あるファイルがキャッシュに載っているかどうかを調べたり、ファイルをキャッシュに載せたりするための単純なコマンドというのは実は存在していない(はず)。それで、</p>
+
+<blockquote class="twitter-tweet" width="500">
+  <p>
+    Linuxのファイルシステムキャッシュのヒット率って取得できないんだろうか。MyISAM使ってる時にどんくらいデータファイルがキャッシュヒットしてるか見たいなーと思ったけど、ググってみてもいい感じの情報が出てこない。カーネルソース読めって話かな…
+  </p>
+  
+  <p>
+    &mdash; doublemarket (@dblmkt) <a href="https://twitter.com/dblmkt/statuses/207373195425230848">May 29, 2012</a>
+  </p>
+</blockquote>
+
+<p>とつぶやいたら、</p>
+
+<blockquote class="twitter-tweet" width="500">
+  <p>
+    <a href="https://twitter.com/dblmkt">@dblmkt</a> VFS 周りの値とってごにょっとする感じになると思うます。こんな感じ？ <a href="http://t.co/5sa0HcvK">http://t.co/5sa0HcvK</a>
+  </p>
+  
+  <p>
+    &mdash; ishikawa84g＠驚きの白々しさ (@ishikawa84g) <a href="https://twitter.com/ishikawa84g/statuses/207391303351287808">May 29, 2012</a>
+  </p>
+</blockquote>
+
+<p>と教えてもらったので、<a title="Measuring Linux Filesystem Cache Hit Rate" href="http://sourceware.org/systemtap/wiki/WSCacheHitRate" target="_blank">リンク先のサイト</a>にあるスクリプトでキャッシュヒット率を確認してみた。@ishikawa84g 先生ありがとうございます～。</p>
+
+<p>systemtapは、カーネル内部の挙動をトレースするためのツールの一種で、特別なスクリプトを書いてそれに従ってトレースすることができるので、色々な情報を取得することができる。</p>
+
+<p>試してみたのはCentOS 6.2のマシン。systemtapがインストールされてなければインストールする。kernel-develも入っていないようであれば一緒に入れてしまうべし。</p>
+
+<p>[bash]</p>
+
+<p>$ sudo yum install systemtap kernel-devel</p>
+
+<p>[/bash]</p>
+
+<p>上記リンク先にあるスクリプトをファイルに保存し、そのまま実行するとエラーになってしまう。</p>
+
+<p>[bash]</p>
+
+<p>$ sudo stap cache-hit-rate.stp</p>
+
+<p>semantic error: libdwfl failure (missing x86_64 kernel/module debuginfo under ‘/lib/modules/2.6.18-164.el5/build’): No such file or directory while resolving probe point kernel.function(“vfs_read”)</p>
+
+<p>semantic error: no match while resolving probe point vfs.read</p>
+
+<p>semantic error: no match while resolving probe point kernel.function(“generic_make_request”)</p>
+
+<p>semantic error: no match while resolving probe point ioblock.request</p>
+
+<p>Pass 2: analysis failed. Try again with another ‘–vp 01’ option.</p>
+
+<p>[/bash]</p>
+
+<p>カーネルのdebuginfoがないためのエラーのようだ。debuginfoは専用のリポジトリからダウンロードする必要があるため、CentOSのdebuginfoリポジトリを登録する。debuginfoはそれなりにサイズもあるので、既に運用しているサーバにこれから入れるのは少しためらわれることもありそうだ。</p>
+
+<p>/etc/yum.repos.d/CentOS-debuginfo.repo に以下の内容を書き込んで保存する。</p>
+
+<p>[text]</p>
+
+<p>[debuginfo]</p>
+
+<p>name=CentOS-$releasever – DebugInfo</p>
+
+<p>baseurl=http://debuginfo.centos.org/$releasever/$basearch/</p>
+
+<p>gpgcheck=0</p>
+
+<p>enabled=0</p>
+
+<p>[/text]</p>
+
+<p>kernel-debuginfoをインストールする。</p>
+
+<p>[bash]</p>
+
+<p>$ uname -a</p>
+
+<p>Linux centos62-64-01 2.6.32-220.el6.x86_64 #1 SMP Tue Dec 6 19:48:22 GMT 2011 x86_64 x86_64 x86_64 GNU/Linux</p>
+
+<p>$ sudo yum install –enablerepo=debuginfo kernel-debuginfo-2.6.32-220.el6.x86_64</p>
+
+<p>[/bash]</p>
+
+<p>パッケージが大きいので時間がかかる。この時、unameでカーネルバージョンを調べて使用しているカーネルと同じバージョンのdebuginfoを指定すること。指定しないとリポジトリにある最新のカーネルのdebuginfoがインストールされてしまう。</p>
+
+<p>この状態でstapコマンドを実行すると、キャッシュのヒット率が5秒おきに15回表示される。</p>
+
+<p>[bash]</p>
+
+<p>$ sudo stap cache-hit-rate.stp</p>
+
+<p>Starting…</p>
+
+<p>Total Reads (KB) Cache Reads (KB) Disk Reads (KB) Miss Rate Hit Rate</p>
+
+<p>0 0 0 0.00% 0.00%</p>
+
+<p>0 0 0 0.00% 0.00%</p>
+
+<p>0 0 0 0.00% 0.00%</p>
+
+<p>58802 66 58736 99.88% 0.11%</p>
+
+<p>0 0 0 0.00% 0.00%</p>
+
+<p>0 0 0 0.00% 0.00%</p>
+
+<p>58785 58345 440 0.74% 99.25%</p>
+
+<p>0 0 0 0.00% 0.00%</p>
+
+<p>0 0 0 0.00% 0.00%</p>
+
+<p>^C</p>
+
+<p>Average Hit Rate: 49.67</p>
+
+<p>Average Miss Rate: 50.32</p>
+
+<p>[/bash]</p>
+
+<p>キャッシュに読み込まれていないファイルを</p>
+
+<p>[bash]</p>
+
+<p>$ cat bigfile &gt; /dev/null</p>
+
+<p>[/bash]</p>
+
+<p>とやって読みだしたのが8行目で、ここではファイルのほぼ全てをディスクから読みだしている。もう一度同じコマンドを実行すると、1度目に実行したcatで読みだされた際にファイルがキャッシュに読み込まれているので、ほとんどディスクからの読み出しがなく、11行目のようにほぼキャッシュヒット率100%となり一瞬でファイルの全てにアクセスできる。</p>
+
+<p>スクリプトの作者も書いているが、LVMを使用している場合などにはヒット率が正しく出ない場合があるので、値は参考程度に考えておくべし。</p>
+
+<p>参考</p>
+
+<p><a href="http://sourceware.org/systemtap/" title="SystemTap" target="_blank">SystemTap</a></p>
+
+<p><a title="Linux のイントロスペクションと SystemTap" href="http://www.ibm.com/developerworks/jp/linux/library/l-systemtap/" target="_blank">Linux のイントロスペクションと SystemTap</a></p>
+
+<p><a href="http://d.hatena.ne.jp/sh2/20100120" title="SystemTapでMySQLのDisk I/Oを分析する" target="_blank">SystemTapでMySQLのDisk I/Oを分析する</a></p>
+
+<table border="0" cellpadding="5">
+  <tr>
+    <td valign="top">
+      <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4873115019/l0gjp-22/ref=nosim/" target="_blank" rel="nofollow"><img src="http://ecx.images-amazon.com/images/I/51blzciVfIL._SL160_.jpg" border="0" alt="Linuxカーネル Hacks ―パフォーマンス改善、開発効率向上、省電力化のためのテクニック" style="border: 0px;" /></a>
+    </td>
+    
+    <td valign="top">
+      <font size="-1"><a href="http://www.amazon.co.jp/Linux%E3%82%AB%E3%83%BC%E3%83%8D%E3%83%AB-Hacks-%E2%80%95%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9%E6%94%B9%E5%96%84%E3%80%81%E9%96%8B%E7%99%BA%E5%8A%B9%E7%8E%87%E5%90%91%E4%B8%8A%E3%80%81%E7%9C%81%E9%9B%BB%E5%8A%9B%E5%8C%96%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E3%83%86%E3%82%AF%E3%83%8B%E3%83%83%E3%82%AF-%E6%B1%A0%E7%94%B0-%E5%AE%97%E5%BA%83/dp/4873115019%3FSubscriptionId%3D15SMZCTB9V8NGR2TW082%26tag%3Dl0gjp-22%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D4873115019" target="_blank" rel="nofollow">Linuxカーネル Hacks ―パフォーマンス改善、開発効率向上、省電力化のためのテクニック</a><img src="http://www.assoc-amazon.jp/e/ir?t=l0gjp-22&#038;l=ur2&#038;o=9" width="1" height="1" style="border: none;" alt="" /><br />池田 宗広 大岩 尚宏 島本 裕志 竹部 晶雄 平松 雅巳 高橋 浩和  
+      
+      <p>
+        オライリージャパン 2011-07-26<br />売り上げランキング : 95520
+      </p>
+      
+      <p>
+        <a href="http://www.amazon.co.jp/Linux%E3%82%AB%E3%83%BC%E3%83%8D%E3%83%AB-Hacks-%E2%80%95%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9%E6%94%B9%E5%96%84%E3%80%81%E9%96%8B%E7%99%BA%E5%8A%B9%E7%8E%87%E5%90%91%E4%B8%8A%E3%80%81%E7%9C%81%E9%9B%BB%E5%8A%9B%E5%8C%96%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E3%83%86%E3%82%AF%E3%83%8B%E3%83%83%E3%82%AF-%E6%B1%A0%E7%94%B0-%E5%AE%97%E5%BA%83/dp/4873115019%3FSubscriptionId%3D15SMZCTB9V8NGR2TW082%26tag%3Dl0gjp-22%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D4873115019" target="_blank" rel="nofollow">Amazonで詳しく見る</a> <font size="-2">by <a href="http://www.goodpic.com/mt/aws/index.html">G-Tools</a></font>   
+        
+        <table border="0" cellpadding="5">
+          <tr>
+            <td valign="top">
+              <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4873114047/l0gjp-22/ref=nosim/" target="_blank" rel="nofollow"><img src="http://ecx.images-amazon.com/images/I/41TmOAawDsL._SL160_.jpg" border="0" alt="Debug Hacks -デバッグを極めるテクニック&#038;ツール" style="border: 0px;" /></a>
+            </td>
+            
+            <td valign="top">
+              <font size="-1"><a href="http://www.amazon.co.jp/Debug-Hacks-%E3%83%87%E3%83%90%E3%83%83%E3%82%B0%E3%82%92%E6%A5%B5%E3%82%81%E3%82%8B%E3%83%86%E3%82%AF%E3%83%8B%E3%83%83%E3%82%AF-%E3%83%84%E3%83%BC%E3%83%AB-%E5%90%89%E5%B2%A1/dp/4873114047%3FSubscriptionId%3D15SMZCTB9V8NGR2TW082%26tag%3Dl0gjp-22%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D4873114047" target="_blank" rel="nofollow">Debug Hacks -デバッグを極めるテクニック&#038;ツール</a><img src="http://www.assoc-amazon.jp/e/ir?t=l0gjp-22&#038;l=ur2&#038;o=9" width="1" height="1" style="border: none;" alt="" /><br />吉岡 弘隆 大和 一洋 大岩 尚宏 安部 東洋 吉田 俊輔  
+              
+              <p>
+                オライリージャパン 2009-04-27<br />売り上げランキング : 190612
+              </p>
+              
+              <p>
+                <a href="http://www.amazon.co.jp/Debug-Hacks-%E3%83%87%E3%83%90%E3%83%83%E3%82%B0%E3%82%92%E6%A5%B5%E3%82%81%E3%82%8B%E3%83%86%E3%82%AF%E3%83%8B%E3%83%83%E3%82%AF-%E3%83%84%E3%83%BC%E3%83%AB-%E5%90%89%E5%B2%A1/dp/4873114047%3FSubscriptionId%3D15SMZCTB9V8NGR2TW082%26tag%3Dl0gjp-22%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D4873114047" target="_blank" rel="nofollow">Amazonで詳しく見る</a> <font size="-2">by <a href="http://www.goodpic.com/mt/aws/index.html">G-Tools</a></font>   
+                
+                <hr />
+                
+                <p>
+                  <b>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</b>
+                </p>
+</p></font></td></tr></table></p></font></td></tr></table>
+
+  </article>
+  
+</div>
+
+<div class="pagination">
+  
+    <a class="pagination-item older" href="/page8">Older</a>
+  
+  
+    <a class="pagination-item newer" href="/page6">Newer</a>
+  
+</div>
+
+      </main>
+
+      <footer class="footer">
+        <small>
+          &copy; <time datetime="2016-04-01T10:52:50-07:00">2016</time>. All rights reserved.
+        </small>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>

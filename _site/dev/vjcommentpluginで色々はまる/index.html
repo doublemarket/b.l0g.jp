@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+      vjCommentPluginで色々はまる &middot; 渋谷ではたらくインフラエンジニアのブログ
+    
+  </title>
+
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <link rel="alternate" type="application/atom+xml" title="渋谷ではたらくインフラエンジニアのブログ" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="container content">
+      <header class="masthead">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">渋谷ではたらくインフラエンジニアのブログ</a>
+          <small></small>
+        </h3>
+      </header>
+
+      <main>
+        <article class="post">
+  <h1 class="post-title">vjCommentPluginで色々はまる</h1>
+  <time datetime="2010-10-07T11:59:49-07:00" class="post-date">07 Oct 2010</time>
+  <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/dev/vjcommentplugin%e3%81%a7%e8%89%b2%e3%80%85%e3%81%af%e3%81%be%e3%82%8b/" class="hatena-bookmark-button" data-hatena-bookmark-title="vjCommentPluginで色々はまる" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/dev/vjcommentplugin%e3%81%a7%e8%89%b2%e3%80%85%e3%81%af%e3%81%be%e3%82%8b/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/dev/vjcommentplugin%e3%81%a7%e8%89%b2%e3%80%85%e3%81%af%e3%81%be%e3%82%8b/" data-text="vjCommentPluginで色々はまる" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/dev/vjcommentplugin%e3%81%a7%e8%89%b2%e3%80%85%e3%81%af%e3%81%be%e3%82%8b/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p>symfonyでニュースの記事などにコメント欄を付けるプラグインとして、<a href="http://www.symfony-project.org/plugins/vjCommentPlugin" target="_blank">vjCommentPlugin</a>というのがある。これの設定でちょっとはまったので、メモ。</p>
+
+<p>インストールや設定はReadmeに書いてある通りで、簡単。ログインしないとコメントできないようにするため、sfGuardPluginと連携させる機能が追加されているのだが、これが癖者。この機能を使うときには、app.ymlに以下の表記を追記する。</p>
+
+<blockquote>
+  <p>all:</p>
+</blockquote>
+
+<blockquote>
+  <p>vjCommentPlugin:</p>
+</blockquote>
+
+<blockquote>
+  <p>guardbind: true</p>
+</blockquote>
+
+<blockquote>
+  <p>restricted: true</p>
+</blockquote>
+
+<p>Readmeには、frontend/config/app.ymlを編集しろと書いてあるのだが、これだとコメントを保存するテーブルの中身が、ログインしないとコメントできないように書き換わってくれない。plugin/vjCommentPlugin/config/app.ymlを上の通り編集する必要がある。</p>
+
+<p>また、この状態で symfony doctrine:build すると、以下のエラーが出る。</p>
+
+<blockquote>
+  <p>SQLSTATE[HY000]: General error: 1005 Can’t create table ‘pjtransrate.#sql-15f0_b9’ (errno: 150). Failing Query: “ALTER TABLE comment ADD CONSTRAINT comment_user_id_sf_guard_user_id FOREIGN KEY (user_id) REFERENCES sf_guard_user(id)”. Failing Query: ALTER TABLE comment ADD CONSTRAINT comment_user_id_sf_guard_user_id FOREIGN KEY (user_id) REFERENCES sf_guard_user(id)</p>
+</blockquote>
+
+<p>これは、sfGuardUserテーブルでは id (ユーザのID)を integer で定義しているのに、commentテーブル(コメントを保存するテーブル)の user_id は integer(4) で定義されており、その間にrelationを張ろうとしているためエラーになっているようだ。</p>
+
+<p>参考 : <a href="http://www.symfony-project.org/plugins/vjCommentPlugin" target="_blank">http://d.hatena.ne.jp/zankey/20070411/mysql</a></p>
+
+<p>plugins/vjCommentPlugin/config/doctrine/schema.yml の comment テーブルの user_id の type を integer に変更して、再度 doctrine:build するとうまくいく。</p>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+</article>
+
+
+<aside class="related">
+  <h3>Related posts</h3>
+  <ul class="related-posts">
+    
+      <li>
+        <a href="/aws/periodic-ebs-snapshot/">
+          AWSのEBSボリュームのスナップショットを定期的に取る
+          <small><time datetime="2015-10-19T06:33:30-07:00">19 Oct 2015</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/misc/my-twitter-bots/">
+          Twitterボットを作るのがひそかな趣味
+          <small><time datetime="2015-05-22T06:26:26-07:00">22 May 2015</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/uncategorized/sql-performance-explained-ja/">
+          「SQLパフォーマンス詳解」という本を翻訳しました
+          <small><time datetime="2015-04-07T01:45:15-07:00">07 Apr 2015</time></small>
+        </a>
+      </li>
+    
+  </ul>
+</aside>
+
+
+      </main>
+
+      <footer class="footer">
+        <small>
+          &copy; <time datetime="2016-04-01T10:52:50-07:00">2016</time>. All rights reserved.
+        </small>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>

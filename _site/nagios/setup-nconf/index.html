@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+      Nagiosの設定ファイル生成ツールnconfが使いやすいのであーる &middot; 渋谷ではたらくインフラエンジニアのブログ
+    
+  </title>
+
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <link rel="alternate" type="application/atom+xml" title="渋谷ではたらくインフラエンジニアのブログ" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="container content">
+      <header class="masthead">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">渋谷ではたらくインフラエンジニアのブログ</a>
+          <small></small>
+        </h3>
+      </header>
+
+      <main>
+        <article class="post">
+  <h1 class="post-title">Nagiosの設定ファイル生成ツールnconfが使いやすいのであーる</h1>
+  <time datetime="2013-06-09T08:49:25-07:00" class="post-date">09 Jun 2013</time>
+  <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/nagios/setup-nconf/" class="hatena-bookmark-button" data-hatena-bookmark-title="Nagiosの設定ファイル生成ツールnconfが使いやすいのであーる" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/nagios/setup-nconf/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/nagios/setup-nconf/" data-text="Nagiosの設定ファイル生成ツールnconfが使いやすいのであーる" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/nagios/setup-nconf/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p>Nagiosの設定ファイルを編集するツールには、<a title="NagiosQL" href="http://www.nagiosql.org/" target="_blank">NagiosQL</a>など<a title="Nagios Config Tools" href="http://www.nagios.org/projects/nagiosconfigtools" target="_blank">いくつかある</a>が、あれこれ触ってみた感じ<a title="nconf" href="http://www.nconf.org/dokuwiki/doku.php" target="_blank">nconf</a>がよさげだった。JQueryなどを適宜使って動きは軽快だし、メニューの構成などもストレートで直感的に使えるところがNagiosQLよりも気にいった。</p>
+
+<p>監視の設定はできる限り自動生成するくらいが大規模なシステムでは最近の主流かもしれないが、そこまでの大きさのシステムではない時でも、設定ファイルを手で編集するのはいただけない。Nagiosを使うならとりあえずnconfも一緒に入れて設定すべし。</p>
+
+<p>最新版が2011年で開発が活発でないのは気になるが、基本的な機能は網羅されており不自由は感じないので、しばらく使っている。ってことで、CentOS6.4にNagiosとnconfをインストールして、監視を始めるまでの手順。</p>
+
+<h2 id="nagios">Nagiosのインストール</h2>
+
+<p>epelリポジトリにNagiosが含まれているので、epelをインストールしてからNagiosと、監視に使うプラグインをインストール。</p>
+
+<p>[shell]</p>
+
+<p>$ sudo yum install http://ftp-srv2.kddilabs.jp/Linux/distributions/fedora/epel/6/x86_64/epel-release-6-8.noarch.rpm</p>
+
+<p>$ sudo yum install nagios nagios-plugins</p>
+
+<p>[/shell]</p>
+
+<p>Nagiosと一緒に、PHPやPerl、Apacheなども一緒にインストールされる。</p>
+
+<p>[shell]</p>
+
+<p>$ sudo /etc/init.d/nagios start</p>
+
+<p>$ sudo /etc/init.d/httpd start</p>
+
+<p>[/shell]</p>
+
+<p>NagiosとApacheを起動したら、 http://(サーバのIP)/nagios をブラウザで開いて、ユーザ名 nagiosadmin、パスワード nagiosadmin でログインするとNagios管理画面が開ければNagiosの準備は一旦終わり。</p>
+
+<p><a href="http://b.l0g.jp/wp-content/uploads/2013/06/Nagios-Core.png" target="_blank"><img class="alignnone  wp-image-1484" style="border: 0px;" alt="Nagios Core" src="http://b.l0g.jp/wp-content/uploads/2013/06/Nagios-Core.png" width="408" height="245" /></a></p>
+
+<h2 id="mysql">MySQLのインストール</h2>
+
+<p>nconfの特徴として、設定をMySQLに入れておいて、そこからNagiosの設定ファイルを生成することが挙げられる。そのためにMySQLをインストール。nconfはPHPで書かれており、PHPからMySQLへ接続するためのphp-mysqlも一緒にインストール。</p>
+
+<p>[shell]</p>
+
+<p>$ sudo yum install mysql-server php-mysql</p>
+
+<p>[/shell]</p>
+
+<p>mysql, mysql-libsなどもインストールされる。</p>
+
+<p><a href="http://b.l0g.jp/mysql/install-cacti-to-monitor-mysql-1/">この辺</a>参照して、/etc/my.cnf の [mysqld] セクションに最低限の設定をしてから、MySQLを起動。</p>
+
+<p>[shell]</p>
+
+<p>$ sudo /etc/init.d/mysqld start</p>
+
+<p>[/shell]</p>
+
+<p>nconf用データベースと、MySQLへ接続するためのアカウントも作成。以下の例では、データベース名がnconf、ユーザ名がnconf、パスワードはnconfpasswordとしているが、任意のものにできるので適宜変更すべし。</p>
+
+<p>[shell]</p>
+
+<p>$ mysql -uroot</p>
+
+<p>mysql&gt; create database nconf;</p>
+
+<p>Query OK, 1 row affected (0.00 sec)</p>
+
+<p>mysql&gt; grant SELECT, INSERT, UPDATE, DELETE, CREATE, ALTER, DROP on nconf.* to ‘nconf’@’localhost’ identified by ‘nconfpassword’;</p>
+
+<p>Query OK, 0 rows affected (0.00 sec)</p>
+
+<p>[/shell]</p>
+
+<h2 id="nconf">nconfのインストール</h2>
+
+<p><a href="http://www.nconf.org/">nconfのサイト</a>のDownloadからnconf-1.3.0-0.tgzをダウンロードして適当なディレクトリに配置。CentOSのApacheのDocumentRootに展開する。</p>
+
+<p>[shell]</p>
+
+<p>cd /var/www/html</p>
+
+<p>sudo tar zxvf /fuga/hoge/nconf-1.3.0-0.tgz</p>
+
+<p>chown -R apache. nconf</p>
+
+<p>[/shell]</p>
+
+<p>インストールに必要な設定は、GUIで行える。http://(サーバのIP)/nconf/ をブラウザで開く。</p>
+
+<p><a href="http://b.l0g.jp/wp-content/uploads/2013/06/nconf01.png" target="_blank"><img class="alignnone  wp-image-1488" style="border: 0px;" alt="nconf01" src="http://b.l0g.jp/wp-content/uploads/2013/06/nconf01.png" width="665" height="430" /></a></p>
+
+<p>ここで画面がforbiddenになる場合、SELinuxが有効になっている可能性がある(/var/log/audit/audit.logにその旨出力されているはずなので確認すべし)。そんな時は頑張って動くように設定するか、そっと/etc/sysconfig/selinuxのSELINUX=enabledをdisabledに書き換えてOSを再起動する。</p>
+
+<p>必須のパッケージが全てインストールされていれば、最初の画面でOKが並ぶので、Nextをクリック。</p>
+
+<p><a href="http://b.l0g.jp/wp-content/uploads/2013/06/nconf02.png" target="_blank"><img class="alignnone  wp-image-1489" style="border: 0px;" alt="nconf02" src="http://b.l0g.jp/wp-content/uploads/2013/06/nconf02.png" width="665" height="430" /></a></p>
+
+<p>前項でMySQLに作成したデータベース名とアカウントを入力してNextを押すとチェックが走るので、OKが並んだらNext。</p>
+
+<p><a href="http://b.l0g.jp/wp-content/uploads/2013/06/nconf03.png" target="_blank"><img class="alignnone  wp-image-1490" style="border: 0px;" alt="nconf03" src="http://b.l0g.jp/wp-content/uploads/2013/06/nconf03.png" width="665" height="430" /></a></p>
+
+<p>nconfの接続に認証を必要とするかどうかの設定。後でも変更できるので一旦そのまま(AUTH_ENABLEDがFALSE)でNext。</p>
+
+<p><a href="http://b.l0g.jp/wp-content/uploads/2013/06/nconf04.png" target="_blank"><img class="alignnone  wp-image-1491" style="border: 0px;" alt="nconf04" src="http://b.l0g.jp/wp-content/uploads/2013/06/nconf04.png" width="665" height="430" /></a></p>
+
+<p>全て完了したらFinishをクリック。</p>
+
+<p><a href="http://b.l0g.jp/wp-content/uploads/2013/06/nconf05.png" target="_blank"><img class="alignnone  wp-image-1492" style="border: 0px;" alt="nconf05" src="http://b.l0g.jp/wp-content/uploads/2013/06/nconf05.png" width="665" height="430" /></a></p>
+
+<p>インストールしたディレクトリ内のファイル、ディレクトリを削除しろというメッセージが出るので、リネームする(別に使わないと思うが一応)。</p>
+
+<p>[shell]</p>
+
+<p>$ cd /var/www/html/nconf</p>
+
+<p>$ sudo mv INSTALL INSTALL.org</p>
+
+<p>$ sudo mv INSTALL.php INSTALL.php.org</p>
+
+<p>$ sudo mv UPDATE UPDATE.org</p>
+
+<p>$ sudo mv UPDATE.php UPDATE.php.org</p>
+
+<p>[/shell]</p>
+
+<p>ここまででnconfの設定画面にはアクセスできるようになる。</p>
+
+<p><a href="http://b.l0g.jp/wp-content/uploads/2013/06/nconf07.png" target="_blank"><img class="alignnone  wp-image-1504" style="border: 0px;" alt="nconf07" src="http://b.l0g.jp/wp-content/uploads/2013/06/nconf07.png" width="665" height="430" /></a></p>
+
+<h2 id="nconfnagios">nconfの設定・Nagiosの追加設定</h2>
+
+<p>前述の通りnconfはMySQLに設定を書いていて、それをNagiosの設定ファイルとして書き出し、Nagiosを再起動して設定を反映させるところまでnconfでやることができる。そのための追加設定がここから。</p>
+
+<p>/var/www/html/nconf/config/nconf.php (nconfのメイン設定ファイル)を以下の通り書き換え。</p>
+
+<p>23行目。Nagios本体のパスを指定する。</p>
+
+<p>[text]</p>
+
+<p># 変更前</p>
+
+<p>define(‘NAGIOS_BIN’, ‘/var/www/html/nconf/bin/nagios’);</p>
+
+<p># 変更後</p>
+
+<p>define(‘NAGIOS_BIN’, ‘/usr/sbin/nagios’);</p>
+
+<p>[/text]</p>
+
+<p>75行目。Nagiosのメイン設定ファイル(nagios.cfg)の構文チェックを無効化。手元の環境では、有効にしてしまうと、正しいはずの設定ファイルのチェックがどうしてもエラーになってしまったのでやむなく。</p>
+
+<p>[text]</p>
+
+<p># 変更前</p>
+
+<p>define(‘CHECK_STATIC_SYNTAX’, 1);</p>
+
+<p># 変更後</p>
+
+<p>define(‘CHECK_STATIC_SYNTAX’, 0);</p>
+
+<p>[/text]</p>
+
+<p>80行目。この配列に入っているユーザが、通知先などに自動で追加されてしまうので削除。</p>
+
+<p>[text]</p>
+
+<p># 変更前</p>
+
+<p>$SUPERADMIN_GROUPS = array (“+admins”);</p>
+
+<p># 変更後</p>
+
+<p>$SUPERADMIN_GROUPS = array (“”);</p>
+
+<p>[/text]</p>
+
+<p>/var/www/html/nconf/config/deployment.ini (nconfの自動デプロイ設定ファイル)を以下の通り書き換え。</p>
+
+<p>「;; LOCAL deployment ;;」の下、6行目から29行目までの以下のセクションの行頭のセミコロンを外して有効化。</p>
+
+<p>[text]</p>
+
+<p>;[extract config]</p>
+
+<p>;[copy collector config]</p>
+
+<p>;[copy global config]</p>
+
+<p>;[copy nagios.cfg]</p>
+
+<p>[/text]</p>
+
+<p>また、nconfが生成するNagios設定ファイルのアーカイブを指定する、8行目を以下のとおり変更。</p>
+
+<p>[text]</p>
+
+<p># 変更前</p>
+
+<p>source_file = “/var/www/nconf/output/NagiosConfig.tgz”</p>
+
+<p># 変更後</p>
+
+<p>source_file = “/var/www/html/nconf/output/NagiosConfig.tgz”</p>
+
+<p>[/text]</p>
+
+<p>Apacheの起動ユーザapacheがNagiosを再起動できるようにsudoersを編集。</p>
+
+<p>[shell]</p>
+
+<p>$ sudo visudo</p>
+
+<p>[/shell]</p>
+
+<p>以下の1行を末尾に追加。</p>
+
+<p>[text]</p>
+
+<p>apache ALL=(ALL)NOPASSWD: /etc/rc.d/init.d/nagios reload</p>
+
+<p>[/text]</p>
+
+<p>nconfが生成した設定ファイルをNagiosの設定ファイルディレクトリ(/etc/nagios)に配置できるように細々した設定。</p>
+
+<p>[shell]</p>
+
+<p>$ cd /etc/nagios</p>
+
+<p>$ sudo mkdir Default_collector global</p>
+
+<p>$ sudo chown apache. Default_collector global nagios.cfg</p>
+
+<p>[/shell]</p>
+
+<p>nconfからnagios.cfgを編集・配置することもできるので、一応nconfのディレクトリ以下にnagios.cfgを置いておく。</p>
+
+<p>[shell]</p>
+
+<p>$ sudo cp /etc/nagios/nagios.cfg /var/www/html/nconf/static_cfg/</p>
+
+<p>[/shell]</p>
+
+<p>nconfが配置するファイルを設定ファイルとして使用するように、コピーした先の/var/www/html/nconf/static_cfg/nagios.cfgを編集。</p>
+
+<p>[text]</p>
+
+<p># cfg_fileとcfg_dirを全てコメントアウトして以下の2行を追加。</p>
+
+<p>cfg_dir=/etc/nagios/global</p>
+
+<p>cfg_dir=/etc/nagios/Default_collector</p>
+
+<p>[/text]</p>
+
+<p>これで設定はおしまい。ApacheとNagiosを再起動して一息つく。</p>
+
+<p>[shell]</p>
+
+<p>$ sudo /etc/init.d/httpd stop</p>
+
+<p>$ sudo /etc/init.d/nagios restart</p>
+
+<p>$ sudo /etc/init.d/httpd start</p>
+
+<p>[/shell]</p>
+
+<h2 id="section">動作確認</h2>
+
+<p>http://(サーバのIP)/nagios/ を開いて、左側のCurrent Status → Servicesをクリックすると、Nagios側では以下のようにデフォルトでlocalhostの監視のみが設定されている。</p>
+
+<p><a href="http://b.l0g.jp/wp-content/uploads/2013/06/nagios02.png" target="_blank"><img class="alignnone  wp-image-1493" style="border: 0px;" alt="nagios02" src="http://b.l0g.jp/wp-content/uploads/2013/06/nagios02.png" width="680" height="409" /></a></p>
+
+<p>一方、 http://(サーバのIP)/nconf/ を開いて、左側のBasic Items → Hostsをクリックすると、nconf側ではlocalhost以外にサンプルとしてhplj2605dnなど合わせて4台分の設定が入っていることが分かる。</p>
+
+<p><a href="http://b.l0g.jp/wp-content/uploads/2013/06/nconf08.png" target="_blank"><img class="alignnone  wp-image-1494" style="border: 0px;" alt="nconf08" src="http://b.l0g.jp/wp-content/uploads/2013/06/nconf08.png" width="665" height="430" /></a></p>
+
+<p>ここで、nconfの左側のメニューからBasic Items → Generate Nagios configをクリックすると、設定ファイルが生成される。以下の画面で「Deploy」をクリックする。</p>
+
+<p><a href="http://b.l0g.jp/wp-content/uploads/2013/06/nconf09.png" target="_blank"><img class="alignnone  wp-image-1495" style="border: 0px;" alt="nconf09" src="http://b.l0g.jp/wp-content/uploads/2013/06/nconf09.png" width="665" height="430" /></a></p>
+
+<p>以下の画面のように、全てOKになれば、設定ファイルのデプロイとNagiosの再起動が終わっているはず。</p>
+
+<p><a href="http://b.l0g.jp/wp-content/uploads/2013/06/nconf10.png" target="_blank"><img class="alignnone  wp-image-1496" style="border: 0px;" alt="nconf10" src="http://b.l0g.jp/wp-content/uploads/2013/06/nconf10.png" width="665" height="430" /></a></p>
+
+<p>ここで、Nagiosの画面を開くと、以下のようにnconfに入っていた設定が有効になって、ホストが増えていれば成功。</p>
+
+<p><a href="http://b.l0g.jp/wp-content/uploads/2013/06/nagios03.png" target="_blank"><img class="alignnone  wp-image-1506" style="border: 0px;" alt="nagios03" src="http://b.l0g.jp/wp-content/uploads/2013/06/nagios03.png" width="680" height="380" /></a></p>
+
+<p>後は、nconfからあれこれ設定を入れて監視を始めるべし。</p>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+</article>
+
+
+<aside class="related">
+  <h3>Related posts</h3>
+  <ul class="related-posts">
+    
+      <li>
+        <a href="/aws/periodic-ebs-snapshot/">
+          AWSのEBSボリュームのスナップショットを定期的に取る
+          <small><time datetime="2015-10-19T06:33:30-07:00">19 Oct 2015</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/misc/my-twitter-bots/">
+          Twitterボットを作るのがひそかな趣味
+          <small><time datetime="2015-05-22T06:26:26-07:00">22 May 2015</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/uncategorized/sql-performance-explained-ja/">
+          「SQLパフォーマンス詳解」という本を翻訳しました
+          <small><time datetime="2015-04-07T01:45:15-07:00">07 Apr 2015</time></small>
+        </a>
+      </li>
+    
+  </ul>
+</aside>
+
+
+      </main>
+
+      <footer class="footer">
+        <small>
+          &copy; <time datetime="2016-04-01T10:52:50-07:00">2016</time>. All rights reserved.
+        </small>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>

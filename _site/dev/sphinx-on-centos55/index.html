@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+      CentOS 5.5にsphinxをインストール &middot; 渋谷ではたらくインフラエンジニアのブログ
+    
+  </title>
+
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <link rel="alternate" type="application/atom+xml" title="渋谷ではたらくインフラエンジニアのブログ" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="container content">
+      <header class="masthead">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">渋谷ではたらくインフラエンジニアのブログ</a>
+          <small></small>
+        </h3>
+      </header>
+
+      <main>
+        <article class="post">
+  <h1 class="post-title">CentOS 5.5にsphinxをインストール</h1>
+  <time datetime="2011-02-11T16:16:24-08:00" class="post-date">11 Feb 2011</time>
+  <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/dev/sphinx-on-centos55/" class="hatena-bookmark-button" data-hatena-bookmark-title="CentOS 5.5にsphinxをインストール" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/dev/sphinx-on-centos55/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/dev/sphinx-on-centos55/" data-text="CentOS 5.5にsphinxをインストール" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/dev/sphinx-on-centos55/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p><a href="http://atnd.org/events/12450" target="_blank">2/12のSphinx翻訳ハッカソン</a>に行ってSymfony2のドキュメントの翻訳をさせていただこうと思っていたら、このところどっぷりはまっている仕事の方で呼び出されることになり、参加できなくなってしまった。予習として手元の環境にSphinxをインストールしたときのメモを残しておく。</p>
+
+<p>といっても、パッケージ管理ツールを駆使(？)してあっという間。Sphinxのユーザ会のページには、MacOS XとUbuntuへのインストール方法は書いてあるが、CentOSへのインストール方法は書かれていないので、一応メモ。</p>
+
+<p>yumでpythonのパッケージ管理ツールであるpipをインストール</p>
+
+<blockquote>
+  <p>[root@hoge ~]# yum install python-pip python-setuptools</p>
+</blockquote>
+
+<p>pipでsphinxをインストール。現状では1.0.7がインストールされるようだ。</p>
+
+<blockquote>
+  <p>[root@hoge ~]# pip-python install sphinx</p>
+</blockquote>
+
+<blockquote>
+  <p>Downloading/unpacking sphinx</p>
+</blockquote>
+
+<blockquote>
+  <p>Downloading Sphinx-1.0.7.tar.gz (2.3Mb): 2.3Mb downloaded</p>
+</blockquote>
+
+<blockquote>
+  <p>Running setup.py egg_info for package sphinx</p>
+</blockquote>
+
+<blockquote>
+  <p>no previously-included directories found matching ‘doc/_build’</p>
+</blockquote>
+
+<blockquote>
+  <p>Downloading/unpacking Pygments&gt;=0.8 (from sphinx)</p>
+</blockquote>
+
+<blockquote>
+  <p>Downloading Pygments-1.4.tar.gz (3.5Mb): 3.5Mb downloaded</p>
+</blockquote>
+
+<blockquote>
+  <p>Running setup.py egg_info for package Pygments</p>
+</blockquote>
+
+<blockquote>
+  <p>Downloading/unpacking Jinja2&gt;=2.2 (from sphinx)</p>
+</blockquote>
+
+<blockquote>
+  <p>Downloading Jinja2-2.5.5.tar.gz (438Kb): 438Kb downloaded</p>
+</blockquote>
+
+<blockquote>
+  <p>(中略)</p>
+</blockquote>
+
+<blockquote>
+  <p>Installing sphinx-build script to /usr/bin</p>
+</blockquote>
+
+<blockquote>
+  <p>Installing sphinx-quickstart script to /usr/bin</p>
+</blockquote>
+
+<blockquote>
+  <p>Installing sphinx-autogen script to /usr/bin</p>
+</blockquote>
+
+<blockquote>
+  <p>Successfully installed docutils Jinja2 Pygments sphinx</p>
+</blockquote>
+
+<blockquote>
+  <p>Cleaning up…</p>
+</blockquote>
+
+<blockquote>
+  <p>[root@hoge ~]#</p>
+</blockquote>
+
+<p>Sphinxユーザ会の「<a href="http://sphinx-users.jp/gettingstarted/index.html" target="_blank">Sphinxをはじめよう</a>」を見て、「プロジェクトの作成」まではあっさり完了。</p>
+
+<p>yumでもsphinx(パッケージ名はpython-sphinx)をインストールできるが、<a href="http://twitter.com/#!/hidenorigoto" target="_blank">@hidenorigoto</a>さんのアドバイスで、pipを使ったインストール方法があることを知った。ありがとうございます。</p>
+
+<p><strong>2011年3月13日追記</strong></p>
+
+<p>epelリポジトリを有効にしていたからyumだけでインストールできた模様。epelリポジトリを追加していない場合は以下のコマンドで追加。</p>
+
+<p>[text]</p>
+
+<p>rpm -ivh http://ftp.riken.jp/Linux/fedora/epel/5/i386/epel-release-5-4.noarch.rpm</p>
+
+<p>[/text]</p>
+
+<p>※ パスの中で「5-4」はepelのバージョンによって変わる。</p>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+</article>
+
+
+<aside class="related">
+  <h3>Related posts</h3>
+  <ul class="related-posts">
+    
+      <li>
+        <a href="/aws/periodic-ebs-snapshot/">
+          AWSのEBSボリュームのスナップショットを定期的に取る
+          <small><time datetime="2015-10-19T06:33:30-07:00">19 Oct 2015</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/misc/my-twitter-bots/">
+          Twitterボットを作るのがひそかな趣味
+          <small><time datetime="2015-05-22T06:26:26-07:00">22 May 2015</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/uncategorized/sql-performance-explained-ja/">
+          「SQLパフォーマンス詳解」という本を翻訳しました
+          <small><time datetime="2015-04-07T01:45:15-07:00">07 Apr 2015</time></small>
+        </a>
+      </li>
+    
+  </ul>
+</aside>
+
+
+      </main>
+
+      <footer class="footer">
+        <small>
+          &copy; <time datetime="2016-04-01T10:52:50-07:00">2016</time>. All rights reserved.
+        </small>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+      Ubuntu Server 11.04マシンでUSB無線LANアダプタを使う &middot; 渋谷ではたらくインフラエンジニアのブログ
+    
+  </title>
+
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <link rel="alternate" type="application/atom+xml" title="渋谷ではたらくインフラエンジニアのブログ" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="container content">
+      <header class="masthead">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">渋谷ではたらくインフラエンジニアのブログ</a>
+          <small></small>
+        </h3>
+      </header>
+
+      <main>
+        <article class="post">
+  <h1 class="post-title">Ubuntu Server 11.04マシンでUSB無線LANアダプタを使う</h1>
+  <time datetime="2011-11-28T08:17:40-08:00" class="post-date">28 Nov 2011</time>
+  <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/linux/usbwlan-ubuntuserver/" class="hatena-bookmark-button" data-hatena-bookmark-title="Ubuntu Server 11.04マシンでUSB無線LANアダプタを使う" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/linux/usbwlan-ubuntuserver/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/linux/usbwlan-ubuntuserver/" data-text="Ubuntu Server 11.04マシンでUSB無線LANアダプタを使う" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/linux/usbwlan-ubuntuserver/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p>少し前に自宅で色々と検証したりするために、<a href="http://nttxstore.jp/_II_HP13476513" target="_blank">HP ML110 G6</a>を買い、Ubuntu Server 11.04をインストールした。自宅は通信費節約のため、固定回線を引かず、外出時もそのまま使えるようにUQ WiMAXの回線を契約し、<a href="http://121ware.com/product/atermstation/product/wimax/wm3500r/" target="_blank">Aterm WM3500R</a>という無線LANルータを使っている。このため、ML110を無線LAN接続する必要がある。</p>
+
+<p>近くのビックカメラで、安くて小さいUSB無線LANアダプタとしてプラネックスのGW-USNano2-Mを買ってきて、無線LANルータ経由でインターネットに接続するまでのメモ。</p>
+
+<p>Ubuntu DesktopならGUIツールであれこれできるが、Serverなので全部CLIで。</p>
+
+<h2 id="section">ドライバパッケージをダウンロード</h2>
+
+<p>GW-USNano2-?(MやG)は、RealtekのRTL8192CUという無線LANチップを使っているようなので、これに対応したドライバをダウンロード。<a href="http://www.realtek.com.tw/downloads/" target="_blank">Realtekのダウンロードページ</a>を開き、以下のようにリンクをたどる</p>
+
+<ol>
+  <li>Communications Network ICs</li>
+  <li>Wireless LAN ICs</li>
+  <li>WLAN NIC</li>
+  <li>IEEE 802.11b/g/n Single-Chip</li>
+  <li>Software</li>
+  <li>RTL8192CUにチェックし、goボタン</li>
+  <li>「Linux driver for Kernel 2.6.38(and earlier)」から、RTL8192CU_linux_v3.1.2590.20110922.zipをダウンロード</li>
+</ol>
+
+<h2 id="section-1">ドライバのインストール</h2>
+
+<p>パッケージを展開し、コンパイル、インストール</p>
+
+<p>[text]</p>
+
+<p>$ unzip RTL8192CU_linux_v3.1.2590.20110922.zip</p>
+
+<p>$ cd RTL8192CU_8188CUS_8188CE-VAU_linux_v3.1.2590.20110922/</p>
+
+<p>$ sudo sh install.sh</p>
+
+<p>[/text]</p>
+
+<p>※ Ubuntu Serverをインストールした直後は、makeやgccがインストールされないので、事前にsudo apt-get install make gccしておく。</p>
+
+<p>インストールされたら、ドライバモジュールがロードされていることを確認</p>
+
+<p>[text]</p>
+
+<p>$ lsmod</p>
+
+<p>Module Size Used by</p>
+
+<p>nls_utf8 12557 0</p>
+
+<p>isofs 40283 0</p>
+
+<p>vesafb 13761 1</p>
+
+<p>8192cu 508081 0 ← ロードされている</p>
+
+<p>lp 17789 0</p>
+
+<p>parport 46458 1 lp</p>
+
+<p>usbhid 46956 0</p>
+
+<p>hid 91020 1 usbhid</p>
+
+<p>tg3 141750 0</p>
+
+<p>[/text]</p>
+
+<h2 id="lan">無線LAN設定</h2>
+
+<p>WPA認証情報をファイルに書き込む。SSIDとキーは使用している無線LANアクセスポイントのものに置き換える。</p>
+
+<p>[text]</p>
+
+<p>$ wpa_passphrase [SSID] [キー] &gt; wpa_supplicant.conf</p>
+
+<p>$ sudo mv wpa_supplicant.conf /etc/wpa_supplicant/</p>
+
+<p>$ sudo chown root:root /etc/wpa_supplicant/wpa_supplicant.conf</p>
+
+<p>[/text]</p>
+
+<p>認証の設定を/etc/network/interfaceに設定を書き込む。DHCPを使用する場合の例。3行目のSSIDは上と同じく置き換えること。</p>
+
+<p>[text]</p>
+
+<p>auto wlan0</p>
+
+<p>iface wlan0 inet dhcp</p>
+
+<p>wpa-essid [SSID]</p>
+
+<p>wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf</p>
+
+<p>[/text]</p>
+
+<p>マシンを再起動</p>
+
+<p>[text]</p>
+
+<p>$ sudo reboot</p>
+
+<p>[/text]</p>
+
+<p>再起動後、wlan0というインタフェースができており、ネットワークに接続できればOK。iwconfigコマンドで無線インタフェースの状態を確認できる。</p>
+
+<p>[text]</p>
+
+<p>lo no wireless extensions.</p>
+
+<p>eth0 no wireless extensions.</p>
+
+<p>wlan0 IEEE 802.11bgn ESSID:”aterm-xxxxxx-g” Nickname:”&lt;WIFI@REALTEK&gt;”</p>
+
+<p>Mode:Managed Frequency:2.412 GHz Access Point: xx:xx:xx:xx:xx:xx</p>
+
+<p>Bit Rate:150 Mb/s Sensitivity:0/0</p>
+
+<p>Retry:off RTS thr:off Fragment thr:off</p>
+
+<p>Power Management:off</p>
+
+<p>Link Quality=47/100 Signal level=47/100 Noise level=0/100</p>
+
+<p>Rx invalid nwid:0 Rx invalid crypt:0 Rx invalid frag:0</p>
+
+<p>Tx excessive retries:0 Invalid misc:0 Missed beacon:0</p>
+
+<p>[/text]</p>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+</article>
+
+
+<aside class="related">
+  <h3>Related posts</h3>
+  <ul class="related-posts">
+    
+      <li>
+        <a href="/aws/periodic-ebs-snapshot/">
+          AWSのEBSボリュームのスナップショットを定期的に取る
+          <small><time datetime="2015-10-19T06:33:30-07:00">19 Oct 2015</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/misc/my-twitter-bots/">
+          Twitterボットを作るのがひそかな趣味
+          <small><time datetime="2015-05-22T06:26:26-07:00">22 May 2015</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/uncategorized/sql-performance-explained-ja/">
+          「SQLパフォーマンス詳解」という本を翻訳しました
+          <small><time datetime="2015-04-07T01:45:15-07:00">07 Apr 2015</time></small>
+        </a>
+      </li>
+    
+  </ul>
+</aside>
+
+
+      </main>
+
+      <footer class="footer">
+        <small>
+          &copy; <time datetime="2016-04-01T10:52:50-07:00">2016</time>. All rights reserved.
+        </small>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>

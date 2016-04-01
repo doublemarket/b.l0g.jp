@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+      bshでのクォーテーションの入れ子 &middot; 渋谷ではたらくインフラエンジニアのブログ
+    
+  </title>
+
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <link rel="alternate" type="application/atom+xml" title="渋谷ではたらくインフラエンジニアのブログ" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="container content">
+      <header class="masthead">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">渋谷ではたらくインフラエンジニアのブログ</a>
+          <small></small>
+        </h3>
+      </header>
+
+      <main>
+        <article class="post">
+  <h1 class="post-title">bshでのクォーテーションの入れ子</h1>
+  <time datetime="2011-08-03T14:30:47-07:00" class="post-date">03 Aug 2011</time>
+  <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/shell/bsh-nested-quotation/" class="hatena-bookmark-button" data-hatena-bookmark-title="bshでのクォーテーションの入れ子" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/shell/bsh-nested-quotation/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/shell/bsh-nested-quotation/" data-text="bshでのクォーテーションの入れ子" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/shell/bsh-nested-quotation/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p>特殊文字(？など)をそのまま文字として扱いたい場合などに、シングルクォーテーション(‘)やダブルクォーテーション(“)で文字をくくる。</p>
+
+<ul>
+  <li>「”」でくくった文字列は、その中に特殊文字が含まれているならそれを展開する。</li>
+  <li>「’」でくくった文字列は、その中に特殊文字が含まれていてもそれを展開せず、そのまま表示する。</li>
+</ul>
+
+<p>[bash]</p>
+
+<p>[hoge@symf test]$ abc=3</p>
+
+<p>↑ abcという変数に3を代入</p>
+
+<p>[hoge@symf test]$ echo $abc</p>
+
+<p>3</p>
+
+<p>↑ abcという変数の中身を表示</p>
+
+<p>[hoge@symf test]$ echo “$abc”</p>
+
+<p>3</p>
+
+<p>↑ 「”」は特殊文字を展開するので変数として扱われるので、上に同じ</p>
+
+<p>[hoge@symf test]$ echo ‘$abc’</p>
+
+<p>$abc</p>
+
+<p>↑ 「’」は特殊文字をそのまま表示する</p>
+
+<p>[/bash]</p>
+
+<p>クォーテーションを入れ子にする際には、シングルとダブルで少しやり方が違う。「man bash」の「クォート」の項には以下のように書かれている。</p>
+
+<blockquote>
+  <p>シングルクォートで文字を囲むと、クォート内部のそれぞれの文字は文字としての値を 保持 します。シングルクォートの間にシングルクォートを置くことはできません。これはバックスラッシュを前に付けても同じです。</p>
+</blockquote>
+
+<blockquote>
+  <p>ダブルクォートで文字を囲むとクォート内部の全ての文字は文字としての値を保持しま すが、 $, ‘, \ は例外となります。 $ と ‘ はダブルクォートの内部でも特殊な意味を失いません。バックスラッシュの場合は、次の文字が $, ‘, “, \,のいずれかである 場合に限り特殊な意味を失いません。前にバックスラッシュを付ければ、ダブルクォート文字をダブルクォートによるクォートの内部でクォートできます。</p>
+</blockquote>
+
+<p>つまりこういうこと。</p>
+
+<p>[bash]</p>
+
+<p>[hoge@symf test]$ ssh server “psql -c "create database test with ENCODING = ‘UTF8’ ;" “</p>
+
+<p>↑ 「”」の中に「"」があるので、これは成功</p>
+
+<p>[hoge@symf test]$ ssh server ‘psql -c "create database test with ENCODING = ‘UTF8’ ;" ‘</p>
+
+<p>↑ 「’」の中では「\」をつけてもダメなので、これは失敗</p>
+
+<p>[/bash]</p>
+
+<p>create databaseじゃなくてcreatedbを使えば、クォートを入れ子にしなくてもいいって？あくまで例ですから (`・ω・´)ｷﾘｯ</p>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+</article>
+
+
+<aside class="related">
+  <h3>Related posts</h3>
+  <ul class="related-posts">
+    
+      <li>
+        <a href="/aws/periodic-ebs-snapshot/">
+          AWSのEBSボリュームのスナップショットを定期的に取る
+          <small><time datetime="2015-10-19T06:33:30-07:00">19 Oct 2015</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/misc/my-twitter-bots/">
+          Twitterボットを作るのがひそかな趣味
+          <small><time datetime="2015-05-22T06:26:26-07:00">22 May 2015</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/uncategorized/sql-performance-explained-ja/">
+          「SQLパフォーマンス詳解」という本を翻訳しました
+          <small><time datetime="2015-04-07T01:45:15-07:00">07 Apr 2015</time></small>
+        </a>
+      </li>
+    
+  </ul>
+</aside>
+
+
+      </main>
+
+      <footer class="footer">
+        <small>
+          &copy; <time datetime="2016-04-01T10:52:50-07:00">2016</time>. All rights reserved.
+        </small>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>

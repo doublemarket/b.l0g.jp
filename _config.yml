@@ -1,7 +1,12 @@
-title: 渋谷ではたらいてたインフラエンジニアのブログ
+title: 渋谷ではたらくインフラエンジニアのブログ
 url: http://b.l0g.jp
-baseurl: ""
 name: b.l0g.jp
+permalink: pretty
 paginate: 3
+baseurl: ""
+sass:
+  sass_dir: _sass
+  style: :compressed
 gems:
   - jekyll-paginate
+  - jekyll-gist

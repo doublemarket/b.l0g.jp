@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+      MySQL ユーザのホストをワイルドカードで指定してもlocalhostは含まれない &middot; 渋谷ではたらくインフラエンジニアのブログ
+    
+  </title>
+
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <link rel="alternate" type="application/atom+xml" title="渋谷ではたらくインフラエンジニアのブログ" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="container content">
+      <header class="masthead">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">渋谷ではたらくインフラエンジニアのブログ</a>
+          <small></small>
+        </h3>
+      </header>
+
+      <main>
+        <article class="post">
+  <h1 class="post-title">MySQL ユーザのホストをワイルドカードで指定してもlocalhostは含まれない</h1>
+  <time datetime="2012-02-03T12:07:36-08:00" class="post-date">03 Feb 2012</time>
+  <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/mysql/user-at-localhost/" class="hatena-bookmark-button" data-hatena-bookmark-title="MySQL ユーザのホストをワイルドカードで指定してもlocalhostは含まれない" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/mysql/user-at-localhost/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/mysql/user-at-localhost/" data-text="MySQL ユーザのホストをワイルドカードで指定してもlocalhostは含まれない" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/mysql/user-at-localhost/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p>MySQLをインストールしたので、とりあえずワイルドカードでホスト名を指定してテスト用のユーザを作成。</p>
+
+<p>[sql]</p>
+
+<p>mysql&gt; show databases;</p>
+
+<p>+——————–+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Database</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>+——————–+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>information_schema</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>hoge</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>mysql</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>performance_schema</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>test</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>+——————–+</p>
+
+<p>5 rows in set (0.00 sec)</p>
+
+<p>mysql&gt; grant select on hoge.* to testuser@’%’ identified by ‘password’;</p>
+
+<p>Query OK, 0 rows affected (0.07 sec)</p>
+
+<p>mysql&gt; select host,user from mysql.user;</p>
+
+<p>+———–+———-+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>host</td>
+      <td>user</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>+———–+———-+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>%</td>
+      <td>testuser</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>127.0.0.1</td>
+      <td>root</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>localhost</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>localhost</td>
+      <td>root</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>+———–+———-+</p>
+
+<p>7 rows in set (0.00 sec)</p>
+
+<p>mysql&gt; quit</p>
+
+<p>[/sql]</p>
+
+<p>この状態で、MySQLがインストールされているサーバ自体からそのままtestuserでログインしようとすると、アクセスが拒否される。</p>
+
+<p>[sql]</p>
+
+<p>testserver$ mysql -utestuser -p</p>
+
+<p>Enter password:</p>
+
+<p>ERROR 1045 (28000): Access denied for user ‘testuser’@’localhost’ (using password: YES)</p>
+
+<p>[/sql]</p>
+
+<p>しかし、他のサーバからアクセスしてみると、接続は成功して、hogeデータベースへのアクセスもできる。</p>
+
+<p>[sql]</p>
+
+<p>anotherserver$ mysql -utestuser -p -h testserver hoge</p>
+
+<p>Enter password:</p>
+
+<p>Welcome to the MySQL monitor. Commands end with ; or \g.</p>
+
+<p>Your MySQL connection id is 8</p>
+
+<p>Server version: 5.5.17 MySQL Community Server (GPL)</p>
+
+<p>Copyright (c) 2000, 2011, Oracle and/or its affiliates. All rights reserved.</p>
+
+<p>Oracle is a registered trademark of Oracle Corporation and/or its</p>
+
+<p>affiliates. Other names may be trademarks of their respective</p>
+
+<p>owners.</p>
+
+<p>Type ‘help;’ or ‘\h’ for help. Type ‘\c’ to clear the current input statement.</p>
+
+<p>mysql&gt; show databases;</p>
+
+<p>+——————–+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Database</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>+——————–+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>information_schema</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>hoge</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>test</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>+——————–+</p>
+
+<p>3 rows in set (0.00 sec)</p>
+
+<p>[/sql]</p>
+
+<p>「testuser@’%’」の「%」はワイルドカードなので、localhostも含めた全てのホストを指すものかと思ったら、どうやらそれは間違いのようだ。</p>
+
+<p>調べてみたところ、以下のような仕組み。</p>
+
+<p>4.8.2 MySQL への新規ユーザの追加</p>
+
+<p><a href="http://dev.mysql.com/doc/refman/5.1/ja/adding-users.html" target="_blank">http://dev.mysql.com/doc/refman/5.1/ja/adding-users.html</a></p>
+
+<blockquote>
+  <p>monty というユーザ名と some_pass というパスワードのアカウントが 2つ存在します。どちらもフル権限を持つスーパーユーザのアカウントです。’monty’@’localhost’) というアカウントは、ローカル ホストから接続するときにだけ使用できます。一方の ‘monty’@’%’ というアカウントは、どのホストからでも接続できます。注意： monty というアカウントは両方とも、monty としてどこからでも接続できる必要があります。この localhost でアカウントを持っていない場合、monty でローカル ホストから接続したときに、mysql_install_db で作成している localhost のエントリで、匿名ユーザのアカウントとして優先になります。つまり、 monty が匿名ユーザとして扱われます。この理由は、’monty’@’%’ よりも、匿名ユーザの方が具体的な Host カラム値にあるため、匿名の方が、user テーブルのソート順で先にきます。. (user テーブルのソートに関しては、項4.7.5. 「アクセス制御の段階 1： 接続確認」 を参照してください。)</p>
+</blockquote>
+
+<p>分かったような、わからないような。参照先を見てみるとより詳しい説明がある。</p>
+
+<p>4.7.5. アクセス制御の段階 1： 接続確認</p>
+
+<p><a href="http://dev.mysql.com/doc/refman/5.1/ja/connection-access.html" target="_blank">http://dev.mysql.com/doc/refman/5.1/ja/connection-access.html</a></p>
+
+<p>長いので引用は避けるが、MySQLがuserテーブルに書かれた情報をどのようにソートして使用しているかが影響しているようだ。上のページの説明によると、以下の順でソートを行っている。</p>
+
+<ol>
+  <li>最も具体的なホスト名(つまり、%のように明示的でない指定は後回し)</li>
+  <li>最も具体的なユーザ名</li>
+</ol>
+
+<p>つまり、はじめの方に出てきたユーザのテーブルは、実際には以下のように並んでいることになる。</p>
+
+<p>[sql]</p>
+
+<p>+———–+———-+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>host</td>
+      <td>user</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>+———–+———-+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>localhost</td>
+      <td>root</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>localhost</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>127.0.0.1</td>
+      <td>root</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>%</td>
+      <td>testuser</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>+———–+———-+</p>
+
+<p>[/sql]</p>
+
+<p>ログイン時のユーザ名とホスト名の組み合わせは、このようにソートしたテーブルを上から順に検索していき、最初に一致したもので認証が行われる。</p>
+
+<p>ここで、「testuser」というユーザがlocalhostからアクセスしてくると、2行目の「localhostの匿名ユーザ(userが空白 = 匿名ユーザ)」に先に一致してしまうのである。</p>
+
+<p>この裏付けに、パスワードなしでtestuserでログインできるようにしてみると、確かに実際には匿名ユーザとしてログインしてしまっていることがわかる。</p>
+
+<p>[sql]</p>
+
+<p>$ mysql -utestuser</p>
+
+<p>mysql&gt; select current_user();</p>
+
+<p>+—————-+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>current_user()</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>+—————-+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>@localhost</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>+—————-+</p>
+
+<p>1 row in set (0.00 sec)</p>
+
+<p>[/sql]</p>
+
+<p>従って、「testuser@localhost」としてログインしたいなら、明示的に</p>
+
+<p>[sql]</p>
+
+<p>mysql&gt; grant select on hoge.* to testuser@’localhost’ identified by ‘password’;</p>
+
+<p>[/sql]</p>
+
+<p>とも実行して、「localhostのtestuser」を作成する必要がある。</p>
+
+<p><span style="text-decoration: underline;">注 : セキュリティ上、ホストを「%」でワイルドカード指定するのはよろしくないので、やらないようにしましょう(汗)</span></p>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+</article>
+
+
+<aside class="related">
+  <h3>Related posts</h3>
+  <ul class="related-posts">
+    
+      <li>
+        <a href="/aws/periodic-ebs-snapshot/">
+          AWSのEBSボリュームのスナップショットを定期的に取る
+          <small><time datetime="2015-10-19T06:33:30-07:00">19 Oct 2015</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/misc/my-twitter-bots/">
+          Twitterボットを作るのがひそかな趣味
+          <small><time datetime="2015-05-22T06:26:26-07:00">22 May 2015</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/uncategorized/sql-performance-explained-ja/">
+          「SQLパフォーマンス詳解」という本を翻訳しました
+          <small><time datetime="2015-04-07T01:45:15-07:00">07 Apr 2015</time></small>
+        </a>
+      </li>
+    
+  </ul>
+</aside>
+
+
+      </main>
+
+      <footer class="footer">
+        <small>
+          &copy; <time datetime="2016-04-01T10:52:50-07:00">2016</time>. All rights reserved.
+        </small>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>

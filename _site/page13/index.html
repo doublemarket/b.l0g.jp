@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+      渋谷ではたらくインフラエンジニアのブログ &middot; 
+    
+  </title>
+
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <link rel="alternate" type="application/atom+xml" title="渋谷ではたらくインフラエンジニアのブログ" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="container content">
+      <header class="masthead">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">渋谷ではたらくインフラエンジニアのブログ</a>
+          <small></small>
+        </h3>
+      </header>
+
+      <main>
+        <div class="posts">
+  
+  <article class="post">
+    <h1 class="post-title">
+      <a href="/shell/bsh-nested-quotation/">
+        bshでのクォーテーションの入れ子
+      </a>
+    </h1>
+
+    <time datetime="2011-08-03T14:30:47-07:00" class="post-date">03 Aug 2011</time>
+
+    <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/shell/bsh-nested-quotation/" class="hatena-bookmark-button" data-hatena-bookmark-title="bshでのクォーテーションの入れ子" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/shell/bsh-nested-quotation/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/shell/bsh-nested-quotation/" data-text="bshでのクォーテーションの入れ子" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/shell/bsh-nested-quotation/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p>特殊文字(？など)をそのまま文字として扱いたい場合などに、シングルクォーテーション(‘)やダブルクォーテーション(“)で文字をくくる。</p>
+
+<ul>
+  <li>「”」でくくった文字列は、その中に特殊文字が含まれているならそれを展開する。</li>
+  <li>「’」でくくった文字列は、その中に特殊文字が含まれていてもそれを展開せず、そのまま表示する。</li>
+</ul>
+
+<p>[bash]</p>
+
+<p>[hoge@symf test]$ abc=3</p>
+
+<p>↑ abcという変数に3を代入</p>
+
+<p>[hoge@symf test]$ echo $abc</p>
+
+<p>3</p>
+
+<p>↑ abcという変数の中身を表示</p>
+
+<p>[hoge@symf test]$ echo “$abc”</p>
+
+<p>3</p>
+
+<p>↑ 「”」は特殊文字を展開するので変数として扱われるので、上に同じ</p>
+
+<p>[hoge@symf test]$ echo ‘$abc’</p>
+
+<p>$abc</p>
+
+<p>↑ 「’」は特殊文字をそのまま表示する</p>
+
+<p>[/bash]</p>
+
+<p>クォーテーションを入れ子にする際には、シングルとダブルで少しやり方が違う。「man bash」の「クォート」の項には以下のように書かれている。</p>
+
+<blockquote>
+  <p>シングルクォートで文字を囲むと、クォート内部のそれぞれの文字は文字としての値を 保持 します。シングルクォートの間にシングルクォートを置くことはできません。これはバックスラッシュを前に付けても同じです。</p>
+</blockquote>
+
+<blockquote>
+  <p>ダブルクォートで文字を囲むとクォート内部の全ての文字は文字としての値を保持しま すが、 $, ‘, \ は例外となります。 $ と ‘ はダブルクォートの内部でも特殊な意味を失いません。バックスラッシュの場合は、次の文字が $, ‘, “, \,のいずれかである 場合に限り特殊な意味を失いません。前にバックスラッシュを付ければ、ダブルクォート文字をダブルクォートによるクォートの内部でクォートできます。</p>
+</blockquote>
+
+<p>つまりこういうこと。</p>
+
+<p>[bash]</p>
+
+<p>[hoge@symf test]$ ssh server “psql -c "create database test with ENCODING = ‘UTF8’ ;" “</p>
+
+<p>↑ 「”」の中に「"」があるので、これは成功</p>
+
+<p>[hoge@symf test]$ ssh server ‘psql -c "create database test with ENCODING = ‘UTF8’ ;" ‘</p>
+
+<p>↑ 「’」の中では「\」をつけてもダメなので、これは失敗</p>
+
+<p>[/bash]</p>
+
+<p>create databaseじゃなくてcreatedbを使えば、クォートを入れ子にしなくてもいいって？あくまで例ですから (`・ω・´)ｷﾘｯ</p>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+  </article>
+  
+  <article class="post">
+    <h1 class="post-title">
+      <a href="/dev/ssh-inside-while/">
+        shのwhileループでファイルを読み、中でsshを実行すると1回しかループしない
+      </a>
+    </h1>
+
+    <time datetime="2011-03-18T07:39:57-07:00" class="post-date">18 Mar 2011</time>
+
+    <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/dev/ssh-inside-while/" class="hatena-bookmark-button" data-hatena-bookmark-title="shのwhileループでファイルを読み、中でsshを実行すると1回しかループしない" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/dev/ssh-inside-while/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/dev/ssh-inside-while/" data-text="shのwhileループでファイルを読み、中でsshを実行すると1回しかループしない" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/dev/ssh-inside-while/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p>シェル(sh)スクリプトネタ。</p>
+
+<p>while 文で以下のように指定すると、行ごとにファイルを読み込むことができる。</p>
+
+<p>[bash]</p>
+
+<p>#!/bin/sh</p>
+
+<p># ファイルを1行ずつ読み込んで表示</p>
+
+<p>TESTFILE=./hoge.txt</p>
+
+<p>while read line</p>
+
+<p>do</p>
+
+<p>echo $line</p>
+
+<p>done &lt; $TESTFILE</p>
+
+<p>[/bash]</p>
+
+<p>しかし、 while ループの中で ssh や rsh を実行すると、読み込むファイルが複数行あっても、1行目しか処理されない。</p>
+
+<p>[bash]</p>
+
+<p>#!/bin/sh</p>
+
+<p># TESTFILEが複数行あっても1行目のみ処理されてループ終了</p>
+
+<p>while read line</p>
+
+<p>do</p>
+
+<p>ssh 192.168.0.1 touch $line</p>
+
+<p>done &lt; $TESTFILE</p>
+
+<p>[/bash]</p>
+
+<p>SSH を実行すると、標準入力がそちらに振り向けられるため、read で読んだ1行のみならず、ファイル全体が SSH に渡されてしまう。従って、SSH を実行した後はもう読める行がないので while ループは1回で終了してしまう。</p>
+
+<p>これを防ぐには、ssh に -n オプションを付け、/dev/null をリダイレクトし、標準入力をリダイレクトしないようにする。</p>
+
+<p>[bash]</p>
+
+<p>#!/bin/sh</p>
+
+<p># TESTFILEが複数行あればその行数分処理が実行される</p>
+
+<p>while read line</p>
+
+<p>do</p>
+
+<p>ssh -n 192.168.0.1 touch $line</p>
+
+<p>done &lt; $TESTFILE</p>
+
+<p>[/bash]</p>
+
+<p>なおこれは rsh コマンドでも同じ仕様になっているようだ。</p>
+
+<p>なぜ1行目だけで終わってしまうのか分からずうんうんうなってたら、この本に書いてあった。</p>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+  </article>
+  
+  <article class="post">
+    <h1 class="post-title">
+      <a href="/dev/mounting-directory-on-directory/">
+        ディレクトリをディレクトリにマウント
+      </a>
+    </h1>
+
+    <time datetime="2011-02-23T15:42:16-08:00" class="post-date">23 Feb 2011</time>
+
+    <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/dev/mounting-directory-on-directory/" class="hatena-bookmark-button" data-hatena-bookmark-title="ディレクトリをディレクトリにマウント" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/dev/mounting-directory-on-directory/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/dev/mounting-directory-on-directory/" data-text="ディレクトリをディレクトリにマウント" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/dev/mounting-directory-on-directory/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p>Linuxで、ディスクデバイスではなく、ディレクトリをディレクトリにマウントしたい時は</p>
+
+<p>[text]</p>
+
+<p>mount –bind マウントしたいディレクトリ マウントポイント</p>
+
+<p>[/text]</p>
+
+<p>fstabに書いてしまうときは以下のように書く。</p>
+
+<p>[text]</p>
+
+<p>マウントしたいディレクトリ マウントポイント none bind 0 0</p>
+
+<p>[/text]</p>
+
+<p>例えば /home を /hoge/home としてマウントしたい時は</p>
+
+<p>[text]</p>
+
+<p>/home /hoge/home none bind 0 0</p>
+
+<p>[/text]</p>
+
+<p>なお、マウントしたいディレクトリ(上の例では/hoge)よりも後にこの行を書かないと、マウントできないので注意。</p>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+  </article>
+  
+</div>
+
+<div class="pagination">
+  
+    <a class="pagination-item older" href="/page14">Older</a>
+  
+  
+    <a class="pagination-item newer" href="/page12">Newer</a>
+  
+</div>
+
+      </main>
+
+      <footer class="footer">
+        <small>
+          &copy; <time datetime="2016-04-01T10:52:50-07:00">2016</time>. All rights reserved.
+        </small>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>

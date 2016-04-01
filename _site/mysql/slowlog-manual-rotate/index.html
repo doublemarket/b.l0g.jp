@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+      MySQLスローログの手動ローテート &middot; 渋谷ではたらくインフラエンジニアのブログ
+    
+  </title>
+
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <link rel="alternate" type="application/atom+xml" title="渋谷ではたらくインフラエンジニアのブログ" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="container content">
+      <header class="masthead">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">渋谷ではたらくインフラエンジニアのブログ</a>
+          <small></small>
+        </h3>
+      </header>
+
+      <main>
+        <article class="post">
+  <h1 class="post-title">MySQLスローログの手動ローテート</h1>
+  <time datetime="2012-11-13T05:18:15-08:00" class="post-date">13 Nov 2012</time>
+  <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/mysql/slowlog-manual-rotate/" class="hatena-bookmark-button" data-hatena-bookmark-title="MySQLスローログの手動ローテート" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/mysql/slowlog-manual-rotate/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/mysql/slowlog-manual-rotate/" data-text="MySQLスローログの手動ローテート" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/mysql/slowlog-manual-rotate/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p><a href="http://b.l0g.jp/mysql/slowlog-manual-rotate/attachment/mysql/" rel="attachment wp-att-1371"><img class="alignnone size-full wp-image-1371" style="border: 0px;" title="mysql" src="http://b.l0g.jp/wp-content/uploads/2012/11/mysql.png" alt="" width="170" height="115" /></a></p>
+
+<p>MySQLのスローログは、通常それほど大量に出るものではないからか、自動でローテートされるような設定は特にない。しかし、負荷が上がったりしてスローログが大量に出てしまい、ローテートしたい場合はよくあるだろう。手動でローテートする場合は以下のように行う。</p>
+
+<p>この例は、MySQLのデータディレクトリ(datadir)が /var/lib/mysql で、スローログファイル名(slow_query_log_file)がmysql-slow.logの場合。</p>
+
+<p>[sql]</p>
+
+<p>$ cd /var/lib/mysql</p>
+
+<p>$ mv mysql-slow.log mysql-slow.log.old</p>
+
+<p>$ mysqladmin flush-logs</p>
+
+<p>または</p>
+
+<p>mysql&gt; flush logs;</p>
+
+<p>[/sql]</p>
+
+<p>mysqladmin flush-logs あるいは flush logs で、ログファイルを開き直すことができる。</p>
+
+<p>なお、5.1.12以降だとログ出力をコンソールからオフにできるので、オフにしてからflush-logsし、その後オンに戻すとよいだろう。</p>
+
+<p>[sql]</p>
+
+<p>mysql&gt; set global slow_query_log = ‘OFF’;</p>
+
+<p>mysql&gt; set global slow_query_log = ‘ON’;</p>
+
+<p>[/sql]</p>
+
+<p>ここで、MySQL5.1以前のバージョンでは「mysqladmin flush-logs」を実行すると、バイナリログや一般クエリログも全部まとめてローテートされてしまう。binlogを有効にしているサーバ(レプリケーションしている構成のマスタなど)では注意した方がいいかもしれない。</p>
+
+<p>なお、5.5からは、</p>
+
+<p>[sql]</p>
+
+<h1 id="section">スローログだけ開き直す</h1>
+
+<p>mysql&gt; flush slow logs;</p>
+
+<h1 id="section-1">一般クエリログだけ開き直す</h1>
+
+<p>mysql&gt; flush general logs;</p>
+
+<h1 id="section-2">バイナリログだけローテート</h1>
+
+<p>mysql&gt; flush binary logs;</p>
+
+<h1 id="section-3">エラーログだけローテート</h1>
+
+<p>mysql&gt; flush error logs;</p>
+
+<p>[/sql]</p>
+
+<p>というように、種類を指定できるようになっている。</p>
+
+<p>(2014/12/17 エラーログについてコメントで指摘いただいたので追加。情報提供ありがとうございます)</p>
+
+<p>ちなみにlogrotateで定期的にローテートする場合はこうやるそうだ。</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>[MySQL の slowlog を logrotate する方法</td>
+      <td>Carpe Diem](http://www.sssg.org/blogs/naoya/archives/1251)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>定期的にローテートする必要があるほどスローログが出るままにするってのはどうかと思うが、そういうこともあるかもｗ</p>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+</article>
+
+
+<aside class="related">
+  <h3>Related posts</h3>
+  <ul class="related-posts">
+    
+      <li>
+        <a href="/aws/periodic-ebs-snapshot/">
+          AWSのEBSボリュームのスナップショットを定期的に取る
+          <small><time datetime="2015-10-19T06:33:30-07:00">19 Oct 2015</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/misc/my-twitter-bots/">
+          Twitterボットを作るのがひそかな趣味
+          <small><time datetime="2015-05-22T06:26:26-07:00">22 May 2015</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/uncategorized/sql-performance-explained-ja/">
+          「SQLパフォーマンス詳解」という本を翻訳しました
+          <small><time datetime="2015-04-07T01:45:15-07:00">07 Apr 2015</time></small>
+        </a>
+      </li>
+    
+  </ul>
+</aside>
+
+
+      </main>
+
+      <footer class="footer">
+        <small>
+          &copy; <time datetime="2016-04-01T10:52:50-07:00">2016</time>. All rights reserved.
+        </small>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>

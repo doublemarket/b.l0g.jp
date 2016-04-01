@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+      MySQL Casual Talks vol.5 メモ &middot; 渋谷ではたらくインフラエンジニアのブログ
+    
+  </title>
+
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <link rel="alternate" type="application/atom+xml" title="渋谷ではたらくインフラエンジニアのブログ" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="container content">
+      <header class="masthead">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">渋谷ではたらくインフラエンジニアのブログ</a>
+          <small></small>
+        </h3>
+      </header>
+
+      <main>
+        <article class="post">
+  <h1 class="post-title">MySQL Casual Talks vol.5 メモ</h1>
+  <time datetime="2013-10-26T07:06:50-07:00" class="post-date">26 Oct 2013</time>
+  <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/mysql/mysql-casual-talks-vol-5/" class="hatena-bookmark-button" data-hatena-bookmark-title="MySQL Casual Talks vol.5 メモ" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/mysql/mysql-casual-talks-vol-5/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/mysql/mysql-casual-talks-vol-5/" data-text="MySQL Casual Talks vol.5 メモ" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/mysql/mysql-casual-talks-vol-5/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p> </p>
+
+<p><a href="http://www.zusaar.com/event/1086003">MySQL Casual Talks vol. 5</a>に行ってきたので、自分なりのメモと資料へのリンク。</p>
+
+<p>途中、アラートが鳴り始めて確認してたりしてメモが適当なところがあるが仕方なしｗ</p>
+
+<p>かなりのスピードでじゃんじゃんプレゼンが進んで行ったが、どれも面白い・役立つ内容ばかりで、楽しいひと時でした。発表者の皆様、会場の提供や調整などしてくださった<a href="https://twitter.com/myfinder" target="_blank">@myfinder</a>さんはじめとする皆様、ありがとうございました。自分の隣でビール缶を次々と「カシュッ」と空けていた<a href="https://twitter.com/oranie" target="_blank">@oranie</a>さんのような余裕を持ちつつ、次回は自分も何かネタを提供できるといいなあ。</p>
+
+<h2 id="a-hrefhttpstwittercomyuryu-targetblankyuryua-gtid"><a href="https://twitter.com/yuryu" target="_blank">@yuryu</a>さん GTIDを使い始めてやめた話</h2>
+
+<div style="margin-bottom: 5px;">
+  <strong> <a title="MySQL5.6でGTIDを試してそっと閉じた" href="https://www.slideshare.net/Yuryu/mysql56gtid" target="_blank">MySQL5.6でGTIDを試してそっと閉じた</a> </strong> from <strong><a href="http://www.slideshare.net/Yuryu" target="_blank">Haruka Iwao</a></strong>
+</div>
+
+<ul>
+  <li>GTID – 全てのトランザクションを一意に識別、一貫性保証</li>
+  <li>マスタを切り替えると、マスタのUUIDが変わるのでGTIDが2個になる</li>
+  <li>利点
+    <ul>
+      <li>change master to … master_auto_position=1で簡単にレプリをはれる</li>
+      <li>mysql workbenchのmysqlfailoverとか使える</li>
+    </ul>
+  </li>
+  <li>欠点
+    <ul>
+      <li>クラスタ全部GTID有効にする必要</li>
+      <li>MyISAM使用不可</li>
+      <li>HAしたいならMHAでいいんじゃね？</li>
+    </ul>
+  </li>
+  <li>バグ
+    <ul>
+      <li>GTID有効でFLUSH LOGSするとレプリ停止(5.6.11のみ)</li>
+      <li>stop/start slaveするとトランザクションがスキップされる可能性あり</li>
+      <li>ネットワーク切断でトランザクションスキップの可能性</li>
+    </ul>
+  </li>
+  <li>結局、本格的に使うには時期尚早なので辞めました、ということ</li>
+</ul>
+
+<h2 id="a-hrefhttpstwittercomconmame-targetblankconmamea-mysql-56"><a href="https://twitter.com/con_mame" target="_blank">@con_mame</a>さん MySQL 5.6移行記</h2>
+
+<div style="margin-bottom: 5px;">
+  <strong> <a title="僕らのMySQL5.6移行記(仮)" href="https://www.slideshare.net/conmame/mysql56-27565355" target="_blank">僕らのMySQL5.6移行記(仮)</a> </strong> from <strong><a href="http://www.slideshare.net/conmame" target="_blank">Yutaka Hoshino</a></strong>
+</div>
+
+<ul>
+  <li>クックパッでは5.5のサーバを5.6にバージョンアップしたり最初から使ったり</li>
+  <li>レプリしてクエリ流してコンフィグいじり始めた
+    <ul>
+      <li>うまく行ったのは最初だけで問題勃発</li>
+    </ul>
+  </li>
+  <li>EBSでスナップショット取ったボリュームを5.6マシンにぶら下げてmysql_upgrade実行</li>
+  <li><a href="https://github.com/cookpad/kage" target="_blank">Kage</a>
+    <ul>
+      <li>リクエストをコピーしてsandbox環境に流す仕組み(ユーザへはproductionからの結果が返る)</li>
+      <li>レスポンスのdiffも取れる</li>
+      <li>バックエンドを5.6にして違いを確認</li>
+    </ul>
+  </li>
+  <li>バージョン違い、設定違いのサーバを並べて比較</li>
+  <li>開発用DBを先に新しくしてリリース前に新環境を試す</li>
+  <li>バグ確認用(最新) → 検証用(1つ前) → 本番用(安定版)</li>
+  <li>各バージョンが入ったAMIを用意しておいてすぐ起動できるようにしてある</li>
+  <li>GTID有効だとsql_slave_skip_counter使えない</li>
+  <li>AWSだと色んな検証がCasualにできる</li>
+  <li><a href="http://bugs.mysql.com/" target="_blank">bugs</a>は見ましょう！</li>
+  <li>5.6で遅くなるところもあるので、得意な部分から本番投入していっている</li>
+</ul>
+
+<h2 id="a-hrefhttpstwittercomyoshiken-targetblankyoshikena-50-tritonn56-mroonga"><a href="https://twitter.com/yoshi_ken" target="_blank">@yoshi_ken</a>さん 5.0 Tritonnから5.6 mroongaへの移行</h2>
+
+<div style="margin-bottom:5px">
+  <strong> <a href="https://www.slideshare.net/y-ken/mysql-migrate-mysql50-to-mysql56-with-fulltext" title="Tritonn (MySQL5.0.87+Senna)からの mroonga (MySQL5.6) 移行体験記" target="_blank">Tritonn (MySQL5.0.87+Senna)からの mroonga (MySQL5.6) 移行体験記</a> </strong> from <strong><a href="http://www.slideshare.net/y-ken" target="_blank">Kentaro Yoshida</a></strong>
+</div>
+
+<ul>
+  <li><a href="http://gihyo.jp/dev/clip/01/groonga/0006">技評の記事</a>の裏話</li>
+  <li>旧構成 マスタはDRBDでミラー、スレーブにレプリ</li>
+  <li>5.6スレーブを追加してそこに孫をぶら下げて旧環境を切り離し</li>
+  <li>本番環境のアクセスログから抜き出したURLを使ってテスト
+    <ul>
+      <li>5.6で遅くなったクエリをチューニング</li>
+      <li><a href="http://d.hatena.ne.jp/oranie/20130402/1364906656" target="_blank">SQLMODE厳格化</a>への対応</li>
+    </ul>
+  </li>
+  <li>テスト中に見つけたmroongaのバグはすぐに修正してもらえた</li>
+  <li>HWトラブル
+    <ul>
+      <li>マスタ死亡、起動しない、焦げ臭い！さらにもう一台も焦げた。。</li>
+    </ul>
+  </li>
+  <li>GTIDよりsemi sync repl + MHAがいいのでわ</li>
+  <li>innodb_file_per_tableでなかったのでダンプしてバージョンアップした</li>
+  <li>memcached APIはバグで使えなかった</li>
+</ul>
+
+<h2 id="a-hrefhttpstwittercomyoku0825-targetblankyoku0825a-ddl"><a href="https://twitter.com/yoku0825" target="_blank">@yoku0825</a>さん アプリ担当が出してきたDDLがドイヒーな話</h2>
+
+<div style="margin-bottom:5px">
+  <strong> <a href="https://www.slideshare.net/yoku0825/ss-27597161" title="とあるイルカのバーボンハウス" target="_blank">とあるイルカのバーボンハウス</a> </strong> from <strong><a href="http://www.slideshare.net/yoku0825" target="_blank">yoku0825</a></strong>
+</div>
+
+<ul>
+  <li>すごい心が痛い&amp;共感出来る内容だったけどテンポ早すぎてメモできなかったｗ</li>
+  <li>MariaDB 10からもGTIDが使えるようになった(ただしMySQLとは結構違う)</li>
+  <li>ログ用テーブル
+    <ul>
+      <li>突っ込みどころたくさんww</li>
+    </ul>
+  </li>
+  <li>インデックス名はidx_カラム名_カラム名_…とすると長いけどexplainのときに分かりやすい</li>
+  <li>フレームワークが作る通りではなくDBの特性を考える</li>
+  <li>SQL文を見るだけでどのインデックスを使うかなどの意図が分かる名前付け</li>
+</ul>
+
+<h2 id="a-hrefhttpstwittercomkamipo-targetblankkamipoa-mysql-build"><a href="https://twitter.com/kamipo" target="_blank">@kamipo</a>さん mysql-build</h2>
+
+<p><a href="http://kamipo.github.io/talks/20131025-mysqlcasual5/" target="_blank">プレゼン資料</a></p>
+
+<ul>
+  <li>この辺りトラブル発生してメモがおろそか</li>
+  <li>いろんなMySQLをインストールして使い分ける仕組み</li>
+  <li>percona serverのmysqldumpにはkeyを消してダンプして作り直すオプションがある
+    <ul>
+      <li>ダンプが高速化</li>
+    </ul>
+  </li>
+  <li>fbの5.6にはlogical key readのオプションがある</li>
+</ul>
+
+<h2 id="a-hrefhttpstwittercomdoaki-targetblankdoakia-multi-master-replication"><a href="https://twitter.com/do_aki" target="_blank">@do_aki</a>さん multi master replication</h2>
+
+<div style="margin-bottom: 5px;">
+  <strong> <a title="殿堂入りのアレ～Multi-Source Replication を添えて～" href="https://www.slideshare.net/do_aki/ss-27565738" target="_blank">殿堂入りのアレ～Multi-Source Replication を添えて～</a> </strong> from <strong><a href="http://www.slideshare.net/do_aki" target="_blank">do_aki</a></strong>
+</div>
+
+<ul>
+  <li>MySQL Casual定番の内容</li>
+  <li>change masterを2秒ごとに切り替えてマルチマスタ</li>
+  <li>5.7では標準でできるようになった</li>
+  <li>過去に色々な方法でマルチマスタを試みている人がいるww</li>
+</ul>
+
+<h2 id="a-hrefhttpstwittercomrkajiyama-targetblankrkajiyamaa-57-multi-source-replication"><a href="https://twitter.com/RKajiyama" target="_blank">@RKajiyama</a>さん 5.7 Multi-source replication</h2>
+
+<div style="margin-bottom:5px">
+  <strong> <a href="https://www.slideshare.net/rkajiyama/20131025-casual-uppt" title="MySQL Casual Talks vol.5 - MySQL Labs - @RKajiyama" target="_blank">MySQL Casual Talks vol.5 &#8211; MySQL Labs &#8211; @RKajiyama</a> </strong> from <strong><a href="http://www.slideshare.net/rkajiyama" target="_blank">rkajiyama</a></strong>
+</div>
+
+<ul>
+  <li>labsにはDMR以前のものがありますよ
+    <ul>
+      <li>hadoop applier for mysql
+        <ul>
+          <li>hadoopをMySQLスレーブのように使う</li>
+        </ul>
+      </li>
+      <li>JSON UDF</li>
+      <li>Multi source replication</li>
+      <li>MySQL Utilities Fabric
+        <ul>
+          <li>シャーディングの情報を管理する仕組み</li>
+        </ul>
+      </li>
+      <li>Fabric + multi source replication + multi thread slaveの組み合わせ良さげ</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="a-hrefhttpstwittercomsongmu-targetblanksongmua"><a href="https://twitter.com/songmu" target="_blank">@songmu</a>さん</h2>
+
+<p><a href="http://songmu.github.io/slides/mysql-casual-5/" target="_blank">プレゼン資料</a></p>
+
+<ul>
+  <li>GitDDL::Migrator, SQLTranslator(SQLFairy)
+    <ul>
+      <li>ブランチごとにテーブルやカラムが違うと大変</li>
+      <li>テーブル構成の違いなどが表示できる</li>
+      <li>ブランチを行ったり来たりしながらalterしたりできる</li>
+    </ul>
+  </li>
+  <li>App::RunCron
+    <ul>
+      <li>perlのラッパー、レポータを書くと色々できる</li>
+      <li>cronのログってnullに捨てちゃうけど困るよね</li>
+      <li>cronlog</li>
+      <li>cronの処理をラップしてエラー処理が可能</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="a-hrefhttpstwittercomnekogeruge987-targetblanknekogeruge987a-db2mysql55"><a href="https://twitter.com/nekogeruge_987" target="_blank">@nekogeruge_987</a>さん DB2からMySQL5.5への移行</h2>
+
+<ul>
+  <li>13年運用されてるデータベース</li>
+  <li>レコードをCSVにしてload infile</li>
+  <li>シェルスクリプトで自動化</li>
+  <li>4時間以内に終わらせるという時間制約
+    <ul>
+      <li>loadを高速化する工夫</li>
+      <li>ジョブフローの最適化(jenkins build flow plugin)</li>
+      <li>ジョブフローをGroovyで書ける(並列実行などなども可)</li>
+      <li>データ移行自体をCIする(1クリックデータ移行！)</li>
+      <li>/var/lib/mysql以下の並列rsync</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="a-hrefhttpstwittercommonry-targetblankmonrya-amazon-rds"><a href="https://twitter.com/monry" target="_blank">@monry</a>さん Amazon RDS</h2>
+
+<div style="margin-bottom: 5px;">
+  <strong> <a title="20131025 my sql casual talks vol.5" href="https://www.slideshare.net/monry84/20131025-my-sql-casual-talks-vol5" target="_blank">20131025 my sql casual talks vol.5</a> </strong> from <strong><a href="http://www.slideshare.net/monry84" target="_blank">Tetsuya Mori</a></strong>
+</div>
+
+<ul>
+  <li>マスタ1台、スレーブ5台
+    <ul>
+      <li>243ドル/月</li>
+    </ul>
+  </li>
+  <li>物理サーバが1台13万以上ならRDSの方が安い(3年償却)</li>
+</ul>
+
+<h2 id="a-hrefhttpstwittercomchobie-targetblankchobiea-"><a href="https://twitter.com/chobi_e" target="_blank">@chobi_e</a>さん ストレージエンジンを作ってみた</h2>
+
+<ul>
+  <li><a href="https://twitter.com/kazuho" target="_blank">kazuho</a>さんの<a href="http://d.hatena.ne.jp/kazuhooku/20131001/1380595265" target="_blank">リアルタイムランキング用MySQLストレージエンジンの話</a>
+    <ul>
+      <li>本を読む</li>
+      <li>
+        <p><a href="http://www.amazon.co.jp/gp/product/B00ACC6ANM/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=B00ACC6ANM&amp;linkCode=as2&amp;tag=l0gjp-22" rel="nofollow">Expert MySQL</a><img style="border: none !important; margin: 0px !important;" alt="" src="http://ir-jp.amazon-adsystem.com/e/ir?t=l0gjp-22&amp;l=as2&amp;o=9&amp;a=B00ACC6ANM" width="1" height="1" border="0" /></p>
+
+        <p>のChapter 10</p>
+      </li>
+      <li><a href="http://www.amazon.co.jp/gp/product/1849510601/ref=as_li_ss_tl?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=1849510601&amp;linkCode=as2&amp;tag=doublemarket-22" rel="nofollow">Mysql 5.1 Plugin Development</a><img style="border: none !important; margin: 0px !important;" alt="" src="http://ir-jp.amazon-adsystem.com/e/ir?t=doublemarket-22&amp;l=as2&amp;o=9&amp;a=1849510601" width="1" height="1" border="0" /></li>
+      <li>ランキングと言えばredis
+        <ul>
+          <li>sorted setのソースを取ってくる</li>
+        </ul>
+      </li>
+      <li>意外と簡単に書けるので書いてみよう</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+</article>
+
+
+<aside class="related">
+  <h3>Related posts</h3>
+  <ul class="related-posts">
+    
+      <li>
+        <a href="/aws/periodic-ebs-snapshot/">
+          AWSのEBSボリュームのスナップショットを定期的に取る
+          <small><time datetime="2015-10-19T06:33:30-07:00">19 Oct 2015</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/misc/my-twitter-bots/">
+          Twitterボットを作るのがひそかな趣味
+          <small><time datetime="2015-05-22T06:26:26-07:00">22 May 2015</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/uncategorized/sql-performance-explained-ja/">
+          「SQLパフォーマンス詳解」という本を翻訳しました
+          <small><time datetime="2015-04-07T01:45:15-07:00">07 Apr 2015</time></small>
+        </a>
+      </li>
+    
+  </ul>
+</aside>
+
+
+      </main>
+
+      <footer class="footer">
+        <small>
+          &copy; <time datetime="2016-04-01T10:52:50-07:00">2016</time>. All rights reserved.
+        </small>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>

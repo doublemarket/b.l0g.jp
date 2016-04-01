@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+      Nagiosのプラグイン作成や設定ファイル操作にpynagが超便利！ &middot; 渋谷ではたらくインフラエンジニアのブログ
+    
+  </title>
+
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <link rel="alternate" type="application/atom+xml" title="渋谷ではたらくインフラエンジニアのブログ" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="container content">
+      <header class="masthead">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">渋谷ではたらくインフラエンジニアのブログ</a>
+          <small></small>
+        </h3>
+      </header>
+
+      <main>
+        <article class="post">
+  <h1 class="post-title">Nagiosのプラグイン作成や設定ファイル操作にpynagが超便利！</h1>
+  <time datetime="2013-06-12T02:51:05-07:00" class="post-date">12 Jun 2013</time>
+  <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/nagios/pynag-introduction/" class="hatena-bookmark-button" data-hatena-bookmark-title="Nagiosのプラグイン作成や設定ファイル操作にpynagが超便利！" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/nagios/pynag-introduction/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/nagios/pynag-introduction/" data-text="Nagiosのプラグイン作成や設定ファイル操作にpynagが超便利！" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/nagios/pynag-introduction/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p>Nagiosの設定ファイルをパースする簡単な方法ないかなと思って調べてたら、<a href="http://pynag.org/" title="pynag.org" target="_blank">pynag</a>という超便利なパッケージ発見。日本語の情報ほとんどないけど、Fedoraの標準パッケージになっているってことは割と一般的なんだろうか。</p>
+
+<ul>
+  <li>Nagiosのプラグインを簡単に作りたい</li>
+  <li>Nagiosの設定ファイルをパースして値を取りたい</li>
+  <li>Nagiosの設定をコマンドラインやプログラムから取得・変更したい</li>
+</ul>
+
+<p>って時に重宝する。pynagという名の通り、pythonで書かれている。公式ページのそのまんま訳に近いけど、使い方ご紹介。</p>
+
+<h2 id="section">インストール</h2>
+
+<p>Fedoraの最近のバージョンには標準で含まれており、CentOSやRHELならepelを使えるようにしておけばyumでインストールできる。</p>
+
+<p>[shell]</p>
+
+<p>$ sudo yum install http://ftp-srv2.kddilabs.jp/Linux/distributions/fedora/epel/6/x86_64/epel-release-6-8.noarch.rpm</p>
+
+<p>$ sudo yum install pynag</p>
+
+<p>[/shell]</p>
+
+<p>pipが使えるならpipでもインストールできる。</p>
+
+<p>[shell]</p>
+
+<p>$ sudo pip install pynag</p>
+
+<p>[/shell]</p>
+
+<h2 id="section-1">設定ファイルのパース</h2>
+
+<p>pynagパッケージのModelモジュールを使えば、 /etc/nagios など代表的なパスから nagios.cfg を探し出して読み込んでくれる。含まれるホストとそのホストに関連づいたContact groupを表示する例。</p>
+
+<p>[python]</p>
+
+<p>from pynag import Model</p>
+
+<p># Get all hosts</p>
+
+<p>all_hosts = Model.Host.objects.all</p>
+
+<p>for i in all_hosts:</p>
+
+<p>print i.host_name, i.contact_groups</p>
+
+<p>[/python]</p>
+
+<h2 id="section-2">設定書き換え</h2>
+
+<p>同じようにして、設定を保存することもできる。ホスト名がexamplehostのホストのContact groupを「mycontactgroup」にする例。</p>
+
+<p>[python]</p>
+
+<p>from pynag import Model</p>
+
+<p>services = Model.Service.objects.filter(host_name=’examplehost’)</p>
+
+<p>for i in services:</p>
+
+<p>i.contactgroups = “mycontactgroup”</p>
+
+<p>i.save()</p>
+
+<p>[/python]</p>
+
+<h2 id="section-3">ステータスの取得</h2>
+
+<p>監視結果が保存されているstatus.datファイルのパースもしてくれるので、ホストやサービスのステータス取得もできる。</p>
+
+<p>ホストグループ名とサービス名を引数に与えてやると、ホストグループに所属するホスト全てに関するサービスのステータスを返すスクリプト。</p>
+
+<p>[python]</p>
+
+<p>import sys</p>
+
+<p>from pynag import Model</p>
+
+<p>from pynag.Parsers import status</p>
+
+<p>argvs = sys.argv</p>
+
+<p>argc = len(argvs)</p>
+
+<p>status = status()</p>
+
+<p>if (argc != 3):</p>
+
+<p>print</p>
+
+<p>print(“Usage: ./%s hostgroup service” % argvs[0])</p>
+
+<p>print</p>
+
+<p>sys.exit()</p>
+
+<p>hostgroups = Model.Hostgroup.objects.filter(hostgroup_name=argvs[1])</p>
+
+<p>for hostgroup in hostgroups:</p>
+
+<p>print(“Hostgroup: %s” % hostgroup.hostgroup_name)</p>
+
+<p>print(“Member:”)</p>
+
+<p>for host in hostgroup.members.split(‘,’):</p>
+
+<p>print(“%s %s” % (host, status.get_servicestatus(host, argvs[2])[‘current_state’]))</p>
+
+<p>[/python]</p>
+
+<p>status.datのパースにはやや時間がかかるので、監視対象サーバの台数が多いと使用に耐えない。そういう場合は、高速にステータスを取得できる<a href="http://mathias-kettner.de/checkmk_livestatus.html" title="MK Livestatus" target="_blank">MK Livestatus</a>と組み合わせることもできる。インストール方法は割愛するのでWebページを参照するべし。MK Livestatusを使って、上のスクリプトと同じようにホストグループとサービス名を引数に与えてホストのステータスを取得する例。</p>
+
+<p>[python]</p>
+
+<p>import sys</p>
+
+<p>from pynag import Model</p>
+
+<p>from pynag.Parsers import mk_livestatus</p>
+
+<p>argvs = sys.argv</p>
+
+<p>argc = len(argvs)</p>
+
+<p>livestatus = mk_livestatus()</p>
+
+<p>if (argc != 3):</p>
+
+<p>print</p>
+
+<p>print(“Usage: ./%s hostgroup service” % argvs[0])</p>
+
+<p>print</p>
+
+<p>sys.exit()</p>
+
+<p>hostgroups = Model.Hostgroup.objects.filter(hostgroup_name=argvs[1])</p>
+
+<p>for hostgroup in hostgroups:</p>
+
+<p>print(“Hostgroup: %s” % hostgroup.hostgroup_name)</p>
+
+<p>print(“Member:”)</p>
+
+<p>for host in hostgroup.members.split(‘,’):</p>
+
+<p>print(host)</p>
+
+<p>print(livestatus.get_service(host,argvs[2])[‘host_services_with_info’])</p>
+
+<p>[/python]</p>
+
+<h2 id="section-4">コマンドラインから使う</h2>
+
+<p>Pythonのスクリプト内だけでなく、pynagコマンドとしてシェルから直接使うこともできる。where句で対象を絞ることが可能。</p>
+
+<p>全ホストオブジェクトを表示する例。</p>
+
+<p>[shell]</p>
+
+<p>$ pynag list where object_type=host</p>
+
+<p>object_type shortname filename</p>
+
+<p>——————————————————————————–</p>
+
+<p>host server01 /etc/nagios/Default_collector/hosts.cfg</p>
+
+<p>host server02 /etc/nagios/Default_collector/hosts.cfg</p>
+
+<p>(中略)</p>
+
+<p>———-123 objects matches search condition———————————-</p>
+
+<p>[/shell]</p>
+
+<p>MySQL_Connect_cというサービスのチェックコマンドを表示する例。</p>
+
+<p>[shell]</p>
+
+<p>$ pynag list effective_command_line where service_description=MySQL_Connect_c</p>
+
+<p>effective_command_line</p>
+
+<p>——————————————————————————–</p>
+
+<p>/usr/lib64/nagios/plugins/check_mysql_health –hostname –user nagios –password nagios –mode connection-time –database test –critical 1</p>
+
+<p>———-1 objects matches search condition————————————</p>
+
+<p>[/shell]</p>
+
+<p>もちろんコマンドラインから設定の変更も可能。ホスト名server01をserver02に変更する例。</p>
+
+<p>[shell]</p>
+
+<p>$ pynag update set host_name=server02 where host_name=server01 and object_type=host</p>
+
+<p>[/shell]</p>
+
+<p>where句にはlikeのような部分一致が使えないようだ。複雑なクエリを発行したいときは、pythonスクリプトとして作った方がいいかもしれない。コマンドラインでの使い方は<a href="https://github.com/pynag/pynag/wiki/Pynag-command-line-utility" title="pynag wiki" target="_blank">Wiki</a>にもう少し詳しく書いてある。</p>
+
+<h2 id="nagios">Nagiosプラグイン作成時に使う</h2>
+
+<p>個人的に一番ツボなのがこの機能。自作のプラグインに、Nagiosのプラグインを書く際のガイドラインに準じた引数の処理などを簡単に加えることができる。</p>
+
+<p>/proc/loadavgの中身から、ロードアベレージを引いてくる簡単な例。</p>
+
+<p>[python]</p>
+
+<p>#!/usr/bin/python</p>
+
+<p>import os,sys</p>
+
+<p>## プラグインのオプションを生成</p>
+
+<p>np = Plugin()</p>
+
+<p>## コマンドライン引数を追加</p>
+
+<p>np.add_arg(“l”,”load-file”, “Enter a load average file”, required=None)</p>
+
+<p>## プラグインをアクティベート</p>
+
+<p>np.activate()</p>
+
+<p>## load-fileオプションが指定されたらそのファイルからLAを読み込む</p>
+
+<p>## デバッグと、add_argメソッドのサンプルとして</p>
+
+<p>if np[‘load-file’]:</p>
+
+<p>load_file = np[‘load-file’]</p>
+
+<p>else:</p>
+
+<p>load_file = “/proc/loadavg”</p>
+
+<p>## ちょっとしたエラーチェック</p>
+
+<p>if not os.path.isfile(load_file):</p>
+
+<p>np.nagios_exit(np.UNKNOWN, “Missing Load average file %s” % load_file)</p>
+
+<p>## チェックに使う値を取得</p>
+
+<p>current_load = os.popen(“cat %s” % load_file).readline().split()[0]</p>
+
+<p>## パフォーマンスデータを付加</p>
+
+<p>np.add_perfdata(“1min”, current_load)</p>
+
+<p>## チェック実行</p>
+
+<p>np.check_range(current_load)</p>
+
+<p>[/python]</p>
+
+<p>上のスクリプトをcheck_cpu.pyとして保存しておく。5行目のPlugin()で、プラグインとして必要なオプションが用意されるので、以下のようにスクリプトに引数を指定しないで実行しただけで、簡易ヘルプが表示される。</p>
+
+<p>[shell]</p>
+
+<p>$ ./check_load.py</p>
+
+<p>usage: check_load.py [options]</p>
+
+<p>check_load.py: error: You must provide a WARNING and/or CRITICAL value</p>
+
+<p>[/shell]</p>
+
+<p>さらに、-hオプションをつけると、詳細なヘルプが表示される。</p>
+
+<p>[shell]</p>
+
+<p>$ ./check_load.py -h</p>
+
+<p>usage: check_load.py [options]</p>
+
+<p>options:</p>
+
+<p>-h, –help show this help message and exit</p>
+
+<p>-l LOAD-FILE, –load-file=LOAD-FILE</p>
+
+<p>Enter a load average file</p>
+
+<p>-v VERBOSE, –verbose=VERBOSE</p>
+
+<p>Verbosity Level</p>
+
+<p>-H HOST, –host=HOST Target Host</p>
+
+<p>-t TIMEOUT, –timeout=TIMEOUT</p>
+
+<p>Connection Timeout</p>
+
+<p>-c CRITICAL, –critical=CRITICAL</p>
+
+<p>Critical Threshhold</p>
+
+<p>-w WARNING, –warning=WARNING</p>
+
+<p>Warn Threshhold</p>
+
+<p>[/shell]</p>
+
+<p>ここで、スクリプト内の8行目、add_argメソッドで追加したオプションが、ヘルプの中に「-l LOAD-FILE, –load-file=LOAD-FILE」として表示されている。また、-Hでの監視対象ホスト指定や-c,-wによる閾値の指定オプションがはじめから用意されていることがわかる。自作スクリプトを書くたびにオプションのパースから書いていた事を考えれば、なんという簡単さ！</p>
+
+<p>もちろん、ヘルプでみたとおりのオプションを与えてやれば、プラグインとして使用可能。</p>
+
+<p>[shell]</p>
+
+<p>$ uptime</p>
+
+<p>13:16:19 up 396 days, 22:32, 3 users, load average: 0.60, 1.08, 1.04</p>
+
+<p>$ ./check_load.py -w 1 127.0.0.1</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>OK: 0.60 is inside warning=1 and critical=None</td>
+      <td>‘1min’=0.60;;;;</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>[/shell]</p>
+
+<p>元々やりたかったのは「同一ホストグループ内のある台数のチェック失敗まではWARNING、その台数以上のチェック失敗でCRITICALアラートを上げたい」ということだったのだが、以下のような短いプラグインスクリプトで実現できた。</p>
+
+<p>[python]</p>
+
+<p>#!/usr/bin/python</p>
+
+<p>import sys</p>
+
+<p>from pynag import Model</p>
+
+<p>from pynag.Parsers import status</p>
+
+<p>from pynag.Plugins import simple as Plugin</p>
+
+<p>np = Plugin()</p>
+
+<p>status = status()</p>
+
+<p>np.add_arg(“g”, “hostgroup”, “Hostgroup name”, required=1)</p>
+
+<p>np.add_arg(“s”, “service”, “Service name”, required=1)</p>
+
+<p>np.activate()</p>
+
+<p>errornum = 0</p>
+
+<p>hostgroups = Model.Hostgroup.objects.filter(hostgroup_name=np[‘hostgroup’])</p>
+
+<p>for hostgroup in hostgroups:</p>
+
+<p>for host in hostgroup.members.split(‘,’):</p>
+
+<p>if status.get_servicestatus(host, np[‘service’])[‘current_state’] != “0”:</p>
+
+<p>errornum = errornum + 1</p>
+
+<p>np.add_perfdata(“WARN/CRIT”, errornum)</p>
+
+<p>np.check_range(errornum)</p>
+
+<p>[/python]</p>
+
+<p>2台のチェックに失敗している時の例。</p>
+
+<p>[shell]</p>
+
+<p># 2より多いとwarn、3より多いとcrit</p>
+
+<p>$ python check_wipeout.py –hostgroup=common_dbs –service=ifSpeed_eth0_w -w 2 -c 3</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>OK: 2 is inside warning=2 and critical=3</td>
+      <td>‘WARN/CRIT’=2;;;;</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>$ echo $?</p>
+
+<p># 1より多いとwarn、3より多いとcrit</p>
+
+<p>$ python check_wipeout.py –hostgroup=common_dbs –service=ifSpeed_eth0_w -w 1 -c 3</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>WARNING: 2 is outside warning range: 1</td>
+      <td>‘WARN/CRIT’=2;;;;</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>$ echo $?</p>
+
+<p>1</p>
+
+<p># 1より多いとcrit</p>
+
+<p>$ python check_wipeout.py –hostgroup=common_dbs –service=ifSpeed_eth0_w -c 1</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>CRITICAL: 2 is outside critical range: 1</td>
+      <td>‘WARN/CRIT’=2;;;;</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>$ echo $?</p>
+
+<p>2</p>
+
+<p>[/shell]</p>
+
+<p>というわけで、pynagがあるとNagiosプラグインを書くのが超簡単になる！ pynag万歳！</p>
+
+<p>ドキュメントは<a href="https://github.com/pynag/pynag/wiki" title="pynag wiki" target="_blank">Github上のWiki</a>を見るとよい。Wikiからだと分からない部分も多いが、<a href="https://github.com/pynag/pynag" title="pynag" target="_blank">ソース自体</a>はそれほど複雑ではないので読んでみればわかるのでは。&lt;table norder=0&gt;</p>
+
+<p>&lt;/table&gt;</p>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+</article>
+
+
+<aside class="related">
+  <h3>Related posts</h3>
+  <ul class="related-posts">
+    
+      <li>
+        <a href="/aws/periodic-ebs-snapshot/">
+          AWSのEBSボリュームのスナップショットを定期的に取る
+          <small><time datetime="2015-10-19T06:33:30-07:00">19 Oct 2015</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/misc/my-twitter-bots/">
+          Twitterボットを作るのがひそかな趣味
+          <small><time datetime="2015-05-22T06:26:26-07:00">22 May 2015</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/uncategorized/sql-performance-explained-ja/">
+          「SQLパフォーマンス詳解」という本を翻訳しました
+          <small><time datetime="2015-04-07T01:45:15-07:00">07 Apr 2015</time></small>
+        </a>
+      </li>
+    
+  </ul>
+</aside>
+
+
+      </main>
+
+      <footer class="footer">
+        <small>
+          &copy; <time datetime="2016-04-01T10:52:50-07:00">2016</time>. All rights reserved.
+        </small>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>

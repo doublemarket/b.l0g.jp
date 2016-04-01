@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+      渋谷ではたらくインフラエンジニアのブログ &middot; 
+    
+  </title>
+
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <link rel="alternate" type="application/atom+xml" title="渋谷ではたらくインフラエンジニアのブログ" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="container content">
+      <header class="masthead">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">渋谷ではたらくインフラエンジニアのブログ</a>
+          <small></small>
+        </h3>
+      </header>
+
+      <main>
+        <div class="posts">
+  
+  <article class="post">
+    <h1 class="post-title">
+      <a href="/shell/history-with-timestamp/">
+        historyに時刻を記録する
+      </a>
+    </h1>
+
+    <time datetime="2011-11-24T16:05:53-08:00" class="post-date">24 Nov 2011</time>
+
+    <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/shell/history-with-timestamp/" class="hatena-bookmark-button" data-hatena-bookmark-title="historyに時刻を記録する" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/shell/history-with-timestamp/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/shell/history-with-timestamp/" data-text="historyに時刻を記録する" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/shell/history-with-timestamp/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p>bash 3.0以上(最近のLinuxは大抵3.0以上)を使用している場合は、「HISTTIMEFORMAT」というシェル変数に時刻のフォーマットを入れることで、historyコマンドの実行結果(ファイル)にコマンドだけではなく時刻も記録できる。以下はhistoryコマンドの実行結果の例。</p>
+
+<p>[text]</p>
+
+<p>100 2011-11-22 10:16:59 ls</p>
+
+<p>101 2011-11-22 10:17:03 cd /var/log/</p>
+
+<p>102 2011-11-22 10:17:04 ls</p>
+
+<p>[/text]</p>
+
+<p>ホームディレクトリ以下の.bashrcや/etc/profile(全ユーザに適用したい場合)に</p>
+
+<p>[text]</p>
+
+<p>HISTTIMEFORMAT=’%Y-%m-%d %T ‘</p>
+
+<p>[/text]</p>
+
+<p>と書いておけばよい。時刻のフォーマットはdateコマンドと同じものが使えるようだ(man dateを参照)。</p>
+
+<p>なお、historyコマンドでは上記のようなフォーマットが有効だが、.bash_historyファイルには、</p>
+
+<p>[text]</p>
+
+<p>#1321924619</p>
+
+<p>ls</p>
+
+<p>#1321924623</p>
+
+<p>cd /var/log/</p>
+
+<p>#1321924624</p>
+
+<p>ls</p>
+
+<p>[/text]</p>
+
+<p>のように、UNIX時刻が付加される形で記録される。</p>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+  </article>
+  
+  <article class="post">
+    <h1 class="post-title">
+      <a href="/uncategorized/carrier-ipaddress/">
+        携帯キャリアの使用するIPアドレス帯一覧
+      </a>
+    </h1>
+
+    <time datetime="2011-09-30T15:30:40-07:00" class="post-date">30 Sep 2011</time>
+
+    <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/uncategorized/carrier-ipaddress/" class="hatena-bookmark-button" data-hatena-bookmark-title="携帯キャリアの使用するIPアドレス帯一覧" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/uncategorized/carrier-ipaddress/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/uncategorized/carrier-ipaddress/" data-text="携帯キャリアの使用するIPアドレス帯一覧" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/uncategorized/carrier-ipaddress/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p>携帯キャリアのIPアドレス帯を調べる機会があったので、メモとして載せておく。ソフトバンクは2011年9月30日からサイトのアドレスが変わっているので注意。</p>
+
+<ul>
+  <li>auフィーチャーフォン<br />
+<a href="http://www.au.kddi.com/ezfactory/tec/spec/ezsava_ip.html" target="_blank">http://www.au.kddi.com/ezfactory/tec/spec/ezsava_ip.html</a></li>
+  <li>auフィーチャーフォンメール<br />
+<a href="http://www.au.kddi.com/service/email/support/chui/shiyo/iip_ichiran.html " target="_blank">http://www.au.kddi.com/service/email/support/chui/shiyo/iip_ichiran.html</a></li>
+  <li>docomoフィーチャーフォン<br />
+<a href="http://www.nttdocomo.co.jp/service/developer/make/content/ip/ " target="_blank">http://www.nttdocomo.co.jp/service/developer/make/content/ip/</a></li>
+  <li>docomoスマートフォン(spモード)<br />
+<a href="http://www.nttdocomo.co.jp/service/developer/smart_phone/technical_info/etc/index.html " target="_blank">http://www.nttdocomo.co.jp/service/developer/smart_phone/technical_info/etc/index.html</a></li>
+  <li>softbankフィーチャーフォン<br />
+<a href="http://creation.mb.softbank.jp/mc/tech/tech_web/web_ipaddress.html " target="_blank">http://creation.mb.softbank.jp/mc/tech/tech_web/web_ipaddress.html</a></li>
+  <li>softbankフィーチャーフォンメール<br />
+<a href="http://creation.mb.softbank.jp/mc/tech/tech_mail/mail_ipaddress.html " target="_blank">http://creation.mb.softbank.jp/mc/tech/tech_mail/mail_ipaddress.html</a></li>
+  <li>softbankスマートフォン<br />
+<a href="https://www.support.softbankmobile.co.jp/partner/home_tech1/index.cfm " target="_blank">https://www.support.softbankmobile.co.jp/partner/home_tech1/index.cfm</a></li>
+  <li>softbankスマートフォンメール<br />
+<a href="https://www.support.softbankmobile.co.jp/partner/home_tech2/index.cfm " target="_blank">https://www.support.softbankmobile.co.jp/partner/home_tech2/index.cfm</a></li>
+  <li>willcom<br />
+<a href="http://www.willcom-inc.com/ja/service/contents_service/create/center_info/ " target="_blank">http://www.willcom-inc.com/ja/service/contents_service/create/center_info/</a></li>
+  <li>emobile<br />
+ <a href="http://developer.emnet.ne.jp/ipaddress.html" target="_blank">http://developer.emnet.ne.jp/ipaddress.html</a></li>
+</ul>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+  </article>
+  
+  <article class="post">
+    <h1 class="post-title">
+      <a href="/linux/beep-centos/">
+        CentOSで各種ビープ音を鳴らさないようにする
+      </a>
+    </h1>
+
+    <time datetime="2011-08-18T16:59:08-07:00" class="post-date">18 Aug 2011</time>
+
+    <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/linux/beep-centos/" class="hatena-bookmark-button" data-hatena-bookmark-title="CentOSで各種ビープ音を鳴らさないようにする" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/linux/beep-centos/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/linux/beep-centos/" data-text="CentOSで各種ビープ音を鳴らさないようにする" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/linux/beep-centos/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<h4 id="section"><strong>＜ログイン時＞</strong></h4>
+
+<p>Xを起動するようにしていると(ランレベル5)、ログイン画面表示時にビープ音が鳴る。</p>
+
+<p>「システム(System)」→「管理(Administration)」→「ログイン画面(Login Screen)」から「アクセシビリティ(Accessibility)」タブを開き、「ログイン画面を表示した時」のチェックを外す。</p>
+
+<p>ログアウトし、次にログイン画面が表示されるときには、ビープ音は鳴らないようになっているはず。</p>
+
+<h4 id="section-1"><strong>＜ターミナル使用時＞</strong></h4>
+
+<p>ターミナルを使用している時にタブを使ったりすると、ビープ音が鳴ることがある。</p>
+
+<p>/etc/inputrc に以下の行を追加する(コメントアウトされた状態で既に記述があるはず)</p>
+
+<p>[text]</p>
+
+<p>set bell-style none</p>
+
+<p>[/text]</p>
+
+<p>ログインしなおすと、設定が有効になりビープ音は鳴らなくなる。</p>
+
+<h4 id="vi"><strong>＜vi＞</strong></h4>
+
+<p>vi(vim)を使用していると、コマンドを間違えた時などにビープ音が鳴る。</p>
+
+<p>viの設定ファイル(ホームディレクトリの.vimrcや/etc/skel/.vimrcなど)に以下の行を追加する。</p>
+
+<p>[text]</p>
+
+<p>set visualbell</p>
+
+<p>[/text]</p>
+
+<p>記述してからviを起動すると、ビープ音は鳴らなくなる。</p>
+
+<h4 id="section-2"><strong>＜全部のビープ音を鳴らないようにする＞</strong></h4>
+
+<p>ビープ音は、pcspkrというモジュールを経由して、マザーボード上のスピーカを動かして鳴らしている。このモジュール自体をロードしないようにしてしまえば、ビープ音は鳴らない。</p>
+
+<p>/etc/modprobe.d/blacklist ファイルに以下の行を追加する。</p>
+
+<p>[text]</p>
+
+<p>blacklist pcspkr</p>
+
+<p>[/text]</p>
+
+<h4 id="vmware-player"><strong>＜VMware Playerを使用している場合＞</strong></h4>
+
+<p>VMware Playerを使用している時には、ゲストOSでビープ音が鳴るタイミングで、VMware Playerを通じて、ホストマシンのビープ音が鳴ってしまう。これを鳴らさないようにするには、VMware側の設定でビープを無効にしてしまう。</p>
+
+<p>C:\Users(ユーザ名)\AppData\Roaming\VMware\preferences.ini ファイルと、対象になる仮想マシンの設定ファイル(.vmx)に以下の行を追加する。</p>
+
+<p>[text]</p>
+
+<p>mks.noBeep = “TRUE”</p>
+
+<p>[/text]</p>
+
+<p>出典 : <a href="http://kb.vmware.com/kb/1664" target="_blank">VMwareのKnowledge base</a></p>
+
+<h4 id="windows"><strong>＜Windowsでビープ音を鳴らさないようにする＞</strong></h4>
+
+<p>ついでにWindowsの場合も。ビープ音を鳴らすドライバを無効にしてしまう。以下、Windows 7での例。</p>
+
+<ol>
+  <li>コントロールパネルなどから「デバイスマネージャ」を起動</li>
+  <li> 「表示」→「非表示のデバイスの表示」</li>
+  <li>ツリーから「プラグアンドプレイではないドライバ」→「Beep」を右クリックし、プロパティ</li>
+  <li> 「ドライバー」タブで「停止」を選択</li>
+</ol>
+
+<p>以上</p>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+  </article>
+  
+</div>
+
+<div class="pagination">
+  
+    <a class="pagination-item older" href="/page13">Older</a>
+  
+  
+    <a class="pagination-item newer" href="/page11">Newer</a>
+  
+</div>
+
+      </main>
+
+      <footer class="footer">
+        <small>
+          &copy; <time datetime="2016-04-01T10:52:50-07:00">2016</time>. All rights reserved.
+        </small>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>

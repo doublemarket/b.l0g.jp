@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+      MySQLスレーブのmy.cnfにはreport-hostを必ず書こう &middot; 渋谷ではたらくインフラエンジニアのブログ
+    
+  </title>
+
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <link rel="alternate" type="application/atom+xml" title="渋谷ではたらくインフラエンジニアのブログ" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="container content">
+      <header class="masthead">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">渋谷ではたらくインフラエンジニアのブログ</a>
+          <small></small>
+        </h3>
+      </header>
+
+      <main>
+        <article class="post">
+  <h1 class="post-title">MySQLスレーブのmy.cnfにはreport-hostを必ず書こう</h1>
+  <time datetime="2012-04-12T14:06:24-07:00" class="post-date">12 Apr 2012</time>
+  <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/mysql/report-host-in-slave-mycnf/" class="hatena-bookmark-button" data-hatena-bookmark-title="MySQLスレーブのmy.cnfにはreport-hostを必ず書こう" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/mysql/report-host-in-slave-mycnf/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/mysql/report-host-in-slave-mycnf/" data-text="MySQLスレーブのmy.cnfにはreport-hostを必ず書こう" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/mysql/report-host-in-slave-mycnf/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p>世の中では当たり前のことなのかもしれないが、なぜか今勤めてる会社では一般的ではないのでメモしておく。</p>
+
+<p>MySQLでレプリケーション構成を取っている時、スレーブとなるマシンのmy.cnfには、server-idと一緒にreport-hostを必ず書いておこう。</p>
+
+<p>[text]</p>
+
+<p>server-id = 一意のID</p>
+
+<p>report-host = ホスト名</p>
+
+<p>[/text]</p>
+
+<p>(2012.10.15追記) report-hostではなくslave-hostになってたと@ishikawa84gさんから指摘を受けたので修正。</p>
+
+<p>これで、マスターでshow slave hostsコマンドを打つだけで、スレーブの一覧が表示される。</p>
+
+<p>[sql]</p>
+
+<blockquote>
+  <p>show slave hosts</p>
+</blockquote>
+
+<p>+———–+—————-+——+———–+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Server_id</td>
+      <td>Host</td>
+      <td>Port</td>
+      <td>Master_id</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>+———–+—————-+——+———–+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>16800111</td>
+      <td>nanikano-dbs01</td>
+      <td>3306</td>
+      <td>16800101</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>16800112</td>
+      <td>nanikano-dbs02</td>
+      <td>3306</td>
+      <td>16800101</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>16800113</td>
+      <td>nanikano-dbs03</td>
+      <td>3306</td>
+      <td>16800101</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>+———–+—————-+——+———–+</p>
+
+<p>[/sql]</p>
+
+<p>report-hostを書いていない時にマスタからスレーブの一覧を取得しようと思うと、マスターに接続しているプロセスの一覧から、スレーブへログを渡しているものを抜き出して知るしかない。以下のように、show processlistの結果から、ユーザがレプリケーション用のもの(change masterした時に指定したユーザ)で、CommandがBinlog Dumpとなっているものがスレーブとのレプリケーション用のプロセスだと分かる。</p>
+
+<p>[sql]</p>
+
+<blockquote>
+  <p>show processlist;</p>
+</blockquote>
+
+<p>+———+———–+———————+———-+————-+——–+—————————————————————-+——————+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Id</td>
+      <td>User</td>
+      <td>Host</td>
+      <td>db</td>
+      <td>Command</td>
+      <td>Time</td>
+      <td>State</td>
+      <td>Info</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>+———+———–+———————+———-+————-+——–+—————————————————————-+——————+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>1592850</td>
+      <td>user00001</td>
+      <td>192.168.0.203:38102</td>
+      <td>nantoka</td>
+      <td>Sleep</td>
+      <td>1</td>
+      <td> </td>
+      <td>NULL</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>1592854</td>
+      <td>user00001</td>
+      <td>192.168.0.203:38106</td>
+      <td>hogefuga</td>
+      <td>Sleep</td>
+      <td>1</td>
+      <td> </td>
+      <td>NULL</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>1592856</td>
+      <td>user00001</td>
+      <td>192.168.0.203:38108</td>
+      <td>hogefuga</td>
+      <td>Sleep</td>
+      <td>1</td>
+      <td> </td>
+      <td>NULL</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>1596335</td>
+      <td>user00001</td>
+      <td>192.168.0.203:38328</td>
+      <td>hogefuga</td>
+      <td>Sleep</td>
+      <td>27</td>
+      <td> </td>
+      <td>NULL</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>1596337</td>
+      <td>user00001</td>
+      <td>192.168.0.203:38331</td>
+      <td>nantoka</td>
+      <td>Sleep</td>
+      <td>15</td>
+      <td> </td>
+      <td>NULL</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>(中略)</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>1596701</td>
+      <td>repluser</td>
+      <td>192.168.0.72:40783</td>
+      <td>NULL</td>
+      <td>Binlog Dump</td>
+      <td>80289</td>
+      <td>Has sent all binlog to slave; waiting for binlog to be updated</td>
+      <td>NULL</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>1596702</td>
+      <td>repluser</td>
+      <td>192.168.0.73:49388</td>
+      <td>NULL</td>
+      <td>Binlog Dump</td>
+      <td>80289</td>
+      <td>Has sent all binlog to slave; waiting for binlog to be updated</td>
+      <td>NULL</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>1596706</td>
+      <td>repluser</td>
+      <td>192.168.0.55:47014</td>
+      <td>NULL</td>
+      <td>Binlog Dump</td>
+      <td>80289</td>
+      <td>Has sent all binlog to slave; waiting for binlog to be updated</td>
+      <td>NULL</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>1596707</td>
+      <td>repluser</td>
+      <td>192.168.1.81:54804</td>
+      <td>NULL</td>
+      <td>Binlog Dump</td>
+      <td>80289</td>
+      <td>Has sent all binlog to slave; waiting for binlog to be updated</td>
+      <td>NULL</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>+———+———–+———————+———-+————-+——–+—————————————————————-+——————+</p>
+
+<p>[/sql]</p>
+
+<p>多数のアプリケーションサーバからの接続があったりしてコネクション数が大量で、show processlistが多くの行を返す場合などにはこれでは見づらく、show slave hostコマンドできれいに見られるのがうれしい。細かいことだけど、あとで見やすいようにしておくのは結構重要だと思う。</p>
+
+<p>ちなみに、report-hostは「set report-host = hoge」などとオンラインで変更することはできないので、レプリケーションのセットアップ時などセットアップの初期段階で設定しておくべし。</p>
+
+<p><strong>2012年4月18日追記</strong></p>
+
+<p>MySQL 5.5.3よりも新しいバージョンの場合、スレーブでreport-hostを設定しなくてもマスタでshow slave hostsを実行すると一覧が表示されるようになっているようだ(<a href="http://dev.mysql.com/doc/refman/5.5/en/show-slave-hosts.html" title="MySQL 5.5 Reference Manual 13.7.5.34. SHOW SLAVE HOSTS Syntax" target="_blank">出典</a>)。5.5.3以前の場合、report-hostを書かないとそのスレーブは表示されてこない。</p>
+
+<p>[sql]</p>
+
+<p>mysql&gt; show slave hosts;</p>
+
+<p>+———–+——+——+———–+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Server_id</td>
+      <td>Host</td>
+      <td>Port</td>
+      <td>Master_id</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>+———–+——+——+———–+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>111</td>
+      <td> </td>
+      <td>3306</td>
+      <td>101</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>112</td>
+      <td> </td>
+      <td>3306</td>
+      <td>101</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>+———–+——+——+———–+</p>
+
+<p>2 rows in set (0.00 sec)</p>
+
+<p>[/sql]</p>
+
+<p>ただしこの場合Hostの欄は上のように空になり、report-hostを設定するとその値がHost列に表示されるようになっている。</p>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+</article>
+
+
+<aside class="related">
+  <h3>Related posts</h3>
+  <ul class="related-posts">
+    
+      <li>
+        <a href="/aws/periodic-ebs-snapshot/">
+          AWSのEBSボリュームのスナップショットを定期的に取る
+          <small><time datetime="2015-10-19T06:33:30-07:00">19 Oct 2015</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/misc/my-twitter-bots/">
+          Twitterボットを作るのがひそかな趣味
+          <small><time datetime="2015-05-22T06:26:26-07:00">22 May 2015</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/uncategorized/sql-performance-explained-ja/">
+          「SQLパフォーマンス詳解」という本を翻訳しました
+          <small><time datetime="2015-04-07T01:45:15-07:00">07 Apr 2015</time></small>
+        </a>
+      </li>
+    
+  </ul>
+</aside>
+
+
+      </main>
+
+      <footer class="footer">
+        <small>
+          &copy; <time datetime="2016-04-01T10:52:50-07:00">2016</time>. All rights reserved.
+        </small>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>

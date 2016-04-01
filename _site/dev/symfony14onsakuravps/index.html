@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+      さくらVPSのCentOSにsymfony 1.4.xの環境を構築する &middot; 渋谷ではたらくインフラエンジニアのブログ
+    
+  </title>
+
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <link rel="alternate" type="application/atom+xml" title="渋谷ではたらくインフラエンジニアのブログ" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="container content">
+      <header class="masthead">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">渋谷ではたらくインフラエンジニアのブログ</a>
+          <small></small>
+        </h3>
+      </header>
+
+      <main>
+        <article class="post">
+  <h1 class="post-title">さくらVPSのCentOSにsymfony 1.4.xの環境を構築する</h1>
+  <time datetime="2011-02-13T14:25:12-08:00" class="post-date">13 Feb 2011</time>
+  <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/dev/symfony14onsakuravps/" class="hatena-bookmark-button" data-hatena-bookmark-title="さくらVPSのCentOSにsymfony 1.4.xの環境を構築する" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/dev/symfony14onsakuravps/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/dev/symfony14onsakuravps/" data-text="さくらVPSのCentOSにsymfony 1.4.xの環境を構築する" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/dev/symfony14onsakuravps/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p>自分でWebサービスを作ってみようと思い立ってsymfonyを勉強し始めて数ヶ月。</p>
+
+<p>しばらく前の話だが、借りていたサーバの使用期限が終わってしまったので、さくらVPSを契約。そこにsymfony 1.4.x(1.4.8)をインストールするときの手順をまとめておく。特にさくらVPSに特化した内容はないので、普通にCentOS上にsymfony 1.4をインストールする手順と同じのはず。</p>
+
+<h2 id="section">＜事前準備・参考＞</h2>
+
+<p>以下のサイトを参考にして、不要なパッケージの削除、サービス停止、ファイアウォールやSSHなど、基本的なインターネット公開サーバの設定を済ませておく。</p>
+
+<p><a href="http://tanaka.sakura.ad.jp/archives/001065.html" target="_blank">http://tanaka.sakura.ad.jp/archives/001065.html</a></p>
+
+<p><a href="http://www.ideaxidea.com/archives/2010/11/sakura_vps_settings.html" target="_blank">http://www.ideaxidea.com/archives/2010/11/sakura_vps_settings.html</a></p>
+
+<h2 id="php53remi">＜PHP5.3を配布しているremiリポジトリを有効にする＞</h2>
+
+<p>このブログ執筆時点のさくらVPSのデフォルトOSはCentOS 5.5(x86_64)だが、これには</p>
+
+<p>PHP5.1.6が含まれており、symfony 1.4.xが動作しないので、最新版5.3をインストール。</p>
+
+<p>PHP5.3のRPMパッケージはremiというリポジトリから配布されているので、yumのリポジトリに設定を追加。</p>
+
+<p>[text]</p>
+
+<p># rpm -Uvh http://download.fedora.redhat.com/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm</p>
+
+<p># rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-5.rpm</p>
+
+<p>[/text]</p>
+
+<h2 id="php53">＜PHP5.3インストール＞</h2>
+
+<p>[text]</p>
+
+<p># yum install –enablerepo=remi php php-domxml php-devel php-mysql</p>
+
+<p>[/text]</p>
+
+<p>php.iniに以下を追記。追記しないとdate()の使用で警告が出る。</p>
+
+<p>[text]</p>
+
+<p>date.timezone = “Asia/Tokyo”</p>
+
+<p>[/text]</p>
+
+<p>mb_string関連の関数を使用するために必要なのでphp-mbstringもインストール。</p>
+
+<p>[text]</p>
+
+<p># yum install –enablerepo=remi php-mbstring</p>
+
+<p>[/text]</p>
+
+<p>コンソールで文字を色付けするのに必要なのでphp-processもインストール。</p>
+
+<p>[text]</p>
+
+<p># yum install –enablerepo=remi php-process</p>
+
+<p>[/text]</p>
+
+<p>symfonyで必要なものがそろっているか確認するスクリプトを実行。</p>
+
+<p>[text]</p>
+
+<p># wget http://sf-to.org/1.4/check.php</p>
+
+<p># php check_configuration.php</p>
+
+<p>*<strong>*</strong>*<strong>*</strong>*<strong>*</strong>*<strong>*</strong>*<strong>*</strong>**</p>
+
+<p>* *</p>
+
+<p>* symfony requirements check *</p>
+
+<p>* *</p>
+
+<p>*<strong>*</strong>*<strong>*</strong>*<strong>*</strong>*<strong>*</strong>*<strong>*</strong>**</p>
+
+<p>php.ini used by PHP: /etc/php.ini</p>
+
+<p>** WARNING **</p>
+
+<ul>
+  <li>
+    <p>The PHP CLI can use a different php.ini file</p>
+  </li>
+  <li>
+    <p>than the one used with your web server.</p>
+  </li>
+  <li>
+    <p>If this is the case, please launch this</p>
+  </li>
+  <li>
+    <p>utility from your web server.</p>
+  </li>
+</ul>
+
+<p>** WARNING **</p>
+
+<p>** Mandatory requirements **</p>
+
+<p>OK PHP version is at least 5.2.4 (5.3.3)</p>
+
+<p>** Optional checks **</p>
+
+<p>OK PDO is installed</p>
+
+<p>OK PDO has some drivers installed: mysql, sqlite, sqlite2</p>
+
+<p>OK PHP-XML module is installed</p>
+
+<p>OK XSL module is installed</p>
+
+<p>OK The token_get_all() function is available</p>
+
+<p>OK The mb_strlen() function is available</p>
+
+<p>OK The iconv() function is available</p>
+
+<p>OK The utf8_decode() is available</p>
+
+<p>OK The posix_isatty() is available</p>
+
+<p>[[WARNING]] A PHP accelerator is installed: FAILED</p>
+
+<p>*\<em>* Install a PHP accelerator like APC (highly recommended) **</em></p>
+
+<p>OK php.ini has short_open_tag set to off</p>
+
+<p>OK php.ini has magic_quotes_gpc set to off</p>
+
+<p>OK php.ini has register_globals set to off</p>
+
+<p>OK php.ini has session.auto_start set to off</p>
+
+<p>OK PHP version is not 5.2.9</p>
+
+<p>[/text]</p>
+
+<h2 id="pear">＜pearインストール＞</h2>
+
+<p>※ pearでのインストールは推奨されていないが、簡単なのでこれで済ませる</p>
+
+<p>[text]</p>
+
+<p># yum install –enablerepo=remi php-pear</p>
+
+<p># pear upgrade-all</p>
+
+<p>[/text]</p>
+
+<h2 id="symfony">＜symfonyインストール＞</h2>
+
+<p>[text]</p>
+
+<p># pear channel-discover pear.symfony-project.com</p>
+
+<p># pear install symfony/symfony</p>
+
+<p>[/text]</p>
+
+<p>以下のコマンドでバージョンが表示されたらインストール成功。</p>
+
+<p>[text]</p>
+
+<p># symfony -V</p>
+
+<p>symfony version 1.4.8 (/usr/share/pear/symfony)</p>
+
+<p>[/text]</p>
+
+<p>/usr/share/pear/symfonyにインストールされる</p>
+
+<h2 id="apc">＜APCインストール＞</h2>
+
+<p>PHPのアクセラレータであるAPCをインストールしておく。入れなくても動作するが、symfonyでは導入が推奨されているのと、入れただけで高速になるとのことなのでインストール。</p>
+
+<p>[text]</p>
+
+<p># yum install httpd-devel</p>
+
+<p># yum install –enablerepo=remi php-pecl-apc</p>
+
+<p>[/text]</p>
+
+<h2 id="httpd">＜httpd起動＞</h2>
+
+<p>[text]</p>
+
+<p># chkconfig httpd on</p>
+
+<p>Syntax OK</p>
+
+<p># service httpd start</p>
+
+<p>[/text]</p>
+
+<p>ブラウザから http://(サーバのIPアドレス)/ を確認し、phpinfoでapcが読み込まれていることを確認。</p>
+
+<p>※ phpinfoはコマンドラインから以下を実行しても確認できる</p>
+
+<p>[text]</p>
+
+<p>php ‘phpinfo();’</p>
+
+<p>[/text]</p>
+
+<h2 id="mysql">＜MySQLインストール＞</h2>
+
+<p>[text]</p>
+
+<p># yum install –enablerepo=remi mysql-server</p>
+
+<p>[/text]</p>
+
+<h2 id="mysql-1">＜MySQL設定＞</h2>
+
+<p>my.cnfに以下を追記して文字コードをUTF-8に</p>
+
+<p>[text]</p>
+
+<p>[mysqld]</p>
+
+<p>default-character-set=utf8</p>
+
+<p>character_set_server=utf8</p>
+
+<p>skip-character-set-client-handshake</p>
+
+<p>[mysql]</p>
+
+<p>default-character-set=utf8</p>
+
+<p>[/text]</p>
+
+<p>statusコマンドおよび”show variables like ‘char%’;”でUTF-8になっていることを確認(<a href="http://b.l0g.jp/dev/symfony%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92mysql%E3%81%AB%E3%83%AD%E3%83%BC%E3%83%89%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AEduplicate-entry%E3%82%A8%E3%83%A9%E3%83%BC/" target="_blank">過去エントリ</a>も参照)</p>
+
+<p>パスワードを設定</p>
+
+<p>[text]</p>
+
+<p># mysqladmin -u root password パスワード</p>
+
+<p>[/text]</p>
+
+<p>データベース作成</p>
+
+<p>[text]</p>
+
+<p># mysql -uroot -p</p>
+
+<p>mysql&gt; create database データベース名;</p>
+
+<p>[/text]</p>
+
+<h2 id="postfix">＜postfixインストール＞</h2>
+
+<p>[text]</p>
+
+<p># yum remove sendmail</p>
+
+<p># yum install postfix</p>
+
+<p>[/text]</p>
+
+<p>/etc/postfix/main.cf を編集</p>
+
+<p>[text]</p>
+
+<p># chkconfig postfix on</p>
+
+<p># service postfix start</p>
+
+<p>[/text]</p>
+
+<p>メール送信のテスト</p>
+
+<p>[text]</p>
+
+<p># mail -s test あて先</p>
+
+<p>[/text]</p>
+
+<p>※ 本登録前のお試し期間中はOP25Bが有効なので、VPS上のサーバからメールを送信することはできない</p>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+</article>
+
+
+<aside class="related">
+  <h3>Related posts</h3>
+  <ul class="related-posts">
+    
+      <li>
+        <a href="/aws/periodic-ebs-snapshot/">
+          AWSのEBSボリュームのスナップショットを定期的に取る
+          <small><time datetime="2015-10-19T06:33:30-07:00">19 Oct 2015</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/misc/my-twitter-bots/">
+          Twitterボットを作るのがひそかな趣味
+          <small><time datetime="2015-05-22T06:26:26-07:00">22 May 2015</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/uncategorized/sql-performance-explained-ja/">
+          「SQLパフォーマンス詳解」という本を翻訳しました
+          <small><time datetime="2015-04-07T01:45:15-07:00">07 Apr 2015</time></small>
+        </a>
+      </li>
+    
+  </ul>
+</aside>
+
+
+      </main>
+
+      <footer class="footer">
+        <small>
+          &copy; <time datetime="2016-04-01T10:52:50-07:00">2016</time>. All rights reserved.
+        </small>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>

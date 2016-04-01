@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+      渋谷ではたらくインフラエンジニアのブログ &middot; 
+    
+  </title>
+
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <link rel="alternate" type="application/atom+xml" title="渋谷ではたらくインフラエンジニアのブログ" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="container content">
+      <header class="masthead">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">渋谷ではたらくインフラエンジニアのブログ</a>
+          <small></small>
+        </h3>
+      </header>
+
+      <main>
+        <div class="posts">
+  
+  <article class="post">
+    <h1 class="post-title">
+      <a href="/dev/logrotate-changegen/">
+        logrotateのローテート世代数を減らす時の注意
+      </a>
+    </h1>
+
+    <time datetime="2011-02-14T14:38:25-08:00" class="post-date">14 Feb 2011</time>
+
+    <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/dev/logrotate-changegen/" class="hatena-bookmark-button" data-hatena-bookmark-title="logrotateのローテート世代数を減らす時の注意" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/dev/logrotate-changegen/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/dev/logrotate-changegen/" data-text="logrotateのローテート世代数を減らす時の注意" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/dev/logrotate-changegen/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p>本当は「山に行きました！」というブログを投稿したいところなのだが、さっぱり行ける雰囲気がないので、腹いせに技術系の投稿を続けてる。</p>
+
+<p>logrotateを使ってログのローテートを行っている状況で、ログファイルの総容量が大きくなり、世代数を減らさざるを得ないときのこと。「rotate 世代数」の指定を減らしても、古い世代数は削除されない。</p>
+
+<p>具体的には、以下の例。当初logrotate.confで以下の設定をしていたとする。</p>
+
+<p>[text]</p>
+
+<p># see “man logrotate” for details</p>
+
+<p># rotate log files daily</p>
+
+<p>daily</p>
+
+<p># keep 10 days worth of backlogs</p>
+
+<p>rotate 10</p>
+
+<p># create new (empty) log files after rotating old ones</p>
+
+<p>create</p>
+
+<p># uncomment this if you want your log files compressed</p>
+
+<p>#compress</p>
+
+<p># RPM packages drop log rotation information into this directory</p>
+
+<p>include /etc/logrotate.d</p>
+
+<p>[/text]</p>
+
+<p>この場合、1日1回ローテートされたファイルが10回分保存される。例えば以下のように。</p>
+
+<p>[text]</p>
+
+<p>ls -v /var/log/httpd/access_log*</p>
+
+<p>access_log access_log.4 access_log.8</p>
+
+<p>access_log.1 access_log.5 access_log.9</p>
+
+<p>access_log.2 access_log.6 access_log.10</p>
+
+<p>access_log.3 access_log.7</p>
+
+<p>[/text]</p>
+
+<p>ここで、アクセスログ1ファイルずつの容量が増えてきて、ディスク空き容量が減ってきた場合、保存する世代数を減らして対処する場合、「rotate 世代数」の世代数を減らしても、古い世代が一斉に削除されるわけではない。</p>
+
+<p>rotate 5とした場合、次のローテート後には以下のようになる。</p>
+
+<p>[text]</p>
+
+<p>access_log access_log.4 access_log.9</p>
+
+<p>access_log.1 access_log.5 access_log.10</p>
+
+<p>access_log.2 access_log.7</p>
+
+<p>access_log.3 access_log.8</p>
+
+<p>[/text]</p>
+
+<p>つまり、6世代目が消えるだけで、7世代目以降は自動的には削除されないため、手動で削除する必要がある。</p>
+
+<p>これだけ。これが分からなくて危なくディスク使用率が100%になるところだった。</p>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+  </article>
+  
+  <article class="post">
+    <h1 class="post-title">
+      <a href="/dev/symfony14onsakuravps/">
+        さくらVPSのCentOSにsymfony 1.4.xの環境を構築する
+      </a>
+    </h1>
+
+    <time datetime="2011-02-13T14:25:12-08:00" class="post-date">13 Feb 2011</time>
+
+    <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/dev/symfony14onsakuravps/" class="hatena-bookmark-button" data-hatena-bookmark-title="さくらVPSのCentOSにsymfony 1.4.xの環境を構築する" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/dev/symfony14onsakuravps/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/dev/symfony14onsakuravps/" data-text="さくらVPSのCentOSにsymfony 1.4.xの環境を構築する" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/dev/symfony14onsakuravps/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p>自分でWebサービスを作ってみようと思い立ってsymfonyを勉強し始めて数ヶ月。</p>
+
+<p>しばらく前の話だが、借りていたサーバの使用期限が終わってしまったので、さくらVPSを契約。そこにsymfony 1.4.x(1.4.8)をインストールするときの手順をまとめておく。特にさくらVPSに特化した内容はないので、普通にCentOS上にsymfony 1.4をインストールする手順と同じのはず。</p>
+
+<h2 id="section">＜事前準備・参考＞</h2>
+
+<p>以下のサイトを参考にして、不要なパッケージの削除、サービス停止、ファイアウォールやSSHなど、基本的なインターネット公開サーバの設定を済ませておく。</p>
+
+<p><a href="http://tanaka.sakura.ad.jp/archives/001065.html" target="_blank">http://tanaka.sakura.ad.jp/archives/001065.html</a></p>
+
+<p><a href="http://www.ideaxidea.com/archives/2010/11/sakura_vps_settings.html" target="_blank">http://www.ideaxidea.com/archives/2010/11/sakura_vps_settings.html</a></p>
+
+<h2 id="php53remi">＜PHP5.3を配布しているremiリポジトリを有効にする＞</h2>
+
+<p>このブログ執筆時点のさくらVPSのデフォルトOSはCentOS 5.5(x86_64)だが、これには</p>
+
+<p>PHP5.1.6が含まれており、symfony 1.4.xが動作しないので、最新版5.3をインストール。</p>
+
+<p>PHP5.3のRPMパッケージはremiというリポジトリから配布されているので、yumのリポジトリに設定を追加。</p>
+
+<p>[text]</p>
+
+<p># rpm -Uvh http://download.fedora.redhat.com/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm</p>
+
+<p># rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-5.rpm</p>
+
+<p>[/text]</p>
+
+<h2 id="php53">＜PHP5.3インストール＞</h2>
+
+<p>[text]</p>
+
+<p># yum install –enablerepo=remi php php-domxml php-devel php-mysql</p>
+
+<p>[/text]</p>
+
+<p>php.iniに以下を追記。追記しないとdate()の使用で警告が出る。</p>
+
+<p>[text]</p>
+
+<p>date.timezone = “Asia/Tokyo”</p>
+
+<p>[/text]</p>
+
+<p>mb_string関連の関数を使用するために必要なのでphp-mbstringもインストール。</p>
+
+<p>[text]</p>
+
+<p># yum install –enablerepo=remi php-mbstring</p>
+
+<p>[/text]</p>
+
+<p>コンソールで文字を色付けするのに必要なのでphp-processもインストール。</p>
+
+<p>[text]</p>
+
+<p># yum install –enablerepo=remi php-process</p>
+
+<p>[/text]</p>
+
+<p>symfonyで必要なものがそろっているか確認するスクリプトを実行。</p>
+
+<p>[text]</p>
+
+<p># wget http://sf-to.org/1.4/check.php</p>
+
+<p># php check_configuration.php</p>
+
+<p>*<strong>*</strong>*<strong>*</strong>*<strong>*</strong>*<strong>*</strong>*<strong>*</strong>**</p>
+
+<p>* *</p>
+
+<p>* symfony requirements check *</p>
+
+<p>* *</p>
+
+<p>*<strong>*</strong>*<strong>*</strong>*<strong>*</strong>*<strong>*</strong>*<strong>*</strong>**</p>
+
+<p>php.ini used by PHP: /etc/php.ini</p>
+
+<p>** WARNING **</p>
+
+<ul>
+  <li>
+    <p>The PHP CLI can use a different php.ini file</p>
+  </li>
+  <li>
+    <p>than the one used with your web server.</p>
+  </li>
+  <li>
+    <p>If this is the case, please launch this</p>
+  </li>
+  <li>
+    <p>utility from your web server.</p>
+  </li>
+</ul>
+
+<p>** WARNING **</p>
+
+<p>** Mandatory requirements **</p>
+
+<p>OK PHP version is at least 5.2.4 (5.3.3)</p>
+
+<p>** Optional checks **</p>
+
+<p>OK PDO is installed</p>
+
+<p>OK PDO has some drivers installed: mysql, sqlite, sqlite2</p>
+
+<p>OK PHP-XML module is installed</p>
+
+<p>OK XSL module is installed</p>
+
+<p>OK The token_get_all() function is available</p>
+
+<p>OK The mb_strlen() function is available</p>
+
+<p>OK The iconv() function is available</p>
+
+<p>OK The utf8_decode() is available</p>
+
+<p>OK The posix_isatty() is available</p>
+
+<p>[[WARNING]] A PHP accelerator is installed: FAILED</p>
+
+<p>*\<em>* Install a PHP accelerator like APC (highly recommended) **</em></p>
+
+<p>OK php.ini has short_open_tag set to off</p>
+
+<p>OK php.ini has magic_quotes_gpc set to off</p>
+
+<p>OK php.ini has register_globals set to off</p>
+
+<p>OK php.ini has session.auto_start set to off</p>
+
+<p>OK PHP version is not 5.2.9</p>
+
+<p>[/text]</p>
+
+<h2 id="pear">＜pearインストール＞</h2>
+
+<p>※ pearでのインストールは推奨されていないが、簡単なのでこれで済ませる</p>
+
+<p>[text]</p>
+
+<p># yum install –enablerepo=remi php-pear</p>
+
+<p># pear upgrade-all</p>
+
+<p>[/text]</p>
+
+<h2 id="symfony">＜symfonyインストール＞</h2>
+
+<p>[text]</p>
+
+<p># pear channel-discover pear.symfony-project.com</p>
+
+<p># pear install symfony/symfony</p>
+
+<p>[/text]</p>
+
+<p>以下のコマンドでバージョンが表示されたらインストール成功。</p>
+
+<p>[text]</p>
+
+<p># symfony -V</p>
+
+<p>symfony version 1.4.8 (/usr/share/pear/symfony)</p>
+
+<p>[/text]</p>
+
+<p>/usr/share/pear/symfonyにインストールされる</p>
+
+<h2 id="apc">＜APCインストール＞</h2>
+
+<p>PHPのアクセラレータであるAPCをインストールしておく。入れなくても動作するが、symfonyでは導入が推奨されているのと、入れただけで高速になるとのことなのでインストール。</p>
+
+<p>[text]</p>
+
+<p># yum install httpd-devel</p>
+
+<p># yum install –enablerepo=remi php-pecl-apc</p>
+
+<p>[/text]</p>
+
+<h2 id="httpd">＜httpd起動＞</h2>
+
+<p>[text]</p>
+
+<p># chkconfig httpd on</p>
+
+<p>Syntax OK</p>
+
+<p># service httpd start</p>
+
+<p>[/text]</p>
+
+<p>ブラウザから http://(サーバのIPアドレス)/ を確認し、phpinfoでapcが読み込まれていることを確認。</p>
+
+<p>※ phpinfoはコマンドラインから以下を実行しても確認できる</p>
+
+<p>[text]</p>
+
+<p>php ‘phpinfo();’</p>
+
+<p>[/text]</p>
+
+<h2 id="mysql">＜MySQLインストール＞</h2>
+
+<p>[text]</p>
+
+<p># yum install –enablerepo=remi mysql-server</p>
+
+<p>[/text]</p>
+
+<h2 id="mysql-1">＜MySQL設定＞</h2>
+
+<p>my.cnfに以下を追記して文字コードをUTF-8に</p>
+
+<p>[text]</p>
+
+<p>[mysqld]</p>
+
+<p>default-character-set=utf8</p>
+
+<p>character_set_server=utf8</p>
+
+<p>skip-character-set-client-handshake</p>
+
+<p>[mysql]</p>
+
+<p>default-character-set=utf8</p>
+
+<p>[/text]</p>
+
+<p>statusコマンドおよび”show variables like ‘char%’;”でUTF-8になっていることを確認(<a href="http://b.l0g.jp/dev/symfony%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92mysql%E3%81%AB%E3%83%AD%E3%83%BC%E3%83%89%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AEduplicate-entry%E3%82%A8%E3%83%A9%E3%83%BC/" target="_blank">過去エントリ</a>も参照)</p>
+
+<p>パスワードを設定</p>
+
+<p>[text]</p>
+
+<p># mysqladmin -u root password パスワード</p>
+
+<p>[/text]</p>
+
+<p>データベース作成</p>
+
+<p>[text]</p>
+
+<p># mysql -uroot -p</p>
+
+<p>mysql&gt; create database データベース名;</p>
+
+<p>[/text]</p>
+
+<h2 id="postfix">＜postfixインストール＞</h2>
+
+<p>[text]</p>
+
+<p># yum remove sendmail</p>
+
+<p># yum install postfix</p>
+
+<p>[/text]</p>
+
+<p>/etc/postfix/main.cf を編集</p>
+
+<p>[text]</p>
+
+<p># chkconfig postfix on</p>
+
+<p># service postfix start</p>
+
+<p>[/text]</p>
+
+<p>メール送信のテスト</p>
+
+<p>[text]</p>
+
+<p># mail -s test あて先</p>
+
+<p>[/text]</p>
+
+<p>※ 本登録前のお試し期間中はOP25Bが有効なので、VPS上のサーバからメールを送信することはできない</p>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+  </article>
+  
+  <article class="post">
+    <h1 class="post-title">
+      <a href="/dev/sphinx-on-centos55/">
+        CentOS 5.5にsphinxをインストール
+      </a>
+    </h1>
+
+    <time datetime="2011-02-11T16:16:24-08:00" class="post-date">11 Feb 2011</time>
+
+    <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/dev/sphinx-on-centos55/" class="hatena-bookmark-button" data-hatena-bookmark-title="CentOS 5.5にsphinxをインストール" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/dev/sphinx-on-centos55/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/dev/sphinx-on-centos55/" data-text="CentOS 5.5にsphinxをインストール" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/dev/sphinx-on-centos55/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p><a href="http://atnd.org/events/12450" target="_blank">2/12のSphinx翻訳ハッカソン</a>に行ってSymfony2のドキュメントの翻訳をさせていただこうと思っていたら、このところどっぷりはまっている仕事の方で呼び出されることになり、参加できなくなってしまった。予習として手元の環境にSphinxをインストールしたときのメモを残しておく。</p>
+
+<p>といっても、パッケージ管理ツールを駆使(？)してあっという間。Sphinxのユーザ会のページには、MacOS XとUbuntuへのインストール方法は書いてあるが、CentOSへのインストール方法は書かれていないので、一応メモ。</p>
+
+<p>yumでpythonのパッケージ管理ツールであるpipをインストール</p>
+
+<blockquote>
+  <p>[root@hoge ~]# yum install python-pip python-setuptools</p>
+</blockquote>
+
+<p>pipでsphinxをインストール。現状では1.0.7がインストールされるようだ。</p>
+
+<blockquote>
+  <p>[root@hoge ~]# pip-python install sphinx</p>
+</blockquote>
+
+<blockquote>
+  <p>Downloading/unpacking sphinx</p>
+</blockquote>
+
+<blockquote>
+  <p>Downloading Sphinx-1.0.7.tar.gz (2.3Mb): 2.3Mb downloaded</p>
+</blockquote>
+
+<blockquote>
+  <p>Running setup.py egg_info for package sphinx</p>
+</blockquote>
+
+<blockquote>
+  <p>no previously-included directories found matching ‘doc/_build’</p>
+</blockquote>
+
+<blockquote>
+  <p>Downloading/unpacking Pygments&gt;=0.8 (from sphinx)</p>
+</blockquote>
+
+<blockquote>
+  <p>Downloading Pygments-1.4.tar.gz (3.5Mb): 3.5Mb downloaded</p>
+</blockquote>
+
+<blockquote>
+  <p>Running setup.py egg_info for package Pygments</p>
+</blockquote>
+
+<blockquote>
+  <p>Downloading/unpacking Jinja2&gt;=2.2 (from sphinx)</p>
+</blockquote>
+
+<blockquote>
+  <p>Downloading Jinja2-2.5.5.tar.gz (438Kb): 438Kb downloaded</p>
+</blockquote>
+
+<blockquote>
+  <p>(中略)</p>
+</blockquote>
+
+<blockquote>
+  <p>Installing sphinx-build script to /usr/bin</p>
+</blockquote>
+
+<blockquote>
+  <p>Installing sphinx-quickstart script to /usr/bin</p>
+</blockquote>
+
+<blockquote>
+  <p>Installing sphinx-autogen script to /usr/bin</p>
+</blockquote>
+
+<blockquote>
+  <p>Successfully installed docutils Jinja2 Pygments sphinx</p>
+</blockquote>
+
+<blockquote>
+  <p>Cleaning up…</p>
+</blockquote>
+
+<blockquote>
+  <p>[root@hoge ~]#</p>
+</blockquote>
+
+<p>Sphinxユーザ会の「<a href="http://sphinx-users.jp/gettingstarted/index.html" target="_blank">Sphinxをはじめよう</a>」を見て、「プロジェクトの作成」まではあっさり完了。</p>
+
+<p>yumでもsphinx(パッケージ名はpython-sphinx)をインストールできるが、<a href="http://twitter.com/#!/hidenorigoto" target="_blank">@hidenorigoto</a>さんのアドバイスで、pipを使ったインストール方法があることを知った。ありがとうございます。</p>
+
+<p><strong>2011年3月13日追記</strong></p>
+
+<p>epelリポジトリを有効にしていたからyumだけでインストールできた模様。epelリポジトリを追加していない場合は以下のコマンドで追加。</p>
+
+<p>[text]</p>
+
+<p>rpm -ivh http://ftp.riken.jp/Linux/fedora/epel/5/i386/epel-release-5-4.noarch.rpm</p>
+
+<p>[/text]</p>
+
+<p>※ パスの中で「5-4」はepelのバージョンによって変わる。</p>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+  </article>
+  
+</div>
+
+<div class="pagination">
+  
+    <a class="pagination-item older" href="/page16">Older</a>
+  
+  
+    <a class="pagination-item newer" href="/page14">Newer</a>
+  
+</div>
+
+      </main>
+
+      <footer class="footer">
+        <small>
+          &copy; <time datetime="2016-04-01T10:52:50-07:00">2016</time>. All rights reserved.
+        </small>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>

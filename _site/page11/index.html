@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+      渋谷ではたらくインフラエンジニアのブログ &middot; 
+    
+  </title>
+
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <link rel="alternate" type="application/atom+xml" title="渋谷ではたらくインフラエンジニアのブログ" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="container content">
+      <header class="masthead">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">渋谷ではたらくインフラエンジニアのブログ</a>
+          <small></small>
+        </h3>
+      </header>
+
+      <main>
+        <div class="posts">
+  
+  <article class="post">
+    <h1 class="post-title">
+      <a href="/mysql/user-at-localhost/">
+        MySQL ユーザのホストをワイルドカードで指定してもlocalhostは含まれない
+      </a>
+    </h1>
+
+    <time datetime="2012-02-03T12:07:36-08:00" class="post-date">03 Feb 2012</time>
+
+    <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/mysql/user-at-localhost/" class="hatena-bookmark-button" data-hatena-bookmark-title="MySQL ユーザのホストをワイルドカードで指定してもlocalhostは含まれない" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/mysql/user-at-localhost/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/mysql/user-at-localhost/" data-text="MySQL ユーザのホストをワイルドカードで指定してもlocalhostは含まれない" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/mysql/user-at-localhost/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p>MySQLをインストールしたので、とりあえずワイルドカードでホスト名を指定してテスト用のユーザを作成。</p>
+
+<p>[sql]</p>
+
+<p>mysql&gt; show databases;</p>
+
+<p>+——————–+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Database</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>+——————–+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>information_schema</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>hoge</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>mysql</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>performance_schema</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>test</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>+——————–+</p>
+
+<p>5 rows in set (0.00 sec)</p>
+
+<p>mysql&gt; grant select on hoge.* to testuser@’%’ identified by ‘password’;</p>
+
+<p>Query OK, 0 rows affected (0.07 sec)</p>
+
+<p>mysql&gt; select host,user from mysql.user;</p>
+
+<p>+———–+———-+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>host</td>
+      <td>user</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>+———–+———-+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>%</td>
+      <td>testuser</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>127.0.0.1</td>
+      <td>root</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>localhost</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>localhost</td>
+      <td>root</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>+———–+———-+</p>
+
+<p>7 rows in set (0.00 sec)</p>
+
+<p>mysql&gt; quit</p>
+
+<p>[/sql]</p>
+
+<p>この状態で、MySQLがインストールされているサーバ自体からそのままtestuserでログインしようとすると、アクセスが拒否される。</p>
+
+<p>[sql]</p>
+
+<p>testserver$ mysql -utestuser -p</p>
+
+<p>Enter password:</p>
+
+<p>ERROR 1045 (28000): Access denied for user ‘testuser’@’localhost’ (using password: YES)</p>
+
+<p>[/sql]</p>
+
+<p>しかし、他のサーバからアクセスしてみると、接続は成功して、hogeデータベースへのアクセスもできる。</p>
+
+<p>[sql]</p>
+
+<p>anotherserver$ mysql -utestuser -p -h testserver hoge</p>
+
+<p>Enter password:</p>
+
+<p>Welcome to the MySQL monitor. Commands end with ; or \g.</p>
+
+<p>Your MySQL connection id is 8</p>
+
+<p>Server version: 5.5.17 MySQL Community Server (GPL)</p>
+
+<p>Copyright (c) 2000, 2011, Oracle and/or its affiliates. All rights reserved.</p>
+
+<p>Oracle is a registered trademark of Oracle Corporation and/or its</p>
+
+<p>affiliates. Other names may be trademarks of their respective</p>
+
+<p>owners.</p>
+
+<p>Type ‘help;’ or ‘\h’ for help. Type ‘\c’ to clear the current input statement.</p>
+
+<p>mysql&gt; show databases;</p>
+
+<p>+——————–+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Database</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>+——————–+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>information_schema</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>hoge</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>test</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>+——————–+</p>
+
+<p>3 rows in set (0.00 sec)</p>
+
+<p>[/sql]</p>
+
+<p>「testuser@’%’」の「%」はワイルドカードなので、localhostも含めた全てのホストを指すものかと思ったら、どうやらそれは間違いのようだ。</p>
+
+<p>調べてみたところ、以下のような仕組み。</p>
+
+<p>4.8.2 MySQL への新規ユーザの追加</p>
+
+<p><a href="http://dev.mysql.com/doc/refman/5.1/ja/adding-users.html" target="_blank">http://dev.mysql.com/doc/refman/5.1/ja/adding-users.html</a></p>
+
+<blockquote>
+  <p>monty というユーザ名と some_pass というパスワードのアカウントが 2つ存在します。どちらもフル権限を持つスーパーユーザのアカウントです。’monty’@’localhost’) というアカウントは、ローカル ホストから接続するときにだけ使用できます。一方の ‘monty’@’%’ というアカウントは、どのホストからでも接続できます。注意： monty というアカウントは両方とも、monty としてどこからでも接続できる必要があります。この localhost でアカウントを持っていない場合、monty でローカル ホストから接続したときに、mysql_install_db で作成している localhost のエントリで、匿名ユーザのアカウントとして優先になります。つまり、 monty が匿名ユーザとして扱われます。この理由は、’monty’@’%’ よりも、匿名ユーザの方が具体的な Host カラム値にあるため、匿名の方が、user テーブルのソート順で先にきます。. (user テーブルのソートに関しては、項4.7.5. 「アクセス制御の段階 1： 接続確認」 を参照してください。)</p>
+</blockquote>
+
+<p>分かったような、わからないような。参照先を見てみるとより詳しい説明がある。</p>
+
+<p>4.7.5. アクセス制御の段階 1： 接続確認</p>
+
+<p><a href="http://dev.mysql.com/doc/refman/5.1/ja/connection-access.html" target="_blank">http://dev.mysql.com/doc/refman/5.1/ja/connection-access.html</a></p>
+
+<p>長いので引用は避けるが、MySQLがuserテーブルに書かれた情報をどのようにソートして使用しているかが影響しているようだ。上のページの説明によると、以下の順でソートを行っている。</p>
+
+<ol>
+  <li>最も具体的なホスト名(つまり、%のように明示的でない指定は後回し)</li>
+  <li>最も具体的なユーザ名</li>
+</ol>
+
+<p>つまり、はじめの方に出てきたユーザのテーブルは、実際には以下のように並んでいることになる。</p>
+
+<p>[sql]</p>
+
+<p>+———–+———-+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>host</td>
+      <td>user</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>+———–+———-+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>localhost</td>
+      <td>root</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>localhost</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>127.0.0.1</td>
+      <td>root</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>%</td>
+      <td>testuser</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>+———–+———-+</p>
+
+<p>[/sql]</p>
+
+<p>ログイン時のユーザ名とホスト名の組み合わせは、このようにソートしたテーブルを上から順に検索していき、最初に一致したもので認証が行われる。</p>
+
+<p>ここで、「testuser」というユーザがlocalhostからアクセスしてくると、2行目の「localhostの匿名ユーザ(userが空白 = 匿名ユーザ)」に先に一致してしまうのである。</p>
+
+<p>この裏付けに、パスワードなしでtestuserでログインできるようにしてみると、確かに実際には匿名ユーザとしてログインしてしまっていることがわかる。</p>
+
+<p>[sql]</p>
+
+<p>$ mysql -utestuser</p>
+
+<p>mysql&gt; select current_user();</p>
+
+<p>+—————-+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>current_user()</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>+—————-+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>@localhost</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>+—————-+</p>
+
+<p>1 row in set (0.00 sec)</p>
+
+<p>[/sql]</p>
+
+<p>従って、「testuser@localhost」としてログインしたいなら、明示的に</p>
+
+<p>[sql]</p>
+
+<p>mysql&gt; grant select on hoge.* to testuser@’localhost’ identified by ‘password’;</p>
+
+<p>[/sql]</p>
+
+<p>とも実行して、「localhostのtestuser」を作成する必要がある。</p>
+
+<p><span style="text-decoration: underline;">注 : セキュリティ上、ホストを「%」でワイルドカード指定するのはよろしくないので、やらないようにしましょう(汗)</span></p>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+  </article>
+  
+  <article class="post">
+    <h1 class="post-title">
+      <a href="/mysql/counting-row-num/">
+        MySQLでテーブルの行数を数える
+      </a>
+    </h1>
+
+    <time datetime="2011-12-06T07:24:45-08:00" class="post-date">06 Dec 2011</time>
+
+    <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/mysql/counting-row-num/" class="hatena-bookmark-button" data-hatena-bookmark-title="MySQLでテーブルの行数を数える" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/mysql/counting-row-num/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/mysql/counting-row-num/" data-text="MySQLでテーブルの行数を数える" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/mysql/counting-row-num/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p>テーブル内の行数を数えるのに一番簡単なのは、</p>
+
+<p>[sql]</p>
+
+<p>select count(*) from ‘テーブル名’;</p>
+
+<p>[/sql]</p>
+
+<p>と実行することだが、これだと最悪そのテーブルを総なめすることになる。</p>
+
+<p>こういう時はinformation schemaから情報を引く。information_schema.tablesテーブルのtable_rowsカラムが行数。</p>
+
+<p>[sql]</p>
+
+<p>mysql&gt; select table_schema, table_name, table_rows from information_schema.tables</p>
+
+<p>-&gt; where table_schema = ‘hoge’;</p>
+
+<p>+——————–+—————————————+————+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>table_schema</td>
+      <td>table_name</td>
+      <td>table_rows</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>+——————–+—————————————+————+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>hoge</td>
+      <td>wp_FollowMe_Links</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>hoge</td>
+      <td>wp_commentmeta</td>
+      <td>180</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>hoge</td>
+      <td>wp_comments</td>
+      <td>60</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>hoge</td>
+      <td>wp_ktaisession</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>hoge</td>
+      <td>wp_links</td>
+      <td>7</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>hoge</td>
+      <td>wp_options</td>
+      <td>236</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>hoge</td>
+      <td>wp_postmeta</td>
+      <td>509</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>hoge</td>
+      <td>wp_posts</td>
+      <td>323</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>hoge</td>
+      <td>wp_term_relationships</td>
+      <td>39</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>hoge</td>
+      <td>wp_term_taxonomy</td>
+      <td>9</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>hoge</td>
+      <td>wp_terms</td>
+      <td>9</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>hoge</td>
+      <td>wp_usermeta</td>
+      <td>31</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>hoge</td>
+      <td>wp_users</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>+——————–+—————————————+————+</p>
+
+<p>[/sql]</p>
+
+<p>showを使っても行数を引くことができるが、showの性質上表示させるカラムなどを細かく指定できず使いづらいこともあるので、information_schemaを引く方が好き。</p>
+
+<p>[sql]</p>
+
+<p>show table status;</p>
+
+<p>[/sql]</p>
+
+<p>なおこれらのコマンドで引ける行数は、MyISAMなどのストレージエンジンでは正確な値だが、InnoDBの場合は概算値となる。なので、InnoDBの場合はselect count(*)するしかない。</p>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+  </article>
+  
+  <article class="post">
+    <h1 class="post-title">
+      <a href="/linux/usbwlan-ubuntuserver/">
+        Ubuntu Server 11.04マシンでUSB無線LANアダプタを使う
+      </a>
+    </h1>
+
+    <time datetime="2011-11-28T08:17:40-08:00" class="post-date">28 Nov 2011</time>
+
+    <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/linux/usbwlan-ubuntuserver/" class="hatena-bookmark-button" data-hatena-bookmark-title="Ubuntu Server 11.04マシンでUSB無線LANアダプタを使う" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/linux/usbwlan-ubuntuserver/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/linux/usbwlan-ubuntuserver/" data-text="Ubuntu Server 11.04マシンでUSB無線LANアダプタを使う" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/linux/usbwlan-ubuntuserver/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p>少し前に自宅で色々と検証したりするために、<a href="http://nttxstore.jp/_II_HP13476513" target="_blank">HP ML110 G6</a>を買い、Ubuntu Server 11.04をインストールした。自宅は通信費節約のため、固定回線を引かず、外出時もそのまま使えるようにUQ WiMAXの回線を契約し、<a href="http://121ware.com/product/atermstation/product/wimax/wm3500r/" target="_blank">Aterm WM3500R</a>という無線LANルータを使っている。このため、ML110を無線LAN接続する必要がある。</p>
+
+<p>近くのビックカメラで、安くて小さいUSB無線LANアダプタとしてプラネックスのGW-USNano2-Mを買ってきて、無線LANルータ経由でインターネットに接続するまでのメモ。</p>
+
+<p>Ubuntu DesktopならGUIツールであれこれできるが、Serverなので全部CLIで。</p>
+
+<h2 id="section">ドライバパッケージをダウンロード</h2>
+
+<p>GW-USNano2-?(MやG)は、RealtekのRTL8192CUという無線LANチップを使っているようなので、これに対応したドライバをダウンロード。<a href="http://www.realtek.com.tw/downloads/" target="_blank">Realtekのダウンロードページ</a>を開き、以下のようにリンクをたどる</p>
+
+<ol>
+  <li>Communications Network ICs</li>
+  <li>Wireless LAN ICs</li>
+  <li>WLAN NIC</li>
+  <li>IEEE 802.11b/g/n Single-Chip</li>
+  <li>Software</li>
+  <li>RTL8192CUにチェックし、goボタン</li>
+  <li>「Linux driver for Kernel 2.6.38(and earlier)」から、RTL8192CU_linux_v3.1.2590.20110922.zipをダウンロード</li>
+</ol>
+
+<h2 id="section-1">ドライバのインストール</h2>
+
+<p>パッケージを展開し、コンパイル、インストール</p>
+
+<p>[text]</p>
+
+<p>$ unzip RTL8192CU_linux_v3.1.2590.20110922.zip</p>
+
+<p>$ cd RTL8192CU_8188CUS_8188CE-VAU_linux_v3.1.2590.20110922/</p>
+
+<p>$ sudo sh install.sh</p>
+
+<p>[/text]</p>
+
+<p>※ Ubuntu Serverをインストールした直後は、makeやgccがインストールされないので、事前にsudo apt-get install make gccしておく。</p>
+
+<p>インストールされたら、ドライバモジュールがロードされていることを確認</p>
+
+<p>[text]</p>
+
+<p>$ lsmod</p>
+
+<p>Module Size Used by</p>
+
+<p>nls_utf8 12557 0</p>
+
+<p>isofs 40283 0</p>
+
+<p>vesafb 13761 1</p>
+
+<p>8192cu 508081 0 ← ロードされている</p>
+
+<p>lp 17789 0</p>
+
+<p>parport 46458 1 lp</p>
+
+<p>usbhid 46956 0</p>
+
+<p>hid 91020 1 usbhid</p>
+
+<p>tg3 141750 0</p>
+
+<p>[/text]</p>
+
+<h2 id="lan">無線LAN設定</h2>
+
+<p>WPA認証情報をファイルに書き込む。SSIDとキーは使用している無線LANアクセスポイントのものに置き換える。</p>
+
+<p>[text]</p>
+
+<p>$ wpa_passphrase [SSID] [キー] &gt; wpa_supplicant.conf</p>
+
+<p>$ sudo mv wpa_supplicant.conf /etc/wpa_supplicant/</p>
+
+<p>$ sudo chown root:root /etc/wpa_supplicant/wpa_supplicant.conf</p>
+
+<p>[/text]</p>
+
+<p>認証の設定を/etc/network/interfaceに設定を書き込む。DHCPを使用する場合の例。3行目のSSIDは上と同じく置き換えること。</p>
+
+<p>[text]</p>
+
+<p>auto wlan0</p>
+
+<p>iface wlan0 inet dhcp</p>
+
+<p>wpa-essid [SSID]</p>
+
+<p>wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf</p>
+
+<p>[/text]</p>
+
+<p>マシンを再起動</p>
+
+<p>[text]</p>
+
+<p>$ sudo reboot</p>
+
+<p>[/text]</p>
+
+<p>再起動後、wlan0というインタフェースができており、ネットワークに接続できればOK。iwconfigコマンドで無線インタフェースの状態を確認できる。</p>
+
+<p>[text]</p>
+
+<p>lo no wireless extensions.</p>
+
+<p>eth0 no wireless extensions.</p>
+
+<p>wlan0 IEEE 802.11bgn ESSID:”aterm-xxxxxx-g” Nickname:”&lt;WIFI@REALTEK&gt;”</p>
+
+<p>Mode:Managed Frequency:2.412 GHz Access Point: xx:xx:xx:xx:xx:xx</p>
+
+<p>Bit Rate:150 Mb/s Sensitivity:0/0</p>
+
+<p>Retry:off RTS thr:off Fragment thr:off</p>
+
+<p>Power Management:off</p>
+
+<p>Link Quality=47/100 Signal level=47/100 Noise level=0/100</p>
+
+<p>Rx invalid nwid:0 Rx invalid crypt:0 Rx invalid frag:0</p>
+
+<p>Tx excessive retries:0 Invalid misc:0 Missed beacon:0</p>
+
+<p>[/text]</p>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+  </article>
+  
+</div>
+
+<div class="pagination">
+  
+    <a class="pagination-item older" href="/page12">Older</a>
+  
+  
+    <a class="pagination-item newer" href="/page10">Newer</a>
+  
+</div>
+
+      </main>
+
+      <footer class="footer">
+        <small>
+          &copy; <time datetime="2016-04-01T10:52:50-07:00">2016</time>. All rights reserved.
+        </small>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>

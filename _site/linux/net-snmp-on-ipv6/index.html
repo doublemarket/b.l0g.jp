@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+      IPv6環境でnet-snmpを使う &middot; 渋谷ではたらくインフラエンジニアのブログ
+    
+  </title>
+
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <link rel="alternate" type="application/atom+xml" title="渋谷ではたらくインフラエンジニアのブログ" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="container content">
+      <header class="masthead">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">渋谷ではたらくインフラエンジニアのブログ</a>
+          <small></small>
+        </h3>
+      </header>
+
+      <main>
+        <article class="post">
+  <h1 class="post-title">IPv6環境でnet-snmpを使う</h1>
+  <time datetime="2013-05-31T05:25:46-07:00" class="post-date">31 May 2013</time>
+  <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/linux/net-snmp-on-ipv6/" class="hatena-bookmark-button" data-hatena-bookmark-title="IPv6環境でnet-snmpを使う" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/linux/net-snmp-on-ipv6/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/linux/net-snmp-on-ipv6/" data-text="IPv6環境でnet-snmpを使う" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/linux/net-snmp-on-ipv6/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p>IPv6環境でSNMPで情報を引っ張ってきたいのだが、net-snmpをインストールしてsnmpdを起動したが、getできない。</p>
+
+<p>監視サーバをnagios01、監視対象ホストをclient01とした時の例。</p>
+
+<p>[text]</p>
+
+<p>client01$ sudo yum install net-snmp net-snmp-utils</p>
+
+<p>client01$ sudo /etc/init.d/snmpd start</p>
+
+<p>[/text]</p>
+
+<p>[text]</p>
+
+<p>nagios01$ snmpwalk -v 1 -c public client01 UCD-SNMP-MIB::laLoad.1</p>
+
+<p>No log handling enabled – turning on stderr logging</p>
+
+<p>getaddrinfo: client01 Name or service not known</p>
+
+<p>snmpwalk: Unknown host (client01)</p>
+
+<p>[/text]</p>
+
+<p>snmpwalkなどでIPv6のサーバへ問い合わせる場合は、ホスト名の前に「udp6」を明示的に指定する必要があるようだ。しかし、</p>
+
+<p>[text]</p>
+
+<p>nagios01$ snmpwalk -v 1 -c public udp6:client01 UCD-SNMP-MIB::laLoad.1</p>
+
+<p>Timeout: No Response from udp6:client01</p>
+
+<p>[/text]</p>
+
+<p>タイムアウトになってしまう。ちなみに、<a href="http://www.net-snmp.org/docs/NEWS.html" target="_blank">net-snmpは5.0以降IPv6に対応している</a>ということなので、5.0以降がインストールされていれば、snmpwalkコマンドもIPv6を扱えるはず。</p>
+
+<p>クライアント側を見てみる。</p>
+
+<p>[text]</p>
+
+<p>client01$ netstat -lanp</p>
+
+<p>Active Internet connections (servers and established)</p>
+
+<p>Proto Recv-Q Send-Q Local Address Foreign Address State PID/Program name</p>
+
+<p>(中略)</p>
+
+<p>udp 0 0 0.0.0.0:161 0.0.0.0:* 12403/snmpd</p>
+
+<p>[/text]</p>
+
+<p>0.0.0.0:161ってことは、IPv4だけで、IPv6でリッスンしていない。</p>
+
+<p>設定ファイルを見てみる。</p>
+
+<p>[text]</p>
+
+<p>client01$ cat /etc/snmp/snmpd.conf</p>
+
+<p>(以下抜粋)</p>
+
+<p>com2sec notConfigUser localhost public</p>
+
+<p>com2sec notConfigUser nagios01 public</p>
+
+<p>group notConfigGroup v1 nogConfigUser</p>
+
+<p>access notConfigGroup “” any noauth exact systemview none none</p>
+
+<p>syslocation Unknown (edit /etc/snmp/snmpd.conf)</p>
+
+<p>syscontact Root <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#114;&#111;&#111;&#116;&#064;&#108;&#111;&#099;&#097;&#108;&#104;&#111;&#115;&#116;">&#114;&#111;&#111;&#116;&#064;&#108;&#111;&#099;&#097;&#108;&#104;&#111;&#115;&#116;</a> (configure /etc/snmp/snmp.local.conf)</p>
+
+<p>view all included .1 80</p>
+
+<p>dontLogTCPWrappersConnects yes</p>
+
+<p>[/text]</p>
+
+<p>どうやら、デフォルトの設定では、IPv4しかリッスンしない設定らしい。以下のように、明示的にv6でも使えるように追記。</p>
+
+<p>[text]</p>
+
+<p># 以下の4行を追記(下の2行は実際の設定に応じて変更)</p>
+
+<p>agentaddress udp:161</p>
+
+<p>agentaddress udp6:161</p>
+
+<p>com2sec6 notConfigUser localhost public</p>
+
+<p>com2sec6 notConfigUser nagios01 public</p>
+
+<p>[/text]</p>
+
+<p>snmpd を再起動すると、v6でもリッスンするようになった。</p>
+
+<p>[text]</p>
+
+<p>client01$ sudo /etc/init.d/snmpd restart</p>
+
+<p>client01$ netstat -lanp</p>
+
+<p>Active Internet connections (servers and established)</p>
+
+<p>Proto Recv-Q Send-Q Local Address Foreign Address State PID/Program name</p>
+
+<p>(中略)</p>
+
+<p>udp 0 0 0.0.0.0:161 0.0.0.0:* 12442/snmpd</p>
+
+<p>udp 0 0 :::161 :::* 12442/snmpd</p>
+
+<p>[/text]</p>
+
+<p>これで値を取れるようになった。</p>
+
+<p>[text]</p>
+
+<p>nagios01$ snmpwalk -v 1 -c public udp6:client01 UCD-SNMP-MIB::laLoad.1</p>
+
+<p>UCD-SNMP-MIB::laLoad.1 = STRING: 0.03</p>
+
+<p>[/text]</p>
+
+<p><strong>まとめ</strong></p>
+
+<p>IPv6環境でnet-snmpを使うときは</p>
+
+<ul>
+  <li>net-snmp 5.0以降を使う
+    <ul>
+      <li>snmpd.confで、agentaddress udp6:161とcom2sec6を設定する
+        <ul>
+          <li>
+            <p>snmpwalkなどで値を取る時はアドレスの前にudp6:をつける &lt;/ul&gt;</p>
+
+            <hr />
+
+            <p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+</article>
+
+
+<aside class="related">
+  <h3>Related posts</h3>
+  <ul class="related-posts">
+    
+      <li>
+        <a href="/aws/periodic-ebs-snapshot/">
+          AWSのEBSボリュームのスナップショットを定期的に取る
+          <small><time datetime="2015-10-19T06:33:30-07:00">19 Oct 2015</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/misc/my-twitter-bots/">
+          Twitterボットを作るのがひそかな趣味
+          <small><time datetime="2015-05-22T06:26:26-07:00">22 May 2015</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/uncategorized/sql-performance-explained-ja/">
+          「SQLパフォーマンス詳解」という本を翻訳しました
+          <small><time datetime="2015-04-07T01:45:15-07:00">07 Apr 2015</time></small>
+        </a>
+      </li>
+    
+  </ul>
+</aside>
+
+
+      </main>
+
+      <footer class="footer">
+        <small>
+          &copy; <time datetime="2016-04-01T10:52:50-07:00">2016</time>. All rights reserved.
+        </small>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>

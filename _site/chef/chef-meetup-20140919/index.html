@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+      日本Chefユーザ会 Meetup メモ &middot; 渋谷ではたらくインフラエンジニアのブログ
+    
+  </title>
+
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <link rel="alternate" type="application/atom+xml" title="渋谷ではたらくインフラエンジニアのブログ" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="container content">
+      <header class="masthead">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">渋谷ではたらくインフラエンジニアのブログ</a>
+          <small></small>
+        </h3>
+      </header>
+
+      <main>
+        <article class="post">
+  <h1 class="post-title">日本Chefユーザ会 Meetup メモ</h1>
+  <time datetime="2014-09-19T06:23:12-07:00" class="post-date">19 Sep 2014</time>
+  <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/chef/chef-meetup-20140919/" class="hatena-bookmark-button" data-hatena-bookmark-title="日本Chefユーザ会 Meetup メモ" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/chef/chef-meetup-20140919/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/chef/chef-meetup-20140919/" data-text="日本Chefユーザ会 Meetup メモ" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/chef/chef-meetup-20140919/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p><a href="https://www.getchef.com/" target="_blank"><img class="alignnone wp-image-1613 size-thumbnail" src="http://b.l0g.jp/wp-content/uploads/2014/09/Chef_Vertical_Website_Reg-150x150.png" alt="Chef_Vertical_Website_Reg" width="150" height="150" srcset="http://b.l0g.jp/wp-content/uploads/2014/09/Chef_Vertical_Website_Reg-150x150.png 150w, http://b.l0g.jp/wp-content/uploads/2014/09/Chef_Vertical_Website_Reg-144x144.png 144w" sizes="(max-width: 150px) 100vw, 150px" /></a></p>
+
+<p><a title="日本Chefユーザ会" href="https://www.facebook.com/groups/272530339574523/" target="_blank">日本Chefユーザ会</a>なるものがいつの間にかできていたようで、Chef社の人も招いて<a title="日本Chefユーザー会主催のMeet up!" href="http://connpass.com/event/8605/" target="_blank">Meetup</a>が開催されると聞き、参加してきた。</p>
+
+<p>先日発表された<a title="Chef Releases Chef 12 to Power DevOps Practices in the Enterprise" href="https://www.getchef.com/blog/2014/09/08/chef-releases-chef-12-to-power-devops-practices-in-the-enterprise/" target="_blank">Chef 12</a>(<a title="Chef 12がリリース。商用版とオープンソース版の一本化で25ノードまで無償に。Docker対応、VMware vSphere、Microsoft Azureにも対応" href="http://www.publickey1.jp/blog/14/chef_1225dockervmware_vspheremicrosoft_azure.html" target="_blank">参考日本語記事</a>)の簡単な紹介と、Chefのテスト環境に流れを追っての概要とデモがあった。新しい情報はそれほどなかったように思ったが、テストについてのデモ後は質問が活発に出たりしてなかなか面白かったので、メモ公開。</p>
+
+<p>ちなみに、Chefユーザ会のハッシュタグは <a href="https://twitter.com/search?src=typd&amp;q=%23getchef_ja">#getchef_ja</a> だそうなので、日本語のChefに関連するつぶやきはここを見ておくのがよさそう。</p>
+
+<h2 id="chef-12-a-hrefhttpstwittercommfdii-targetblankmichael-ducya">Chef 12の紹介 (<a href="https://twitter.com/mfdii" target="_blank">Michael Ducyさん</a>)</h2>
+
+<ul>
+  <li>新しくなったchef server
+    <ul>
+      <li>従来1組織しか管理できなかったがmulti tenantサポート</li>
+    </ul>
+  </li>
+  <li>chef client
+    <ul>
+      <li>chef pushというクライアント側へのプッシュ機能が付く予定</li>
+    </ul>
+  </li>
+  <li>Chef development kitがバージョンアップ
+    <ul>
+      <li>test-kichenやfoodcriticなどを含む</li>
+    </ul>
+  </li>
+  <li>Enterprise版の機能
+    <ul>
+      <li>HA</li>
+      <li>replication
+        <ul>
+          <li>複数のchefサーバを立てて同期できる</li>
+        </ul>
+      </li>
+      <li>analytics</li>
+      <li>25ノードまでは有料版の機能を無料で使える
+        <ul>
+          <li>さらに30日間はサポートも無料</li>
+        </ul>
+      </li>
+      <li>日本でEnterprise版を使いたければ、まず<a title="クリエーションライン" href="http://www.creationline.com/" target="_blank">クリエーションライン</a>さんに問い合わせ</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="a-hrefhttpstwittercomcheeseplus-targetblankseth-thomasa">テストについて (<a href="https://twitter.com/cheeseplus" target="_blank">Seth Thomasさん</a>)</h2>
+
+<ul>
+  <li>クックブックのテストをする時は、以下のツールを使っていくことが多いよ、という話</li>
+  <li><a href="http://kitchen.ci/" target="_blank"> test-kitchen</a>
+    <ul>
+      <li>chef dev kitの一部</li>
+      <li>仮想マシンでクックブックをテスト</li>
+    </ul>
+  </li>
+  <li><a href="http://acrmp.github.io/foodcritic/" target="_blank">foodcritic</a>
+    <ul>
+      <li>chef dev kitの一部</li>
+      <li>chefのお作法に沿った文法かチェック</li>
+    </ul>
+  </li>
+  <li><a href="https://github.com/bbatsov/rubocop" target="_blank">rubocop</a>
+    <ul>
+      <li>Rubyのお作法チェック</li>
+    </ul>
+  </li>
+  <li><a href="https://github.com/guard/guard" target="_blank">guard</a>
+    <ul>
+      <li>ファイルシステム変更確認</li>
+      <li>これでcookbookの変更とかをチェックして、test-kichenやfoodcritic、rubocopとか走らせる</li>
+      <li>下の質問にもあるが、ローカル環境で動かしておいて、コミット前のテストを自動化するのに使う</li>
+    </ul>
+  </li>
+  <li><a href="http://serverspec.org/" target="_blank">serverspec</a>
+    <ul>
+      <li>クックブックを実行した後に、対象のノードがどうなったかのチェックするのに使う</li>
+      <li>chefspecは、どうなるべきかクックブックで実装できてるかをチェックするツール</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="section">質問</h3>
+
+<ul>
+  <li>クラスタがちゃんとセットアップできたかのチェックとかやりたいんだけど
+    <ul>
+      <li><a href="https://github.com/opscode/chef-metal">chef metal</a>を使えばできる</li>
+      <li>ただしまだベータです</li>
+    </ul>
+  </li>
+  <li>serverspecのspecファイルはどこに置くの
+    <ul>
+      <li>mysqlだとクックブックのディレクトリのtest/integration以下に置いてる</li>
+      <li><a href="https://github.com/opscode-cookbooks/mysql" target="_blank">MySQLのクックブック</a>が一番ちゃんとテストしてあって色々な点で参考になる。読むなら一番いい</li>
+      <li>test-kitchenのサンプルとしてもMySQLがいい</li>
+    </ul>
+  </li>
+  <li>Windowsで使いにくいんだけど
+    <ul>
+      <li>手順とか公開してます</li>
+    </ul>
+  </li>
+  <li>serverspecは全部実行した後にやると思うけどchefspec, test-kitchenとかはどのタイミングでかける？
+    <ul>
+      <li>chefspecはlocalで実行する</li>
+      <li>その後test-kitchenで確認する</li>
+    </ul>
+  </li>
+  <li>guardはどう使う感じ？
+    <ul>
+      <li>基本はローカルで動かしておいてコミット前のチェックまで自動でやるもの</li>
+      <li>リモートで動かして使うことももちろんできる</li>
+    </ul>
+  </li>
+  <li>cookbook内のattributeをserverspecで使いたい時はどうしたらいい？
+    <ul>
+      <li>serverspec側を何とかいじってattributeの書いてあるファイルを見るとかする他ない</li>
+    </ul>
+  </li>
+  <li>test-kitchenするのにいいのありますか？(EC2だとお金かかっちゃうから)
+    <ul>
+      <li>DigitalOceanは(chef社からは)速いよ(ただし西海岸は。DigitalOceanはChefのユーザでもあるし)</li>
+      <li>速いところを探して使うしかない</li>
+      <li>test-kitchen –parallelを使えば並列実行できて速い</li>
+    </ul>
+  </li>
+  <li>kitchen.yamlでnodeの情報にアクセスしたい
+    <ul>
+      <li>chef-zeroを使えばいい</li>
+      <li><strong>chef-soloは将来的にdeprecatedになる予定</strong></li>
+    </ul>
+  </li>
+  <li>日本でのchefコミュニティを活性化させるにはどうしたらよいと思うか？
+    <ul>
+      <li>ビールが必要(笑)</li>
+      <li>頻繁に勉強会やmeetupやっていきたい</li>
+    </ul>
+  </li>
+  <li>(逆に参加者への質問)女性chef関係者はいないのか？w</li>
+</ul>
+
+<p><a href="http://tech.rakuten.co.jp/" target="_blank">10/25の楽天テクノロジーカンファレンス</a>でも、Michealさんが話をするそうで、参加者へのアンケート(？)の結果、Dockerと関連してChefを使う話を予定しているとのこと。</p>
+
+<p>この後、Chef社とクリエーションライン社のおごりで、楽しくビールを飲みながらChefの話をしてお開き。</p>
+
+<p>発表いただいたChef社の方、会場の準備などしていただいたクリエーションラインの方々、ありがとうございました。ビールごちそうさまでした。</p>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+</article>
+
+
+<aside class="related">
+  <h3>Related posts</h3>
+  <ul class="related-posts">
+    
+      <li>
+        <a href="/aws/periodic-ebs-snapshot/">
+          AWSのEBSボリュームのスナップショットを定期的に取る
+          <small><time datetime="2015-10-19T06:33:30-07:00">19 Oct 2015</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/misc/my-twitter-bots/">
+          Twitterボットを作るのがひそかな趣味
+          <small><time datetime="2015-05-22T06:26:26-07:00">22 May 2015</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/uncategorized/sql-performance-explained-ja/">
+          「SQLパフォーマンス詳解」という本を翻訳しました
+          <small><time datetime="2015-04-07T01:45:15-07:00">07 Apr 2015</time></small>
+        </a>
+      </li>
+    
+  </ul>
+</aside>
+
+
+      </main>
+
+      <footer class="footer">
+        <small>
+          &copy; <time datetime="2016-04-01T10:52:50-07:00">2016</time>. All rights reserved.
+        </small>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>

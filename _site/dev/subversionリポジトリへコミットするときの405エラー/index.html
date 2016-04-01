@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+      Subversionリポジトリへコミットするときの405エラー &middot; 渋谷ではたらくインフラエンジニアのブログ
+    
+  </title>
+
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <link rel="alternate" type="application/atom+xml" title="渋谷ではたらくインフラエンジニアのブログ" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="container content">
+      <header class="masthead">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">渋谷ではたらくインフラエンジニアのブログ</a>
+          <small></small>
+        </h3>
+      </header>
+
+      <main>
+        <article class="post">
+  <h1 class="post-title">Subversionリポジトリへコミットするときの405エラー</h1>
+  <time datetime="2010-09-30T04:19:28-07:00" class="post-date">30 Sep 2010</time>
+  <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/dev/subversion%e3%83%aa%e3%83%9d%e3%82%b8%e3%83%88%e3%83%aa%e3%81%b8%e3%82%b3%e3%83%9f%e3%83%83%e3%83%88%e3%81%99%e3%82%8b%e3%81%a8%e3%81%8d%e3%81%ae405%e3%82%a8%e3%83%a9%e3%83%bc/" class="hatena-bookmark-button" data-hatena-bookmark-title="Subversionリポジトリへコミットするときの405エラー" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/dev/subversion%e3%83%aa%e3%83%9d%e3%82%b8%e3%83%88%e3%83%aa%e3%81%b8%e3%82%b3%e3%83%9f%e3%83%83%e3%83%88%e3%81%99%e3%82%8b%e3%81%a8%e3%81%8d%e3%81%ae405%e3%82%a8%e3%83%a9%e3%83%bc/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/dev/subversion%e3%83%aa%e3%83%9d%e3%82%b8%e3%83%88%e3%83%aa%e3%81%b8%e3%82%b3%e3%83%9f%e3%83%83%e3%83%88%e3%81%99%e3%82%8b%e3%81%a8%e3%81%8d%e3%81%ae405%e3%82%a8%e3%83%a9%e3%83%bc/" data-text="Subversionリポジトリへコミットするときの405エラー" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/dev/subversion%e3%83%aa%e3%83%9d%e3%82%b8%e3%83%88%e3%83%aa%e3%81%b8%e3%82%b3%e3%83%9f%e3%83%83%e3%83%88%e3%81%99%e3%82%8b%e3%81%a8%e3%81%8d%e3%81%ae405%e3%82%a8%e3%83%a9%e3%83%bc/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p>Subversionリポジトリへうまくコミットできないときがたまにあるので、メモ。</p>
+
+<div>
+</div>
+
+<div id="_mcePaste">
+  コミットしようとすると、途中で以下のようなエラーが出ることがあります。
+</div>
+
+<div id="_mcePaste">
+</div>
+
+<blockquote>
+  <div>
+  commit -m &#8220;あれこれ変更&#8221; -N (32 paths specified)
+</div>
+
+  <div id="_mcePaste">
+  Sending        C:/Users/hoge/project/apps/frontend/modules/article/templates/indexSuccess.php
+</div>
+
+  <div id="_mcePaste">
+  (中略)
+</div>
+
+  <div id="_mcePaste">
+  Adding         C:/Users/hoge/project/cache/frontend/dev/template
+</div>
+
+  <div id="_mcePaste">
+  RA layer request failed
+</div>
+
+  <div id="_mcePaste">
+  svn: Commit failed (details follow):
+</div>
+
+  <div id="_mcePaste">
+  svn: Server sent unexpected return value (405 Method Not Allowed) in response to MKCOL request for &#8216;/svn/pjtransrate/!svn/wrk/be91e174-dd4b-124f-abbd-dd57636aa9ad/trunk/cache/frontend/dev/template&#8217;
+</div>
+
+  <div id="_mcePaste">
+
+</div>
+</blockquote>
+
+<div id="_mcePaste">
+  <a href="http://pentan.info/program/tools/svn_commit_error.html" target="_blank">「405 Method Not Allowed」が出るときは、フォルダ名やファイル名にSubversionで管理できない文字が含まれている、との情報</a>があったりしますが、symfonyのcache/frontend/dev/templateの下は symfony cc した後は空なので、管理できない文字とやらが含まれているということはありません。
+</div>
+
+<div>
+</div>
+
+<div id="_mcePaste">
+  とりあえずcache/frontend/dev/templateを手動で削除してからコミットしたら、うまくいきました。
+</div>
+
+<div id="_mcePaste">
+</div>
+
+<div>
+  よく分かりませんが、うまくいったのでよしとしよう。
+</div>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+</article>
+
+
+<aside class="related">
+  <h3>Related posts</h3>
+  <ul class="related-posts">
+    
+      <li>
+        <a href="/aws/periodic-ebs-snapshot/">
+          AWSのEBSボリュームのスナップショットを定期的に取る
+          <small><time datetime="2015-10-19T06:33:30-07:00">19 Oct 2015</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/misc/my-twitter-bots/">
+          Twitterボットを作るのがひそかな趣味
+          <small><time datetime="2015-05-22T06:26:26-07:00">22 May 2015</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/uncategorized/sql-performance-explained-ja/">
+          「SQLパフォーマンス詳解」という本を翻訳しました
+          <small><time datetime="2015-04-07T01:45:15-07:00">07 Apr 2015</time></small>
+        </a>
+      </li>
+    
+  </ul>
+</aside>
+
+
+      </main>
+
+      <footer class="footer">
+        <small>
+          &copy; <time datetime="2016-04-01T10:52:50-07:00">2016</time>. All rights reserved.
+        </small>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>

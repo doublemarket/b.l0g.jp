@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+      MySQL Cluster Casual Talksメモ &middot; 渋谷ではたらくインフラエンジニアのブログ
+    
+  </title>
+
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <link rel="alternate" type="application/atom+xml" title="渋谷ではたらくインフラエンジニアのブログ" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="container content">
+      <header class="masthead">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">渋谷ではたらくインフラエンジニアのブログ</a>
+          <small></small>
+        </h3>
+      </header>
+
+      <main>
+        <article class="post">
+  <h1 class="post-title">MySQL Cluster Casual Talksメモ</h1>
+  <time datetime="2013-09-27T02:25:33-07:00" class="post-date">27 Sep 2013</time>
+  <div class="wp_social_bookmarking_light">
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/mysql/mysql-cluster-casual-talks-memo/" class="hatena-bookmark-button" data-hatena-bookmark-title="MySQL Cluster Casual Talksメモ" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/mysql/mysql-cluster-casual-talks-memo/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/mysql/mysql-cluster-casual-talks-memo/" data-text="MySQL Cluster Casual Talksメモ" data-via="dblmkt " data-lang="ja"&gt;Tweet
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/mysql/mysql-cluster-casual-talks-memo/"></g:plusone>
+  </div>
+</div>
+
+<p><br class="wp_social_bookmarking_light_clear" /></p>
+
+<p><strong><a href="http://atnd.org/events/42911" target="_blank">MySQL Cluster Casual Talks</a></strong></p>
+
+<p>一応仕事でMySQLをよく触っている身として、軽く検証はしてみたものの、担当している業務では参照メインのDBが多いこともあって実運用では使ったことがなかったMySQL Cluster。改めて利点も欠点も聞いておきたいと思ったのと、会社からすぐ近くのGMOさんが会場ということもあって参加してみた。</p>
+
+<p>MySQL Clusterの本も書かれている@nippondanjiこと奥野さんから、MySQL Clusterは何に向いていて、どう使えばよさを引き出せるのかを聞いたうえで、そのサポートを受けながら4年間運用されている@tsakuradaさんの実運用上のハマりどころを聞くことで、どういうところにMySQL Clusterを使えばいいのかイメージが浮かんだので、非常に今後の役に立ちそう。</p>
+
+<p>発表者のみなさま、会場提供していただいたGMOのみなさまありがとうございましたm(__)m さくらのクラウド2万円分クーポンももらったし、GMOクラウドのキャラクタのシールもたくさんもらったので宣伝しますｗ</p>
+
+<p>既にまとめは<a href="http://twitter.com/76whizkidz" target="_blank">garage-kid</a>さんが<a href="http://d.hatena.ne.jp/garage-kid/20130926/mysqlclustercasualtalks" target="_blank">書いてくれている</a>ので、これは個人的なポイントのまとめ。</p>
+
+<h2 id="a-hrefhttptwittercomrkajiyama-targetblankrkajiyamaa-mysql-cluster5656"><a href="http://twitter.com/RKajiyama" target="_blank">@RKajiyama</a>さん MySQL Cluster大地に立つ！「5.6とは違うのだよ、5.6とは！」</h2>
+
+<ul>
+  <li>MySQL Clusterの概要
+    <ul>
+      <li>分散型、共有ディスク不要のHAクラスタ</li>
+    </ul>
+  </li>
+  <li>使用しているユーザ
+    <ul>
+      <li>元々はモバイル通信の位置情報をリアルタイムかつ高可用性を持って保存するためにできた</li>
+      <li>SQLインタフェースは昨今ゲーム業界などで使われ始めてから追加されてきた機能</li>
+      <li>艦○れでも使われている？</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="a-hrefhttptwittercomnippondanji-targetblanknippondanjia-mysql-cluster"><a href="http://twitter.com/nippondanji" target="_blank">@nippondanji</a>さん カジュアルにMySQL Clusterを使ってみよう</h2>
+
+<div style="margin-bottom:5px">
+  <strong> <a href="https://www.slideshare.net/nippondanji/mcct" title="カジュアルにMySQL Clusterを使ってみよう@MySQL Cluster Casual Talks 2013.09" target="_blank">カジュアルにMySQL Clusterを使ってみよう@MySQL Cluster Casual Talks 2013.09</a> </strong> from <strong><a href="http://www.slideshare.net/nippondanji" target="_blank">Mikiya Okuno</a></strong>
+</div>
+
+<p>データノード、SQLノード、管理ノードの3種類からなる</p>
+
+<ul>
+  <li>1台だけならndb(MySQL Clusterのエンジン)よりInnoDBの方が速い</li>
+  <li>ただしNDB APIを使うならClusterの方が圧倒的に速い</li>
+  <li>ノードを増やすとスケールしていく点に優位性があるが、いつでも速くなるとは限らない(後述)</li>
+  <li>新しいバージョン使いましょう</li>
+</ul>
+
+<p>シェアードナッシング型</p>
+
+<ul>
+  <li>データノードは2台ペアでノードグループを構成</li>
+  <li>データをフラグメントに分けて、それをノードグループ内で同期レプリする</li>
+  <li>RAID10的な感じでグループ内で1台落ちてもデータは保全される</li>
+</ul>
+
+<p>InnoDBとは特性が違う &amp; いつでもノードを増やせばスケールするとは限らない</p>
+
+<ul>
+  <li>主キーを使った検索 → データノード数に応じてスケール</li>
+  <li><strong>(少数の行を取ってくる)スキャンは苦手</strong>
+    <ul>
+      <li>データがノードに分散しているので複数ノードをスキャンする必要があるため</li>
+      <li>フェッチするレコードが多いと並列処理できるので早くなる</li>
+      <li>Engine Condition Pushdown : where句部分を丸ごとデータノードに渡して並列処理して高速化する仕組み</li>
+      <li>sysbenchをただ走らせると遅いのはこのせい</li>
+    </ul>
+  </li>
+  <li>ユーザ定義パーティション
+    <ul>
+      <li>スキャンを高速化させる仕組み</li>
+      <li>2つのテーブルの関連を考慮してデータノードへの分散を定義すれば、読み書きを特定のノードに抑えられるので高速に</li>
+    </ul>
+  </li>
+  <li>レプリケーション
+    <ul>
+      <li><strong>ndbに不得意な処理があるならInnoDB</strong>のスレーブを作るという手もある</li>
+      <li>データノードが書き込みしたことをSQLノードに通知し、それをbinlogに書き込んでスレーブに送るという仕組み</li>
+      <li>通知を受け取るのがbinlog injector thread</li>
+    </ul>
+  </li>
+  <li><strong>インメモリDBだけど永続化処理が多いのでディスク書き込み多い＝速いディスクがいい</strong></li>
+  <li><strong>blobを別テーブルに保存するのでJOIN的処理が発生して遅くなる</strong>
+    <ul>
+      <li>varcharで頑張ろう</li>
+    </ul>
+  </li>
+  <li>NoSQLインタフェースを使えば爆速
+    <ul>
+      <li>各種言語のインタフェースあり</li>
+      <li>InnoDBのmemcachedインタフェースよりMySQL Clusterの方が現時点では賢い</li>
+    </ul>
+  </li>
+</ul>
+
+<p>まとめ(MySQL Clusterの使いどころ)</p>
+
+<ul>
+  <li>大量の更新をさばきたい</li>
+  <li>HA機能が欲しい</li>
+  <li>高速JOINしたい</li>
+</ul>
+
+<h2 id="a-hrefhttptwittercomtsakurada-targetblanktsakuradaa-mysql-clusterversion-73"><a href="http://twitter.com/tsakurada" target="_blank">@tsakurada</a>さん MySQL Clusterと丸４年の付き合いを振り返ってのよもやま話と、Version 7.3への期待（もっとユーザが増えるといいな～）</h2>
+
+<div style="margin-bottom: 5px;">
+  <strong> <a title="MCCT20130926 tsakuradac" href="https://www.slideshare.net/TakeshiSakurada/mcct20130926-tsakuradac" target="_blank">MCCT20130926 tsakuradac</a> </strong> from <strong><a href="http://www.slideshare.net/TakeshiSakurada" target="_blank">Takeshi Sakurada</a></strong>
+</div>
+
+<p>使用開始時の期待と使ってみたギャップ、現在の期待</p>
+
+<ul>
+  <li>インメモリだから速いはず
+    <ul>
+      <li><strong>参照に関していえばFIO+InnoDBでも変わらないかも</strong></li>
+    </ul>
+  </li>
+  <li>スケールアウト簡単
+    <ul>
+      <li><strong>構成によってはスケールしない</strong>こともあるので要考慮</li>
+    </ul>
+  </li>
+  <li>高可用性
+    <ul>
+      <li>期待通り、フェイルオーバーは数秒で完了</li>
+    </ul>
+  </li>
+  <li>ライセンスがGPLでオープンソース</li>
+  <li>7.3でInnoとの互換性が上がって期待</li>
+</ul>
+
+<p>サーバの構成</p>
+
+<ul>
+  <li>SQLノードと管理ノードは同居してもよい、データノード2台と合わせて最低4台からが現実的</li>
+  <li>データが多いならデータノードを増やす(が制約はあるので注意)</li>
+  <li>アクセスが多いならSQLノードを増やす。制約は少ないので割と簡単</li>
+  <li>せっかくのMySQL ClusterなんだからHW構成上もSPOFを減らそう</li>
+  <li><strong>クエリがキャンセルされた時それを検出して後続処理をやるアプリ作り込み必須</strong>
+    <ul>
+      <li>ノード障害時にクエリがキャンセルされるため</li>
+    </ul>
+  </li>
+</ul>
+
+<p>InnoDBとの組み合わせ</p>
+
+<ul>
+  <li>Innoと同じ感覚でテーブル設計してもよいか？
+    <ul>
+      <li>場合による。最近のバージョンではやってみる価値あり</li>
+    </ul>
+  </li>
+  <li>InnoDBスレーブとの組み合わせ
+    <ul>
+      <li>分離レベルが違う点は要注意だがおおむね問題なし</li>
+    </ul>
+  </li>
+</ul>
+
+<p>ハマりどころ(資料が詳しいのでそちら参照)</p>
+
+<ul>
+  <li>GCP Stop</li>
+  <li>ローリングリスタート</li>
+  <li>ボトルネックが見えづらい</li>
+  <li>データのライフサイクルを考えよう</li>
+  <li>リストアが大変</li>
+</ul>
+
+<p>4年間でだいぶ地雷を踏んだのでもう大丈夫ｗ 皆さんMySQL Cluster使いましょう</p>
+
+<h2 id="a-hrefhttptwittercomyyamasaki1-targetblankyyamasaki1a-mysql-cluster-auto-installer"><a href="http://twitter.com/yyamasaki1" target="_blank">@yyamasaki1</a>さん MySQL Cluster Auto-Installerのデモ</h2>
+
+<div style="margin-bottom:5px">
+  <strong> <a href="https://www.slideshare.net/yoyamasaki/5mysql-cluster" title="5分で作るMySQL Cluster環境" target="_blank">5分で作るMySQL Cluster環境</a> </strong> from <strong><a href="http://www.slideshare.net/yoyamasaki" target="_blank">yoyamasaki</a></strong>
+</div>
+
+<p>Auto-Installer簡単なので使いましょう</p>
+
+<ul>
+  <li>ブラウザベースでぽちぽちやればインストール可能</li>
+  <li>初期パラメータをいくつかいじった方がいい</li>
+</ul>
+
+<h2 id="a-hrefhttptwittercomyoku0825-targetblankyoku0825a-ndbcluster"><a href="http://twitter.com/yoku0825" target="_blank">@yoku0825</a>さん ウチがNDBCLUSTERを使わない理由をもう一度考える</h2>
+
+<p>MySQL Clusterというと紛らわしいので、NDB Clusterと言いましょう&lt;table border=0&gt;</p>
+
+<p>&lt;/table&gt;</p>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
+
+</article>
+
+
+<aside class="related">
+  <h3>Related posts</h3>
+  <ul class="related-posts">
+    
+      <li>
+        <a href="/aws/periodic-ebs-snapshot/">
+          AWSのEBSボリュームのスナップショットを定期的に取る
+          <small><time datetime="2015-10-19T06:33:30-07:00">19 Oct 2015</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/misc/my-twitter-bots/">
+          Twitterボットを作るのがひそかな趣味
+          <small><time datetime="2015-05-22T06:26:26-07:00">22 May 2015</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/uncategorized/sql-performance-explained-ja/">
+          「SQLパフォーマンス詳解」という本を翻訳しました
+          <small><time datetime="2015-04-07T01:45:15-07:00">07 Apr 2015</time></small>
+        </a>
+      </li>
+    
+  </ul>
+</aside>
+
+
+      </main>
+
+      <footer class="footer">
+        <small>
+          &copy; <time datetime="2016-04-01T10:52:50-07:00">2016</time>. All rights reserved.
+        </small>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>
