@@ -1,0 +1,41 @@
+---
+id: 90
+title: Xperiaは4月1日発売
+date: 2010-03-18T22:25:16+00:00
+author: doublemarket
+layout: post
+guid: http://b.l0g.jp/?p=90
+permalink: /android/xperia-release/
+categories:
+  - Android
+---
+<div class='wp_social_bookmarking_light'>
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/android/xperia-release/" class="hatena-bookmark-button" data-hatena-bookmark-title="Xperiaは4月1日発売" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/android/xperia-release/" layout="button_count" action="like" width="100" share="false" show_faces="false" ></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    <a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/android/xperia-release/" data-text="Xperiaは4月1日発売" data-via="dblmkt " data-lang="ja">Tweet</a>
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/android/xperia-release/" ></g:plusone>
+  </div>
+</div>
+
+<br class='wp_social_bookmarking_light_clear' />
+
+4月発売と言いつつ3月半ばになってもなかなか発売日が公にならなかったXperiaだが、今日やっと4月1日発売と発表された。なぜこんなにもったいぶってぎりぎりまで発表しなかったのか謎だが、こういうものなのだろうか。携帯電話の発売に注目したのは初めてなので、よく分からない。明日18日から、CMの放映とドコモショップでの予約が始まるという。
+
+4月1日の発売日には、Androidアプリケーションの配信サービス「ドコモマーケット」も始まるが、同日に、パケホーダイの料金体系変更もあるらしい。これまでスマートフォン向けのパケット料金定額サービスは「Bizパケホーダイ」で、それ以外がパケホーダイ(定額)かパケホーダイダブル(二段階定額)だった。4月1日からはパケホーダイダブルがBizパケホーダイと統合されるそうで。つまり、現在パケホーダイダブルを契約している人は、Xperiaを買ってもそのままパケット料金定額だが、そうでない人は定額ではなくなってしまう。パケホーダイの料金は月初に発生するので、プランの変更手続きを4月に入ってから行うと、パケホーダイとパケホーダイダブルの両方の料金が請求されてしまう。なるほど、Xperiaの予約をした時に案内員が「パケホーダイダブルかどうか必ず確認し、未契約なら必ず今月中に手続きして」と言っていたのはそういうことだったのか。
+
+発売日の発表に合わせて、<a href="http://www.nttdocomo.co.jp/product/foma/smart_phone/so01b/index.html" target="_blank">ドコモのXperiaサイト</a>も更新されている。スペックなどがより詳しく記載されるようになったが、改めて見ると、CPUのクロックが高速で、カメラの画素数も多く、画面も大きく、スペックでは色々な点でiPhoneの上を行っている。やはり期待大である。前にも書いたがあまりこういう電子機器に最近興味を持たなかったのだが、今回はなぜか期待している。発売日朝一で買いに行きたいところだが、入社式もあるしさすがに4月1日から遅刻していくわけにも行かないので、定時ダッシュで電気屋に走る予定。
+
+* * *
+
+**海外の役立つブログ記事などを人力で翻訳して公開する[Yakst](https://yakst.com/ja)というプロジェクトをやっています。よろしければそちらもどうぞ！**

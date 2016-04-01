@@ -1,0 +1,181 @@
+---
+id: 1374
+title: MySQLコマンドラインツールで使えるコマンド小ネタ
+date: 2012-12-11T15:29:16+00:00
+author: doublemarket
+layout: post
+guid: http://b.l0g.jp/?p=1374
+permalink: /mysql/mysql-commands-on-cli/
+categories:
+  - MySQL
+---
+<div class='wp_social_bookmarking_light'>
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/mysql/mysql-commands-on-cli/" class="hatena-bookmark-button" data-hatena-bookmark-title="MySQLコマンドラインツールで使えるコマンド小ネタ" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/mysql/mysql-commands-on-cli/" layout="button_count" action="like" width="100" share="false" show_faces="false" ></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    <a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/mysql/mysql-commands-on-cli/" data-text="MySQLコマンドラインツールで使えるコマンド小ネタ" data-via="dblmkt " data-lang="ja">Tweet</a>
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/mysql/mysql-commands-on-cli/" ></g:plusone>
+  </div>
+</div>
+
+<br class='wp_social_bookmarking_light_clear' />
+
+知らなくても何とかなるけど、知っておくと役に立つmysqlシェルから使えるコマンド。
+
+### systemコマンド
+
+MySQLのプロンプトを開いたままで、ロードアベレージを見たいとか、SQLを書いておいたファイル名を見たい、という時は、OSのシェルで実行できるコマンドをMySQLシェルから実行するsystemコマンドを使えばよい。
+
+[sql]
+  
+mysql> system uptime
+  
+10:47:48 up 24 min, 5 users, load average: 3.94, 3.68, 2.57
+
+mysql> system ls
+  
+test.sh sample01.sql
+  
+[/sql]
+
+### teeコマンド
+
+実行結果をターミナルにも表示するがファイルにも保存しておきたい時はteeコマンド。ファイルへの書き出しをやめる時はnotee。ファイルには、プロンプトから入力した文字列なども全部追記されていく。
+
+[sql]
+  
+mysql> tee output.txt
+  
+mysql> show tables;
+  
++&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-+
+  
+| Tables\_in\_test |
+  
++&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-+
+  
+| TABLE01 |
+  
+| TABLE02 |
+  
+| TABLE03 |
+  
++&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-+
+  
+3 rows in set (0.00 sec)
+  
+mysql> notee
+  
+Outfile disabled.
+  
+mysql> quit
+
+$ cat output.txt
+  
+mysql> show tables;
+  
++&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-+
+  
+| Tables\_in\_test |
+  
++&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-+
+  
+| TABLE01 |
+  
+| TABLE02 |
+  
+| TABLE03 |
+  
++&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-+
+  
+3 rows in set (0.00 sec)
+  
+3 rows in set (0.00 sec)
+  
+mysql> notee
+  
+$
+  
+[/sql]
+
+### pagerコマンド
+
+[sql]
+  
+mysql> pager less;
+  
+[/sql]
+
+で、ページャをlessにできるので、実行結果が長い時などに重宝する。これは結構有名な気がするが、それだけではなく、grepなどのコマンドをセットすることもできるので、いろんなことができる。ちなみにlessの -S オプションをつけると、カラムが多くて横に広がってしまう結果も横スクロールできるようになる。
+
+[sql]
+  
+mysql> pager grep Behind
+  
+PAGER set to &#8216;grep Behind&#8217;
+  
+mysql> show slave status\G
+  
+Seconds\_Behind\_Master: 3133
+  
+1 row in set (0.00 sec)
+  
+[/sql]
+
+こんな感じで必要な行だけを取り出すこともできる。また、パイプも使うことができるので、以下のように組み合わせることも可能。あんまりいい例が考え付かなくて微妙ｗ
+
+[sql]
+  
+mysql> select * from test;
+  
++&#8212;&#8212;+&#8212;&#8212;+&#8212;&#8212;+&#8212;&#8212;+&#8212;&#8212;+&#8212;&#8212;+&#8212;&#8212;+&#8212;&#8212;+
+  
+| a | b | c | d | e | f | g | h |
+  
++&#8212;&#8212;+&#8212;&#8212;+&#8212;&#8212;+&#8212;&#8212;+&#8212;&#8212;+&#8212;&#8212;+&#8212;&#8212;+&#8212;&#8212;+
+  
+| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+  
++&#8212;&#8212;+&#8212;&#8212;+&#8212;&#8212;+&#8212;&#8212;+&#8212;&#8212;+&#8212;&#8212;+&#8212;&#8212;+&#8212;&#8212;+
+  
+1 row in set (0.01 sec)
+
+mysql> pager grep -v &#8216;-&#8216; | tr -d &#8216;|&#8217;
+  
+PAGER set to &#8216;grep -v &#8216;-&#8216; | tr -d &#8216;|&#8221;
+  
+mysql> select * from test;
+  
+a b c d e f g h
+  
+1 2 3 4 5 6 7 8
+  
+1 row in set (0.00 sec)
+  
+[/sql]
+
+ページャを元に(標準出力に)戻すには
+
+[sql]
+  
+mysql> nopager;
+  
+PAGER set to stdout
+  
+[/sql]
+
+
+
+* * *
+
+**海外の役立つブログ記事などを人力で翻訳して公開する[Yakst](https://yakst.com/ja)というプロジェクトをやっています。よろしければそちらもどうぞ！**

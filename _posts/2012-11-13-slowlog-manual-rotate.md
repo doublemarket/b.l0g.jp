@@ -1,0 +1,101 @@
+---
+id: 1361
+title: MySQLスローログの手動ローテート
+date: 2012-11-13T13:18:15+00:00
+author: doublemarket
+layout: post
+guid: http://b.l0g.jp/?p=1361
+permalink: /mysql/slowlog-manual-rotate/
+categories:
+  - MySQL
+---
+<div class='wp_social_bookmarking_light'>
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/mysql/slowlog-manual-rotate/" class="hatena-bookmark-button" data-hatena-bookmark-title="MySQLスローログの手動ローテート" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/mysql/slowlog-manual-rotate/" layout="button_count" action="like" width="100" share="false" show_faces="false" ></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    <a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/mysql/slowlog-manual-rotate/" data-text="MySQLスローログの手動ローテート" data-via="dblmkt " data-lang="ja">Tweet</a>
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/mysql/slowlog-manual-rotate/" ></g:plusone>
+  </div>
+</div>
+
+<br class='wp_social_bookmarking_light_clear' />
+
+<a href="http://b.l0g.jp/mysql/slowlog-manual-rotate/attachment/mysql/" rel="attachment wp-att-1371"><img class="alignnone size-full wp-image-1371" style="border: 0px;" title="mysql" src="http://b.l0g.jp/wp-content/uploads/2012/11/mysql.png" alt="" width="170" height="115" /></a>
+
+MySQLのスローログは、通常それほど大量に出るものではないからか、自動でローテートされるような設定は特にない。しかし、負荷が上がったりしてスローログが大量に出てしまい、ローテートしたい場合はよくあるだろう。手動でローテートする場合は以下のように行う。
+
+この例は、MySQLのデータディレクトリ(datadir)が /var/lib/mysql で、スローログファイル名(slow\_query\_log_file)がmysql-slow.logの場合。
+
+[sql]
+  
+$ cd /var/lib/mysql
+  
+$ mv mysql-slow.log mysql-slow.log.old
+  
+$ mysqladmin flush-logs
+  
+または
+  
+mysql> flush logs;
+  
+[/sql]
+
+mysqladmin flush-logs あるいは flush logs で、ログファイルを開き直すことができる。
+
+なお、5.1.12以降だとログ出力をコンソールからオフにできるので、オフにしてからflush-logsし、その後オンに戻すとよいだろう。
+
+[sql]
+  
+mysql> set global slow\_query\_log = &#8216;OFF&#8217;;
+  
+mysql> set global slow\_query\_log = &#8216;ON&#8217;;
+  
+[/sql]
+
+ここで、MySQL5.1以前のバージョンでは「mysqladmin flush-logs」を実行すると、バイナリログや一般クエリログも全部まとめてローテートされてしまう。binlogを有効にしているサーバ(レプリケーションしている構成のマスタなど)では注意した方がいいかもしれない。
+
+なお、5.5からは、
+
+[sql]
+
+# スローログだけ開き直す
+
+mysql> flush slow logs;
+
+# 一般クエリログだけ開き直す
+
+mysql> flush general logs;
+
+# バイナリログだけローテート
+
+mysql> flush binary logs;
+
+# エラーログだけローテート
+
+mysql> flush error logs;
+  
+[/sql]
+
+というように、種類を指定できるようになっている。
+  
+(2014/12/17 エラーログについてコメントで指摘いただいたので追加。情報提供ありがとうございます)
+
+ちなみにlogrotateで定期的にローテートする場合はこうやるそうだ。
+  
+[MySQL の slowlog を logrotate する方法 | Carpe Diem](http://www.sssg.org/blogs/naoya/archives/1251)
+  
+定期的にローテートする必要があるほどスローログが出るままにするってのはどうかと思うが、そういうこともあるかもｗ
+
+* * *
+
+**海外の役立つブログ記事などを人力で翻訳して公開する[Yakst](https://yakst.com/ja)というプロジェクトをやっています。よろしければそちらもどうぞ！**

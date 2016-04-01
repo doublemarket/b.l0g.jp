@@ -1,0 +1,103 @@
+---
+id: 641
+title: logrotateのローテート世代数を減らす時の注意
+date: 2011-02-14T22:38:25+00:00
+author: doublemarket
+layout: post
+guid: http://b.l0g.jp/?p=641
+permalink: /dev/logrotate-changegen/
+categories:
+  - 開発
+---
+<div class='wp_social_bookmarking_light'>
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/dev/logrotate-changegen/" class="hatena-bookmark-button" data-hatena-bookmark-title="logrotateのローテート世代数を減らす時の注意" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/dev/logrotate-changegen/" layout="button_count" action="like" width="100" share="false" show_faces="false" ></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    <a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/dev/logrotate-changegen/" data-text="logrotateのローテート世代数を減らす時の注意" data-via="dblmkt " data-lang="ja">Tweet</a>
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/dev/logrotate-changegen/" ></g:plusone>
+  </div>
+</div>
+
+<br class='wp_social_bookmarking_light_clear' />
+
+本当は「山に行きました！」というブログを投稿したいところなのだが、さっぱり行ける雰囲気がないので、腹いせに技術系の投稿を続けてる。
+
+logrotateを使ってログのローテートを行っている状況で、ログファイルの総容量が大きくなり、世代数を減らさざるを得ないときのこと。「rotate 世代数」の指定を減らしても、古い世代数は削除されない。
+
+具体的には、以下の例。当初logrotate.confで以下の設定をしていたとする。
+
+[text]
+  
+\# see &#8220;man logrotate&#8221; for details
+  
+\# rotate log files daily
+  
+daily
+
+\# keep 10 days worth of backlogs
+  
+rotate 10
+
+\# create new (empty) log files after rotating old ones
+  
+create
+
+\# uncomment this if you want your log files compressed
+  
+#compress
+
+\# RPM packages drop log rotation information into this directory
+  
+include /etc/logrotate.d
+  
+[/text]
+
+この場合、1日1回ローテートされたファイルが10回分保存される。例えば以下のように。
+
+[text]
+  
+ls -v /var/log/httpd/access_log*
+  
+access\_log access\_log.4 access_log.8
+  
+access\_log.1 access\_log.5 access_log.9
+  
+access\_log.2 access\_log.6 access_log.10
+  
+access\_log.3 access\_log.7
+  
+[/text]
+
+ここで、アクセスログ1ファイルずつの容量が増えてきて、ディスク空き容量が減ってきた場合、保存する世代数を減らして対処する場合、「rotate 世代数」の世代数を減らしても、古い世代が一斉に削除されるわけではない。
+
+rotate 5とした場合、次のローテート後には以下のようになる。
+
+[text]
+  
+access\_log access\_log.4 access_log.9
+  
+access\_log.1 access\_log.5 access_log.10
+  
+access\_log.2 access\_log.7
+  
+access\_log.3 access\_log.8
+  
+[/text]
+
+つまり、6世代目が消えるだけで、7世代目以降は自動的には削除されないため、手動で削除する必要がある。
+
+これだけ。これが分からなくて危なくディスク使用率が100%になるところだった。
+
+* * *
+
+**海外の役立つブログ記事などを人力で翻訳して公開する[Yakst](https://yakst.com/ja)というプロジェクトをやっています。よろしければそちらもどうぞ！**

@@ -1,0 +1,88 @@
+---
+id: 861
+title: bshでのクォーテーションの入れ子
+date: 2011-08-03T21:30:47+00:00
+author: doublemarket
+layout: post
+guid: http://b.l0g.jp/?p=861
+permalink: /shell/bsh-nested-quotation/
+categories:
+  - シェル
+---
+<div class='wp_social_bookmarking_light'>
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/shell/bsh-nested-quotation/" class="hatena-bookmark-button" data-hatena-bookmark-title="bshでのクォーテーションの入れ子" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/shell/bsh-nested-quotation/" layout="button_count" action="like" width="100" share="false" show_faces="false" ></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    <a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/shell/bsh-nested-quotation/" data-text="bshでのクォーテーションの入れ子" data-via="dblmkt " data-lang="ja">Tweet</a>
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/shell/bsh-nested-quotation/" ></g:plusone>
+  </div>
+</div>
+
+<br class='wp_social_bookmarking_light_clear' />
+
+特殊文字(？など)をそのまま文字として扱いたい場合などに、シングルクォーテーション(&#8216;)やダブルクォーテーション(&#8220;)で文字をくくる。
+
+  * 「&#8221;」でくくった文字列は、その中に特殊文字が含まれているならそれを展開する。
+  * 「&#8217;」でくくった文字列は、その中に特殊文字が含まれていてもそれを展開せず、そのまま表示する。
+
+[bash]
+  
+[hoge@symf test]$ abc=3
+    
+↑ abcという変数に3を代入
+  
+[hoge@symf test]$ echo $abc
+  
+3
+    
+↑ abcという変数の中身を表示
+  
+[hoge@symf test]$ echo "$abc"
+  
+3
+    
+↑ 「"」は特殊文字を展開するので変数として扱われるので、上に同じ
+  
+[hoge@symf test]$ echo &#8216;$abc&#8217;
+  
+$abc
+    
+↑ 「&#8217;」は特殊文字をそのまま表示する
+  
+[/bash]
+
+クォーテーションを入れ子にする際には、シングルとダブルで少しやり方が違う。「man bash」の「クォート」の項には以下のように書かれている。
+
+> シングルクォートで文字を囲むと、クォート内部のそれぞれの文字は文字としての値を 保持 します。シングルクォートの間にシングルクォートを置くことはできません。これはバックスラッシュを前に付けても同じです。
+
+> ダブルクォートで文字を囲むとクォート内部の全ての文字は文字としての値を保持しま すが、 $, ‘, \ は例外となります。 $ と ‘ はダブルクォートの内部でも特殊な意味を失いません。バックスラッシュの場合は、次の文字が $, ‘, &#8220;, \,のいずれかである 場合に限り特殊な意味を失いません。前にバックスラッシュを付ければ、ダブルクォート文字をダブルクォートによるクォートの内部でクォートできます。
+
+つまりこういうこと。
+
+[bash]
+  
+[hoge@symf test]$ ssh server "psql -c \"create database test with ENCODING = &#8216;UTF8&#8217; ;\" "
+    
+↑ 「"」の中に「\"」があるので、これは成功
+
+[hoge@symf test]$ ssh server &#8216;psql -c \"create database test with ENCODING = &#8216;UTF8&#8217; ;\" &#8216;
+    
+↑ 「&#8217;」の中では「\」をつけてもダメなので、これは失敗
+  
+[/bash]
+
+create databaseじゃなくてcreatedbを使えば、クォートを入れ子にしなくてもいいって？あくまで例ですから (\`・ω・´)ｷﾘｯ
+
+* * *
+
+**海外の役立つブログ記事などを人力で翻訳して公開する[Yakst](https://yakst.com/ja)というプロジェクトをやっています。よろしければそちらもどうぞ！**

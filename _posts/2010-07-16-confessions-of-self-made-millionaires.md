@@ -1,0 +1,50 @@
+---
+id: 408
+title: 成功者の告白
+date: 2010-07-16T23:52:50+00:00
+author: doublemarket
+layout: post
+guid: http://b.l0g.jp/?p=408
+permalink: /reading/confessions-of-self-made-millionaires/
+categories:
+  - 読書
+---
+<div class='wp_social_bookmarking_light'>
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/reading/confessions-of-self-made-millionaires/" class="hatena-bookmark-button" data-hatena-bookmark-title="成功者の告白" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/reading/confessions-of-self-made-millionaires/" layout="button_count" action="like" width="100" share="false" show_faces="false" ></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    <a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/reading/confessions-of-self-made-millionaires/" data-text="成功者の告白" data-via="dblmkt " data-lang="ja">Tweet</a>
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/reading/confessions-of-self-made-millionaires/" ></g:plusone>
+  </div>
+</div>
+
+<br class='wp_social_bookmarking_light_clear' />
+
+
+
+「5年間の起業ノウハウを3時間で学べる物語」と副題が付いているが、起業そのもの(事業を興すこと)ではなく、起業した後、事業が安定するまでの間にその企業が陥りやすい問題点を、小説形式で紹介している。巷では、日本では起業が少ないとか、起業しようとかするなとか、色々な話が流れているが、起業した後どうしたらいいのかという点について書かれた本は少ないように思う(実際自分がそういうステージに達していないから気づかないだけかもしれないが)。
+
+特にこの本では、直接にビジネスに関係することというより、人間関係を中心に、しかも会社内だけに限らず人生の中で起業がどういう影響を及ぼしていくのかについて言及しており、なかなか面白い。内容は、エピローグにまとめてあるとおり。
+
+  1. 成功に向かって一歩を踏み出す。仕事は辛いが家庭は円満
+  2. 成功に向かって離陸。仕事は好調、家庭で歪みが出始める
+  3. 成功への分かれ目。仕事は好調、人間関係で問題勃発。家庭はあきらめムード
+  4. 仕事と家庭のバランス回復。仕事では人を指導する立場に、家庭では相互依存へ
+
+本文では、この過程を多少大げさに時系列で描いている。起業した人、したい人だけでなく、自分の会社がどのステージにいるのか客観的に見るいい機会にもなるので、一般企業に勤める人にも役に立つだろう。
+
+本文は前述の通り面白いのだが、読み進めるほど、起業の困難にブチ当たるどころか、事業を興すことが何かも体験していない自分が歯がゆい。
+
+* * *
+
+**海外の役立つブログ記事などを人力で翻訳して公開する[Yakst](https://yakst.com/ja)というプロジェクトをやっています。よろしければそちらもどうぞ！**

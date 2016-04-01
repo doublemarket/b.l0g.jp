@@ -1,0 +1,97 @@
+---
+id: 650
+title: topコマンドでロードアベレージを見る
+date: 2011-02-15T23:58:48+00:00
+author: doublemarket
+layout: post
+guid: http://b.l0g.jp/?p=650
+permalink: /dev/top-loadaverag/
+categories:
+  - 開発
+---
+<div class='wp_social_bookmarking_light'>
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/dev/top-loadaverag/" class="hatena-bookmark-button" data-hatena-bookmark-title="topコマンドでロードアベレージを見る" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/dev/top-loadaverag/" layout="button_count" action="like" width="100" share="false" show_faces="false" ></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    <a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/dev/top-loadaverag/" data-text="topコマンドでロードアベレージを見る" data-via="dblmkt " data-lang="ja">Tweet</a>
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/dev/top-loadaverag/" ></g:plusone>
+  </div>
+</div>
+
+<br class='wp_social_bookmarking_light_clear' />
+
+Linuxにおいて、システムの全体的な負荷状況を知りたい時、リアルタイムの状況を知るにはtopコマンド、ある程度の期間に渡る傾向をつかむにはsar(sysstat)の結果を確認するのが一般的だろう。
+
+そのサーバ上で動作するアプリケーションの動作が遅いなどといったパフォーマンス劣化がある時、まず最初に見るべきがロードアベレージの値。これは「CPUの処理を待っているタスクの数」であり、ほとんど何も処理を行っていない時には0になる。
+
+topコマンドの表示内容
+
+[text]
+  
+top &#8211; 16:04:44 up 15 days, 21:40, 2 users, load average: 0.00, 0.00, 0.00
+  
+Tasks: 108 total, 2 running, 105 sleeping, 0 stopped, 1 zombie
+  
+Cpu(s): 0.0% us, 0.0% sy, 0.0% ni, 100.0% id, 0.0% wa, 0.0% hi, 0.0% si
+  
+Mem: 8113608k total, 8082584k used, 31024k free, 69652k buffers
+  
+Swap: 8385920k total, 352k used, 8385568k free, 6008888k cached
+
+PID USER PR NI VIRT RES SHR S %CPU %MEM TIME+ COMMAND
+  
+1 root 16 0 1848 552 472 S 0.0 0.0 0:01.32 init
+  
+2 root RT 0 0 0 0 S 0.0 0.0 0:17.52 migration/0
+  
+3 root 34 19 0 0 0 S 0.0 0.0 0:00.40 ksoftirqd/0
+  
+4 root RT 0 0 0 0 S 0.0 0.0 0:15.31 migration/1
+  
+5 root 34 19 0 0 0 S 0.0 0.0 0:00.32 ksoftirqd/1
+  
+6 root RT 0 0 0 0 S 0.0 0.0 0:11.21 migration/2
+  
+7 root 34 19 0 0 0 S 0.0 0.0 0:00.17 ksoftirqd/2
+  
+8 root RT 0 0 0 0 S 0.0 0.0 0:15.26 migration/3
+  
+9 root 34 19 0 0 0 S 0.0 0.0 0:00.25 ksoftirqd/3
+  
+10 root 5 -10 0 0 0 S 0.0 0.0 0:00.00 events/0
+  
+11 root 5 -10 0 0 0 S 0.0 0.0 0:00.00 events/1
+  
+12 root 5 -10 0 0 0 S 0.0 0.0 0:00.00 events/2
+  
+13 root 5 -10 0 0 0 S 0.0 0.0 0:00.00 events/3
+  
+14 root 7 -10 0 0 0 S 0.0 0.0 0:00.00 khelper
+  
+15 root 15 -10 0 0 0 S 0.0 0.0 0:00.00 kacpid
+  
+95 root 5 -10 0 0 0 S 0.0 0.0 0:00.00 kblockd/0
+  
+96 root 5 -10 0 0 0 S 0.0 0.0 0:00.00 kblockd/1
+  
+[/text]
+
+1行目の右端に表示されているのがロードアベレージの値。前述の通りCPUの処理を待っているタスクの数がロードアベレージなので、値が大きければ大きいほどCPUの処理を待っているタスクが多いということになり、それだけサーバのレスポンスが落ちることになる。ただし、単に計算を待っているだけではなく、IOの処理を待っている場合もこの値が大きくなるので、ロードアベレージが大きいことが即CPUが遅いことになるわけではない。CPUそのもの、メモリ、ディスク、それ以外、の何が原因で遅いか調査する必要がある。
+  
+なお、topでのロードアベレージの表示は、左から、1分、5分、15分間の平均値になっている。つまり、左の方が値が大きければ、直近の数分間で急に負荷が上がっていることを表す。
+
+言わずもがなだが下半分には、CPUの使用率順に並んだプロセス一覧が表示されるので、ここからCPU負荷が高かったりメモリの使用量が多いアプリケーションが何なのかは大体つかめる。topからなんとなくのあたりをつけたあと、何がボトルネックになっているかを探すには、sarコマンドで過去のパフォーマンスデータを確認していく。
+
+* * *
+
+**海外の役立つブログ記事などを人力で翻訳して公開する[Yakst](https://yakst.com/ja)というプロジェクトをやっています。よろしければそちらもどうぞ！**

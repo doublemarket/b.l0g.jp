@@ -1,0 +1,45 @@
+---
+id: 71
+title: 勉強場所
+date: 2010-03-12T23:45:55+00:00
+author: doublemarket
+layout: post
+guid: http://b.l0g.jp/?p=71
+permalink: /misc/place-for-studying/
+categories:
+  - 雑記
+---
+<div class='wp_social_bookmarking_light'>
+  <div class="wsbl_hatena_button">
+    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/misc/place-for-studying/" class="hatena-bookmark-button" data-hatena-bookmark-title="勉強場所" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  </div>
+  
+  <div class="wsbl_facebook_like">
+    <div id="fb-root">
+    </div><fb:like href="http://b.l0g.jp/misc/place-for-studying/" layout="button_count" action="like" width="100" share="false" show_faces="false" ></fb:like>
+  </div>
+  
+  <div class="wsbl_twitter">
+    <a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/misc/place-for-studying/" data-text="勉強場所" data-via="dblmkt " data-lang="ja">Tweet</a>
+  </div>
+  
+  <div class="wsbl_google_plus_one">
+    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/misc/place-for-studying/" ></g:plusone>
+  </div>
+</div>
+
+<br class='wp_social_bookmarking_light_clear' />
+
+居心地のいい場所にしようと努力しているわけでもないのだが、自分の部屋にいると気持ちが緩んでリラックスできる。むしろしてしまう。これは、一念発起してなにか勉強をしようと思っても、自分の部屋だとどうしても気が緩んで集中できない、ということにつながる。人それぞれだろうが、自分の場合、自分の部屋だと読書(小説などではなくもうちょっと堅い本)や勉強に類することがはかどるのはまれなことである。すると、なにか集中しなくてはならないことがある時には、外に出ざるを得ない。ところがこれがなかなかちょうどいい場所というのがないものだ。
+
+カフェやファーストフード店のような所だと、混んでいるのでなければ長居しても追い出されることは少なく、飲み物も飲めるのでなかなかよいと言えばよい。欠点は、何回かに1回は必ずやたらとうるさい客がいて、全く集中できないことがあるという点だ。無視すればいいのだが、妙に大声で話していたり、高校生ぐらいのあんちゃんがゲラゲラ笑っていたり、虚空に向かって何かを罵っているおばさんがいたりして、どうしようもないことがある。特にマクドナルドのように商品の単価が安いところはこういう事が多い。
+
+自習室のようなところを借りれば、周りも皆勉強しているのだから静かで完璧な環境だろう。自分は借りたことがないが、なぜかというとやはり金がかかる、の1点のみだ。自分に対する投資は惜しむ必要はないのはわかっているのだが、月1万円も狭い机に払うというのがどうも解せない。それよりは、何回かに1回集中できない状況があっても、マクドナルドに行ってコーヒーとホットアップルパイでもたのんで3時間ぐらい粘った方が圧倒的にコストパフォーマンスがよい。
+
+大学に入学して1年以上経ってからだが、学部の図書館に行ってみた。図書館だと、飲食禁止な上に持ち込みも禁止なので、長時間居座り続けるのには向かないし、PCが使えないのではという先入観で、本を借りるのにしか使っていなかったのだ。しかし、最近の大学図書館はPCを使用できるスペースがあるのが当然らしい。経済学部の図書館だと、PCよりも電卓を弾いている公認会計士でも狙っているような学生の方が多かったりする。飲み物が一切ダメなところ以外は、静かで、周りも同じように勉強していて、PCが使えて(場所によっては電源も)、息抜きに本を漁れて、申し分ない。ただ、自分の通っている大学の図書館は、他学部の図書館を含めても数が限られており、しかも家や会社からすぐというわけではないので、わざわざ行かなければならない。しかも、卒業したら使えなくなる。公共の図書館を使えばいいじゃないかと思うが、大学の図書館と違って、自習ができる机はどこの公共図書館も争奪戦が繰り広げられるのが常である。
+
+結局、何かと不満を抱えながらも、手近なところにあるという点が最も大きくて、会社近くのマクドナルドか家の近くのモスバーガーに行くことが一番多い。マックはちょっと不潔で、モスは無線LANが使えない上にWiMAXの電波も弱めという欠点があるのだが…。贅沢を言ってはいけない。自分の部屋で勉強がはかどれば、それが一番いいのに、ああだこうだ言って家で勉強できない自分が悪いのだから。
+
+* * *
+
+**海外の役立つブログ記事などを人力で翻訳して公開する[Yakst](https://yakst.com/ja)というプロジェクトをやっています。よろしければそちらもどうぞ！**
