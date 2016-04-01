@@ -9,26 +9,6 @@ permalink: /misc/place-for-studying/
 categories:
   - 雑記
 ---
-<div class='wp_social_bookmarking_light'>
-  <div class="wsbl_hatena_button">
-    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/misc/place-for-studying/" class="hatena-bookmark-button" data-hatena-bookmark-title="勉強場所" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
-  </div>
-  
-  <div class="wsbl_facebook_like">
-    <div id="fb-root">
-    </div><fb:like href="http://b.l0g.jp/misc/place-for-studying/" layout="button_count" action="like" width="100" share="false" show_faces="false" ></fb:like>
-  </div>
-  
-  <div class="wsbl_twitter">
-    <a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/misc/place-for-studying/" data-text="勉強場所" data-via="dblmkt " data-lang="ja">Tweet</a>
-  </div>
-  
-  <div class="wsbl_google_plus_one">
-    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/misc/place-for-studying/" ></g:plusone>
-  </div>
-</div>
-
-<br class='wp_social_bookmarking_light_clear' />
 
 居心地のいい場所にしようと努力しているわけでもないのだが、自分の部屋にいると気持ちが緩んでリラックスできる。むしろしてしまう。これは、一念発起してなにか勉強をしようと思っても、自分の部屋だとどうしても気が緩んで集中できない、ということにつながる。人それぞれだろうが、自分の場合、自分の部屋だと読書(小説などではなくもうちょっと堅い本)や勉強に類することがはかどるのはまれなことである。すると、なにか集中しなくてはならないことがある時には、外に出ざるを得ない。ところがこれがなかなかちょうどいい場所というのがないものだ。
 

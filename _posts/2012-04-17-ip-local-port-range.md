@@ -9,26 +9,6 @@ permalink: /linux/ip-local-port-range/
 categories:
   - Linux
 ---
-<div class='wp_social_bookmarking_light'>
-  <div class="wsbl_hatena_button">
-    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/linux/ip-local-port-range/" class="hatena-bookmark-button" data-hatena-bookmark-title="TCP/IPの送信用ポート範囲を変更する" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
-  </div>
-  
-  <div class="wsbl_facebook_like">
-    <div id="fb-root">
-    </div><fb:like href="http://b.l0g.jp/linux/ip-local-port-range/" layout="button_count" action="like" width="100" share="false" show_faces="false" ></fb:like>
-  </div>
-  
-  <div class="wsbl_twitter">
-    <a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/linux/ip-local-port-range/" data-text="TCP/IPの送信用ポート範囲を変更する" data-via="dblmkt " data-lang="ja">Tweet</a>
-  </div>
-  
-  <div class="wsbl_google_plus_one">
-    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/linux/ip-local-port-range/" ></g:plusone>
-  </div>
-</div>
-
-<br class='wp_social_bookmarking_light_clear' />
 
 Linuxで、TCP/IPの送信時に使用するポートの範囲を決めるのは、net.ipv4.ip\_local\_port_range というカーネルパラメータ。手元のCentOSでは以下がデフォルト値になっていた。
 

@@ -9,26 +9,6 @@ permalink: /linux/buffercache-and-page-cache/
 categories:
   - Linux
 ---
-<div class='wp_social_bookmarking_light'>
-  <div class="wsbl_hatena_button">
-    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/linux/buffercache-and-page-cache/" class="hatena-bookmark-button" data-hatena-bookmark-title="Linuxのバッファキャッシュとページキャッシュの違いは？" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
-  </div>
-  
-  <div class="wsbl_facebook_like">
-    <div id="fb-root">
-    </div><fb:like href="http://b.l0g.jp/linux/buffercache-and-page-cache/" layout="button_count" action="like" width="100" share="false" show_faces="false" ></fb:like>
-  </div>
-  
-  <div class="wsbl_twitter">
-    <a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/linux/buffercache-and-page-cache/" data-text="Linuxのバッファキャッシュとページキャッシュの違いは？" data-via="dblmkt " data-lang="ja">Tweet</a>
-  </div>
-  
-  <div class="wsbl_google_plus_one">
-    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/linux/buffercache-and-page-cache/" ></g:plusone>
-  </div>
-</div>
-
-<br class='wp_social_bookmarking_light_clear' />
 
 Linuxが管理するキャッシュ領域には、バッファキャッシュとページキャッシュ領域があって、topコマンドや/proc/meminfoの「bufferes」「cached」という項目を見れば、現在のそれぞれのキャッシュ領域がどの程度なのかを確認することができる。
 

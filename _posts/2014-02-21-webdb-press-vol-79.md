@@ -9,26 +9,6 @@ permalink: /misc/webdb-press-vol-79/
 categories:
   - 雑記
 ---
-<div class='wp_social_bookmarking_light'>
-  <div class="wsbl_hatena_button">
-    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/misc/webdb-press-vol-79/" class="hatena-bookmark-button" data-hatena-bookmark-title="WEB+DB PRESS vol. 79の記事を書きました" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
-  </div>
-  
-  <div class="wsbl_facebook_like">
-    <div id="fb-root">
-    </div><fb:like href="http://b.l0g.jp/misc/webdb-press-vol-79/" layout="button_count" action="like" width="100" share="false" show_faces="false" ></fb:like>
-  </div>
-  
-  <div class="wsbl_twitter">
-    <a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/misc/webdb-press-vol-79/" data-text="WEB+DB PRESS vol. 79の記事を書きました" data-via="dblmkt " data-lang="ja">Tweet</a>
-  </div>
-  
-  <div class="wsbl_google_plus_one">
-    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/misc/webdb-press-vol-79/" ></g:plusone>
-  </div>
-</div>
-
-<br class='wp_social_bookmarking_light_clear' />
 
 [<img class="size-medium wp-image-1594 alignnone" style="border: 0px;" alt="cover" src="http://b.l0g.jp/wp-content/uploads/2014/02/cover-225x300.jpg" width="225" height="300" srcset="http://b.l0g.jp/wp-content/uploads/2014/02/cover-225x300.jpg 225w, http://b.l0g.jp/wp-content/uploads/2014/02/cover-768x1024.jpg 768w, http://b.l0g.jp/wp-content/uploads/2014/02/cover-900x1200.jpg 900w, http://b.l0g.jp/wp-content/uploads/2014/02/cover.jpg 1224w" sizes="(max-width: 225px) 100vw, 225px" />](http://b.l0g.jp/wp-content/uploads/2014/02/cover.jpg)
 

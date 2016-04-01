@@ -40,28 +40,7 @@
 
     <time datetime="2012-04-26T05:02:56-07:00" class="post-date">26 Apr 2012</time>
 
-    <div class="wp_social_bookmarking_light">
-  <div class="wsbl_hatena_button">
-    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/mysql/diagnosing-with-perror-command/" class="hatena-bookmark-button" data-hatena-bookmark-title="MySQLエラーログに出てきたエラーコードのとっかかり" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
-  </div>
-  
-  <div class="wsbl_facebook_like">
-    <div id="fb-root">
-    </div><fb:like href="http://b.l0g.jp/mysql/diagnosing-with-perror-command/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
-  </div>
-  
-  <div class="wsbl_twitter">
-    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/mysql/diagnosing-with-perror-command/" data-text="MySQLエラーログに出てきたエラーコードのとっかかり" data-via="dblmkt " data-lang="ja"&gt;Tweet
-  </div>
-  
-  <div class="wsbl_google_plus_one">
-    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/mysql/diagnosing-with-perror-command/"></g:plusone>
-  </div>
-</div>
-
-<p><br class="wp_social_bookmarking_light_clear" /></p>
-
-<p>MySQLのエラーログに記録されるエラーコードは、MySQL自体が判断して表示するものと、OSが返したエラーコードをMySQLが表示しているものとの2種類に分けられる。それぞれまずどう調べ始めるか、という話。<a href="http://www.mysqlperformanceblog.com/2012/03/26/how-to-diagnose-errors-in-the-mysql-error-log/" title="How to diagnose errors in the MySQL error log" target="_blank">MySQL Performance Blogのエントリ</a>に、後で自分の役に立つように情報を加えてみた。</p>
+    <p>MySQLのエラーログに記録されるエラーコードは、MySQL自体が判断して表示するものと、OSが返したエラーコードをMySQLが表示しているものとの2種類に分けられる。それぞれまずどう調べ始めるか、という話。<a href="http://www.mysqlperformanceblog.com/2012/03/26/how-to-diagnose-errors-in-the-mysql-error-log/" title="How to diagnose errors in the MySQL error log" target="_blank">MySQL Performance Blogのエントリ</a>に、後で自分の役に立つように情報を加えてみた。</p>
 
 <p>例えば、レプリケーションがうまくいかない時に表示される</p>
 
@@ -124,28 +103,7 @@
 
     <time datetime="2012-04-22T14:46:03-07:00" class="post-date">22 Apr 2012</time>
 
-    <div class="wp_social_bookmarking_light">
-  <div class="wsbl_hatena_button">
-    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/mysql/mysql565-gtid/" class="hatena-bookmark-button" data-hatena-bookmark-title="MySQL 5.6.5の新機能GTIDを試してみる" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
-  </div>
-  
-  <div class="wsbl_facebook_like">
-    <div id="fb-root">
-    </div><fb:like href="http://b.l0g.jp/mysql/mysql565-gtid/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
-  </div>
-  
-  <div class="wsbl_twitter">
-    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/mysql/mysql565-gtid/" data-text="MySQL 5.6.5の新機能GTIDを試してみる" data-via="dblmkt " data-lang="ja"&gt;Tweet
-  </div>
-  
-  <div class="wsbl_google_plus_one">
-    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/mysql/mysql565-gtid/"></g:plusone>
-  </div>
-</div>
-
-<p><br class="wp_social_bookmarking_light_clear" /></p>
-
-<p>4月10日にリリースされたMySQL 5.6.5 DMRに、<a href="http://dev.mysql.com/tech-resources/articles/mysql-5.6-replication.html" target="_blank">GTID(Global Transaction ID)という機能が搭載された</a>。これは、トランザクションにID(GTID)を持たせることによって、レプリケーションの進行具合を、従来の「マスタのbinlogファイル名 + ポジション」という情報ではなく、GTIDで管理できるようになるという機能である。従来のバージョンと比べた時に一番分かりやすい点としては、「change masterする時にポジションを指定しなくてよくなる」ということだろう。</p>
+    <p>4月10日にリリースされたMySQL 5.6.5 DMRに、<a href="http://dev.mysql.com/tech-resources/articles/mysql-5.6-replication.html" target="_blank">GTID(Global Transaction ID)という機能が搭載された</a>。これは、トランザクションにID(GTID)を持たせることによって、レプリケーションの進行具合を、従来の「マスタのbinlogファイル名 + ポジション」という情報ではなく、GTIDで管理できるようになるという機能である。従来のバージョンと比べた時に一番分かりやすい点としては、「change masterする時にポジションを指定しなくてよくなる」ということだろう。</p>
 
 <p>MySQLのレプリケーション機能開発者<a href="http://d2-systems.blogspot.jp/2012/04/global-transaction-identifiers-are-in.html" target="_blank">Luis Soares氏のブログ</a>を参考に、GTIDの機能を試してみた。</p>
 
@@ -756,28 +714,7 @@
 
     <time datetime="2012-04-17T13:00:53-07:00" class="post-date">17 Apr 2012</time>
 
-    <div class="wp_social_bookmarking_light">
-  <div class="wsbl_hatena_button">
-    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/linux/ip-local-port-range/" class="hatena-bookmark-button" data-hatena-bookmark-title="TCP/IPの送信用ポート範囲を変更する" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
-  </div>
-  
-  <div class="wsbl_facebook_like">
-    <div id="fb-root">
-    </div><fb:like href="http://b.l0g.jp/linux/ip-local-port-range/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
-  </div>
-  
-  <div class="wsbl_twitter">
-    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/linux/ip-local-port-range/" data-text="TCP/IPの送信用ポート範囲を変更する" data-via="dblmkt " data-lang="ja"&gt;Tweet
-  </div>
-  
-  <div class="wsbl_google_plus_one">
-    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/linux/ip-local-port-range/"></g:plusone>
-  </div>
-</div>
-
-<p><br class="wp_social_bookmarking_light_clear" /></p>
-
-<p>Linuxで、TCP/IPの送信時に使用するポートの範囲を決めるのは、net.ipv4.ip_local_port_range というカーネルパラメータ。手元のCentOSでは以下がデフォルト値になっていた。</p>
+    <p>Linuxで、TCP/IPの送信時に使用するポートの範囲を決めるのは、net.ipv4.ip_local_port_range というカーネルパラメータ。手元のCentOSでは以下がデフォルト値になっていた。</p>
 
 <p>[bash]</p>
 
@@ -830,7 +767,7 @@
 
       <footer class="footer">
         <small>
-          &copy; <time datetime="2016-04-01T10:52:50-07:00">2016</time>. All rights reserved.
+          &copy; <time datetime="2016-04-01T11:15:44-07:00">2016</time>. All rights reserved.
         </small>
       </footer>
     </div>

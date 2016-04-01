@@ -9,26 +9,6 @@ permalink: /mysql/report-host-in-slave-mycnf/
 categories:
   - MySQL
 ---
-<div class='wp_social_bookmarking_light'>
-  <div class="wsbl_hatena_button">
-    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/mysql/report-host-in-slave-mycnf/" class="hatena-bookmark-button" data-hatena-bookmark-title="MySQLスレーブのmy.cnfにはreport-hostを必ず書こう" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
-  </div>
-  
-  <div class="wsbl_facebook_like">
-    <div id="fb-root">
-    </div><fb:like href="http://b.l0g.jp/mysql/report-host-in-slave-mycnf/" layout="button_count" action="like" width="100" share="false" show_faces="false" ></fb:like>
-  </div>
-  
-  <div class="wsbl_twitter">
-    <a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/mysql/report-host-in-slave-mycnf/" data-text="MySQLスレーブのmy.cnfにはreport-hostを必ず書こう" data-via="dblmkt " data-lang="ja">Tweet</a>
-  </div>
-  
-  <div class="wsbl_google_plus_one">
-    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/mysql/report-host-in-slave-mycnf/" ></g:plusone>
-  </div>
-</div>
-
-<br class='wp_social_bookmarking_light_clear' />
 
 世の中では当たり前のことなのかもしれないが、なぜか今勤めてる会社では一般的ではないのでメモしておく。
 

@@ -9,26 +9,6 @@ permalink: /cacti/broken-graph-with-big-value/
 categories:
   - Cacti
 ---
-<div class='wp_social_bookmarking_light'>
-  <div class="wsbl_hatena_button">
-    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/cacti/broken-graph-with-big-value/" class="hatena-bookmark-button" data-hatena-bookmark-title="Cactiで一定値以上になるとグラフが正常に描画されない時" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
-  </div>
-  
-  <div class="wsbl_facebook_like">
-    <div id="fb-root">
-    </div><fb:like href="http://b.l0g.jp/cacti/broken-graph-with-big-value/" layout="button_count" action="like" width="100" share="false" show_faces="false" ></fb:like>
-  </div>
-  
-  <div class="wsbl_twitter">
-    <a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/cacti/broken-graph-with-big-value/" data-text="Cactiで一定値以上になるとグラフが正常に描画されない時" data-via="dblmkt " data-lang="ja">Tweet</a>
-  </div>
-  
-  <div class="wsbl_google_plus_one">
-    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/cacti/broken-graph-with-big-value/" ></g:plusone>
-  </div>
-</div>
-
-<br class='wp_social_bookmarking_light_clear' />
 
 Cactiを使っていると、下の画像のように、ある一定の値以上をグラフに描画できない時がある。この例の場合、青い線であらわされたout-boundのトラフィックが80Mbpsを超えるとグラフが描画されていない。
 

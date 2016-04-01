@@ -9,26 +9,6 @@ permalink: /nagios/setup-nconf/
 categories:
   - Nagios
 ---
-<div class='wp_social_bookmarking_light'>
-  <div class="wsbl_hatena_button">
-    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/nagios/setup-nconf/" class="hatena-bookmark-button" data-hatena-bookmark-title="Nagiosの設定ファイル生成ツールnconfが使いやすいのであーる" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
-  </div>
-  
-  <div class="wsbl_facebook_like">
-    <div id="fb-root">
-    </div><fb:like href="http://b.l0g.jp/nagios/setup-nconf/" layout="button_count" action="like" width="100" share="false" show_faces="false" ></fb:like>
-  </div>
-  
-  <div class="wsbl_twitter">
-    <a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/nagios/setup-nconf/" data-text="Nagiosの設定ファイル生成ツールnconfが使いやすいのであーる" data-via="dblmkt " data-lang="ja">Tweet</a>
-  </div>
-  
-  <div class="wsbl_google_plus_one">
-    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/nagios/setup-nconf/" ></g:plusone>
-  </div>
-</div>
-
-<br class='wp_social_bookmarking_light_clear' />
 
 Nagiosの設定ファイルを編集するツールには、<a title="NagiosQL" href="http://www.nagiosql.org/" target="_blank">NagiosQL</a>など<a title="Nagios Config Tools" href="http://www.nagios.org/projects/nagiosconfigtools" target="_blank">いくつかある</a>が、あれこれ触ってみた感じ<a title="nconf" href="http://www.nconf.org/dokuwiki/doku.php" target="_blank">nconf</a>がよさげだった。JQueryなどを適宜使って動きは軽快だし、メニューの構成などもストレートで直感的に使えるところがNagiosQLよりも気にいった。
 

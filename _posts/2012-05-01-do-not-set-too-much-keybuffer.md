@@ -9,26 +9,6 @@ permalink: /mysql/do-not-set-too-much-keybuffer/
 categories:
   - MySQL
 ---
-<div class='wp_social_bookmarking_light'>
-  <div class="wsbl_hatena_button">
-    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/mysql/do-not-set-too-much-keybuffer/" class="hatena-bookmark-button" data-hatena-bookmark-title="MyISAMを使っている時key_buffer_sizeは大きくし過ぎてもいけない" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
-  </div>
-  
-  <div class="wsbl_facebook_like">
-    <div id="fb-root">
-    </div><fb:like href="http://b.l0g.jp/mysql/do-not-set-too-much-keybuffer/" layout="button_count" action="like" width="100" share="false" show_faces="false" ></fb:like>
-  </div>
-  
-  <div class="wsbl_twitter">
-    <a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/mysql/do-not-set-too-much-keybuffer/" data-text="MyISAMを使っている時key_buffer_sizeは大きくし過ぎてもいけない" data-via="dblmkt " data-lang="ja">Tweet</a>
-  </div>
-  
-  <div class="wsbl_google_plus_one">
-    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/mysql/do-not-set-too-much-keybuffer/" ></g:plusone>
-  </div>
-</div>
-
-<br class='wp_social_bookmarking_light_clear' />
 
 MyISAMのみを使っているMySQLサーバで、key\_buffer\_sizeのサイズは大きくても小さくてもダメですよ、という例。
 

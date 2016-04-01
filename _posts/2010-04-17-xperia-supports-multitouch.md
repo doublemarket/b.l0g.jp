@@ -9,26 +9,6 @@ permalink: /android/xperia-supports-multitouch/
 categories:
   - Android
 ---
-<div class='wp_social_bookmarking_light'>
-  <div class="wsbl_hatena_button">
-    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/android/xperia-supports-multitouch/" class="hatena-bookmark-button" data-hatena-bookmark-title="XperiaもAndroid 2.1でマルチタッチ対応に" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
-  </div>
-  
-  <div class="wsbl_facebook_like">
-    <div id="fb-root">
-    </div><fb:like href="http://b.l0g.jp/android/xperia-supports-multitouch/" layout="button_count" action="like" width="100" share="false" show_faces="false" ></fb:like>
-  </div>
-  
-  <div class="wsbl_twitter">
-    <a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/android/xperia-supports-multitouch/" data-text="XperiaもAndroid 2.1でマルチタッチ対応に" data-via="dblmkt " data-lang="ja">Tweet</a>
-  </div>
-  
-  <div class="wsbl_google_plus_one">
-    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/android/xperia-supports-multitouch/" ></g:plusone>
-  </div>
-</div>
-
-<br class='wp_social_bookmarking_light_clear' />
 
 日本のソニー・エリクソンの人は明言していないが、海外のメディアではXperiaは将来的にAndroid 2.1に対応するという報道が以前からなされていた。しかし、ハードウェア的にマルチタッチに対応していないため、2.1の目玉機能を活かせないままになるという情報が流れていた。
 

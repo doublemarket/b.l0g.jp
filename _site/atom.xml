@@ -4,7 +4,7 @@
  <title>渋谷ではたらくインフラエンジニアのブログ</title>
  <link href="http://b.l0g.jp/atom.xml" rel="self"/>
  <link href="http://b.l0g.jp/"/>
- <updated>2016-04-01T10:52:50-07:00</updated>
+ <updated>2016-04-01T11:15:44-07:00</updated>
  <id>http://b.l0g.jp</id>
  <author>
    <name></name>
@@ -17,28 +17,7 @@
    <link href="http://b.l0g.jp/aws/periodic-ebs-snapshot/"/>
    <updated>2015-10-19T06:33:30-07:00</updated>
    <id>http://b.l0g.jp/aws/periodic-ebs-snapshot</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/aws/periodic-ebs-snapshot/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;AWSのEBSボリュームのスナップショットを定期的に取る&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/aws/periodic-ebs-snapshot/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/aws/periodic-ebs-snapshot/&quot; data-text=&quot;AWSのEBSボリュームのスナップショットを定期的に取る&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/aws/periodic-ebs-snapshot/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;小ネタだけど、久しぶりに技術的な内容の記事を書いてみる。最近はこういうのはQiitaに書くのが流行り？&lt;/p&gt;
+   <content type="html">&lt;p&gt;小ネタだけど、久しぶりに技術的な内容の記事を書いてみる。最近はこういうのはQiitaに書くのが流行り？&lt;/p&gt;
 
 &lt;h2 id=&quot;ebs&quot;&gt;EBSボリュームのスナップショット&lt;/h2&gt;
 
@@ -104,28 +83,7 @@
    <link href="http://b.l0g.jp/misc/my-twitter-bots/"/>
    <updated>2015-05-22T06:26:26-07:00</updated>
    <id>http://b.l0g.jp/misc/my-twitter-bots</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/misc/my-twitter-bots/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;Twitterボットを作るのがひそかな趣味&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/misc/my-twitter-bots/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/misc/my-twitter-bots/&quot; data-text=&quot;Twitterボットを作るのがひそかな趣味&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/misc/my-twitter-bots/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt; &lt;/p&gt;
+   <content type="html">&lt;p&gt; &lt;/p&gt;
 
 &lt;p&gt;プログラミングの勉強にと思ってTwitterボットを作ってみたら、ことあるごとに「あっ、これもボットになってたら便利そう」と思うようになってしまって、さらにいくつか作るという流れ。それなりに便利なのができると、ほっといてもフォロワーが増えていくのが楽しくなってしまう。今まで作ったボットのまとめ。&lt;/p&gt;
 
@@ -222,28 +180,7 @@
    <link href="http://b.l0g.jp/uncategorized/sql-performance-explained-ja/"/>
    <updated>2015-04-07T01:45:15-07:00</updated>
    <id>http://b.l0g.jp/uncategorized/sql-performance-explained-ja</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/uncategorized/sql-performance-explained-ja/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;「SQLパフォーマンス詳解」という本を翻訳しました&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/uncategorized/sql-performance-explained-ja/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/uncategorized/sql-performance-explained-ja/&quot; data-text=&quot;「SQLパフォーマンス詳解」という本を翻訳しました&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/uncategorized/sql-performance-explained-ja/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt; &lt;/p&gt;
+   <content type="html">&lt;p&gt; &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://b.l0g.jp/wp-content/uploads/2015/04/sqlperformanceexplainedja.png&quot;&gt;&lt;img class=&quot;alignleft wp-image-1648 size-medium&quot; style=&quot;border: 0px;&quot; src=&quot;http://b.l0g.jp/wp-content/uploads/2015/04/sqlperformanceexplainedja-196x300.png&quot; alt=&quot;sqlperformanceexplainedja&quot; width=&quot;196&quot; height=&quot;300&quot; /&gt;&lt;/a&gt;題の通り、「&lt;a title=&quot;SQLパフォーマンス詳解&quot; href=&quot;http://sql-performance-explained.jp/&quot; target=&quot;_blank&quot;&gt;SQLパフォーマンス詳解&lt;/a&gt;」(原文タイトル&lt;a title=&quot;SQL Performance Explained&quot; href=&quot;http://sql-performance-explained.com/&quot; target=&quot;_blank&quot;&gt;SQL Performance Explained&lt;/a&gt;)という本を翻訳しました。PDFは既に上記サイトから購入できるようになっていて、印刷されたものは夏以降に提供予定です。&lt;/p&gt;
 
@@ -320,28 +257,7 @@
    <link href="http://b.l0g.jp/mysql/mysql-casual-talks-7/"/>
    <updated>2014-12-15T01:11:16-08:00</updated>
    <id>http://b.l0g.jp/mysql/mysql-casual-talks-7</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/mysql/mysql-casual-talks-7/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;MySQL Casual Talks Vol. 7まとめ&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/mysql/mysql-casual-talks-7/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/mysql/mysql-casual-talks-7/&quot; data-text=&quot;MySQL Casual Talks Vol. 7まとめ&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/mysql/mysql-casual-talks-7/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;ふう、&lt;a href=&quot;http://mysql-casual.connpass.com/event/9767/&quot;&gt;MySQL Casual Talks Vol. 7&lt;/a&gt;行って参りました。前回は&lt;a href=&quot;http://www.slideshare.net/doublemarket/mysqlcasual6fabric&quot;&gt;自分が発表者&lt;/a&gt;でもあったので、正直なところ他の人の発表を聞く余裕はなく(汗) 今回は、同僚の発表もあったので楽しみにしていったら、相変わらずの濃ゆい話が盛りだくさんで、非常に楽しめました。毎度の事ながら、&lt;a href=&quot;https://twitter.com/myfinder&quot;&gt;@myfinderさん&lt;/a&gt;始め、会場提供・準備していただいたLINE&lt;/p&gt;
+   <content type="html">&lt;p&gt;ふう、&lt;a href=&quot;http://mysql-casual.connpass.com/event/9767/&quot;&gt;MySQL Casual Talks Vol. 7&lt;/a&gt;行って参りました。前回は&lt;a href=&quot;http://www.slideshare.net/doublemarket/mysqlcasual6fabric&quot;&gt;自分が発表者&lt;/a&gt;でもあったので、正直なところ他の人の発表を聞く余裕はなく(汗) 今回は、同僚の発表もあったので楽しみにしていったら、相変わらずの濃ゆい話が盛りだくさんで、非常に楽しめました。毎度の事ながら、&lt;a href=&quot;https://twitter.com/myfinder&quot;&gt;@myfinderさん&lt;/a&gt;始め、会場提供・準備していただいたLINE&lt;/p&gt;
 
 &lt;p&gt;のみなさま、Oracleのみなさまに感謝です。&lt;/p&gt;
 
@@ -601,28 +517,7 @@
    <link href="http://b.l0g.jp/chef/chef-meetup-20140919/"/>
    <updated>2014-09-19T06:23:12-07:00</updated>
    <id>http://b.l0g.jp/chef/chef-meetup-20140919</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/chef/chef-meetup-20140919/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;日本Chefユーザ会 Meetup メモ&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/chef/chef-meetup-20140919/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/chef/chef-meetup-20140919/&quot; data-text=&quot;日本Chefユーザ会 Meetup メモ&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/chef/chef-meetup-20140919/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.getchef.com/&quot; target=&quot;_blank&quot;&gt;&lt;img class=&quot;alignnone wp-image-1613 size-thumbnail&quot; src=&quot;http://b.l0g.jp/wp-content/uploads/2014/09/Chef_Vertical_Website_Reg-150x150.png&quot; alt=&quot;Chef_Vertical_Website_Reg&quot; width=&quot;150&quot; height=&quot;150&quot; srcset=&quot;http://b.l0g.jp/wp-content/uploads/2014/09/Chef_Vertical_Website_Reg-150x150.png 150w, http://b.l0g.jp/wp-content/uploads/2014/09/Chef_Vertical_Website_Reg-144x144.png 144w&quot; sizes=&quot;(max-width: 150px) 100vw, 150px&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;a href=&quot;https://www.getchef.com/&quot; target=&quot;_blank&quot;&gt;&lt;img class=&quot;alignnone wp-image-1613 size-thumbnail&quot; src=&quot;http://b.l0g.jp/wp-content/uploads/2014/09/Chef_Vertical_Website_Reg-150x150.png&quot; alt=&quot;Chef_Vertical_Website_Reg&quot; width=&quot;150&quot; height=&quot;150&quot; srcset=&quot;http://b.l0g.jp/wp-content/uploads/2014/09/Chef_Vertical_Website_Reg-150x150.png 150w, http://b.l0g.jp/wp-content/uploads/2014/09/Chef_Vertical_Website_Reg-144x144.png 144w&quot; sizes=&quot;(max-width: 150px) 100vw, 150px&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a title=&quot;日本Chefユーザ会&quot; href=&quot;https://www.facebook.com/groups/272530339574523/&quot; target=&quot;_blank&quot;&gt;日本Chefユーザ会&lt;/a&gt;なるものがいつの間にかできていたようで、Chef社の人も招いて&lt;a title=&quot;日本Chefユーザー会主催のMeet up!&quot; href=&quot;http://connpass.com/event/8605/&quot; target=&quot;_blank&quot;&gt;Meetup&lt;/a&gt;が開催されると聞き、参加してきた。&lt;/p&gt;
 
@@ -780,28 +675,7 @@
    <link href="http://b.l0g.jp/misc/webdb-press-vol-79/"/>
    <updated>2014-02-21T01:00:06-08:00</updated>
    <id>http://b.l0g.jp/misc/webdb-press-vol-79</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/misc/webdb-press-vol-79/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;WEB+DB PRESS vol. 79の記事を書きました&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/misc/webdb-press-vol-79/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/misc/webdb-press-vol-79/&quot; data-text=&quot;WEB+DB PRESS vol. 79の記事を書きました&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/misc/webdb-press-vol-79/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://b.l0g.jp/wp-content/uploads/2014/02/cover.jpg&quot;&gt;&lt;img class=&quot;size-medium wp-image-1594 alignnone&quot; style=&quot;border: 0px;&quot; alt=&quot;cover&quot; src=&quot;http://b.l0g.jp/wp-content/uploads/2014/02/cover-225x300.jpg&quot; width=&quot;225&quot; height=&quot;300&quot; srcset=&quot;http://b.l0g.jp/wp-content/uploads/2014/02/cover-225x300.jpg 225w, http://b.l0g.jp/wp-content/uploads/2014/02/cover-768x1024.jpg 768w, http://b.l0g.jp/wp-content/uploads/2014/02/cover-900x1200.jpg 900w, http://b.l0g.jp/wp-content/uploads/2014/02/cover.jpg 1224w&quot; sizes=&quot;(max-width: 225px) 100vw, 225px&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;a href=&quot;http://b.l0g.jp/wp-content/uploads/2014/02/cover.jpg&quot;&gt;&lt;img class=&quot;size-medium wp-image-1594 alignnone&quot; style=&quot;border: 0px;&quot; alt=&quot;cover&quot; src=&quot;http://b.l0g.jp/wp-content/uploads/2014/02/cover-225x300.jpg&quot; width=&quot;225&quot; height=&quot;300&quot; srcset=&quot;http://b.l0g.jp/wp-content/uploads/2014/02/cover-225x300.jpg 225w, http://b.l0g.jp/wp-content/uploads/2014/02/cover-768x1024.jpg 768w, http://b.l0g.jp/wp-content/uploads/2014/02/cover-900x1200.jpg 900w, http://b.l0g.jp/wp-content/uploads/2014/02/cover.jpg 1224w&quot; sizes=&quot;(max-width: 225px) 100vw, 225px&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;同じ会社で働いてる &lt;a href=&quot;https://twitter.com/kuwa_tw&quot;&gt;@kuwa_tw&lt;/a&gt; さんから紹介いただいて、&lt;a title=&quot;WEB+DB PRESS vol. 79&quot; href=&quot;http://gihyo.jp/magazine/wdpress/archive/2014/vol79&quot; target=&quot;_blank&quot;&gt;WEB+DB PRESS vol. 79&lt;/a&gt;の記事を書かせていただきました。雑誌に、というか印刷物に自分の書いたものが掲載されるのは初めての経験です。あまり歓迎されないけれども避けては通れない、メンテナンスという切り口で書かせていただいています。&lt;/p&gt;
 
@@ -820,28 +694,7 @@
    <link href="http://b.l0g.jp/linux/big-mem-allocated-to-jvm-on-centos6/"/>
    <updated>2013-11-18T11:47:45-08:00</updated>
    <id>http://b.l0g.jp/linux/big-mem-allocated-to-jvm-on-centos6</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/linux/big-mem-allocated-to-jvm-on-centos6/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;CentOS 6になったらTomcatのJVMが仮想メモリを大量に確保するようになった&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/linux/big-mem-allocated-to-jvm-on-centos6/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/linux/big-mem-allocated-to-jvm-on-centos6/&quot; data-text=&quot;CentOS 6になったらTomcatのJVMが仮想メモリを大量に確保するようになった&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/linux/big-mem-allocated-to-jvm-on-centos6/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt; &lt;/p&gt;
+   <content type="html">&lt;p&gt; &lt;/p&gt;
 
 &lt;p&gt;CentOS 5+Tomcat 7+JDK 7+Apacheという組み合わせで動かしていたサーバ群に、OSだけCentOS 6にしてミドルウェアのバージョンは変えないサーバを何台か追加したところ、CentOS 6の方が、Tomcatが確保している仮想メモリ量が圧倒的にでかいことに気づいた。&lt;/p&gt;
 
@@ -946,28 +799,7 @@
    <link href="http://b.l0g.jp/mysql/mysql-casual-talks-vol-5/"/>
    <updated>2013-10-26T07:06:50-07:00</updated>
    <id>http://b.l0g.jp/mysql/mysql-casual-talks-vol-5</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/mysql/mysql-casual-talks-vol-5/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;MySQL Casual Talks vol.5 メモ&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/mysql/mysql-casual-talks-vol-5/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/mysql/mysql-casual-talks-vol-5/&quot; data-text=&quot;MySQL Casual Talks vol.5 メモ&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/mysql/mysql-casual-talks-vol-5/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt; &lt;/p&gt;
+   <content type="html">&lt;p&gt; &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://www.zusaar.com/event/1086003&quot;&gt;MySQL Casual Talks vol. 5&lt;/a&gt;に行ってきたので、自分なりのメモと資料へのリンク。&lt;/p&gt;
 
@@ -1225,28 +1057,7 @@
    <link href="http://b.l0g.jp/mysql/myna-201309-memo/"/>
    <updated>2013-10-01T02:25:00-07:00</updated>
    <id>http://b.l0g.jp/mysql/myna-201309-memo</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/mysql/myna-201309-memo/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;MyNA会2013年9月 メモ&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/mysql/myna-201309-memo/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/mysql/myna-201309-memo/&quot; data-text=&quot;MyNA会2013年9月 メモ&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/mysql/myna-201309-memo/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt; &lt;/p&gt;
+   <content type="html">&lt;p&gt; &lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://atnd.org/events/43746&quot; target=&quot;_blank&quot;&gt;MyNA(日本MySQLユーザ会)会 2013年9月&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 
@@ -1394,28 +1205,7 @@
    <link href="http://b.l0g.jp/mysql/mysql-cluster-casual-talks-memo/"/>
    <updated>2013-09-27T02:25:33-07:00</updated>
    <id>http://b.l0g.jp/mysql/mysql-cluster-casual-talks-memo</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/mysql/mysql-cluster-casual-talks-memo/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;MySQL Cluster Casual Talksメモ&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/mysql/mysql-cluster-casual-talks-memo/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/mysql/mysql-cluster-casual-talks-memo/&quot; data-text=&quot;MySQL Cluster Casual Talksメモ&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/mysql/mysql-cluster-casual-talks-memo/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://atnd.org/events/42911&quot; target=&quot;_blank&quot;&gt;MySQL Cluster Casual Talks&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://atnd.org/events/42911&quot; target=&quot;_blank&quot;&gt;MySQL Cluster Casual Talks&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;一応仕事でMySQLをよく触っている身として、軽く検証はしてみたものの、担当している業務では参照メインのDBが多いこともあって実運用では使ったことがなかったMySQL Cluster。改めて利点も欠点も聞いておきたいと思ったのと、会社からすぐ近くのGMOさんが会場ということもあって参加してみた。&lt;/p&gt;
 
@@ -1611,28 +1401,7 @@
    <link href="http://b.l0g.jp/nagios/pynag-introduction/"/>
    <updated>2013-06-12T02:51:05-07:00</updated>
    <id>http://b.l0g.jp/nagios/pynag-introduction</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/nagios/pynag-introduction/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;Nagiosのプラグイン作成や設定ファイル操作にpynagが超便利！&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/nagios/pynag-introduction/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/nagios/pynag-introduction/&quot; data-text=&quot;Nagiosのプラグイン作成や設定ファイル操作にpynagが超便利！&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/nagios/pynag-introduction/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Nagiosの設定ファイルをパースする簡単な方法ないかなと思って調べてたら、&lt;a href=&quot;http://pynag.org/&quot; title=&quot;pynag.org&quot; target=&quot;_blank&quot;&gt;pynag&lt;/a&gt;という超便利なパッケージ発見。日本語の情報ほとんどないけど、Fedoraの標準パッケージになっているってことは割と一般的なんだろうか。&lt;/p&gt;
+   <content type="html">&lt;p&gt;Nagiosの設定ファイルをパースする簡単な方法ないかなと思って調べてたら、&lt;a href=&quot;http://pynag.org/&quot; title=&quot;pynag.org&quot; target=&quot;_blank&quot;&gt;pynag&lt;/a&gt;という超便利なパッケージ発見。日本語の情報ほとんどないけど、Fedoraの標準パッケージになっているってことは割と一般的なんだろうか。&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Nagiosのプラグインを簡単に作りたい&lt;/li&gt;
@@ -2075,28 +1844,7 @@
    <link href="http://b.l0g.jp/nagios/setup-nconf/"/>
    <updated>2013-06-09T08:49:25-07:00</updated>
    <id>http://b.l0g.jp/nagios/setup-nconf</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/nagios/setup-nconf/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;Nagiosの設定ファイル生成ツールnconfが使いやすいのであーる&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/nagios/setup-nconf/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/nagios/setup-nconf/&quot; data-text=&quot;Nagiosの設定ファイル生成ツールnconfが使いやすいのであーる&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/nagios/setup-nconf/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Nagiosの設定ファイルを編集するツールには、&lt;a title=&quot;NagiosQL&quot; href=&quot;http://www.nagiosql.org/&quot; target=&quot;_blank&quot;&gt;NagiosQL&lt;/a&gt;など&lt;a title=&quot;Nagios Config Tools&quot; href=&quot;http://www.nagios.org/projects/nagiosconfigtools&quot; target=&quot;_blank&quot;&gt;いくつかある&lt;/a&gt;が、あれこれ触ってみた感じ&lt;a title=&quot;nconf&quot; href=&quot;http://www.nconf.org/dokuwiki/doku.php&quot; target=&quot;_blank&quot;&gt;nconf&lt;/a&gt;がよさげだった。JQueryなどを適宜使って動きは軽快だし、メニューの構成などもストレートで直感的に使えるところがNagiosQLよりも気にいった。&lt;/p&gt;
+   <content type="html">&lt;p&gt;Nagiosの設定ファイルを編集するツールには、&lt;a title=&quot;NagiosQL&quot; href=&quot;http://www.nagiosql.org/&quot; target=&quot;_blank&quot;&gt;NagiosQL&lt;/a&gt;など&lt;a title=&quot;Nagios Config Tools&quot; href=&quot;http://www.nagios.org/projects/nagiosconfigtools&quot; target=&quot;_blank&quot;&gt;いくつかある&lt;/a&gt;が、あれこれ触ってみた感じ&lt;a title=&quot;nconf&quot; href=&quot;http://www.nconf.org/dokuwiki/doku.php&quot; target=&quot;_blank&quot;&gt;nconf&lt;/a&gt;がよさげだった。JQueryなどを適宜使って動きは軽快だし、メニューの構成などもストレートで直感的に使えるところがNagiosQLよりも気にいった。&lt;/p&gt;
 
 &lt;p&gt;監視の設定はできる限り自動生成するくらいが大規模なシステムでは最近の主流かもしれないが、そこまでの大きさのシステムではない時でも、設定ファイルを手で編集するのはいただけない。Nagiosを使うならとりあえずnconfも一緒に入れて設定すべし。&lt;/p&gt;
 
@@ -2393,28 +2141,7 @@
    <link href="http://b.l0g.jp/linux/net-snmp-on-ipv6/"/>
    <updated>2013-05-31T05:25:46-07:00</updated>
    <id>http://b.l0g.jp/linux/net-snmp-on-ipv6</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/linux/net-snmp-on-ipv6/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;IPv6環境でnet-snmpを使う&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/linux/net-snmp-on-ipv6/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/linux/net-snmp-on-ipv6/&quot; data-text=&quot;IPv6環境でnet-snmpを使う&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/linux/net-snmp-on-ipv6/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;IPv6環境でSNMPで情報を引っ張ってきたいのだが、net-snmpをインストールしてsnmpdを起動したが、getできない。&lt;/p&gt;
+   <content type="html">&lt;p&gt;IPv6環境でSNMPで情報を引っ張ってきたいのだが、net-snmpをインストールしてsnmpdを起動したが、getできない。&lt;/p&gt;
 
 &lt;p&gt;監視サーバをnagios01、監視対象ホストをclient01とした時の例。&lt;/p&gt;
 
@@ -2569,28 +2296,7 @@
    <link href="http://b.l0g.jp/nagios/nagios-check-ifspeed-plugi/"/>
    <updated>2013-02-17T08:30:00-08:00</updated>
    <id>http://b.l0g.jp/nagios/nagios-check-ifspeed-plugi</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/nagios/nagios-check-ifspeed-plugi/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;NICのリンクスピードを監視するNagiosスクリプト&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/nagios/nagios-check-ifspeed-plugi/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/nagios/nagios-check-ifspeed-plugi/&quot; data-text=&quot;NICのリンクスピードを監視するNagiosスクリプト&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/nagios/nagios-check-ifspeed-plugi/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Nagiosのプラグインには、NICのステータス(up/downとか)をチェックする check_ifstatus がある。しかし、ネゴシエーションなどの関係で、リンクアップはしているがリンクスピードが1Gbps full duplexであってほしいのに10Mbps halfとかになっているということはよくあること。&lt;/p&gt;
+   <content type="html">&lt;p&gt;Nagiosのプラグインには、NICのステータス(up/downとか)をチェックする check_ifstatus がある。しかし、ネゴシエーションなどの関係で、リンクアップはしているがリンクスピードが1Gbps full duplexであってほしいのに10Mbps halfとかになっているということはよくあること。&lt;/p&gt;
 
 &lt;p&gt;探してみた感じこれをチェックするためのNagiosプラグインはなさそうだったので、シェルスクリプト書いてみた。本当はcheck_ifstatus(perl)を拡張するのがいいのかもしれないが。&lt;/p&gt;
 
@@ -2681,28 +2387,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/linux/meaning-for-linux-monolithic-kernel/"/>
    <updated>2013-01-10T00:53:06-08:00</updated>
    <id>http://b.l0g.jp/linux/meaning-for-linux-monolithic-kernel</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/linux/meaning-for-linux-monolithic-kernel/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;Linuxがモノリシックカーネルである理由&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/linux/meaning-for-linux-monolithic-kernel/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/linux/meaning-for-linux-monolithic-kernel/&quot; data-text=&quot;Linuxがモノリシックカーネルである理由&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/linux/meaning-for-linux-monolithic-kernel/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Quoraの問答は本当に面白いものばかり。技術的でないのもかなり興味深いものが多いが、またLinuxについてのネタで分かりやすいのがあったので訳してみた。&lt;/p&gt;
+   <content type="html">&lt;p&gt;Quoraの問答は本当に面白いものばかり。技術的でないのもかなり興味深いものが多いが、またLinuxについてのネタで分かりやすいのがあったので訳してみた。&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://www.quora.com/Linux/What-is-meant-by-Linux-has-a-monolithic-kernel&quot;&gt;Linuxがモノリシックカーネルであるというのはどういう意味か？&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 
@@ -2816,28 +2501,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/mysql/mysql-commands-on-cli/"/>
    <updated>2012-12-11T07:29:16-08:00</updated>
    <id>http://b.l0g.jp/mysql/mysql-commands-on-cli</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/mysql/mysql-commands-on-cli/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;MySQLコマンドラインツールで使えるコマンド小ネタ&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/mysql/mysql-commands-on-cli/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/mysql/mysql-commands-on-cli/&quot; data-text=&quot;MySQLコマンドラインツールで使えるコマンド小ネタ&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/mysql/mysql-commands-on-cli/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;知らなくても何とかなるけど、知っておくと役に立つmysqlシェルから使えるコマンド。&lt;/p&gt;
+   <content type="html">&lt;p&gt;知らなくても何とかなるけど、知っておくと役に立つmysqlシェルから使えるコマンド。&lt;/p&gt;
 
 &lt;h3 id=&quot;system&quot;&gt;systemコマンド&lt;/h3&gt;
 
@@ -3082,28 +2746,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/mysql/slowlog-manual-rotate/"/>
    <updated>2012-11-13T05:18:15-08:00</updated>
    <id>http://b.l0g.jp/mysql/slowlog-manual-rotate</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/mysql/slowlog-manual-rotate/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;MySQLスローログの手動ローテート&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/mysql/slowlog-manual-rotate/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/mysql/slowlog-manual-rotate/&quot; data-text=&quot;MySQLスローログの手動ローテート&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/mysql/slowlog-manual-rotate/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://b.l0g.jp/mysql/slowlog-manual-rotate/attachment/mysql/&quot; rel=&quot;attachment wp-att-1371&quot;&gt;&lt;img class=&quot;alignnone size-full wp-image-1371&quot; style=&quot;border: 0px;&quot; title=&quot;mysql&quot; src=&quot;http://b.l0g.jp/wp-content/uploads/2012/11/mysql.png&quot; alt=&quot;&quot; width=&quot;170&quot; height=&quot;115&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;a href=&quot;http://b.l0g.jp/mysql/slowlog-manual-rotate/attachment/mysql/&quot; rel=&quot;attachment wp-att-1371&quot;&gt;&lt;img class=&quot;alignnone size-full wp-image-1371&quot; style=&quot;border: 0px;&quot; title=&quot;mysql&quot; src=&quot;http://b.l0g.jp/wp-content/uploads/2012/11/mysql.png&quot; alt=&quot;&quot; width=&quot;170&quot; height=&quot;115&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;MySQLのスローログは、通常それほど大量に出るものではないからか、自動でローテートされるような設定は特にない。しかし、負荷が上がったりしてスローログが大量に出てしまい、ローテートしたい場合はよくあるだろう。手動でローテートする場合は以下のように行う。&lt;/p&gt;
 
@@ -3187,28 +2830,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/cacti/broken-graph-with-big-value/"/>
    <updated>2012-11-12T11:20:28-08:00</updated>
    <id>http://b.l0g.jp/cacti/broken-graph-with-big-value</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/cacti/broken-graph-with-big-value/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;Cactiで一定値以上になるとグラフが正常に描画されない時&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/cacti/broken-graph-with-big-value/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/cacti/broken-graph-with-big-value/&quot; data-text=&quot;Cactiで一定値以上になるとグラフが正常に描画されない時&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/cacti/broken-graph-with-big-value/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Cactiを使っていると、下の画像のように、ある一定の値以上をグラフに描画できない時がある。この例の場合、青い線であらわされたout-boundのトラフィックが80Mbpsを超えるとグラフが描画されていない。&lt;/p&gt;
+   <content type="html">&lt;p&gt;Cactiを使っていると、下の画像のように、ある一定の値以上をグラフに描画できない時がある。この例の場合、青い線であらわされたout-boundのトラフィックが80Mbpsを超えるとグラフが描画されていない。&lt;/p&gt;
 
 &lt;p style=&quot;text-align: center;&quot;&gt;
   &lt;a href=&quot;http://b.l0g.jp/cacti/broken-graph-with-big-value/attachment/graph_image/&quot; rel=&quot;attachment wp-att-1349&quot;&gt;&lt;img src=&quot;http://b.l0g.jp/wp-content/uploads/2012/11/graph_image.png&quot; title=&quot;途切れたグラフ&quot; width=&quot;449&quot; height=&quot;137&quot; class=&quot;size-full wp-image-1349 aligncenter&quot; style=&quot;border: 0px;&quot; /&gt;&lt;/a&gt;
@@ -3337,28 +2959,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/linux/buffercache-and-page-cache/"/>
    <updated>2012-10-24T15:56:15-07:00</updated>
    <id>http://b.l0g.jp/linux/buffercache-and-page-cache</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/linux/buffercache-and-page-cache/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;Linuxのバッファキャッシュとページキャッシュの違いは？&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/linux/buffercache-and-page-cache/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/linux/buffercache-and-page-cache/&quot; data-text=&quot;Linuxのバッファキャッシュとページキャッシュの違いは？&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/linux/buffercache-and-page-cache/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Linuxが管理するキャッシュ領域には、バッファキャッシュとページキャッシュ領域があって、topコマンドや/proc/meminfoの「bufferes」「cached」という項目を見れば、現在のそれぞれのキャッシュ領域がどの程度なのかを確認することができる。&lt;/p&gt;
+   <content type="html">&lt;p&gt;Linuxが管理するキャッシュ領域には、バッファキャッシュとページキャッシュ領域があって、topコマンドや/proc/meminfoの「bufferes」「cached」という項目を見れば、現在のそれぞれのキャッシュ領域がどの程度なのかを確認することができる。&lt;/p&gt;
 
 &lt;p&gt;どちらも、ディスクの読み書きをキャッシュしてデータへのアクセスを高速化するという点では同じだが、それぞれがどのような意味で、どういう違いがあるのかについて、&lt;a href=&quot;http://www.quora.com/Linux-Kernel/In-Linux-what-is-the-major-difference-between-the-buffer-cache-and-the-page-cache-Why-were-they-separate-entities-in-older-kernels-Why-were-they-merged-later-on&quot;&gt;Quoraに分かりやすい解説&lt;/a&gt;があったので、翻訳してみた。&lt;/p&gt;
 
@@ -3404,28 +3005,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/shell/readline-shortcut-keys/"/>
    <updated>2012-10-20T10:11:42-07:00</updated>
    <id>http://b.l0g.jp/shell/readline-shortcut-keys</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/shell/readline-shortcut-keys/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;readlineのショートカットまとめ&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/shell/readline-shortcut-keys/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/shell/readline-shortcut-keys/&quot; data-text=&quot;readlineのショートカットまとめ&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/shell/readline-shortcut-keys/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://tiswww.case.edu/php/chet/readline/rltop.html&quot;&gt;&lt;img src=&quot;http://b.l0g.jp/wp-content/uploads/2012/10/gnu-head-sm.jpg&quot; alt=&quot;&quot; title=&quot;gnu-head-sm&quot; width=&quot;129&quot; height=&quot;122&quot; class=&quot;alignleft size-full wp-image-1310&quot; style=&quot;border: 0px; margin-left: 8px; margin-right: 8px;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;a href=&quot;http://tiswww.case.edu/php/chet/readline/rltop.html&quot;&gt;&lt;img src=&quot;http://b.l0g.jp/wp-content/uploads/2012/10/gnu-head-sm.jpg&quot; alt=&quot;&quot; title=&quot;gnu-head-sm&quot; width=&quot;129&quot; height=&quot;122&quot; class=&quot;alignleft size-full wp-image-1310&quot; style=&quot;border: 0px; margin-left: 8px; margin-right: 8px;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;blockquote class=&quot;twitter-tweet tw-align-center&quot; lang=&quot;ja&quot;&gt;
   &lt;p&gt;
@@ -3916,28 +3496,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/linux/check-fs-cache-hitrate-with-stap/"/>
    <updated>2012-06-18T05:23:01-07:00</updated>
    <id>http://b.l0g.jp/linux/check-fs-cache-hitrate-with-stap</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/linux/check-fs-cache-hitrate-with-stap/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;systemtapでファイルシステムキャッシュのヒット率を見る&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/linux/check-fs-cache-hitrate-with-stap/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/linux/check-fs-cache-hitrate-with-stap/&quot; data-text=&quot;systemtapでファイルシステムキャッシュのヒット率を見る&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/linux/check-fs-cache-hitrate-with-stap/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://b.l0g.jp/wp-content/uploads/2012/06/systemtaplogo1.png&quot; title=&quot;systemtaplogo1&quot; width=&quot;165&quot; height=&quot;25&quot; class=&quot;alignleft size-full wp-image-1280&quot; style=&quot;border: 0px; margin-left: 8px; margin-right: 8px;&quot; /&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;img src=&quot;http://b.l0g.jp/wp-content/uploads/2012/06/systemtaplogo1.png&quot; title=&quot;systemtaplogo1&quot; width=&quot;165&quot; height=&quot;25&quot; class=&quot;alignleft size-full wp-image-1280&quot; style=&quot;border: 0px; margin-left: 8px; margin-right: 8px;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Linuxでは、自動的にメモリの空き容量をファイルシステムキャッシュ(以下単にキャッシュ)として使用するような仕組みが用意されている。MySQLでMyISAMを使う時のようにOSのキャッシュを使用するような仕組みを使っていたり、単にファイルをNFSで公開しているファイルサーバなどでは、このキャッシュがどの程度効くかによってかなりパフォーマンスが違ってくる。&lt;/p&gt;
 
@@ -4129,28 +3688,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/mysql/use-cacti-to-monitor-mysql-2/"/>
    <updated>2012-05-28T05:00:12-07:00</updated>
    <id>http://b.l0g.jp/mysql/use-cacti-to-monitor-mysql-2</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/mysql/use-cacti-to-monitor-mysql-2/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;MySQLの監視はCacti+Percona Monitoring Pluginsがおすすめ(監視対象設定編)&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/mysql/use-cacti-to-monitor-mysql-2/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/mysql/use-cacti-to-monitor-mysql-2/&quot; data-text=&quot;MySQLの監視はCacti+Percona Monitoring Pluginsがおすすめ(監視対象設定編)&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/mysql/use-cacti-to-monitor-mysql-2/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a title=&quot;MySQLの監視はCacti+Percona Monitoring Pluginsがおすすめ(監視サーバ構築編)&quot; href=&quot;http://b.l0g.jp/mysql/install-cacti-to-monitor-mysql-1/&quot; target=&quot;_blank&quot;&gt;前回のエントリ&lt;/a&gt;ではMySQLのサーバを監視できるように、CactiをインストールしてPercona Monitoring Pluginsのテンプレートを読み込んだところまで書いた。今回は、監視対象となるMySQLサーバを設定して、リソース監視を行うまでを書いてみる。なお、プロンプトがtargetとなって いるものが監視対象への設定で、serverとなっているものが監視サーバへの設定を意味している。&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;a title=&quot;MySQLの監視はCacti+Percona Monitoring Pluginsがおすすめ(監視サーバ構築編)&quot; href=&quot;http://b.l0g.jp/mysql/install-cacti-to-monitor-mysql-1/&quot; target=&quot;_blank&quot;&gt;前回のエントリ&lt;/a&gt;ではMySQLのサーバを監視できるように、CactiをインストールしてPercona Monitoring Pluginsのテンプレートを読み込んだところまで書いた。今回は、監視対象となるMySQLサーバを設定して、リソース監視を行うまでを書いてみる。なお、プロンプトがtargetとなって いるものが監視対象への設定で、serverとなっているものが監視サーバへの設定を意味している。&lt;/p&gt;
 
 &lt;h2 id=&quot;snmpubuntu-server&quot;&gt;SNMPの設定(Ubuntu serverの場合)&lt;/h2&gt;
 
@@ -4337,28 +3875,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/mysql/install-cacti-to-monitor-mysql-1/"/>
    <updated>2012-05-17T13:01:24-07:00</updated>
    <id>http://b.l0g.jp/mysql/install-cacti-to-monitor-mysql-1</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/mysql/install-cacti-to-monitor-mysql-1/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;MySQLの監視はCacti+Percona Monitoring Pluginsがおすすめ(監視サーバ構築編)&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/mysql/install-cacti-to-monitor-mysql-1/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/mysql/install-cacti-to-monitor-mysql-1/&quot; data-text=&quot;MySQLの監視はCacti+Percona Monitoring Pluginsがおすすめ(監視サーバ構築編)&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/mysql/install-cacti-to-monitor-mysql-1/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;MySQLをリソース監視する仕組みにはいくつかあるが、対象のMySQLサーバが5台以上ある場合はCactiがおすすめ。導入のしやすさだけでMuninを選ぶ人が多い気がするが、その選択基準は間違っている！&lt;/p&gt;
+   <content type="html">&lt;p&gt;MySQLをリソース監視する仕組みにはいくつかあるが、対象のMySQLサーバが5台以上ある場合はCactiがおすすめ。導入のしやすさだけでMuninを選ぶ人が多い気がするが、その選択基準は間違っている！&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://b.l0g.jp/mysql/install-cacti-to-monitor-mysql-1/attachment/cacti-211916/&quot; rel=&quot;attachment wp-att-1173&quot;&gt;&lt;img src=&quot;http://b.l0g.jp/wp-content/uploads/2012/05/Cacti-211916.png&quot; title=&quot;Cactiグラフの例&quot; width=&quot;223&quot; height=&quot;256&quot; class=&quot;alignleft  wp-image-1173&quot; style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 10px; margin-right: 40px; border-style: initial; border-color: initial; border-image: initial; border-width: 0px;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -4601,28 +4118,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/mysql/do-not-set-too-much-keybuffer/"/>
    <updated>2012-05-01T13:46:40-07:00</updated>
    <id>http://b.l0g.jp/mysql/do-not-set-too-much-keybuffer</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/mysql/do-not-set-too-much-keybuffer/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;MyISAMを使っている時key_buffer_sizeは大きくし過ぎてもいけない&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/mysql/do-not-set-too-much-keybuffer/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/mysql/do-not-set-too-much-keybuffer/&quot; data-text=&quot;MyISAMを使っている時key_buffer_sizeは大きくし過ぎてもいけない&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/mysql/do-not-set-too-much-keybuffer/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;MyISAMのみを使っているMySQLサーバで、key_buffer_sizeのサイズは大きくても小さくてもダメですよ、という例。&lt;/p&gt;
+   <content type="html">&lt;p&gt;MyISAMのみを使っているMySQLサーバで、key_buffer_sizeのサイズは大きくても小さくてもダメですよ、という例。&lt;/p&gt;
 
 &lt;p&gt;その前にちょっと復習。MySQLの主なストレージエンジンといえばMyISAMとInnoDBだが、データやインデックスのキャッシュの仕組みには、&lt;/p&gt;
 
@@ -4737,28 +4233,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/mysql/diagnosing-with-perror-command/"/>
    <updated>2012-04-26T05:02:56-07:00</updated>
    <id>http://b.l0g.jp/mysql/diagnosing-with-perror-command</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/mysql/diagnosing-with-perror-command/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;MySQLエラーログに出てきたエラーコードのとっかかり&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/mysql/diagnosing-with-perror-command/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/mysql/diagnosing-with-perror-command/&quot; data-text=&quot;MySQLエラーログに出てきたエラーコードのとっかかり&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/mysql/diagnosing-with-perror-command/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;MySQLのエラーログに記録されるエラーコードは、MySQL自体が判断して表示するものと、OSが返したエラーコードをMySQLが表示しているものとの2種類に分けられる。それぞれまずどう調べ始めるか、という話。&lt;a href=&quot;http://www.mysqlperformanceblog.com/2012/03/26/how-to-diagnose-errors-in-the-mysql-error-log/&quot; title=&quot;How to diagnose errors in the MySQL error log&quot; target=&quot;_blank&quot;&gt;MySQL Performance Blogのエントリ&lt;/a&gt;に、後で自分の役に立つように情報を加えてみた。&lt;/p&gt;
+   <content type="html">&lt;p&gt;MySQLのエラーログに記録されるエラーコードは、MySQL自体が判断して表示するものと、OSが返したエラーコードをMySQLが表示しているものとの2種類に分けられる。それぞれまずどう調べ始めるか、という話。&lt;a href=&quot;http://www.mysqlperformanceblog.com/2012/03/26/how-to-diagnose-errors-in-the-mysql-error-log/&quot; title=&quot;How to diagnose errors in the MySQL error log&quot; target=&quot;_blank&quot;&gt;MySQL Performance Blogのエントリ&lt;/a&gt;に、後で自分の役に立つように情報を加えてみた。&lt;/p&gt;
 
 &lt;p&gt;例えば、レプリケーションがうまくいかない時に表示される&lt;/p&gt;
 
@@ -4817,28 +4292,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/mysql/mysql565-gtid/"/>
    <updated>2012-04-22T14:46:03-07:00</updated>
    <id>http://b.l0g.jp/mysql/mysql565-gtid</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/mysql/mysql565-gtid/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;MySQL 5.6.5の新機能GTIDを試してみる&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/mysql/mysql565-gtid/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/mysql/mysql565-gtid/&quot; data-text=&quot;MySQL 5.6.5の新機能GTIDを試してみる&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/mysql/mysql565-gtid/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;4月10日にリリースされたMySQL 5.6.5 DMRに、&lt;a href=&quot;http://dev.mysql.com/tech-resources/articles/mysql-5.6-replication.html&quot; target=&quot;_blank&quot;&gt;GTID(Global Transaction ID)という機能が搭載された&lt;/a&gt;。これは、トランザクションにID(GTID)を持たせることによって、レプリケーションの進行具合を、従来の「マスタのbinlogファイル名 + ポジション」という情報ではなく、GTIDで管理できるようになるという機能である。従来のバージョンと比べた時に一番分かりやすい点としては、「change masterする時にポジションを指定しなくてよくなる」ということだろう。&lt;/p&gt;
+   <content type="html">&lt;p&gt;4月10日にリリースされたMySQL 5.6.5 DMRに、&lt;a href=&quot;http://dev.mysql.com/tech-resources/articles/mysql-5.6-replication.html&quot; target=&quot;_blank&quot;&gt;GTID(Global Transaction ID)という機能が搭載された&lt;/a&gt;。これは、トランザクションにID(GTID)を持たせることによって、レプリケーションの進行具合を、従来の「マスタのbinlogファイル名 + ポジション」という情報ではなく、GTIDで管理できるようになるという機能である。従来のバージョンと比べた時に一番分かりやすい点としては、「change masterする時にポジションを指定しなくてよくなる」ということだろう。&lt;/p&gt;
 
 &lt;p&gt;MySQLのレプリケーション機能開発者&lt;a href=&quot;http://d2-systems.blogspot.jp/2012/04/global-transaction-identifiers-are-in.html&quot; target=&quot;_blank&quot;&gt;Luis Soares氏のブログ&lt;/a&gt;を参考に、GTIDの機能を試してみた。&lt;/p&gt;
 
@@ -5445,28 +4899,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/linux/ip-local-port-range/"/>
    <updated>2012-04-17T13:00:53-07:00</updated>
    <id>http://b.l0g.jp/linux/ip-local-port-range</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/linux/ip-local-port-range/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;TCP/IPの送信用ポート範囲を変更する&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/linux/ip-local-port-range/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/linux/ip-local-port-range/&quot; data-text=&quot;TCP/IPの送信用ポート範囲を変更する&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/linux/ip-local-port-range/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Linuxで、TCP/IPの送信時に使用するポートの範囲を決めるのは、net.ipv4.ip_local_port_range というカーネルパラメータ。手元のCentOSでは以下がデフォルト値になっていた。&lt;/p&gt;
+   <content type="html">&lt;p&gt;Linuxで、TCP/IPの送信時に使用するポートの範囲を決めるのは、net.ipv4.ip_local_port_range というカーネルパラメータ。手元のCentOSでは以下がデフォルト値になっていた。&lt;/p&gt;
 
 &lt;p&gt;[bash]&lt;/p&gt;
 
@@ -5509,28 +4942,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/mysql/report-host-in-slave-mycnf/"/>
    <updated>2012-04-12T14:06:24-07:00</updated>
    <id>http://b.l0g.jp/mysql/report-host-in-slave-mycnf</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/mysql/report-host-in-slave-mycnf/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;MySQLスレーブのmy.cnfにはreport-hostを必ず書こう&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/mysql/report-host-in-slave-mycnf/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/mysql/report-host-in-slave-mycnf/&quot; data-text=&quot;MySQLスレーブのmy.cnfにはreport-hostを必ず書こう&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/mysql/report-host-in-slave-mycnf/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;世の中では当たり前のことなのかもしれないが、なぜか今勤めてる会社では一般的ではないのでメモしておく。&lt;/p&gt;
+   <content type="html">&lt;p&gt;世の中では当たり前のことなのかもしれないが、なぜか今勤めてる会社では一般的ではないのでメモしておく。&lt;/p&gt;
 
 &lt;p&gt;MySQLでレプリケーション構成を取っている時、スレーブとなるマシンのmy.cnfには、server-idと一緒にreport-hostを必ず書いておこう。&lt;/p&gt;
 
@@ -5840,28 +5252,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/uncategorized/clear-on-cygwin-bash/"/>
    <updated>2012-03-06T06:31:01-08:00</updated>
    <id>http://b.l0g.jp/uncategorized/clear-on-cygwin-bash</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/uncategorized/clear-on-cygwin-bash/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;cygwinのbashでclearを使いたい&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/uncategorized/clear-on-cygwin-bash/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/uncategorized/clear-on-cygwin-bash/&quot; data-text=&quot;cygwinのbashでclearを使いたい&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/uncategorized/clear-on-cygwin-bash/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://ameblo.jp/principia-ca/entry-11147827610.html&quot; target=&quot;_blank&quot;&gt;masudakさんのエントリ&lt;/a&gt; を読んで、そういえば作業用PCにCygwin入れてないなと思ってインストールしてみたら、clearコマンドがなかった。&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;a href=&quot;http://ameblo.jp/principia-ca/entry-11147827610.html&quot; target=&quot;_blank&quot;&gt;masudakさんのエントリ&lt;/a&gt; を読んで、そういえば作業用PCにCygwin入れてないなと思ってインストールしてみたら、clearコマンドがなかった。&lt;/p&gt;
 
 &lt;p&gt;学生時代からの癖で事あるごとに「clear;ls」と入力するのが好きな自分は、clearコマンドがないと生きていけない。&lt;/p&gt;
 
@@ -5878,28 +5269,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/shell/ls-sort-options/"/>
    <updated>2012-02-24T13:57:39-08:00</updated>
    <id>http://b.l0g.jp/shell/ls-sort-options</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/shell/ls-sort-options/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;lsコマンドのソートオプションまとめ&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/shell/ls-sort-options/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/shell/ls-sort-options/&quot; data-text=&quot;lsコマンドのソートオプションまとめ&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/shell/ls-sort-options/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;lsコマンドにはソートオプションがいくつかあるけど、いつもどれがどれだか分からなくなるのでメモ。&lt;/p&gt;
+   <content type="html">&lt;p&gt;lsコマンドにはソートオプションがいくつかあるけど、いつもどれがどれだか分からなくなるのでメモ。&lt;/p&gt;
 
 &lt;h2 id=&quot;section&quot;&gt;時刻でソートするもの&lt;/h2&gt;
 
@@ -5996,28 +5366,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/mysql/user-at-localhost/"/>
    <updated>2012-02-03T12:07:36-08:00</updated>
    <id>http://b.l0g.jp/mysql/user-at-localhost</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/mysql/user-at-localhost/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;MySQL ユーザのホストをワイルドカードで指定してもlocalhostは含まれない&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/mysql/user-at-localhost/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/mysql/user-at-localhost/&quot; data-text=&quot;MySQL ユーザのホストをワイルドカードで指定してもlocalhostは含まれない&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/mysql/user-at-localhost/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;MySQLをインストールしたので、とりあえずワイルドカードでホスト名を指定してテスト用のユーザを作成。&lt;/p&gt;
+   <content type="html">&lt;p&gt;MySQLをインストールしたので、とりあえずワイルドカードでホスト名を指定してテスト用のユーザを作成。&lt;/p&gt;
 
 &lt;p&gt;[sql]&lt;/p&gt;
 
@@ -6365,28 +5714,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/mysql/counting-row-num/"/>
    <updated>2011-12-06T07:24:45-08:00</updated>
    <id>http://b.l0g.jp/mysql/counting-row-num</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/mysql/counting-row-num/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;MySQLでテーブルの行数を数える&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/mysql/counting-row-num/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/mysql/counting-row-num/&quot; data-text=&quot;MySQLでテーブルの行数を数える&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/mysql/counting-row-num/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;テーブル内の行数を数えるのに一番簡単なのは、&lt;/p&gt;
+   <content type="html">&lt;p&gt;テーブル内の行数を数えるのに一番簡単なのは、&lt;/p&gt;
 
 &lt;p&gt;[sql]&lt;/p&gt;
 
@@ -6573,28 +5901,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/linux/usbwlan-ubuntuserver/"/>
    <updated>2011-11-28T08:17:40-08:00</updated>
    <id>http://b.l0g.jp/linux/usbwlan-ubuntuserver</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/linux/usbwlan-ubuntuserver/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;Ubuntu Server 11.04マシンでUSB無線LANアダプタを使う&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/linux/usbwlan-ubuntuserver/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/linux/usbwlan-ubuntuserver/&quot; data-text=&quot;Ubuntu Server 11.04マシンでUSB無線LANアダプタを使う&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/linux/usbwlan-ubuntuserver/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;少し前に自宅で色々と検証したりするために、&lt;a href=&quot;http://nttxstore.jp/_II_HP13476513&quot; target=&quot;_blank&quot;&gt;HP ML110 G6&lt;/a&gt;を買い、Ubuntu Server 11.04をインストールした。自宅は通信費節約のため、固定回線を引かず、外出時もそのまま使えるようにUQ WiMAXの回線を契約し、&lt;a href=&quot;http://121ware.com/product/atermstation/product/wimax/wm3500r/&quot; target=&quot;_blank&quot;&gt;Aterm WM3500R&lt;/a&gt;という無線LANルータを使っている。このため、ML110を無線LAN接続する必要がある。&lt;/p&gt;
+   <content type="html">&lt;p&gt;少し前に自宅で色々と検証したりするために、&lt;a href=&quot;http://nttxstore.jp/_II_HP13476513&quot; target=&quot;_blank&quot;&gt;HP ML110 G6&lt;/a&gt;を買い、Ubuntu Server 11.04をインストールした。自宅は通信費節約のため、固定回線を引かず、外出時もそのまま使えるようにUQ WiMAXの回線を契約し、&lt;a href=&quot;http://121ware.com/product/atermstation/product/wimax/wm3500r/&quot; target=&quot;_blank&quot;&gt;Aterm WM3500R&lt;/a&gt;という無線LANルータを使っている。このため、ML110を無線LAN接続する必要がある。&lt;/p&gt;
 
 &lt;p&gt;近くのビックカメラで、安くて小さいUSB無線LANアダプタとしてプラネックスのGW-USNano2-Mを買ってきて、無線LANルータ経由でインターネットに接続するまでのメモ。&lt;/p&gt;
 
@@ -6731,28 +6038,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/shell/history-with-timestamp/"/>
    <updated>2011-11-24T16:05:53-08:00</updated>
    <id>http://b.l0g.jp/shell/history-with-timestamp</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/shell/history-with-timestamp/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;historyに時刻を記録する&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/shell/history-with-timestamp/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/shell/history-with-timestamp/&quot; data-text=&quot;historyに時刻を記録する&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/shell/history-with-timestamp/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;bash 3.0以上(最近のLinuxは大抵3.0以上)を使用している場合は、「HISTTIMEFORMAT」というシェル変数に時刻のフォーマットを入れることで、historyコマンドの実行結果(ファイル)にコマンドだけではなく時刻も記録できる。以下はhistoryコマンドの実行結果の例。&lt;/p&gt;
+   <content type="html">&lt;p&gt;bash 3.0以上(最近のLinuxは大抵3.0以上)を使用している場合は、「HISTTIMEFORMAT」というシェル変数に時刻のフォーマットを入れることで、historyコマンドの実行結果(ファイル)にコマンドだけではなく時刻も記録できる。以下はhistoryコマンドの実行結果の例。&lt;/p&gt;
 
 &lt;p&gt;[text]&lt;/p&gt;
 
@@ -6805,28 +6091,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/uncategorized/carrier-ipaddress/"/>
    <updated>2011-09-30T15:30:40-07:00</updated>
    <id>http://b.l0g.jp/uncategorized/carrier-ipaddress</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/uncategorized/carrier-ipaddress/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;携帯キャリアの使用するIPアドレス帯一覧&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/uncategorized/carrier-ipaddress/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/uncategorized/carrier-ipaddress/&quot; data-text=&quot;携帯キャリアの使用するIPアドレス帯一覧&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/uncategorized/carrier-ipaddress/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;携帯キャリアのIPアドレス帯を調べる機会があったので、メモとして載せておく。ソフトバンクは2011年9月30日からサイトのアドレスが変わっているので注意。&lt;/p&gt;
+   <content type="html">&lt;p&gt;携帯キャリアのIPアドレス帯を調べる機会があったので、メモとして載せておく。ソフトバンクは2011年9月30日からサイトのアドレスが変わっているので注意。&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;auフィーチャーフォン&lt;br /&gt;
@@ -6862,28 +6127,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/linux/beep-centos/"/>
    <updated>2011-08-18T16:59:08-07:00</updated>
    <id>http://b.l0g.jp/linux/beep-centos</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/linux/beep-centos/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;CentOSで各種ビープ音を鳴らさないようにする&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/linux/beep-centos/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/linux/beep-centos/&quot; data-text=&quot;CentOSで各種ビープ音を鳴らさないようにする&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/linux/beep-centos/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;section&quot;&gt;&lt;strong&gt;＜ログイン時＞&lt;/strong&gt;&lt;/h4&gt;
+   <content type="html">&lt;h4 id=&quot;section&quot;&gt;&lt;strong&gt;＜ログイン時＞&lt;/strong&gt;&lt;/h4&gt;
 
 &lt;p&gt;Xを起動するようにしていると(ランレベル5)、ログイン画面表示時にビープ音が鳴る。&lt;/p&gt;
 
@@ -6969,28 +6213,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/shell/bsh-nested-quotation/"/>
    <updated>2011-08-03T14:30:47-07:00</updated>
    <id>http://b.l0g.jp/shell/bsh-nested-quotation</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/shell/bsh-nested-quotation/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;bshでのクォーテーションの入れ子&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/shell/bsh-nested-quotation/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/shell/bsh-nested-quotation/&quot; data-text=&quot;bshでのクォーテーションの入れ子&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/shell/bsh-nested-quotation/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;特殊文字(？など)をそのまま文字として扱いたい場合などに、シングルクォーテーション(‘)やダブルクォーテーション(“)で文字をくくる。&lt;/p&gt;
+   <content type="html">&lt;p&gt;特殊文字(？など)をそのまま文字として扱いたい場合などに、シングルクォーテーション(‘)やダブルクォーテーション(“)で文字をくくる。&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;「”」でくくった文字列は、その中に特殊文字が含まれているならそれを展開する。&lt;/li&gt;
@@ -7060,28 +6283,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/dev/ssh-inside-while/"/>
    <updated>2011-03-18T07:39:57-07:00</updated>
    <id>http://b.l0g.jp/dev/ssh-inside-while</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/dev/ssh-inside-while/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;shのwhileループでファイルを読み、中でsshを実行すると1回しかループしない&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/dev/ssh-inside-while/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/dev/ssh-inside-while/&quot; data-text=&quot;shのwhileループでファイルを読み、中でsshを実行すると1回しかループしない&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/dev/ssh-inside-while/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;シェル(sh)スクリプトネタ。&lt;/p&gt;
+   <content type="html">&lt;p&gt;シェル(sh)スクリプトネタ。&lt;/p&gt;
 
 &lt;p&gt;while 文で以下のように指定すると、行ごとにファイルを読み込むことができる。&lt;/p&gt;
 
@@ -7156,28 +6358,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/dev/mounting-directory-on-directory/"/>
    <updated>2011-02-23T15:42:16-08:00</updated>
    <id>http://b.l0g.jp/dev/mounting-directory-on-directory</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/dev/mounting-directory-on-directory/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;ディレクトリをディレクトリにマウント&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/dev/mounting-directory-on-directory/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/dev/mounting-directory-on-directory/&quot; data-text=&quot;ディレクトリをディレクトリにマウント&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/dev/mounting-directory-on-directory/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Linuxで、ディスクデバイスではなく、ディレクトリをディレクトリにマウントしたい時は&lt;/p&gt;
+   <content type="html">&lt;p&gt;Linuxで、ディスクデバイスではなく、ディレクトリをディレクトリにマウントしたい時は&lt;/p&gt;
 
 &lt;p&gt;[text]&lt;/p&gt;
 
@@ -7214,28 +6395,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/dev/finding-bottleneck-with-sar2/"/>
    <updated>2011-02-21T14:07:48-08:00</updated>
    <id>http://b.l0g.jp/dev/finding-bottleneck-with-sar2</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/dev/finding-bottleneck-with-sar2/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;sarコマンドでシステムのボトルネックを探る(2)&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/dev/finding-bottleneck-with-sar2/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/dev/finding-bottleneck-with-sar2/&quot; data-text=&quot;sarコマンドでシステムのボトルネックを探る(2)&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/dev/finding-bottleneck-with-sar2/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;CPUの処理の状況を調べるためには、sar (sar -u)が有効であることを&lt;a href=&quot;http://b.l0g.jp/dev/finding-bottleneck-with-sar1/&quot; target=&quot;_blank&quot;&gt;前のエントリ&lt;/a&gt;で書いた。次はメモリの使用状況を調べてみる。まず見てみるのは、メモリとスワップの使用状況を示す sar -r の結果である。&lt;/p&gt;
+   <content type="html">&lt;p&gt;CPUの処理の状況を調べるためには、sar (sar -u)が有効であることを&lt;a href=&quot;http://b.l0g.jp/dev/finding-bottleneck-with-sar1/&quot; target=&quot;_blank&quot;&gt;前のエントリ&lt;/a&gt;で書いた。次はメモリの使用状況を調べてみる。まず見てみるのは、メモリとスワップの使用状況を示す sar -r の結果である。&lt;/p&gt;
 
 &lt;p&gt;[text]&lt;/p&gt;
 
@@ -7378,28 +6538,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/dev/finding-bottleneck-with-sar1/"/>
    <updated>2011-02-17T13:59:39-08:00</updated>
    <id>http://b.l0g.jp/dev/finding-bottleneck-with-sar1</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/dev/finding-bottleneck-with-sar1/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;sarコマンドでシステムのボトルネックを探る(1)&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/dev/finding-bottleneck-with-sar1/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/dev/finding-bottleneck-with-sar1/&quot; data-text=&quot;sarコマンドでシステムのボトルネックを探る(1)&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/dev/finding-bottleneck-with-sar1/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://b.l0g.jp/dev/top-loadaverag/&quot; target=&quot;_blank&quot;&gt;前回のエントリ&lt;/a&gt;では、システムのレスポンスが悪化している場合、まずとっかかりとしてtopコマンドを実行し、ロードアベレージを確認する方法を書いた。さらに踏み込んで、何が負荷の原因なのかを探るために、sarコマンドを使う方法について書く。&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;a href=&quot;http://b.l0g.jp/dev/top-loadaverag/&quot; target=&quot;_blank&quot;&gt;前回のエントリ&lt;/a&gt;では、システムのレスポンスが悪化している場合、まずとっかかりとしてtopコマンドを実行し、ロードアベレージを確認する方法を書いた。さらに踏み込んで、何が負荷の原因なのかを探るために、sarコマンドを使う方法について書く。&lt;/p&gt;
 
 &lt;p&gt;sarコマンドをオプションをつけずに実行すると、以下のような出力が得られる。ファイルを指定しないと、コマンドを実行した当日の0:00から直前までの10分おきの情報が表示される。過去の情報は/var/log/saディレクトリ以下に保存されており、「sar -f sa07」などと指定すると、そのファイルに保存された情報が閲覧できる。saの後の数字は日付を表している。&lt;/p&gt;
 
@@ -7520,28 +6659,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/dev/top-loadaverag/"/>
    <updated>2011-02-15T15:58:48-08:00</updated>
    <id>http://b.l0g.jp/dev/top-loadaverag</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/dev/top-loadaverag/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;topコマンドでロードアベレージを見る&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/dev/top-loadaverag/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/dev/top-loadaverag/&quot; data-text=&quot;topコマンドでロードアベレージを見る&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/dev/top-loadaverag/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Linuxにおいて、システムの全体的な負荷状況を知りたい時、リアルタイムの状況を知るにはtopコマンド、ある程度の期間に渡る傾向をつかむにはsar(sysstat)の結果を確認するのが一般的だろう。&lt;/p&gt;
+   <content type="html">&lt;p&gt;Linuxにおいて、システムの全体的な負荷状況を知りたい時、リアルタイムの状況を知るにはtopコマンド、ある程度の期間に渡る傾向をつかむにはsar(sysstat)の結果を確認するのが一般的だろう。&lt;/p&gt;
 
 &lt;p&gt;そのサーバ上で動作するアプリケーションの動作が遅いなどといったパフォーマンス劣化がある時、まず最初に見るべきがロードアベレージの値。これは「CPUの処理を待っているタスクの数」であり、ほとんど何も処理を行っていない時には0になる。&lt;/p&gt;
 
@@ -7614,28 +6732,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/dev/logrotate-changegen/"/>
    <updated>2011-02-14T14:38:25-08:00</updated>
    <id>http://b.l0g.jp/dev/logrotate-changegen</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/dev/logrotate-changegen/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;logrotateのローテート世代数を減らす時の注意&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/dev/logrotate-changegen/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/dev/logrotate-changegen/&quot; data-text=&quot;logrotateのローテート世代数を減らす時の注意&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/dev/logrotate-changegen/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;本当は「山に行きました！」というブログを投稿したいところなのだが、さっぱり行ける雰囲気がないので、腹いせに技術系の投稿を続けてる。&lt;/p&gt;
+   <content type="html">&lt;p&gt;本当は「山に行きました！」というブログを投稿したいところなのだが、さっぱり行ける雰囲気がないので、腹いせに技術系の投稿を続けてる。&lt;/p&gt;
 
 &lt;p&gt;logrotateを使ってログのローテートを行っている状況で、ログファイルの総容量が大きくなり、世代数を減らさざるを得ないときのこと。「rotate 世代数」の指定を減らしても、古い世代数は削除されない。&lt;/p&gt;
 
@@ -7714,28 +6811,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/dev/symfony14onsakuravps/"/>
    <updated>2011-02-13T14:25:12-08:00</updated>
    <id>http://b.l0g.jp/dev/symfony14onsakuravps</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/dev/symfony14onsakuravps/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;さくらVPSのCentOSにsymfony 1.4.xの環境を構築する&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/dev/symfony14onsakuravps/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/dev/symfony14onsakuravps/&quot; data-text=&quot;さくらVPSのCentOSにsymfony 1.4.xの環境を構築する&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/dev/symfony14onsakuravps/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;自分でWebサービスを作ってみようと思い立ってsymfonyを勉強し始めて数ヶ月。&lt;/p&gt;
+   <content type="html">&lt;p&gt;自分でWebサービスを作ってみようと思い立ってsymfonyを勉強し始めて数ヶ月。&lt;/p&gt;
 
 &lt;p&gt;しばらく前の話だが、借りていたサーバの使用期限が終わってしまったので、さくらVPSを契約。そこにsymfony 1.4.x(1.4.8)をインストールするときの手順をまとめておく。特にさくらVPSに特化した内容はないので、普通にCentOS上にsymfony 1.4をインストールする手順と同じのはず。&lt;/p&gt;
 
@@ -8031,28 +7107,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/dev/sphinx-on-centos55/"/>
    <updated>2011-02-11T16:16:24-08:00</updated>
    <id>http://b.l0g.jp/dev/sphinx-on-centos55</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/dev/sphinx-on-centos55/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;CentOS 5.5にsphinxをインストール&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/dev/sphinx-on-centos55/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/dev/sphinx-on-centos55/&quot; data-text=&quot;CentOS 5.5にsphinxをインストール&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/dev/sphinx-on-centos55/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://atnd.org/events/12450&quot; target=&quot;_blank&quot;&gt;2/12のSphinx翻訳ハッカソン&lt;/a&gt;に行ってSymfony2のドキュメントの翻訳をさせていただこうと思っていたら、このところどっぷりはまっている仕事の方で呼び出されることになり、参加できなくなってしまった。予習として手元の環境にSphinxをインストールしたときのメモを残しておく。&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;a href=&quot;http://atnd.org/events/12450&quot; target=&quot;_blank&quot;&gt;2/12のSphinx翻訳ハッカソン&lt;/a&gt;に行ってSymfony2のドキュメントの翻訳をさせていただこうと思っていたら、このところどっぷりはまっている仕事の方で呼び出されることになり、参加できなくなってしまった。予習として手元の環境にSphinxをインストールしたときのメモを残しておく。&lt;/p&gt;
 
 &lt;p&gt;といっても、パッケージ管理ツールを駆使(？)してあっという間。Sphinxのユーザ会のページには、MacOS XとUbuntuへのインストール方法は書いてあるが、CentOSへのインストール方法は書かれていないので、一応メモ。&lt;/p&gt;
 
@@ -8159,28 +7214,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/dev/vjcommentplugin%e3%81%a7%e8%89%b2%e3%80%85%e3%81%af%e3%81%be%e3%82%8b/"/>
    <updated>2010-10-07T11:59:49-07:00</updated>
    <id>http://b.l0g.jp/dev/vjcommentplugin%e3%81%a7%e8%89%b2%e3%80%85%e3%81%af%e3%81%be%e3%82%8b</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/dev/vjcommentplugin%e3%81%a7%e8%89%b2%e3%80%85%e3%81%af%e3%81%be%e3%82%8b/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;vjCommentPluginで色々はまる&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/dev/vjcommentplugin%e3%81%a7%e8%89%b2%e3%80%85%e3%81%af%e3%81%be%e3%82%8b/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/dev/vjcommentplugin%e3%81%a7%e8%89%b2%e3%80%85%e3%81%af%e3%81%be%e3%82%8b/&quot; data-text=&quot;vjCommentPluginで色々はまる&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/dev/vjcommentplugin%e3%81%a7%e8%89%b2%e3%80%85%e3%81%af%e3%81%be%e3%82%8b/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;symfonyでニュースの記事などにコメント欄を付けるプラグインとして、&lt;a href=&quot;http://www.symfony-project.org/plugins/vjCommentPlugin&quot; target=&quot;_blank&quot;&gt;vjCommentPlugin&lt;/a&gt;というのがある。これの設定でちょっとはまったので、メモ。&lt;/p&gt;
+   <content type="html">&lt;p&gt;symfonyでニュースの記事などにコメント欄を付けるプラグインとして、&lt;a href=&quot;http://www.symfony-project.org/plugins/vjCommentPlugin&quot; target=&quot;_blank&quot;&gt;vjCommentPlugin&lt;/a&gt;というのがある。これの設定でちょっとはまったので、メモ。&lt;/p&gt;
 
 &lt;p&gt;インストールや設定はReadmeに書いてある通りで、簡単。ログインしないとコメントできないようにするため、sfGuardPluginと連携させる機能が追加されているのだが、これが癖者。この機能を使うときには、app.ymlに以下の表記を追記する。&lt;/p&gt;
 
@@ -8225,28 +7259,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/dev/subversion%e3%83%aa%e3%83%9d%e3%82%b8%e3%83%88%e3%83%aa%e3%81%b8%e3%82%b3%e3%83%9f%e3%83%83%e3%83%88%e3%81%99%e3%82%8b%e3%81%a8%e3%81%8d%e3%81%ae405%e3%82%a8%e3%83%a9%e3%83%bc/"/>
    <updated>2010-09-30T04:19:28-07:00</updated>
    <id>http://b.l0g.jp/dev/subversion%e3%83%aa%e3%83%9d%e3%82%b8%e3%83%88%e3%83%aa%e3%81%b8%e3%82%b3%e3%83%9f%e3%83%83%e3%83%88%e3%81%99%e3%82%8b%e3%81%a8%e3%81%8d%e3%81%ae405%e3%82%a8%e3%83%a9%e3%83%bc</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/dev/subversion%e3%83%aa%e3%83%9d%e3%82%b8%e3%83%88%e3%83%aa%e3%81%b8%e3%82%b3%e3%83%9f%e3%83%83%e3%83%88%e3%81%99%e3%82%8b%e3%81%a8%e3%81%8d%e3%81%ae405%e3%82%a8%e3%83%a9%e3%83%bc/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;Subversionリポジトリへコミットするときの405エラー&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/dev/subversion%e3%83%aa%e3%83%9d%e3%82%b8%e3%83%88%e3%83%aa%e3%81%b8%e3%82%b3%e3%83%9f%e3%83%83%e3%83%88%e3%81%99%e3%82%8b%e3%81%a8%e3%81%8d%e3%81%ae405%e3%82%a8%e3%83%a9%e3%83%bc/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/dev/subversion%e3%83%aa%e3%83%9d%e3%82%b8%e3%83%88%e3%83%aa%e3%81%b8%e3%82%b3%e3%83%9f%e3%83%83%e3%83%88%e3%81%99%e3%82%8b%e3%81%a8%e3%81%8d%e3%81%ae405%e3%82%a8%e3%83%a9%e3%83%bc/&quot; data-text=&quot;Subversionリポジトリへコミットするときの405エラー&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/dev/subversion%e3%83%aa%e3%83%9d%e3%82%b8%e3%83%88%e3%83%aa%e3%81%b8%e3%82%b3%e3%83%9f%e3%83%83%e3%83%88%e3%81%99%e3%82%8b%e3%81%a8%e3%81%8d%e3%81%ae405%e3%82%a8%e3%83%a9%e3%83%bc/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Subversionリポジトリへうまくコミットできないときがたまにあるので、メモ。&lt;/p&gt;
+   <content type="html">&lt;p&gt;Subversionリポジトリへうまくコミットできないときがたまにあるので、メモ。&lt;/p&gt;
 
 &lt;div&gt;
 &lt;/div&gt;
@@ -8321,28 +7334,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/uncategorized/windows-live-photo-gallery/"/>
    <updated>2010-09-05T18:18:59-07:00</updated>
    <id>http://b.l0g.jp/uncategorized/windows-live-photo-gallery</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/uncategorized/windows-live-photo-gallery/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;Windows付属のツールで簡単にパノラマ写真が作れる&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/uncategorized/windows-live-photo-gallery/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/uncategorized/windows-live-photo-gallery/&quot; data-text=&quot;Windows付属のツールで簡単にパノラマ写真が作れる&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/uncategorized/windows-live-photo-gallery/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;何だか広告みたいなタイトルになってしまったが、なかなかすごい機能だと思ったのでご紹介。&lt;/p&gt;
+   <content type="html">&lt;p&gt;何だか広告みたいなタイトルになってしまったが、なかなかすごい機能だと思ったのでご紹介。&lt;/p&gt;
 
 &lt;p&gt;最近、Windows 7がインストールされたノートパソコン(Panasonic Let’s note S9)を衝動買いしてしまった。これには、Windows Liveフォトギャラリーというソフトが付属しており、デジカメで撮った写真などを管理することができる。SDカードからそのまま写真を取り込めるので、このソフトをそのまま使っている。別にPanasonicのPCにだけ付属しているソフトではなく、Windows 7には必ずインストールされているはず。&lt;/p&gt;
 
@@ -8391,28 +7383,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/dev/symfony%e3%81%a7%e3%83%87%e3%83%bc%e3%82%bf%e3%82%92mysql%e3%81%ab%e3%83%ad%e3%83%bc%e3%83%89%e3%81%99%e3%82%8b%e9%9a%9b%e3%81%aeduplicate-entry%e3%82%a8%e3%83%a9%e3%83%bc/"/>
    <updated>2010-08-05T02:47:49-07:00</updated>
    <id>http://b.l0g.jp/dev/symfony%e3%81%a7%e3%83%87%e3%83%bc%e3%82%bf%e3%82%92mysql%e3%81%ab%e3%83%ad%e3%83%bc%e3%83%89%e3%81%99%e3%82%8b%e9%9a%9b%e3%81%aeduplicate-entry%e3%82%a8%e3%83%a9%e3%83%bc</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/dev/symfony%e3%81%a7%e3%83%87%e3%83%bc%e3%82%bf%e3%82%92mysql%e3%81%ab%e3%83%ad%e3%83%bc%e3%83%89%e3%81%99%e3%82%8b%e9%9a%9b%e3%81%aeduplicate-entry%e3%82%a8%e3%83%a9%e3%83%bc/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;symfonyでデータをMySQLにロードする際のduplicate entryエラー&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/dev/symfony%e3%81%a7%e3%83%87%e3%83%bc%e3%82%bf%e3%82%92mysql%e3%81%ab%e3%83%ad%e3%83%bc%e3%83%89%e3%81%99%e3%82%8b%e9%9a%9b%e3%81%aeduplicate-entry%e3%82%a8%e3%83%a9%e3%83%bc/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/dev/symfony%e3%81%a7%e3%83%87%e3%83%bc%e3%82%bf%e3%82%92mysql%e3%81%ab%e3%83%ad%e3%83%bc%e3%83%89%e3%81%99%e3%82%8b%e9%9a%9b%e3%81%aeduplicate-entry%e3%82%a8%e3%83%a9%e3%83%bc/&quot; data-text=&quot;symfonyでデータをMySQLにロードする際のduplicate entryエラー&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/dev/symfony%e3%81%a7%e3%83%87%e3%83%bc%e3%82%bf%e3%82%92mysql%e3%81%ab%e3%83%ad%e3%83%bc%e3%83%89%e3%81%99%e3%82%8b%e9%9a%9b%e3%81%aeduplicate-entry%e3%82%a8%e3%83%a9%e3%83%bc/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;symfony 1.4.6 + XAMPP 1.7.3(Windows)で、ありがちなエラーではまったので、メモ。&lt;/p&gt;
+   <content type="html">&lt;p&gt;symfony 1.4.6 + XAMPP 1.7.3(Windows)で、ありがちなエラーではまったので、メモ。&lt;/p&gt;
 
 &lt;div id=&quot;_mcePaste&quot;&gt;
   symfonyのschema.ymlとfixture.ymlを記述して、
@@ -8647,28 +7618,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/reading/confessions-of-self-made-millionaires/"/>
    <updated>2010-07-16T16:52:50-07:00</updated>
    <id>http://b.l0g.jp/reading/confessions-of-self-made-millionaires</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/reading/confessions-of-self-made-millionaires/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;成功者の告白&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/reading/confessions-of-self-made-millionaires/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/reading/confessions-of-self-made-millionaires/&quot; data-text=&quot;成功者の告白&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/reading/confessions-of-self-made-millionaires/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;「5年間の起業ノウハウを3時間で学べる物語」と副題が付いているが、起業そのもの(事業を興すこと)ではなく、起業した後、事業が安定するまでの間にその企業が陥りやすい問題点を、小説形式で紹介している。巷では、日本では起業が少ないとか、起業しようとかするなとか、色々な話が流れているが、起業した後どうしたらいいのかという点について書かれた本は少ないように思う(実際自分がそういうステージに達していないから気づかないだけかもしれないが)。&lt;/p&gt;
+   <content type="html">&lt;p&gt;「5年間の起業ノウハウを3時間で学べる物語」と副題が付いているが、起業そのもの(事業を興すこと)ではなく、起業した後、事業が安定するまでの間にその企業が陥りやすい問題点を、小説形式で紹介している。巷では、日本では起業が少ないとか、起業しようとかするなとか、色々な話が流れているが、起業した後どうしたらいいのかという点について書かれた本は少ないように思う(実際自分がそういうステージに達していないから気づかないだけかもしれないが)。&lt;/p&gt;
 
 &lt;p&gt;特にこの本では、直接にビジネスに関係することというより、人間関係を中心に、しかも会社内だけに限らず人生の中で起業がどういう影響を及ぼしていくのかについて言及しており、なかなか面白い。内容は、エピローグにまとめてあるとおり。&lt;/p&gt;
 
@@ -8694,28 +7644,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/android/mytracksintro/"/>
    <updated>2010-07-06T17:42:17-07:00</updated>
    <id>http://b.l0g.jp/android/mytracksintro</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/android/mytracksintro/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;登山記録に使えるGPSアプリ My Tracks&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/android/mytracksintro/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/android/mytracksintro/&quot; data-text=&quot;登山記録に使えるGPSアプリ My Tracks&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/android/mytracksintro/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;自分がAndroid携帯(Sony ErricsonのXperia)を買ったのは、スマートフォンならではの自由度の高さ(画面の大きさやセンサーの多さなど)を活かしたアプリケーションを、自分で作って使ってみたいと思ったことがきっかけである。スマートフォンといえばiPhoneじゃない？という人が多いと思うが、登山によく行く自分にとって、少なくとも現時点ではドコモとauと比較するとかなり電波状況の悪いソフトバンクテレコムに乗り換えるという選択肢はどうしても取れなかった。また、iPhoneアプリを作るには、まずMacを買わなければならないというのも、Android携帯を選んだ理由である。現時点で、良好な電波状況と端末の完成度の両方を満たす端末は、Xperia以外にないといえる(auのIS01もありという人もいるかもしれないが)。と思っているのだが、なぜか自分の登山仲間のスマフォ持ちはiPhoneばっかり。へっ！iPhoneなんてソフバンで電波届かないから、どうせ山に登って「山頂なう！」ってつぶやきもできないくせに！(笑)&lt;/p&gt;
+   <content type="html">&lt;p&gt;自分がAndroid携帯(Sony ErricsonのXperia)を買ったのは、スマートフォンならではの自由度の高さ(画面の大きさやセンサーの多さなど)を活かしたアプリケーションを、自分で作って使ってみたいと思ったことがきっかけである。スマートフォンといえばiPhoneじゃない？という人が多いと思うが、登山によく行く自分にとって、少なくとも現時点ではドコモとauと比較するとかなり電波状況の悪いソフトバンクテレコムに乗り換えるという選択肢はどうしても取れなかった。また、iPhoneアプリを作るには、まずMacを買わなければならないというのも、Android携帯を選んだ理由である。現時点で、良好な電波状況と端末の完成度の両方を満たす端末は、Xperia以外にないといえる(auのIS01もありという人もいるかもしれないが)。と思っているのだが、なぜか自分の登山仲間のスマフォ持ちはiPhoneばっかり。へっ！iPhoneなんてソフバンで電波届かないから、どうせ山に登って「山頂なう！」ってつぶやきもできないくせに！(笑)&lt;/p&gt;
 
 &lt;p&gt;具体的に作ってみたかったアプリとしては、登山道を歩きながらGPSデータを保存してくれる、GPSロガーである。ところが、Xperiaを入手してあれこれと初歩的なアプリを作っているうちに、My Trackというアプリを見つけた。&lt;/p&gt;
 
@@ -8756,28 +7685,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/misc/repairing-compo/"/>
    <updated>2010-06-06T17:29:29-07:00</updated>
    <id>http://b.l0g.jp/misc/repairing-compo</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/misc/repairing-compo/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;コンポの修理&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/misc/repairing-compo/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/misc/repairing-compo/&quot; data-text=&quot;コンポの修理&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/misc/repairing-compo/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;ケンウッドのVH7PCというコンポを使っている。いつ買ったのか正確なところは覚えていないが、学生時代であることは間違いないので、おそらく10年ぐらいは使っているだろう。当時、SOTECというPCメーカーがPCとセットで大々的に売り出したものの、あまりの販売不振に価格を劇的に下げて売りさばいたもので、知る人ぞ知る、というモデルだろう。&lt;/p&gt;
+   <content type="html">&lt;p&gt;ケンウッドのVH7PCというコンポを使っている。いつ買ったのか正確なところは覚えていないが、学生時代であることは間違いないので、おそらく10年ぐらいは使っているだろう。当時、SOTECというPCメーカーがPCとセットで大々的に売り出したものの、あまりの販売不振に価格を劇的に下げて売りさばいたもので、知る人ぞ知る、というモデルだろう。&lt;/p&gt;
 
 &lt;p&gt;さすがに10年にもなるとガタが来て、ウリだったUSBでPCに接続すると音源として使えるという機能も、うまく動かなくなってしまった。ただ、それ以外の機能は問題なく、音質も一人暮らしのアパートでそれほど音量を上げずに聞くには十分である。しかし、最近は右側のスピーカーから音が出ないことが多くなり、どうしたものかと考えていた。&lt;/p&gt;
 
@@ -8800,28 +7708,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/android/xperia-supports-multitouch/"/>
    <updated>2010-04-17T12:46:44-07:00</updated>
    <id>http://b.l0g.jp/android/xperia-supports-multitouch</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/android/xperia-supports-multitouch/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;XperiaもAndroid 2.1でマルチタッチ対応に&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/android/xperia-supports-multitouch/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/android/xperia-supports-multitouch/&quot; data-text=&quot;XperiaもAndroid 2.1でマルチタッチ対応に&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/android/xperia-supports-multitouch/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;日本のソニー・エリクソンの人は明言していないが、海外のメディアではXperiaは将来的にAndroid 2.1に対応するという報道が以前からなされていた。しかし、ハードウェア的にマルチタッチに対応していないため、2.1の目玉機能を活かせないままになるという情報が流れていた。&lt;/p&gt;
+   <content type="html">&lt;p&gt;日本のソニー・エリクソンの人は明言していないが、海外のメディアではXperiaは将来的にAndroid 2.1に対応するという報道が以前からなされていた。しかし、ハードウェア的にマルチタッチに対応していないため、2.1の目玉機能を活かせないままになるという情報が流れていた。&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://www.androidcentral.com/sony-ericsson-xperia-x10-will-never-get-multitouch-hardware-not-capable&quot;&gt;Android Central&lt;/a&gt;&lt;/p&gt;
 
@@ -8846,28 +7733,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/misc/wimax-bad-qos/"/>
    <updated>2010-03-29T18:33:54-07:00</updated>
    <id>http://b.l0g.jp/misc/wimax-bad-qos</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/misc/wimax-bad-qos/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;WiMAXの通信状況が悪い&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/misc/wimax-bad-qos/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/misc/wimax-bad-qos/&quot; data-text=&quot;WiMAXの通信状況が悪い&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/misc/wimax-bad-qos/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;最も通信費に金を使っていた時は、&lt;/p&gt;
+   <content type="html">&lt;p&gt;最も通信費に金を使っていた時は、&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Bフレッツ マンションタイプ&lt;/li&gt;
@@ -8893,28 +7759,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/android/android-workshop/"/>
    <updated>2010-03-28T16:21:28-07:00</updated>
    <id>http://b.l0g.jp/android/android-workshop</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/android/android-workshop/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;Android勉強会に行ってみた&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/android/android-workshop/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/android/android-workshop/&quot; data-text=&quot;Android勉強会に行ってみた&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/android/android-workshop/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;正月に立てた今年の目標の中でも、3月までに実現する目標として、以下の4点を挙げた。&lt;/p&gt;
+   <content type="html">&lt;p&gt;正月に立てた今年の目標の中でも、3月までに実現する目標として、以下の4点を挙げた。&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;MCITP-SA取得&lt;/li&gt;
@@ -8942,28 +7787,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/misc/english-workshop/"/>
    <updated>2010-03-23T17:24:09-07:00</updated>
    <id>http://b.l0g.jp/misc/english-workshop</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/misc/english-workshop/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;英語勉強会なるものに行ってみた&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/misc/english-workshop/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/misc/english-workshop/&quot; data-text=&quot;英語勉強会なるものに行ってみた&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/misc/english-workshop/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;大学に通い始めてから、英語の勉強は一旦ほったらかし状態になってしまった。卒業を控え、英語にももう一度取り組んでみようかと思っていたが、英会話学校は効果は高いが価格も高いし、独学といっても具体的な目標があったり直近で使う予定があるわけでもないのでなかなか難しいか、などと考えて結局具体的になにもせずという日が続いていた。ある時ネットで「英語 勉強会」などと入力して検索してみたら、よさげな勉強会があったので申し込んでみた。&lt;/p&gt;
+   <content type="html">&lt;p&gt;大学に通い始めてから、英語の勉強は一旦ほったらかし状態になってしまった。卒業を控え、英語にももう一度取り組んでみようかと思っていたが、英会話学校は効果は高いが価格も高いし、独学といっても具体的な目標があったり直近で使う予定があるわけでもないのでなかなか難しいか、などと考えて結局具体的になにもせずという日が続いていた。ある時ネットで「英語 勉強会」などと入力して検索してみたら、よさげな勉強会があったので申し込んでみた。&lt;/p&gt;
 
 &lt;p&gt;「中級」と銘打ち、TOEIC800点台ぐらいをターゲットにしている勉強会とのことだったが、参加している人は海外経験があったり、仕事でそれなりに英語を使うというバックグラウンドを持った人ばかりで、レベルは高かった。自分は数年前からずっと「TOEICではそこそこの点を取れるが、しゃべりになるとたどたどしく、単語が出ずにつまずくことがよくある」というレベルを抜け出せていないので、正直厳しかったと言える。やはり自分の場合は、口に出して英語を発音する機会が絶対的に少ない。読むことに関して言えば、英字新聞を買ってみたり、海外のウェブサイトを見たりして、何か1日1本ぐらいは読んでいる。しかし、英語のフレーズを口に出すことはまずないと言っていい。会話の機会がないなら、シャドウイングや音読を繰り返し、慣れておかないと、いわゆる日常会話レベルもままならない。自分の英語力、特に会話力のなさを再認識するとともに、他の能力に比べて話すことは慣れを要求するものだということが分かった。&lt;/p&gt;
 
@@ -8978,28 +7802,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/android/xperia-release/"/>
    <updated>2010-03-18T15:25:16-07:00</updated>
    <id>http://b.l0g.jp/android/xperia-release</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/android/xperia-release/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;Xperiaは4月1日発売&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/android/xperia-release/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/android/xperia-release/&quot; data-text=&quot;Xperiaは4月1日発売&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/android/xperia-release/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;4月発売と言いつつ3月半ばになってもなかなか発売日が公にならなかったXperiaだが、今日やっと4月1日発売と発表された。なぜこんなにもったいぶってぎりぎりまで発表しなかったのか謎だが、こういうものなのだろうか。携帯電話の発売に注目したのは初めてなので、よく分からない。明日18日から、CMの放映とドコモショップでの予約が始まるという。&lt;/p&gt;
+   <content type="html">&lt;p&gt;4月発売と言いつつ3月半ばになってもなかなか発売日が公にならなかったXperiaだが、今日やっと4月1日発売と発表された。なぜこんなにもったいぶってぎりぎりまで発表しなかったのか謎だが、こういうものなのだろうか。携帯電話の発売に注目したのは初めてなので、よく分からない。明日18日から、CMの放映とドコモショップでの予約が始まるという。&lt;/p&gt;
 
 &lt;p&gt;4月1日の発売日には、Androidアプリケーションの配信サービス「ドコモマーケット」も始まるが、同日に、パケホーダイの料金体系変更もあるらしい。これまでスマートフォン向けのパケット料金定額サービスは「Bizパケホーダイ」で、それ以外がパケホーダイ(定額)かパケホーダイダブル(二段階定額)だった。4月1日からはパケホーダイダブルがBizパケホーダイと統合されるそうで。つまり、現在パケホーダイダブルを契約している人は、Xperiaを買ってもそのままパケット料金定額だが、そうでない人は定額ではなくなってしまう。パケホーダイの料金は月初に発生するので、プランの変更手続きを4月に入ってから行うと、パケホーダイとパケホーダイダブルの両方の料金が請求されてしまう。なるほど、Xperiaの予約をした時に案内員が「パケホーダイダブルかどうか必ず確認し、未契約なら必ず今月中に手続きして」と言っていたのはそういうことだったのか。&lt;/p&gt;
 
@@ -9016,28 +7819,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/misc/place-for-studying/"/>
    <updated>2010-03-12T15:45:55-08:00</updated>
    <id>http://b.l0g.jp/misc/place-for-studying</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/misc/place-for-studying/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;勉強場所&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/misc/place-for-studying/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/misc/place-for-studying/&quot; data-text=&quot;勉強場所&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/misc/place-for-studying/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;居心地のいい場所にしようと努力しているわけでもないのだが、自分の部屋にいると気持ちが緩んでリラックスできる。むしろしてしまう。これは、一念発起してなにか勉強をしようと思っても、自分の部屋だとどうしても気が緩んで集中できない、ということにつながる。人それぞれだろうが、自分の場合、自分の部屋だと読書(小説などではなくもうちょっと堅い本)や勉強に類することがはかどるのはまれなことである。すると、なにか集中しなくてはならないことがある時には、外に出ざるを得ない。ところがこれがなかなかちょうどいい場所というのがないものだ。&lt;/p&gt;
+   <content type="html">&lt;p&gt;居心地のいい場所にしようと努力しているわけでもないのだが、自分の部屋にいると気持ちが緩んでリラックスできる。むしろしてしまう。これは、一念発起してなにか勉強をしようと思っても、自分の部屋だとどうしても気が緩んで集中できない、ということにつながる。人それぞれだろうが、自分の場合、自分の部屋だと読書(小説などではなくもうちょっと堅い本)や勉強に類することがはかどるのはまれなことである。すると、なにか集中しなくてはならないことがある時には、外に出ざるを得ない。ところがこれがなかなかちょうどいい場所というのがないものだ。&lt;/p&gt;
 
 &lt;p&gt;カフェやファーストフード店のような所だと、混んでいるのでなければ長居しても追い出されることは少なく、飲み物も飲めるのでなかなかよいと言えばよい。欠点は、何回かに1回は必ずやたらとうるさい客がいて、全く集中できないことがあるという点だ。無視すればいいのだが、妙に大声で話していたり、高校生ぐらいのあんちゃんがゲラゲラ笑っていたり、虚空に向かって何かを罵っているおばさんがいたりして、どうしようもないことがある。特にマクドナルドのように商品の単価が安いところはこういう事が多い。&lt;/p&gt;
 
@@ -9058,28 +7840,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/android/xperia-x10/"/>
    <updated>2010-03-11T14:36:17-08:00</updated>
    <id>http://b.l0g.jp/android/xperia-x10</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/android/xperia-x10/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;Xperia X10予約&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/android/xperia-x10/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/android/xperia-x10/&quot; data-text=&quot;Xperia X10予約&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/android/xperia-x10/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;ソニー・エリクソンから4月に発売される予定のAndroid携帯、&lt;a title=&quot;ソニー・エリクソン Xperia&quot; href=&quot;http://www.sonyericsson.co.jp/product/docomo/so-01b/&quot; target=&quot;_blank&quot;&gt;Xperia X10&lt;/a&gt;を予約してしまった。別にガジェット好きというわけではないのだが、なんだか今回はビビっと来るものがあって、&lt;a title=&quot;Eclipse + ADTインストール&quot; href=&quot;http://b.l0g.jp/dev/eclipse-adt/&quot; target=&quot;_blank&quot;&gt;Android SDKをセットアップ&lt;/a&gt;してアプリ制作に取り掛かると共に、修理が終わったカメラを取りに行くついでに店頭で予約した。&lt;/p&gt;
+   <content type="html">&lt;p&gt;ソニー・エリクソンから4月に発売される予定のAndroid携帯、&lt;a title=&quot;ソニー・エリクソン Xperia&quot; href=&quot;http://www.sonyericsson.co.jp/product/docomo/so-01b/&quot; target=&quot;_blank&quot;&gt;Xperia X10&lt;/a&gt;を予約してしまった。別にガジェット好きというわけではないのだが、なんだか今回はビビっと来るものがあって、&lt;a title=&quot;Eclipse + ADTインストール&quot; href=&quot;http://b.l0g.jp/dev/eclipse-adt/&quot; target=&quot;_blank&quot;&gt;Android SDKをセットアップ&lt;/a&gt;してアプリ制作に取り掛かると共に、修理が終わったカメラを取りに行くついでに店頭で予約した。&lt;/p&gt;
 
 &lt;p&gt;4月発売という割には、3月半ばにさしかかろうという現時点でも発売日未定、価格も未定という状態で、店頭では「よろしければご説明いたします」と説明員が寄ってくるものの、一番聞きたいところが聞けないというもどかしい感じだった。にもかかわらず予約しちゃってるが。発売日については全く情報なし、価格については恐らく2万円台後半から3万円程度で、他のドコモの端末よりは安めだと思われる、とのことだった。&lt;/p&gt;
 
@@ -9098,28 +7859,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/reading/books-20100307/"/>
    <updated>2010-03-07T15:50:17-08:00</updated>
    <id>http://b.l0g.jp/reading/books-20100307</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/reading/books-20100307/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;読んだ本20100307&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/reading/books-20100307/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/reading/books-20100307/&quot; data-text=&quot;読んだ本20100307&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/reading/books-20100307/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;通信制大学の方が落ち着いたら、資格の勉強を本格的に始めようと思っていたのだが、どうしてもお勉強らしいお勉強より、それ以外の本へ手が伸びてしまう。しかも、このところAmazonでどか買い(一度に1万円ぐらい)するようになったので、積ん読本が増えて変に「読まなきゃ」みたいな気持ちになってしまっている。いいのか悪いのか分からない状態である。&lt;/p&gt;
+   <content type="html">&lt;p&gt;通信制大学の方が落ち着いたら、資格の勉強を本格的に始めようと思っていたのだが、どうしてもお勉強らしいお勉強より、それ以外の本へ手が伸びてしまう。しかも、このところAmazonでどか買い(一度に1万円ぐらい)するようになったので、積ん読本が増えて変に「読まなきゃ」みたいな気持ちになってしまっている。いいのか悪いのか分からない状態である。&lt;/p&gt;
 
 &lt;p&gt;前から読んでみたいと思っていたがなかなか買わずにいたら、ブックオフで100円で売られているのを見つけたので買った。昔のベストセラーはこのパターンで手に入れるとよい。&lt;/p&gt;
 
@@ -9152,28 +7892,7 @@ exit ${RET}
    <link href="http://b.l0g.jp/android/eclipse-adt/"/>
    <updated>2010-03-06T06:54:05-08:00</updated>
    <id>http://b.l0g.jp/android/eclipse-adt</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/android/eclipse-adt/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;Eclipse + ADTインストール&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/android/eclipse-adt/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/android/eclipse-adt/&quot; data-text=&quot;Eclipse + ADTインストール&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/android/eclipse-adt/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Javaを復習し始めると、ただ勉強するだけではなくてそれを形にしたくなってくる。さて、この頃トレンドのJavaを使った技術といえば、Google App Engineをプラットフォームに使ったWebアプリケーションか、それともAndroidかな？(どっちもGoogleだ)と考えていたところ、ソニー・エリクソンがXperiaというAndroid携帯を4月に出すということで、それを買うついでにAndroidアプリも作ってみようと思った、という至極短絡的な考え方で、Android SDKをインストールしてみた。もともとiPhoneが出た頃から、スマートフォンは欲しかったのだが、ソフトバンクに乗り換えたくなくてどうしようか迷っていたので、まあちょうどよい。&lt;/p&gt;
+   <content type="html">&lt;p&gt;Javaを復習し始めると、ただ勉強するだけではなくてそれを形にしたくなってくる。さて、この頃トレンドのJavaを使った技術といえば、Google App Engineをプラットフォームに使ったWebアプリケーションか、それともAndroidかな？(どっちもGoogleだ)と考えていたところ、ソニー・エリクソンがXperiaというAndroid携帯を4月に出すということで、それを買うついでにAndroidアプリも作ってみようと思った、という至極短絡的な考え方で、Android SDKをインストールしてみた。もともとiPhoneが出た頃から、スマートフォンは欲しかったのだが、ソフトバンクに乗り換えたくなくてどうしようか迷っていたので、まあちょうどよい。&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;Eclipseをダウンロードする。本家から国際化版をダウンロードしてきてLanguage Packをインストールしてもよいが、日本語化を進めるMergeDocというプロジェクトが、Pleiades All in One日本語化ディストリビューションというのを提供しており、これをインストールするのが楽そうなので、使ってみた。 &lt;/li&gt;
@@ -9198,28 +7917,7 @@ Eclipse 3.5.2 GalileoのUltimate(JREあり)をダウンロードし、展開す�
    <link href="http://b.l0g.jp/misc/tv-comesback/"/>
    <updated>2010-03-03T18:06:41-08:00</updated>
    <id>http://b.l0g.jp/misc/tv-comesback</id>
-   <content type="html">&lt;div class=&quot;wp_social_bookmarking_light&quot;&gt;
-  &lt;div class=&quot;wsbl_hatena_button&quot;&gt;
-    &lt;a href=&quot;http://b.hatena.ne.jp/entry/http://b.l0g.jp/misc/tv-comesback/&quot; class=&quot;hatena-bookmark-button&quot; data-hatena-bookmark-title=&quot;テレビを復活させてみた&quot; data-hatena-bookmark-layout=&quot;standard&quot; title=&quot;このエントリーをはてなブックマークに追加&quot;&gt; &lt;img src=&quot;//b.hatena.ne.jp/images/entry-button/button-only@2x.png&quot; alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot; style=&quot;border: none;&quot; /&gt;&lt;/a&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_facebook_like&quot;&gt;
-    &lt;div id=&quot;fb-root&quot;&gt;
-    &lt;/div&gt;&lt;fb:like href=&quot;http://b.l0g.jp/misc/tv-comesback/&quot; layout=&quot;button_count&quot; action=&quot;like&quot; width=&quot;100&quot; share=&quot;false&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_twitter&quot;&gt;
-    &amp;lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot;{count} data-url=&quot;http://b.l0g.jp/misc/tv-comesback/&quot; data-text=&quot;テレビを復活させてみた&quot; data-via=&quot;dblmkt &quot; data-lang=&quot;ja&quot;&amp;gt;Tweet
-  &lt;/div&gt;
-  
-  &lt;div class=&quot;wsbl_google_plus_one&quot;&gt;
-    &lt;g:plusone size=&quot;medium&quot; annotation=&quot;none&quot; href=&quot;http://b.l0g.jp/misc/tv-comesback/&quot;&gt;&lt;/g:plusone&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br class=&quot;wp_social_bookmarking_light_clear&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;今の部屋に引越してきてから、丸一年が経った。引越しの作業中、なんとなくテレビ出さなかったらどうなるだろうと気になったところから始まり、テレビなし生活も1年になった。これまたなんとなく、テレビ出そうかなと思ったので、テレビを出してみた。テレビと言っても、ディスプレイが狭い部屋に2つあるというのを避けたかったので、チューナー(もちろんアナログ)付きアップスキャンコンバータである。&lt;/p&gt;
+   <content type="html">&lt;p&gt;今の部屋に引越してきてから、丸一年が経った。引越しの作業中、なんとなくテレビ出さなかったらどうなるだろうと気になったところから始まり、テレビなし生活も1年になった。これまたなんとなく、テレビ出そうかなと思ったので、テレビを出してみた。テレビと言っても、ディスプレイが狭い部屋に2つあるというのを避けたかったので、チューナー(もちろんアナログ)付きアップスキャンコンバータである。&lt;/p&gt;
 
 &lt;p&gt;出すまでは、テレビがあるとなんとはなしに見てしまうので、無駄な時間が増えるのではと思った。しかし、1年間のテレビなし生活でテレビを見なくても何とも思わなくなったのか、意外にテレビをボーっと見て時間を浪費してしまうということはない。朝も、時間がないこともあるが、あれほど毎日欠かさず見ていためざましテレビを見ようとも思わない。引っ越した頃、テレビがないと一人暮らしの寂しさを無性に感じる時があって、出そうかどうしようかかなり迷った事もあったのが嘘のようだ。&lt;/p&gt;
 

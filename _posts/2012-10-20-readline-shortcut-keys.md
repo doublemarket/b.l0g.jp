@@ -9,26 +9,6 @@ permalink: /shell/readline-shortcut-keys/
 categories:
   - シェル
 ---
-<div class='wp_social_bookmarking_light'>
-  <div class="wsbl_hatena_button">
-    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/shell/readline-shortcut-keys/" class="hatena-bookmark-button" data-hatena-bookmark-title="readlineのショートカットまとめ" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
-  </div>
-  
-  <div class="wsbl_facebook_like">
-    <div id="fb-root">
-    </div><fb:like href="http://b.l0g.jp/shell/readline-shortcut-keys/" layout="button_count" action="like" width="100" share="false" show_faces="false" ></fb:like>
-  </div>
-  
-  <div class="wsbl_twitter">
-    <a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/shell/readline-shortcut-keys/" data-text="readlineのショートカットまとめ" data-via="dblmkt " data-lang="ja">Tweet</a>
-  </div>
-  
-  <div class="wsbl_google_plus_one">
-    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/shell/readline-shortcut-keys/" ></g:plusone>
-  </div>
-</div>
-
-<br class='wp_social_bookmarking_light_clear' />
 
 [<img src="http://b.l0g.jp/wp-content/uploads/2012/10/gnu-head-sm.jpg" alt="" title="gnu-head-sm" width="129" height="122" class="alignleft size-full wp-image-1310" style="border: 0px; margin-left: 8px; margin-right: 8px;" />](http://tiswww.case.edu/php/chet/readline/rltop.html)
 

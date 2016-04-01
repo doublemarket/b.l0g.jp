@@ -40,28 +40,7 @@
 
     <time datetime="2011-02-21T14:07:48-08:00" class="post-date">21 Feb 2011</time>
 
-    <div class="wp_social_bookmarking_light">
-  <div class="wsbl_hatena_button">
-    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/dev/finding-bottleneck-with-sar2/" class="hatena-bookmark-button" data-hatena-bookmark-title="sarコマンドでシステムのボトルネックを探る(2)" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
-  </div>
-  
-  <div class="wsbl_facebook_like">
-    <div id="fb-root">
-    </div><fb:like href="http://b.l0g.jp/dev/finding-bottleneck-with-sar2/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
-  </div>
-  
-  <div class="wsbl_twitter">
-    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/dev/finding-bottleneck-with-sar2/" data-text="sarコマンドでシステムのボトルネックを探る(2)" data-via="dblmkt " data-lang="ja"&gt;Tweet
-  </div>
-  
-  <div class="wsbl_google_plus_one">
-    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/dev/finding-bottleneck-with-sar2/"></g:plusone>
-  </div>
-</div>
-
-<p><br class="wp_social_bookmarking_light_clear" /></p>
-
-<p>CPUの処理の状況を調べるためには、sar (sar -u)が有効であることを<a href="http://b.l0g.jp/dev/finding-bottleneck-with-sar1/" target="_blank">前のエントリ</a>で書いた。次はメモリの使用状況を調べてみる。まず見てみるのは、メモリとスワップの使用状況を示す sar -r の結果である。</p>
+    <p>CPUの処理の状況を調べるためには、sar (sar -u)が有効であることを<a href="http://b.l0g.jp/dev/finding-bottleneck-with-sar1/" target="_blank">前のエントリ</a>で書いた。次はメモリの使用状況を調べてみる。まず見てみるのは、メモリとスワップの使用状況を示す sar -r の結果である。</p>
 
 <p>[text]</p>
 
@@ -208,28 +187,7 @@
 
     <time datetime="2011-02-17T13:59:39-08:00" class="post-date">17 Feb 2011</time>
 
-    <div class="wp_social_bookmarking_light">
-  <div class="wsbl_hatena_button">
-    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/dev/finding-bottleneck-with-sar1/" class="hatena-bookmark-button" data-hatena-bookmark-title="sarコマンドでシステムのボトルネックを探る(1)" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
-  </div>
-  
-  <div class="wsbl_facebook_like">
-    <div id="fb-root">
-    </div><fb:like href="http://b.l0g.jp/dev/finding-bottleneck-with-sar1/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
-  </div>
-  
-  <div class="wsbl_twitter">
-    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/dev/finding-bottleneck-with-sar1/" data-text="sarコマンドでシステムのボトルネックを探る(1)" data-via="dblmkt " data-lang="ja"&gt;Tweet
-  </div>
-  
-  <div class="wsbl_google_plus_one">
-    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/dev/finding-bottleneck-with-sar1/"></g:plusone>
-  </div>
-</div>
-
-<p><br class="wp_social_bookmarking_light_clear" /></p>
-
-<p><a href="http://b.l0g.jp/dev/top-loadaverag/" target="_blank">前回のエントリ</a>では、システムのレスポンスが悪化している場合、まずとっかかりとしてtopコマンドを実行し、ロードアベレージを確認する方法を書いた。さらに踏み込んで、何が負荷の原因なのかを探るために、sarコマンドを使う方法について書く。</p>
+    <p><a href="http://b.l0g.jp/dev/top-loadaverag/" target="_blank">前回のエントリ</a>では、システムのレスポンスが悪化している場合、まずとっかかりとしてtopコマンドを実行し、ロードアベレージを確認する方法を書いた。さらに踏み込んで、何が負荷の原因なのかを探るために、sarコマンドを使う方法について書く。</p>
 
 <p>sarコマンドをオプションをつけずに実行すると、以下のような出力が得られる。ファイルを指定しないと、コマンドを実行した当日の0:00から直前までの10分おきの情報が表示される。過去の情報は/var/log/saディレクトリ以下に保存されており、「sar -f sa07」などと指定すると、そのファイルに保存された情報が閲覧できる。saの後の数字は日付を表している。</p>
 
@@ -354,28 +312,7 @@
 
     <time datetime="2011-02-15T15:58:48-08:00" class="post-date">15 Feb 2011</time>
 
-    <div class="wp_social_bookmarking_light">
-  <div class="wsbl_hatena_button">
-    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/dev/top-loadaverag/" class="hatena-bookmark-button" data-hatena-bookmark-title="topコマンドでロードアベレージを見る" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
-  </div>
-  
-  <div class="wsbl_facebook_like">
-    <div id="fb-root">
-    </div><fb:like href="http://b.l0g.jp/dev/top-loadaverag/" layout="button_count" action="like" width="100" share="false" show_faces="false"></fb:like>
-  </div>
-  
-  <div class="wsbl_twitter">
-    &lt;a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/dev/top-loadaverag/" data-text="topコマンドでロードアベレージを見る" data-via="dblmkt " data-lang="ja"&gt;Tweet
-  </div>
-  
-  <div class="wsbl_google_plus_one">
-    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/dev/top-loadaverag/"></g:plusone>
-  </div>
-</div>
-
-<p><br class="wp_social_bookmarking_light_clear" /></p>
-
-<p>Linuxにおいて、システムの全体的な負荷状況を知りたい時、リアルタイムの状況を知るにはtopコマンド、ある程度の期間に渡る傾向をつかむにはsar(sysstat)の結果を確認するのが一般的だろう。</p>
+    <p>Linuxにおいて、システムの全体的な負荷状況を知りたい時、リアルタイムの状況を知るにはtopコマンド、ある程度の期間に渡る傾向をつかむにはsar(sysstat)の結果を確認するのが一般的だろう。</p>
 
 <p>そのサーバ上で動作するアプリケーションの動作が遅いなどといったパフォーマンス劣化がある時、まず最初に見るべきがロードアベレージの値。これは「CPUの処理を待っているタスクの数」であり、ほとんど何も処理を行っていない時には0になる。</p>
 
@@ -458,7 +395,7 @@
 
       <footer class="footer">
         <small>
-          &copy; <time datetime="2016-04-01T10:52:50-07:00">2016</time>. All rights reserved.
+          &copy; <time datetime="2016-04-01T11:15:44-07:00">2016</time>. All rights reserved.
         </small>
       </footer>
     </div>

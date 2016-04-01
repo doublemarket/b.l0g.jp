@@ -9,26 +9,6 @@ permalink: /aws/periodic-ebs-snapshot/
 categories:
   - AWS
 ---
-<div class='wp_social_bookmarking_light'>
-  <div class="wsbl_hatena_button">
-    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/aws/periodic-ebs-snapshot/" class="hatena-bookmark-button" data-hatena-bookmark-title="AWSのEBSボリュームのスナップショットを定期的に取る" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
-  </div>
-  
-  <div class="wsbl_facebook_like">
-    <div id="fb-root">
-    </div><fb:like href="http://b.l0g.jp/aws/periodic-ebs-snapshot/" layout="button_count" action="like" width="100" share="false" show_faces="false" ></fb:like>
-  </div>
-  
-  <div class="wsbl_twitter">
-    <a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/aws/periodic-ebs-snapshot/" data-text="AWSのEBSボリュームのスナップショットを定期的に取る" data-via="dblmkt " data-lang="ja">Tweet</a>
-  </div>
-  
-  <div class="wsbl_google_plus_one">
-    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/aws/periodic-ebs-snapshot/" ></g:plusone>
-  </div>
-</div>
-
-<br class='wp_social_bookmarking_light_clear' />
 
 小ネタだけど、久しぶりに技術的な内容の記事を書いてみる。最近はこういうのはQiitaに書くのが流行り？
 

@@ -9,26 +9,6 @@ permalink: /shell/history-with-timestamp/
 categories:
   - シェル
 ---
-<div class='wp_social_bookmarking_light'>
-  <div class="wsbl_hatena_button">
-    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/shell/history-with-timestamp/" class="hatena-bookmark-button" data-hatena-bookmark-title="historyに時刻を記録する" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
-  </div>
-  
-  <div class="wsbl_facebook_like">
-    <div id="fb-root">
-    </div><fb:like href="http://b.l0g.jp/shell/history-with-timestamp/" layout="button_count" action="like" width="100" share="false" show_faces="false" ></fb:like>
-  </div>
-  
-  <div class="wsbl_twitter">
-    <a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/shell/history-with-timestamp/" data-text="historyに時刻を記録する" data-via="dblmkt " data-lang="ja">Tweet</a>
-  </div>
-  
-  <div class="wsbl_google_plus_one">
-    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/shell/history-with-timestamp/" ></g:plusone>
-  </div>
-</div>
-
-<br class='wp_social_bookmarking_light_clear' />
 
 bash 3.0以上(最近のLinuxは大抵3.0以上)を使用している場合は、「HISTTIMEFORMAT」というシェル変数に時刻のフォーマットを入れることで、historyコマンドの実行結果(ファイル)にコマンドだけではなく時刻も記録できる。以下はhistoryコマンドの実行結果の例。
 

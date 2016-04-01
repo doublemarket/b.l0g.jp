@@ -9,26 +9,6 @@ permalink: /android/mytracksintro/
 categories:
   - Android
 ---
-<div class='wp_social_bookmarking_light'>
-  <div class="wsbl_hatena_button">
-    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/android/mytracksintro/" class="hatena-bookmark-button" data-hatena-bookmark-title="登山記録に使えるGPSアプリ My Tracks" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
-  </div>
-  
-  <div class="wsbl_facebook_like">
-    <div id="fb-root">
-    </div><fb:like href="http://b.l0g.jp/android/mytracksintro/" layout="button_count" action="like" width="100" share="false" show_faces="false" ></fb:like>
-  </div>
-  
-  <div class="wsbl_twitter">
-    <a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/android/mytracksintro/" data-text="登山記録に使えるGPSアプリ My Tracks" data-via="dblmkt " data-lang="ja">Tweet</a>
-  </div>
-  
-  <div class="wsbl_google_plus_one">
-    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/android/mytracksintro/" ></g:plusone>
-  </div>
-</div>
-
-<br class='wp_social_bookmarking_light_clear' />
 
 自分がAndroid携帯(Sony ErricsonのXperia)を買ったのは、スマートフォンならではの自由度の高さ(画面の大きさやセンサーの多さなど)を活かしたアプリケーションを、自分で作って使ってみたいと思ったことがきっかけである。スマートフォンといえばiPhoneじゃない？という人が多いと思うが、登山によく行く自分にとって、少なくとも現時点ではドコモとauと比較するとかなり電波状況の悪いソフトバンクテレコムに乗り換えるという選択肢はどうしても取れなかった。また、iPhoneアプリを作るには、まずMacを買わなければならないというのも、Android携帯を選んだ理由である。現時点で、良好な電波状況と端末の完成度の両方を満たす端末は、Xperia以外にないといえる(auのIS01もありという人もいるかもしれないが)。と思っているのだが、なぜか自分の登山仲間のスマフォ持ちはiPhoneばっかり。へっ！iPhoneなんてソフバンで電波届かないから、どうせ山に登って「山頂なう！」ってつぶやきもできないくせに！(笑)
 

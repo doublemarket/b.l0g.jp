@@ -9,26 +9,6 @@ permalink: /mysql/mysql-casual-talks-7/
 categories:
   - MySQL
 ---
-<div class='wp_social_bookmarking_light'>
-  <div class="wsbl_hatena_button">
-    <a href="http://b.hatena.ne.jp/entry/http://b.l0g.jp/mysql/mysql-casual-talks-7/" class="hatena-bookmark-button" data-hatena-bookmark-title="MySQL Casual Talks Vol. 7まとめ" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"> <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
-  </div>
-  
-  <div class="wsbl_facebook_like">
-    <div id="fb-root">
-    </div><fb:like href="http://b.l0g.jp/mysql/mysql-casual-talks-7/" layout="button_count" action="like" width="100" share="false" show_faces="false" ></fb:like>
-  </div>
-  
-  <div class="wsbl_twitter">
-    <a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://b.l0g.jp/mysql/mysql-casual-talks-7/" data-text="MySQL Casual Talks Vol. 7まとめ" data-via="dblmkt " data-lang="ja">Tweet</a>
-  </div>
-  
-  <div class="wsbl_google_plus_one">
-    <g:plusone size="medium" annotation="none" href="http://b.l0g.jp/mysql/mysql-casual-talks-7/" ></g:plusone>
-  </div>
-</div>
-
-<br class='wp_social_bookmarking_light_clear' />
 
 ふう、[MySQL Casual Talks Vol. 7](http://mysql-casual.connpass.com/event/9767/)行って参りました。前回は[自分が発表者](http://www.slideshare.net/doublemarket/mysqlcasual6fabric)でもあったので、正直なところ他の人の発表を聞く余裕はなく(汗) 今回は、同僚の発表もあったので楽しみにしていったら、相変わらずの濃ゆい話が盛りだくさんで、非常に楽しめました。毎度の事ながら、[@myfinderさん](https://twitter.com/myfinder)始め、会場提供・準備していただいたLINE
   
