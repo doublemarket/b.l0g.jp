@@ -1,9 +1,7 @@
 title: 渋谷ではたらいてたインフラエンジニアのブログ
 url: http://b.l0g.jp
-baseurl: "/"
+baseurl: ""
 name: b.l0g.jp
-description: >
-  渋谷ではたらいてたインフラエンジニアのブログ
 paginate: 3
 gems:
   - jekyll-paginate
