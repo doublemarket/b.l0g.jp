@@ -52,156 +52,149 @@
 
 <p>PHP5.3のRPMパッケージはremiというリポジトリから配布されているので、yumのリポジトリに設定を追加。</p>
 
-<p>[text]</p>
-
-<p># rpm -Uvh http://download.fedora.redhat.com/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm</p>
-
-<p># rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-5.rpm</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+\# rpm -Uvh http://download.fedora.redhat.com/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm
+  
+\# rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-5.rpm
+  
+</code></pre>
+</div>
 
 <h2 id="php53">＜PHP5.3インストール＞</h2>
 
-<p>[text]</p>
-
-<p># yum install –enablerepo=remi php php-domxml php-devel php-mysql</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+\# yum install -enablerepo=remi php php-domxml php-devel php-mysql
+  
+</code></pre>
+</div>
 
 <p>php.iniに以下を追記。追記しないとdate()の使用で警告が出る。</p>
 
-<p>[text]</p>
-
-<p>date.timezone = “Asia/Tokyo”</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+date.timezone = "Asia/Tokyo"
+  
+</code></pre>
+</div>
 
 <p>mb_string関連の関数を使用するために必要なのでphp-mbstringもインストール。</p>
 
-<p>[text]</p>
-
-<p># yum install –enablerepo=remi php-mbstring</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+\# yum install -enablerepo=remi php-mbstring
+  
+</code></pre>
+</div>
 
 <p>コンソールで文字を色付けするのに必要なのでphp-processもインストール。</p>
 
-<p>[text]</p>
-
-<p># yum install –enablerepo=remi php-process</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+\# yum install -enablerepo=remi php-process
+  
+</code></pre>
+</div>
 
 <p>symfonyで必要なものがそろっているか確認するスクリプトを実行。</p>
 
-<p>[text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+\# wget http://sf-to.org/1.4/check.php
+  
+\# php check_configuration.php
+  
+\***\***\***\***\***\***\***\***\***\*****
+  
+\* \*
+  
+\* symfony requirements check \*
+  
+\* \*
+  
+\***\***\***\***\***\***\***\***\***\*****
 
-<p># wget http://sf-to.org/1.4/check.php</p>
+php.ini used by PHP: /etc/php.ini
 
-<p># php check_configuration.php</p>
+\*\* WARNING \*\*
+  
+* The PHP CLI can use a different php.ini file
+  
+* than the one used with your web server.
+  
+* If this is the case, please launch this
+  
+* utility from your web server.
+  
+\*\* WARNING \*\*
 
-<p>*<strong>*</strong>*<strong>*</strong>*<strong>*</strong>*<strong>*</strong>*<strong>*</strong>**</p>
+\*\* Mandatory requirements \*\*
 
-<p>* *</p>
+OK PHP version is at least 5.2.4 (5.3.3)
 
-<p>* symfony requirements check *</p>
+\*\* Optional checks \*\*
 
-<p>* *</p>
-
-<p>*<strong>*</strong>*<strong>*</strong>*<strong>*</strong>*<strong>*</strong>*<strong>*</strong>**</p>
-
-<p>php.ini used by PHP: /etc/php.ini</p>
-
-<p>** WARNING **</p>
-
-<ul>
-  <li>
-    <p>The PHP CLI can use a different php.ini file</p>
-  </li>
-  <li>
-    <p>than the one used with your web server.</p>
-  </li>
-  <li>
-    <p>If this is the case, please launch this</p>
-  </li>
-  <li>
-    <p>utility from your web server.</p>
-  </li>
-</ul>
-
-<p>** WARNING **</p>
-
-<p>** Mandatory requirements **</p>
-
-<p>OK PHP version is at least 5.2.4 (5.3.3)</p>
-
-<p>** Optional checks **</p>
-
-<p>OK PDO is installed</p>
-
-<p>OK PDO has some drivers installed: mysql, sqlite, sqlite2</p>
-
-<p>OK PHP-XML module is installed</p>
-
-<p>OK XSL module is installed</p>
-
-<p>OK The token_get_all() function is available</p>
-
-<p>OK The mb_strlen() function is available</p>
-
-<p>OK The iconv() function is available</p>
-
-<p>OK The utf8_decode() is available</p>
-
-<p>OK The posix_isatty() is available</p>
-
-<p>[[WARNING]] A PHP accelerator is installed: FAILED</p>
-
-<p>*\<em>* Install a PHP accelerator like APC (highly recommended) **</em></p>
-
-<p>OK php.ini has short_open_tag set to off</p>
-
-<p>OK php.ini has magic_quotes_gpc set to off</p>
-
-<p>OK php.ini has register_globals set to off</p>
-
-<p>OK php.ini has session.auto_start set to off</p>
-
-<p>OK PHP version is not 5.2.9</p>
-
-<p>[/text]</p>
+OK PDO is installed
+  
+OK PDO has some drivers installed: mysql, sqlite, sqlite2
+  
+OK PHP-XML module is installed
+  
+OK XSL module is installed
+  
+OK The token\_get\_all() function is available
+  
+OK The mb_strlen() function is available
+  
+OK The iconv() function is available
+  
+OK The utf8_decode() is available
+  
+OK The posix_isatty() is available
+  
+[[WARNING]] A PHP accelerator is installed: FAILED
+  
+\*\\*\* Install a PHP accelerator like APC (highly recommended) \*\**
+  
+OK php.ini has short\_open\_tag set to off
+  
+OK php.ini has magic\_quotes\_gpc set to off
+  
+OK php.ini has register_globals set to off
+  
+OK php.ini has session.auto_start set to off
+  
+OK PHP version is not 5.2.9
+  
+</code></pre>
+</div>
 
 <h2 id="pear">＜pearインストール＞</h2>
 
 <p>※ pearでのインストールは推奨されていないが、簡単なのでこれで済ませる</p>
 
-<p>[text]</p>
-
-<p># yum install –enablerepo=remi php-pear</p>
-
-<p># pear upgrade-all</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+\# yum install -enablerepo=remi php-pear
+  
+\# pear upgrade-all
+  
+</code></pre>
+</div>
 
 <h2 id="symfony">＜symfonyインストール＞</h2>
 
-<p>[text]</p>
-
-<p># pear channel-discover pear.symfony-project.com</p>
-
-<p># pear install symfony/symfony</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+\# pear channel-discover pear.symfony-project.com
+  
+\# pear install symfony/symfony
+  
+</code></pre>
+</div>
 
 <p>以下のコマンドでバージョンが表示されたらインストール成功。</p>
 
-<p>[text]</p>
-
-<p># symfony -V</p>
-
-<p>symfony version 1.4.8 (/usr/share/pear/symfony)</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+\# symfony -V
+  
+symfony version 1.4.8 (/usr/share/pear/symfony)
+  
+</code></pre>
+</div>
 
 <p>/usr/share/pear/symfonyにインストールされる</p>
 
@@ -209,111 +202,111 @@
 
 <p>PHPのアクセラレータであるAPCをインストールしておく。入れなくても動作するが、symfonyでは導入が推奨されているのと、入れただけで高速になるとのことなのでインストール。</p>
 
-<p>[text]</p>
-
-<p># yum install httpd-devel</p>
-
-<p># yum install –enablerepo=remi php-pecl-apc</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+\# yum install httpd-devel
+  
+\# yum install -enablerepo=remi php-pecl-apc
+  
+</code></pre>
+</div>
 
 <h2 id="httpd">＜httpd起動＞</h2>
 
-<p>[text]</p>
-
-<p># chkconfig httpd on</p>
-
-<p>Syntax OK</p>
-
-<p># service httpd start</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+\# chkconfig httpd on
+  
+Syntax OK
+  
+\# service httpd start
+  
+</code></pre>
+</div>
 
 <p>ブラウザから http://(サーバのIPアドレス)/ を確認し、phpinfoでapcが読み込まれていることを確認。</p>
 
 <p>※ phpinfoはコマンドラインから以下を実行しても確認できる</p>
 
-<p>[text]</p>
-
-<p>php ‘phpinfo();’</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+php 'phpinfo();'
+  
+</code></pre>
+</div>
 
 <h2 id="mysql">＜MySQLインストール＞</h2>
 
-<p>[text]</p>
-
-<p># yum install –enablerepo=remi mysql-server</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+\# yum install -enablerepo=remi mysql-server
+  
+</code></pre>
+</div>
 
 <h2 id="mysql-1">＜MySQL設定＞</h2>
 
 <p>my.cnfに以下を追記して文字コードをUTF-8に</p>
 
-<p>[text]</p>
-
-<p>[mysqld]</p>
-
-<p>default-character-set=utf8</p>
-
-<p>character_set_server=utf8</p>
-
-<p>skip-character-set-client-handshake</p>
-
-<p>[mysql]</p>
-
-<p>default-character-set=utf8</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+[mysqld]
+  
+default-character-set=utf8
+  
+character\_set\_server=utf8
+  
+skip-character-set-client-handshake
+  
+[mysql]
+  
+default-character-set=utf8
+  
+</code></pre>
+</div>
 
 <p>statusコマンドおよび”show variables like ‘char%’;”でUTF-8になっていることを確認(<a href="http://b.l0g.jp/dev/symfony%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92mysql%E3%81%AB%E3%83%AD%E3%83%BC%E3%83%89%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AEduplicate-entry%E3%82%A8%E3%83%A9%E3%83%BC/" target="_blank">過去エントリ</a>も参照)</p>
 
 <p>パスワードを設定</p>
 
-<p>[text]</p>
-
-<p># mysqladmin -u root password パスワード</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+\# mysqladmin -u root password パスワード
+  
+</code></pre>
+</div>
 
 <p>データベース作成</p>
 
-<p>[text]</p>
-
-<p># mysql -uroot -p</p>
-
-<p>mysql&gt; create database データベース名;</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+\# mysql -uroot -p
+  
+mysql&gt; create database データベース名;
+  
+</code></pre>
+</div>
 
 <h2 id="postfix">＜postfixインストール＞</h2>
 
-<p>[text]</p>
-
-<p># yum remove sendmail</p>
-
-<p># yum install postfix</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+\# yum remove sendmail
+  
+\# yum install postfix
+  
+</code></pre>
+</div>
 
 <p>/etc/postfix/main.cf を編集</p>
 
-<p>[text]</p>
-
-<p># chkconfig postfix on</p>
-
-<p># service postfix start</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+\# chkconfig postfix on
+  
+\# service postfix start
+  
+</code></pre>
+</div>
 
 <p>メール送信のテスト</p>
 
-<p>[text]</p>
-
-<p># mail -s test あて先</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+\# mail -s test あて先
+  
+</code></pre>
+</div>
 
 <p>※ 本登録前のお試し期間中はOP25Bが有効なので、VPS上のサーバからメールを送信することはできない</p>
 
@@ -357,7 +350,7 @@
 
       <footer class="footer">
         <small>
-          &copy; <time datetime="2016-04-01T11:15:44-07:00">2016</time>. All rights reserved.
+          &copy; <time datetime="2016-04-01T11:57:39-07:00">2016</time>. All rights reserved.
         </small>
       </footer>
     </div>

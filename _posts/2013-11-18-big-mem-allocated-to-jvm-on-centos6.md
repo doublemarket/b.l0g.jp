@@ -21,64 +21,62 @@ CentOS 5+Tomcat 7+JDK 7+Apacheという組み合わせで動かしていたサ�
 
 こちらはざっくり3GB弱の仮想メモリを確保していると出ている(左から5番目、VSZの列)。ヒープサイズから考えるとまあこんなものかというレベル。
 
-[code]
-  
-\# ps auwx
+```
+# ps auwx
   
 USER PID %CPU %MEM VSZ RSS TTY STAT START TIME COMMAND
   
 31234 10315 110 8.8 3134280 1447956 ? Sl Nov14 6870:09 /usr/local/java/bin/java -Djava.util.logging.config.file=/usr/l cal/tomcat/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -server -XX:MaxPermSize=128m -XX:PermSize=128m -XX:SurvivorRatio=2 -Xmn1024m -Xmx2048m -Xms2048m (後略)
   
-[/code]
+```
 
 **CentOS 6のサーバ**
 
 一方こちらは10GB弱ものメモリを確保していることになっている。ヒープサイズとの差分9GB近くはどっから出てきたのか？
 
-[code]
-  
-\# ps auwx
+```
+
+# ps auwx
   
 USER PID %CPU %MEM VSZ RSS TTY STAT START TIME COMMAND
   
 31234 19463 156 33.6 11270576 2708744 ? Sl Nov14 9532:10 /usr/local/java/bin/java -Djava.util.logging.config.file=/usr/local/tomcat/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -server -XX:MaxPermSize=128m -XX:PermSize=128m -XX:SurvivorRatio=2 -Xmn1024m -Xmx2048m -Xms2048m (後略)
   
-[/code]
+```
 
 CentOS 6の方のサーバのTomcatのプロセスIDを指定してpmapコマンドでメモリの確保状況を見てみると、何やら同じ容量(64MBぐらい)を確保しているanonという行がたくさん表示されているのが目につく。これが悪さしているようだ。ちなみに、一番右の列には通常そのメモリを確保しているファイル名が出るが、anonというのは匿名で割り当てのみがされた領域を示しているようだ。
 
-[code]
+```
   
-\# pmap -x 19463 | sort -k2 -n
+# pmap -x 19463 | sort -k2 -n
   
 Address Kbytes RSS Dirty Mode Mapping
   
 (略)
   
-00007f08d0218000 63392 0 0 &#8212;&#8211; [ anon ]
+00007f08d0218000 63392 0 0 -- [ anon ]
   
-00007f0878215000 63404 0 0 &#8212;&#8211; [ anon ]
+00007f0878215000 63404 0 0 -- [ anon ]
   
-00007f099c208000 63456 0 0 &#8212;&#8211; [ anon ]
+00007f099c208000 63456 0 0 -- [ anon ]
   
-00007f08941fe000 63496 0 0 &#8212;&#8211; [ anon ]
+00007f08941fe000 63496 0 0 -- [ anon ]
   
-00007f09341fb000 63508 0 0 &#8212;&#8211; [ anon ]
+00007f09341fb000 63508 0 0 -- [ anon ]
   
-00007f091c1ea000 63576 0 0 &#8212;&#8211; [ anon ]
+00007f091c1ea000 63576 0 0 -- [ anon ]
   
-00007f08901e5000 63596 0 0 &#8212;&#8211; [ anon ]
+00007f08901e5000 63596 0 0 -- [ anon ]
   
-00007f08fc1e3000 63604 0 0 &#8212;&#8211; [ anon ]
+00007f08fc1e3000 63604 0 0 -- [ anon ]
   
-00007f09c01e0000 63616 0 0 &#8212;&#8211; [ anon ]
+00007f09c01e0000 63616 0 0 -- [ anon ]
   
-00007f094c1d8000 63648 0 0 &#8212;&#8211; [ anon ]
+00007f094c1d8000 63648 0 0 -- [ anon ]
   
 (略)
   
-[/code]
-
+```
 調べてみたところ、この現象は、CentOS 6に含まれているglibc 2.11の挙動によるものだそうだ。glibc 2.10から、スレッドごとにメモリ空間を割り当てるような実装に変わったとのこと。なお、CentOS 5ではglibcは2.5。以下、<a title="glibc 2.10 news" href="http://udrepper.livejournal.com/20948.html" target="_blank">glibcのコミッタUlrich Drepper氏による2.10のchangelog解説</a>からの抜粋。
 
 > glibcに対する今回の変更では、スレッドごとにメモリプールを作るようになった。これで多くの場面で間違った割り当てを排除することができる。メタデータは通常1つのスレッド内でしかアクセスしない(スレッドは割り当てられたコアから移動されないのが望ましい)。アドレス空間を吹き飛ばしてしまうようなメモリのハンドリングを防ぐため、メモリプールの使い過ぎに上限が設けられた。デフォルトでは、32ビットマシンではコアあたりメモリプール2つ、64ビットマシンではコアあたりメモリプール8つを生成する。

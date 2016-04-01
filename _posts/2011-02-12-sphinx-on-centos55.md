@@ -28,7 +28,7 @@ pipでsphinxをインストール。現状では1.0.7がインストールされ
   
 > Running setup.py egg_info for package sphinx
   
-> no previously-included directories found matching &#8216;doc/_build&#8217;
+> no previously-included directories found matching 'doc/_build'
   
 > Downloading/unpacking Pygments>=0.8 (from sphinx)
   
@@ -50,7 +50,7 @@ pipでsphinxをインストール。現状では1.0.7がインストールされ
   
 > Successfully installed docutils Jinja2 Pygments sphinx
   
-> Cleaning up&#8230;
+> Cleaning up…
   
 > [root@hoge ~]#
 
@@ -62,11 +62,11 @@ yumでもsphinx(パッケージ名はpython-sphinx)をインストールでき�
 
 epelリポジトリを有効にしていたからyumだけでインストールできた模様。epelリポジトリを追加していない場合は以下のコマンドで追加。
 
-[text]
+```
 
 rpm -ivh http://ftp.riken.jp/Linux/fedora/epel/5/i386/epel-release-5-4.noarch.rpm
 
-[/text]
+```
 
 ※ パスの中で「5-4」はepelのバージョンによって変わる。
 

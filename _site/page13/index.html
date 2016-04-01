@@ -47,31 +47,31 @@
   <li>「’」でくくった文字列は、その中に特殊文字が含まれていてもそれを展開せず、そのまま表示する。</li>
 </ul>
 
-<p>[bash]</p>
-
-<p>[hoge@symf test]$ abc=3</p>
-
-<p>↑ abcという変数に3を代入</p>
-
-<p>[hoge@symf test]$ echo $abc</p>
-
-<p>3</p>
-
-<p>↑ abcという変数の中身を表示</p>
-
-<p>[hoge@symf test]$ echo “$abc”</p>
-
-<p>3</p>
-
-<p>↑ 「”」は特殊文字を展開するので変数として扱われるので、上に同じ</p>
-
-<p>[hoge@symf test]$ echo ‘$abc’</p>
-
-<p>$abc</p>
-
-<p>↑ 「’」は特殊文字をそのまま表示する</p>
-
-<p>[/bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+[hoge@symf test]$ abc=3
+    
+↑ abcという変数に3を代入
+  
+[hoge@symf test]$ echo $abc
+  
+3
+    
+↑ abcという変数の中身を表示
+  
+[hoge@symf test]$ echo "$abc"
+  
+3
+    
+↑ 「"」は特殊文字を展開するので変数として扱われるので、上に同じ
+  
+[hoge@symf test]$ echo '$abc'
+  
+$abc
+    
+↑ 「'」は特殊文字をそのまま表示する
+  
+</code></pre>
+</div>
 
 <p>クォーテーションを入れ子にする際には、シングルとダブルで少しやり方が違う。「man bash」の「クォート」の項には以下のように書かれている。</p>
 
@@ -85,17 +85,17 @@
 
 <p>つまりこういうこと。</p>
 
-<p>[bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+[hoge@symf test]$ ssh server "psql -c \"create database test with ENCODING = 'UTF8' ;\" "
+    
+↑ 「"」の中に「\"」があるので、これは成功
 
-<p>[hoge@symf test]$ ssh server “psql -c "create database test with ENCODING = ‘UTF8’ ;" “</p>
-
-<p>↑ 「”」の中に「"」があるので、これは成功</p>
-
-<p>[hoge@symf test]$ ssh server ‘psql -c "create database test with ENCODING = ‘UTF8’ ;" ‘</p>
-
-<p>↑ 「’」の中では「\」をつけてもダメなので、これは失敗</p>
-
-<p>[/bash]</p>
+[hoge@symf test]$ ssh server 'psql -c \"create database test with ENCODING = 'UTF8' ;\" '
+    
+↑ 「'」の中では「\」をつけてもダメなので、これは失敗
+  
+</code></pre>
+</div>
 
 <p>create databaseじゃなくてcreatedbを使えば、クォートを入れ子にしなくてもいいって？あくまで例ですから (`・ω・´)ｷﾘｯ</p>
 
@@ -118,61 +118,61 @@
 
 <p>while 文で以下のように指定すると、行ごとにファイルを読み込むことができる。</p>
 
-<p>[bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+<span class="c">#!/bin/sh</span>
 
-<p>#!/bin/sh</p>
+<span class="gp">\# </span>ファイルを1行ずつ読み込んで表示
 
-<p># ファイルを1行ずつ読み込んで表示</p>
+<span class="nv">TESTFILE</span><span class="o">=</span>./hoge.txt
 
-<p>TESTFILE=./hoge.txt</p>
-
-<p>while read line</p>
-
-<p>do</p>
-
-<p>echo $line</p>
-
-<p>done &lt; $TESTFILE</p>
-
-<p>[/bash]</p>
+<span class="k">while </span><span class="nb">read </span>line
+  
+<span class="k">do
+      
+</span><span class="nb">echo</span> <span class="nv">$line</span>
+  
+<span class="k">done</span> &lt; <span class="nv">$TESTFILE</span>
+  
+</code></pre>
+</div>
 
 <p>しかし、 while ループの中で ssh や rsh を実行すると、読み込むファイルが複数行あっても、1行目しか処理されない。</p>
 
-<p>[bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+<span class="c">#!/bin/sh</span>
 
-<p>#!/bin/sh</p>
+<span class="gp">\# </span>TESTFILEが複数行あっても1行目のみ処理されてループ終了
 
-<p># TESTFILEが複数行あっても1行目のみ処理されてループ終了</p>
-
-<p>while read line</p>
-
-<p>do</p>
-
-<p>ssh 192.168.0.1 touch $line</p>
-
-<p>done &lt; $TESTFILE</p>
-
-<p>[/bash]</p>
+<span class="k">while </span><span class="nb">read </span>line
+  
+<span class="k">do
+      
+</span>ssh 192.168.0.1 touch <span class="nv">$line</span>
+  
+<span class="k">done</span> &lt; <span class="nv">$TESTFILE</span>
+  
+</code></pre>
+</div>
 
 <p>SSH を実行すると、標準入力がそちらに振り向けられるため、read で読んだ1行のみならず、ファイル全体が SSH に渡されてしまう。従って、SSH を実行した後はもう読める行がないので while ループは1回で終了してしまう。</p>
 
 <p>これを防ぐには、ssh に -n オプションを付け、/dev/null をリダイレクトし、標準入力をリダイレクトしないようにする。</p>
 
-<p>[bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+<span class="c">#!/bin/sh</span>
 
-<p>#!/bin/sh</p>
+<span class="gp">\# </span>TESTFILEが複数行あればその行数分処理が実行される
 
-<p># TESTFILEが複数行あればその行数分処理が実行される</p>
-
-<p>while read line</p>
-
-<p>do</p>
-
-<p>ssh -n 192.168.0.1 touch $line</p>
-
-<p>done &lt; $TESTFILE</p>
-
-<p>[/bash]</p>
+<span class="k">while </span><span class="nb">read </span>line
+  
+<span class="k">do
+      
+</span>ssh -n 192.168.0.1 touch <span class="nv">$line</span>
+  
+<span class="k">done</span> &lt; <span class="nv">$TESTFILE</span>
+  
+</code></pre>
+</div>
 
 <p>なおこれは rsh コマンドでも同じ仕様になっているようだ。</p>
 
@@ -195,27 +195,27 @@
 
     <p>Linuxで、ディスクデバイスではなく、ディレクトリをディレクトリにマウントしたい時は</p>
 
-<p>[text]</p>
-
-<p>mount –bind マウントしたいディレクトリ マウントポイント</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+mount -bind マウントしたいディレクトリ マウントポイント
+  
+</code></pre>
+</div>
 
 <p>fstabに書いてしまうときは以下のように書く。</p>
 
-<p>[text]</p>
-
-<p>マウントしたいディレクトリ マウントポイント none bind 0 0</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+マウントしたいディレクトリ マウントポイント none bind 0 0
+  
+</code></pre>
+</div>
 
 <p>例えば /home を /hoge/home としてマウントしたい時は</p>
 
-<p>[text]</p>
-
-<p>/home /hoge/home none bind 0 0</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+/home /hoge/home none bind 0 0
+  
+</code></pre>
+</div>
 
 <p>なお、マウントしたいディレクトリ(上の例では/hoge)よりも後にこの行を書かないと、マウントできないので注意。</p>
 
@@ -240,7 +240,7 @@
 
       <footer class="footer">
         <small>
-          &copy; <time datetime="2016-04-01T11:15:44-07:00">2016</time>. All rights reserved.
+          &copy; <time datetime="2016-04-01T11:57:39-07:00">2016</time>. All rights reserved.
         </small>
       </footer>
     </div>

@@ -39,7 +39,7 @@ MySQLをリソース監視する仕組みにはいくつかあるが、対象の
 
 RPMforgeリポジトリには最新のCactiが含まれているため、これを導入する。
 
-[bash]
+```
   
 $ wget http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.2-2.el6.rf.x86_64.rpm
   
@@ -47,7 +47,7 @@ $ sudo rpm -ihv rpmforge-release-0.5.2-2.el6.rf.x86_64.rpm
   
 $ sudo yum -y update rpmforge-release
   
-[/bash]
+```
 
 /etc/yum.repos.d/rpmforge.repo ファイルをエディタで開き、 enabled = 0 にする。これで、オプションを付けないとRPMforgeはリポジトリとして有効にならないようになる。
 
@@ -55,11 +55,11 @@ $ sudo yum -y update rpmforge-release
 
 Cactiと、あわせて必要なnet-snmpやhttpd、MySQLなどをインストール。
 
-[bash]
+```
   
-$ sudo yum install &#8211;enablerepo=rpmforge cacti net-snmp-utils mysql-server
+$ sudo yum install -enablerepo=rpmforge cacti net-snmp-utils mysql-server
   
-[/bash]
+```
 
 指定したもの以外に、依存関係上httpd, mysql, perl, php, rrdtoolなどもインストールされる。
 
@@ -69,7 +69,7 @@ Cactiが取得した情報を格納するためのMySQLを設定する。ここ�
 
 [mysqld]セクションに以下を追加
 
-[text]
+```
   
 skip-character-set-client-handshake
   
@@ -79,21 +79,21 @@ collation-server = utf8\_general\_ci
   
 init-connect = SET NAMES utf8
   
-[/text]
+```
 
 (2012.05.29) default-character-setは不要とnippondanjiさんからはてブコメントで指摘をいただいたので削除。直々にご指摘とは恐縮です。
 
 ここでMySQLを再起動する。
 
-[bash]
+```
   
 $ sudo /etc/init.d/mysqld restart
   
-[/bash]
+```
 
 statusコマンドで、charactersetがutf8であることを確認。
 
-[sql]
+```
   
 mysql> status;
   
@@ -109,77 +109,77 @@ Conn. characterset: utf8
   
 (略)
   
-[/sql]
+```
 
 <a href="http://docs.cacti.net/manual:088:1_installation.1_install_unix.5_install_and_configure_cacti" target="_blank">Cactiのドキュメント</a>にしたがって、Cactiで使用するMySQLの設定を行う。
 
-[sql]
+```
   
-$ mysqladmin &#8211;user=root create cacti
+$ mysqladmin -user=root create cacti
   
 $ mysql cacti < cacti.sql
   
-$ mysql &#8211;user=root mysql
+$ mysql -user=root mysql
   
-mysql> grant all on cacti.* to ユーザ名@localhost identified by &#8216;パスワード&#8217;;
+mysql> grant all on cacti.* to ユーザ名@localhost identified by 'パスワード';
   
 mysql> flush privileges;
   
-[/sql]
+```
 
 ## Apache/PHPの設定
 
 /var/www/cacti/include/config.php を上の項で作成したユーザに合わせて編集する。
 
-[text]
+```
   
-$database_type = &#8220;mysql&#8221;;
+$database_type = "mysql";
   
-$database_default = &#8220;cacti&#8221;;
+$database_default = "cacti";
   
-$database_hostname = &#8220;localhost&#8221;; # DBサーバのホスト名
+$database_hostname = "localhost"; # DBサーバのホスト名
   
-$database_username = &#8220;cactiuser&#8221;; # 上の項で作成したユーザ
+$database_username = "cactiuser"; # 上の項で作成したユーザ
   
-$database_password = &#8220;cactipassword&#8221;; # 上の項で設定したパスワード
+$database_password = "cactipassword"; # 上の項で設定したパスワード
   
-[/text]
+```
 
 /etc/httpd/conf.d/cacti.php が存在することを確認する。他のホストからCactiにアクセスする際は、以下の行を追加してhttpdを再起動する。
 
-[text]
+```
   
 allow from 127.0.0.1
   
 allow from IPアドレス # 追記
   
-[/text]
+```
 
 <a href="http://docs.cacti.net/manual:088:1_installation.1_install_unix.1_configure_php" target="_blank">Cactiのドキュメント</a>を参考に、/etc/php.ini および /etc/php.d/*.ini の記述を確認。設定を変更したら、Apacheを再起動する。
 
-[bash]
+```
   
 $ sudo /etc/init.d/httpd restart
   
-[/bash]
+```
 
 ## iptablesの設定
 
 CentOS 6.2ではデフォルトでpingやSSHしか応答できないようにされているようなので、/etc/sysconfig/iptables に以下を追加してhttpのアクセスが可能なようにする。
 
-[text]
+```
   
--A INPUT -m state &#8211;state NEW -m tcp -p tcp &#8211;dport 80 -j ACCEPT
+-A INPUT -m state -state NEW -m tcp -p tcp -dport 80 -j ACCEPT
   
-[/text]
+```
 
 iptablesを再起動
 
-[text]
+```
   
 $ sudo /etc/init.d/iptables restart
   
-[/text]
+```
 
 ## 設定完了
 
@@ -199,7 +199,7 @@ http://CactiサーバのIPアドレス/cacti を開くと、まずインスト�
 
 <a href="http://www.percona.com/downloads/percona-monitoring-plugins/" target="_blank">Percona</a>からPercona monitoring pluginsをダウンロードし、ファイルを展開する。
 
-[bash]
+```
   
 $ tar zxvf percona-monitoring-plugins-1.0.0.tar.gz
   
@@ -207,25 +207,25 @@ $ cd percona-monitoring-plugins-1.0.0/cacti/scripts
   
 $ sudo cp ss\_get\_by\_ssh.php ss\_get\_mysql\_stats.php /var/www/cacti/scripts/
   
-[/bash]
+```
 
 監視対象のMySQLにログインする際のアカウント情報を ss\_get\_mysql_stats.php に書き込む。
 
-[text]
+```
   
-$mysql_user = &#8216;cactiuser&#8217;; # 監視対象にログインする際のMySQLユーザ
+$mysql_user = 'cactiuser'; # 監視対象にログインする際のMySQLユーザ
   
-$mysql_pass = &#8216;cactiuser&#8217;; # 監視対象にログインする際のパスワード
+$mysql_pass = 'cactiuser'; # 監視対象にログインする際のパスワード
   
-[/text]
+```
 
 Cacti管理画面からImport/Export → Import templatesを選択し、Import Template from Local Fileで以下を指定してImportボタンを押し、テンプレートファイルを読み込ませる。
 
-[text]
+```
   
 percona-monitoring-plugins-1.0.0/cacti/templates/cacti\_host\_template\_percona\_mysql\_server\_ht_0.8.6i-sver1.0.0.xml
   
-[/text]
+```
 
 成功すると、それぞれの監視項目に対応したテンプレートごとに[success]と表示される。
 

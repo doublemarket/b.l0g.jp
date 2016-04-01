@@ -12,7 +12,7 @@ categories:
 
 CPUの処理の状況を調べるためには、sar (sar -u)が有効であることを<a href="http://b.l0g.jp/dev/finding-bottleneck-with-sar1/" target="_blank">前のエントリ</a>で書いた。次はメモリの使用状況を調べてみる。まず見てみるのは、メモリとスワップの使用状況を示す sar -r の結果である。
 
-[text]
+```
   
 [doublemarket@hoge ~]$ sar -r
   
@@ -40,7 +40,7 @@ Linux 2.6.18-194.8.1.el5 (hoge) 2011年02月15日
   
 平均値: 84267 426265 83.49 32592 129944 1984336 63940 3.12 16300
   
-[/text]
+```
 
 それぞれの列の意味は以下の通り。
 

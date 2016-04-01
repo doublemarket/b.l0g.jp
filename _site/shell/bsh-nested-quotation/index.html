@@ -39,31 +39,31 @@
   <li>「’」でくくった文字列は、その中に特殊文字が含まれていてもそれを展開せず、そのまま表示する。</li>
 </ul>
 
-<p>[bash]</p>
-
-<p>[hoge@symf test]$ abc=3</p>
-
-<p>↑ abcという変数に3を代入</p>
-
-<p>[hoge@symf test]$ echo $abc</p>
-
-<p>3</p>
-
-<p>↑ abcという変数の中身を表示</p>
-
-<p>[hoge@symf test]$ echo “$abc”</p>
-
-<p>3</p>
-
-<p>↑ 「”」は特殊文字を展開するので変数として扱われるので、上に同じ</p>
-
-<p>[hoge@symf test]$ echo ‘$abc’</p>
-
-<p>$abc</p>
-
-<p>↑ 「’」は特殊文字をそのまま表示する</p>
-
-<p>[/bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+[hoge@symf test]$ abc=3
+    
+↑ abcという変数に3を代入
+  
+[hoge@symf test]$ echo $abc
+  
+3
+    
+↑ abcという変数の中身を表示
+  
+[hoge@symf test]$ echo "$abc"
+  
+3
+    
+↑ 「"」は特殊文字を展開するので変数として扱われるので、上に同じ
+  
+[hoge@symf test]$ echo '$abc'
+  
+$abc
+    
+↑ 「'」は特殊文字をそのまま表示する
+  
+</code></pre>
+</div>
 
 <p>クォーテーションを入れ子にする際には、シングルとダブルで少しやり方が違う。「man bash」の「クォート」の項には以下のように書かれている。</p>
 
@@ -77,17 +77,17 @@
 
 <p>つまりこういうこと。</p>
 
-<p>[bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+[hoge@symf test]$ ssh server "psql -c \"create database test with ENCODING = 'UTF8' ;\" "
+    
+↑ 「"」の中に「\"」があるので、これは成功
 
-<p>[hoge@symf test]$ ssh server “psql -c "create database test with ENCODING = ‘UTF8’ ;" “</p>
-
-<p>↑ 「”」の中に「"」があるので、これは成功</p>
-
-<p>[hoge@symf test]$ ssh server ‘psql -c "create database test with ENCODING = ‘UTF8’ ;" ‘</p>
-
-<p>↑ 「’」の中では「\」をつけてもダメなので、これは失敗</p>
-
-<p>[/bash]</p>
+[hoge@symf test]$ ssh server 'psql -c \"create database test with ENCODING = 'UTF8' ;\" '
+    
+↑ 「'」の中では「\」をつけてもダメなので、これは失敗
+  
+</code></pre>
+</div>
 
 <p>create databaseじゃなくてcreatedbを使えば、クォートを入れ子にしなくてもいいって？あくまで例ですから (`・ω・´)ｷﾘｯ</p>
 
@@ -131,7 +131,7 @@
 
       <footer class="footer">
         <small>
-          &copy; <time datetime="2016-04-01T11:15:44-07:00">2016</time>. All rights reserved.
+          &copy; <time datetime="2016-04-01T11:57:39-07:00">2016</time>. All rights reserved.
         </small>
       </footer>
     </div>

@@ -34,7 +34,7 @@ GW-USNano2-?(MやG)は、RealtekのRTL8192CUという無線LANチップを使っ
 
 パッケージを展開し、コンパイル、インストール
 
-[text]
+```
   
 $ unzip RTL8192CU\_linux\_v3.1.2590.20110922.zip
   
@@ -42,13 +42,13 @@ $ cd RTL8192CU\_8188CUS\_8188CE-VAU\_linux\_v3.1.2590.20110922/
   
 $ sudo sh install.sh
   
-[/text]
+```
 
 ※ Ubuntu Serverをインストールした直後は、makeやgccがインストールされないので、事前にsudo apt-get install make gccしておく。
 
 インストールされたら、ドライバモジュールがロードされていることを確認
 
-[text]
+```
   
 $ lsmod
   
@@ -72,13 +72,13 @@ hid 91020 1 usbhid
   
 tg3 141750 0
   
-[/text]
+```
 
 ## 無線LAN設定
 
 WPA認証情報をファイルに書き込む。SSIDとキーは使用している無線LANアクセスポイントのものに置き換える。
 
-[text]
+```
   
 $ wpa\_passphrase \[SSID\] \[キー\] > wpa\_supplicant.conf
   
@@ -86,11 +86,11 @@ $ sudo mv wpa\_supplicant.conf /etc/wpa\_supplicant/
   
 $ sudo chown root:root /etc/wpa\_supplicant/wpa\_supplicant.conf
   
-[/text]
+```
 
 認証の設定を/etc/network/interfaceに設定を書き込む。DHCPを使用する場合の例。3行目のSSIDは上と同じく置き換えること。
 
-[text]
+```
   
 auto wlan0
   
@@ -100,19 +100,19 @@ wpa-essid [SSID]
   
 wpa-conf /etc/wpa\_supplicant/wpa\_supplicant.conf
   
-[/text]
+```
 
 マシンを再起動
 
-[text]
+```
   
 $ sudo reboot
   
-[/text]
+```
 
 再起動後、wlan0というインタフェースができており、ネットワークに接続できればOK。iwconfigコマンドで無線インタフェースの状態を確認できる。
 
-[text]
+```
   
 lo no wireless extensions.
 
@@ -134,7 +134,7 @@ Rx invalid nwid:0 Rx invalid crypt:0 Rx invalid frag:0
             
 Tx excessive retries:0 Invalid misc:0 Missed beacon:0
   
-[/text]
+```
 
 * * *
 

@@ -20,23 +20,23 @@ Nagiosの設定ファイルを編集するツールには、<a title="NagiosQL" 
 
 epelリポジトリにNagiosが含まれているので、epelをインストールしてからNagiosと、監視に使うプラグインをインストール。
 
-[shell]
+```
   
 $ sudo yum install http://ftp-srv2.kddilabs.jp/Linux/distributions/fedora/epel/6/x86_64/epel-release-6-8.noarch.rpm
   
 $ sudo yum install nagios nagios-plugins
   
-[/shell]
+```
 
 Nagiosと一緒に、PHPやPerl、Apacheなども一緒にインストールされる。
 
-[shell]
+```
   
 $ sudo /etc/init.d/nagios start
   
 $ sudo /etc/init.d/httpd start
   
-[/shell]
+```
 
 NagiosとApacheを起動したら、 http://(サーバのIP)/nagios をブラウザで開いて、ユーザ名 nagiosadmin、パスワード nagiosadmin でログインするとNagios管理画面が開ければNagiosの準備は一旦終わり。
 
@@ -46,25 +46,25 @@ NagiosとApacheを起動したら、 http://(サーバのIP)/nagios をブラウ
 
 nconfの特徴として、設定をMySQLに入れておいて、そこからNagiosの設定ファイルを生成することが挙げられる。そのためにMySQLをインストール。nconfはPHPで書かれており、PHPからMySQLへ接続するためのphp-mysqlも一緒にインストール。
 
-[shell]
+```
   
 $ sudo yum install mysql-server php-mysql
   
-[/shell]
+```
 
 mysql, mysql-libsなどもインストールされる。
 
 [この辺](http://b.l0g.jp/mysql/install-cacti-to-monitor-mysql-1/)参照して、/etc/my.cnf の [mysqld] セクションに最低限の設定をしてから、MySQLを起動。
 
-[shell]
+```
   
 $ sudo /etc/init.d/mysqld start
   
-[/shell]
+```
 
 nconf用データベースと、MySQLへ接続するためのアカウントも作成。以下の例では、データベース名がnconf、ユーザ名がnconf、パスワードはnconfpasswordとしているが、任意のものにできるので適宜変更すべし。
 
-[shell]
+```
   
 $ mysql -uroot
   
@@ -72,17 +72,17 @@ mysql> create database nconf;
   
 Query OK, 1 row affected (0.00 sec)
 
-mysql> grant SELECT, INSERT, UPDATE, DELETE, CREATE, ALTER, DROP on nconf.* to &#8216;nconf&#8217;@&#8217;localhost&#8217; identified by &#8216;nconfpassword&#8217;;
+mysql> grant SELECT, INSERT, UPDATE, DELETE, CREATE, ALTER, DROP on nconf.* to 'nconf'@'localhost' identified by 'nconfpassword';
   
 Query OK, 0 rows affected (0.00 sec)
   
-[/shell]
+```
 
 ## nconfのインストール
 
 [nconfのサイト](http://www.nconf.org/)のDownloadからnconf-1.3.0-0.tgzをダウンロードして適当なディレクトリに配置。CentOSのApacheのDocumentRootに展開する。
 
-[shell]
+```
   
 cd /var/www/html
   
@@ -90,7 +90,7 @@ sudo tar zxvf /fuga/hoge/nconf-1.3.0-0.tgz
   
 chown -R apache. nconf
   
-[/shell]
+```
 
 インストールに必要な設定は、GUIで行える。http://(サーバのIP)/nconf/ をブラウザで開く。
 
@@ -116,7 +116,7 @@ nconfの接続に認証を必要とするかどうかの設定。後でも変更
 
 インストールしたディレクトリ内のファイル、ディレクトリを削除しろというメッセージが出るので、リネームする(別に使わないと思うが一応)。
 
-[shell]
+```
   
 $ cd /var/www/html/nconf
   
@@ -128,7 +128,7 @@ $ sudo mv UPDATE UPDATE.org
   
 $ sudo mv UPDATE.php UPDATE.php.org
   
-[/shell]
+```
 
 ここまででnconfの設定画面にはアクセスできるようになる。
 
@@ -142,51 +142,51 @@ $ sudo mv UPDATE.php UPDATE.php.org
 
 23行目。Nagios本体のパスを指定する。
 
-[text]
+```
   
 \# 変更前
   
-define(&#8216;NAGIOS_BIN&#8217;, &#8216;/var/www/html/nconf/bin/nagios&#8217;);
+define('NAGIOS_BIN', '/var/www/html/nconf/bin/nagios');
   
 \# 変更後
   
-define(&#8216;NAGIOS_BIN&#8217;, &#8216;/usr/sbin/nagios&#8217;);
+define('NAGIOS_BIN', '/usr/sbin/nagios');
   
-[/text]
+```
 
 75行目。Nagiosのメイン設定ファイル(nagios.cfg)の構文チェックを無効化。手元の環境では、有効にしてしまうと、正しいはずの設定ファイルのチェックがどうしてもエラーになってしまったのでやむなく。
 
-[text]
+```
   
 \# 変更前
   
-define(&#8216;CHECK\_STATIC\_SYNTAX&#8217;, 1);
+define('CHECK\_STATIC\_SYNTAX', 1);
   
 \# 変更後
   
-define(&#8216;CHECK\_STATIC\_SYNTAX&#8217;, 0);
+define('CHECK\_STATIC\_SYNTAX', 0);
   
-[/text]
+```
 
 80行目。この配列に入っているユーザが、通知先などに自動で追加されてしまうので削除。
 
-[text]
+```
   
 \# 変更前
   
-$SUPERADMIN_GROUPS = array (&#8220;+admins&#8221;);
+$SUPERADMIN_GROUPS = array ("+admins");
   
 \# 変更後
   
-$SUPERADMIN_GROUPS = array (&#8220;&#8221;);
+$SUPERADMIN_GROUPS = array ("");
   
-[/text]
+```
 
 /var/www/html/nconf/config/deployment.ini (nconfの自動デプロイ設定ファイル)を以下の通り書き換え。
 
 「;; LOCAL deployment ;;」の下、6行目から29行目までの以下のセクションの行頭のセミコロンを外して有効化。
 
-[text]
+```
   
 ;[extract config]
   
@@ -196,41 +196,41 @@ $SUPERADMIN_GROUPS = array (&#8220;&#8221;);
   
 ;[copy nagios.cfg]
   
-[/text]
+```
 
 また、nconfが生成するNagios設定ファイルのアーカイブを指定する、8行目を以下のとおり変更。
 
-[text]
+```
   
 \# 変更前
   
-source_file = &#8220;/var/www/nconf/output/NagiosConfig.tgz&#8221;
+source_file = "/var/www/nconf/output/NagiosConfig.tgz"
   
 \# 変更後
   
-source_file = &#8220;/var/www/html/nconf/output/NagiosConfig.tgz&#8221;
+source_file = "/var/www/html/nconf/output/NagiosConfig.tgz"
   
-[/text]
+```
 
 Apacheの起動ユーザapacheがNagiosを再起動できるようにsudoersを編集。
 
-[shell]
+```
   
 $ sudo visudo
   
-[/shell]
+```
 
 以下の1行を末尾に追加。
 
-[text]
+```
   
 apache ALL=(ALL)NOPASSWD: /etc/rc.d/init.d/nagios reload
   
-[/text]
+```
 
 nconfが生成した設定ファイルをNagiosの設定ファイルディレクトリ(/etc/nagios)に配置できるように細々した設定。
 
-[shell]
+```
   
 $ cd /etc/nagios
   
@@ -238,19 +238,19 @@ $ sudo mkdir Default_collector global
   
 $ sudo chown apache. Default_collector global nagios.cfg
   
-[/shell]
+```
 
 nconfからnagios.cfgを編集・配置することもできるので、一応nconfのディレクトリ以下にnagios.cfgを置いておく。
 
-[shell]
+```
   
 $ sudo cp /etc/nagios/nagios.cfg /var/www/html/nconf/static_cfg/
   
-[/shell]
+```
 
 nconfが配置するファイルを設定ファイルとして使用するように、コピーした先の/var/www/html/nconf/static_cfg/nagios.cfgを編集。
 
-[text]
+```
   
 \# cfg\_fileとcfg\_dirを全てコメントアウトして以下の2行を追加。
 
@@ -258,11 +258,11 @@ cfg_dir=/etc/nagios/global
   
 cfg\_dir=/etc/nagios/Default\_collector
   
-[/text]
+```
 
 これで設定はおしまい。ApacheとNagiosを再起動して一息つく。
 
-[shell]
+```
   
 $ sudo /etc/init.d/httpd stop
   
@@ -270,7 +270,7 @@ $ sudo /etc/init.d/nagios restart
   
 $ sudo /etc/init.d/httpd start
   
-[/shell]
+```
 
 ## 動作確認
 

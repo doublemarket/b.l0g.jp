@@ -31,13 +31,13 @@ categories:
 
 awscliの用意が済んだら、リポジトリをクローンしてきてコマンドを叩けばよい。
 
-[code lang=text]
+```
   
 git clone https://github.com/colinbjohnson/aws-missing-tools.git
   
 cd aws-missing-tools/ec2-automate-backup
   
-[/code]
+```
 
 コマンドのオプションは[README](https://github.com/colinbjohnson/aws-missing-tools/tree/master/ec2-automate-backup)に書いてあるが、イマイチわかりにくい。最低限以下がわかればとりあえずのバックアップは取れる。
 
@@ -51,11 +51,11 @@ cd aws-missing-tools/ec2-automate-backup
 
 具体的には、以下のようにコマンドを実行する。これは「Backup=trueタグが付いたボリュームのスナップショットを作成し、7日以上経過したスナップショットを削除する」例。
 
-[code lang=text]
+```
   
 bash ec2-automate-backup.sh -s tag -t 'Backup,Values=true' -r ap-northeast-1 -n -k 7 -p
   
-[/code]
+```
 
 実際の挙動的には、`-k 7`オプションがあるので7日経つとスナップショットにPurgeAllow=trueタグが付けられ、次の実行で`-p`オプションが効いてPurgeAllow=trueがついているスナップショットが消される、という流れになる。
 

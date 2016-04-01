@@ -18,7 +18,7 @@ categories:
 
 これはまさに欲しかったアプリではないか！ 事前に調べた限りではGPSロガー的なアプリは見つからなかったのだが(iPhoneアプリはいくつか見つけた)、探し方が悪かっただけらしい。そんなわけで、自分で作らなくても既にあったので、あっさりと自分のAndroidアプリ制作意欲はほぼゼロまで削がれた。2010年5月からはソースコードも公開されたため、改変も可能になった。
 
-[mytracks &#8211; Project Hosting on Google Code](http://code.google.com/p/mytracks/)
+[mytracks - Project Hosting on Google Code](http://code.google.com/p/mytracks/)
 
 使い方は簡単で、Record Trackというメニューを選んで歩き始めると、一定の間隔でGPSの情報を記録し、Googleマップ上に表示してくれるというのが基本機能。以下の画面は乾徳山に登った時のコースの一部。機種や電波の受信状況にもよるだろうが、結構高精度で記録が取れる。この時はRecord Trackするのを忘れていて、一部のルートしか記録できなかった。
 

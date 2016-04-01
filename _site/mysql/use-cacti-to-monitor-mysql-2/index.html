@@ -38,103 +38,103 @@
 
 <p>Ubuntuでは標準ではSNMPがインストールされていないので、まずはインストールする。</p>
 
-<p>[bash]</p>
-
-<p>target$ sudo apt-get install snmp snmpd</p>
-
-<p>[/bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+target$ sudo apt-get install snmp snmpd
+  
+</code></pre>
+</div>
 
 <p>/etc/snmp/snmpd.confにsnmpdのデフォルト設定ファイルが置かれるので、監視サーバから情報を取 得できるように編集する。</p>
 
 <p>まず、監視サーバからの読み出し許可設定を追記。SNMPコミュニティ名は「public」がデフォルト設定としては一般的だが、適宜設定。</p>
 
-<p>[text]</p>
-
-<p># 監視対象で設定</p>
-
-<p>rocommunity SNMPコミュニティ名 監視サーバのIP # 追記</p>
-
-<p>view all all # 追記</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+\# 監視対象で設定
+  
+rocommunity SNMPコミュニティ名 監視サーバのIP # 追記
+  
+view all all # 追記
+  
+</code></pre>
+</div>
 
 <p>全インタフェースからの接続を許可するよう設定。</p>
 
-<p>[text]</p>
-
-<p># 監視対象で設定</p>
-
-<p>#agentAddress udp:127.0.0.1:161 # この行はコメントアウト</p>
-
-<p>agentAddress udp:161 # 追記</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+\# 監視対象で設定
+  
+#agentAddress udp:127.0.0.1:161 # この行はコメントアウト
+  
+agentAddress udp:161 # 追記
+  
+</code></pre>
+</div>
 
 <p>snmpdを再起動した後、監視サーバから以下のコマンドを実行して応答があればSNMPの設定は完了。</p>
 
-<p>[bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+target$ sudo /etc/init.d/snmpd restart
+  
+</code></pre>
+</div>
 
-<p>target$ sudo /etc/init.d/snmpd restart</p>
-
-<p>[/bash]</p>
-
-<p>[bash]</p>
-
-<p>server$ snmpwalk -v1 -c public 監視対象IPアドレス .1.3.6.1.2.1.1.1.0</p>
-
-<p>SNMPv2-MIB::sysDescr.0 = STRING: Linux ubuntu1110s-01 2.6.38-8-server #42-Ubuntu SMP Mon Apr 11 03:49:04 UTC 2011 x86_64</p>
-
-<p>↑ 応答の例</p>
-
-<p>[/bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+server$ snmpwalk -v1 -c public 監視対象IPアドレス .1.3.6.1.2.1.1.1.0
+  
+SNMPv2-MIB::sysDescr.0 = STRING: Linux ubuntu1110s-01 2.6.38-8-server #42-Ubuntu SMP Mon Apr 11 03:49:04 UTC 2011 x86_64
+  
+↑ 応答の例
+  
+</code></pre>
+</div>
 
 <h2 id="snmpcentos">SNMPの設定(CentOSの場合)</h2>
 
 <p>通常、SNMPはデフォルトでインストールされるので、設定ファイルを編集して監視サーバから接続できるようにする。基本的にはUbuntuと同じ設定にすればよい。</p>
 
-<p>[bash]</p>
-
-<p># 監視対象で設定</p>
-
-<p>rocommunity SNMPコミュニティ名 監視サーバのIP # 追記</p>
-
-<p>view all all # 追記</p>
-
-<p>[/bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+\# 監視対象で設定
+  
+rocommunity SNMPコミュニティ名 監視サーバのIP # 追記
+  
+view all all # 追記
+  
+</code></pre>
+</div>
 
 <p>snmpdが自動起動するように設定し(どうやら初期設定では自動起動しないようになっている模様)、snmpdを再起動して設定を反映させる。</p>
 
-<p>[bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+target$ sudo chkconfig snmpd on
+  
+target$ sudo /etc/init.d/snmpd start
+  
+</code></pre>
+</div>
 
-<p>target$ sudo chkconfig snmpd on</p>
-
-<p>target$ sudo /etc/init.d/snmpd start</p>
-
-<p>[/bash]</p>
-
-<p>[bash]</p>
-
-<p>server$ snmpwalk -v1 -c public 監視対象IPアドレス .1.3.6.1.2.1.1.1.0</p>
-
-<p>SNMPv2-MIB::sysDescr.0 = STRING: Linux centos62-64-01 2.6.32-220.el6.x86_64 #1 SMP Tue Dec 6 19:48:22 GMT 2011 x86_64</p>
-
-<p>↑ 応答の例</p>
-
-<p>[/bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+server$ snmpwalk -v1 -c public 監視対象IPアドレス .1.3.6.1.2.1.1.1.0
+  
+SNMPv2-MIB::sysDescr.0 = STRING: Linux centos62-64-01 2.6.32-220.el6.x86\_64 #1 SMP Tue Dec 6 19:48:22 GMT 2011 x86\_64
+  
+↑ 応答の例
+  
+</code></pre>
+</div>
 
 <h2 id="cactimysql">Cacti監視のためのMySQL設定</h2>
 
 <p>Percona Monitoring Plugins for Cactiは、監視対象のMySQLにログインして、色々な種類のshowコ マンドを実行して得られた結果をグラフにするので、監視対象のMySQLにユーザを追加する必要があ る。ここで指定するユーザ名とパスワードは、<a title="MySQLの監視はCacti+Percona Monitoring Pluginsがおすすめ(監視サーバ構築編)" href="http://b.l0g.jp/mysql/install-cacti-to-monitor-mysql-1/" target="_blank">前回のエントリ</a>でss_get_mysql_stats.phpファイルに書いた、 $mysql_user と $mysql_pass と一致させること。</p>
 
-<p>[bash]</p>
-
-<p>target$ mysql -uroot</p>
-
-<p>mysql-target&gt; grant process, super on *.* to ユーザ名@監視サーバ identified by ‘パスワ ード’;</p>
-
-<p>mysql-target&gt; flush privileges;</p>
-
-<p>[/bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+target$ mysql -uroot
+  
+mysql-target&gt; grant process, super on \*.\* to ユーザ名@監視サーバ identified by 'パスワ ード';
+  
+mysql-target&gt; flush privileges;
+  
+</code></pre>
+</div>
 
 <h2 id="cacti">Cactiからの監視設定</h2>
 
@@ -248,7 +248,7 @@
 
       <footer class="footer">
         <small>
-          &copy; <time datetime="2016-04-01T11:15:44-07:00">2016</time>. All rights reserved.
+          &copy; <time datetime="2016-04-01T11:57:39-07:00">2016</time>. All rights reserved.
         </small>
       </footer>
     </div>

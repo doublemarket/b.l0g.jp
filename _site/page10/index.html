@@ -44,243 +44,73 @@
 
 <p>MySQLでレプリケーション構成を取っている時、スレーブとなるマシンのmy.cnfには、server-idと一緒にreport-hostを必ず書いておこう。</p>
 
-<p>[text]</p>
-
-<p>server-id = 一意のID</p>
-
-<p>report-host = ホスト名</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+server-id = 一意のID
+  
+report-host = ホスト名
+  
+</code></pre>
+</div>
 
 <p>(2012.10.15追記) report-hostではなくslave-hostになってたと@ishikawa84gさんから指摘を受けたので修正。</p>
 
 <p>これで、マスターでshow slave hostsコマンドを打つだけで、スレーブの一覧が表示される。</p>
 
-<p>[sql]</p>
-
-<blockquote>
-  <p>show slave hosts</p>
-</blockquote>
-
-<p>+———–+—————-+——+———–+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>Server_id</td>
-      <td>Host</td>
-      <td>Port</td>
-      <td>Master_id</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+———–+—————-+——+———–+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>16800111</td>
-      <td>nanikano-dbs01</td>
-      <td>3306</td>
-      <td>16800101</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>16800112</td>
-      <td>nanikano-dbs02</td>
-      <td>3306</td>
-      <td>16800101</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>16800113</td>
-      <td>nanikano-dbs03</td>
-      <td>3306</td>
-      <td>16800101</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+———–+—————-+——+———–+</p>
-
-<p>[/sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+&gt; show slave hosts
+  
++----+------+--+----+
+  
+| Server\_id | Host | Port | Master\_id |
+  
++----+------+--+----+
+  
+| 16800111 | nanikano-dbs01 | 3306 | 16800101 |
+  
+| 16800112 | nanikano-dbs02 | 3306 | 16800101 |
+  
+| 16800113 | nanikano-dbs03 | 3306 | 16800101 |
+  
++----+------+--+----+
+  
+</code></pre>
+</div>
 
 <p>report-hostを書いていない時にマスタからスレーブの一覧を取得しようと思うと、マスターに接続しているプロセスの一覧から、スレーブへログを渡しているものを抜き出して知るしかない。以下のように、show processlistの結果から、ユーザがレプリケーション用のもの(change masterした時に指定したユーザ)で、CommandがBinlog Dumpとなっているものがスレーブとのレプリケーション用のプロセスだと分かる。</p>
 
-<p>[sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+&gt; show processlist;
 
-<blockquote>
-  <p>show processlist;</p>
-</blockquote>
-
-<p>+———+———–+———————+———-+————-+——–+—————————————————————-+——————+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>Id</td>
-      <td>User</td>
-      <td>Host</td>
-      <td>db</td>
-      <td>Command</td>
-      <td>Time</td>
-      <td>State</td>
-      <td>Info</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+———+———–+———————+———-+————-+——–+—————————————————————-+——————+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>1592850</td>
-      <td>user00001</td>
-      <td>192.168.0.203:38102</td>
-      <td>nantoka</td>
-      <td>Sleep</td>
-      <td>1</td>
-      <td> </td>
-      <td>NULL</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>1592854</td>
-      <td>user00001</td>
-      <td>192.168.0.203:38106</td>
-      <td>hogefuga</td>
-      <td>Sleep</td>
-      <td>1</td>
-      <td> </td>
-      <td>NULL</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>1592856</td>
-      <td>user00001</td>
-      <td>192.168.0.203:38108</td>
-      <td>hogefuga</td>
-      <td>Sleep</td>
-      <td>1</td>
-      <td> </td>
-      <td>NULL</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>1596335</td>
-      <td>user00001</td>
-      <td>192.168.0.203:38328</td>
-      <td>hogefuga</td>
-      <td>Sleep</td>
-      <td>27</td>
-      <td> </td>
-      <td>NULL</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>1596337</td>
-      <td>user00001</td>
-      <td>192.168.0.203:38331</td>
-      <td>nantoka</td>
-      <td>Sleep</td>
-      <td>15</td>
-      <td> </td>
-      <td>NULL</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>(中略)</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>1596701</td>
-      <td>repluser</td>
-      <td>192.168.0.72:40783</td>
-      <td>NULL</td>
-      <td>Binlog Dump</td>
-      <td>80289</td>
-      <td>Has sent all binlog to slave; waiting for binlog to be updated</td>
-      <td>NULL</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>1596702</td>
-      <td>repluser</td>
-      <td>192.168.0.73:49388</td>
-      <td>NULL</td>
-      <td>Binlog Dump</td>
-      <td>80289</td>
-      <td>Has sent all binlog to slave; waiting for binlog to be updated</td>
-      <td>NULL</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>1596706</td>
-      <td>repluser</td>
-      <td>192.168.0.55:47014</td>
-      <td>NULL</td>
-      <td>Binlog Dump</td>
-      <td>80289</td>
-      <td>Has sent all binlog to slave; waiting for binlog to be updated</td>
-      <td>NULL</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>1596707</td>
-      <td>repluser</td>
-      <td>192.168.1.81:54804</td>
-      <td>NULL</td>
-      <td>Binlog Dump</td>
-      <td>80289</td>
-      <td>Has sent all binlog to slave; waiting for binlog to be updated</td>
-      <td>NULL</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+———+———–+———————+———-+————-+——–+—————————————————————-+——————+</p>
-
-<p>[/sql]</p>
++---+----+-------+----+-----+---+----------------------+------+
+  
+| Id | User | Host | db | Command | Time | State | Info |
+  
++---+----+-------+----+-----+---+----------------------+------+
+  
+| 1592850 | user00001 | 192.168.0.203:38102 | nantoka | Sleep | 1 | | NULL |
+  
+| 1592854 | user00001 | 192.168.0.203:38106 | hogefuga | Sleep | 1 | | NULL |
+  
+| 1592856 | user00001 | 192.168.0.203:38108 | hogefuga | Sleep | 1 | | NULL |
+  
+| 1596335 | user00001 | 192.168.0.203:38328 | hogefuga | Sleep | 27 | | NULL |
+  
+| 1596337 | user00001 | 192.168.0.203:38331 | nantoka | Sleep | 15 | | NULL |
+    
+(中略)
+  
+| 1596701 | repluser | 192.168.0.72:40783 | NULL | Binlog Dump | 80289 | Has sent all binlog to slave; waiting for binlog to be updated | NULL |
+  
+| 1596702 | repluser | 192.168.0.73:49388 | NULL | Binlog Dump | 80289 | Has sent all binlog to slave; waiting for binlog to be updated | NULL |
+  
+| 1596706 | repluser | 192.168.0.55:47014 | NULL | Binlog Dump | 80289 | Has sent all binlog to slave; waiting for binlog to be updated | NULL |
+  
+| 1596707 | repluser | 192.168.1.81:54804 | NULL | Binlog Dump | 80289 | Has sent all binlog to slave; waiting for binlog to be updated | NULL |
+  
++---+----+-------+----+-----+---+----------------------+------+
+  
+</code></pre>
+</div>
 
 <p>多数のアプリケーションサーバからの接続があったりしてコネクション数が大量で、show processlistが多くの行を返す場合などにはこれでは見づらく、show slave hostコマンドできれいに見られるのがうれしい。細かいことだけど、あとで見やすいようにしておくのは結構重要だと思う。</p>
 
@@ -290,52 +120,25 @@
 
 <p>MySQL 5.5.3よりも新しいバージョンの場合、スレーブでreport-hostを設定しなくてもマスタでshow slave hostsを実行すると一覧が表示されるようになっているようだ(<a href="http://dev.mysql.com/doc/refman/5.5/en/show-slave-hosts.html" title="MySQL 5.5 Reference Manual 13.7.5.34. SHOW SLAVE HOSTS Syntax" target="_blank">出典</a>)。5.5.3以前の場合、report-hostを書かないとそのスレーブは表示されてこない。</p>
 
-<p>[sql]</p>
-
-<p>mysql&gt; show slave hosts;</p>
-
-<p>+———–+——+——+———–+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>Server_id</td>
-      <td>Host</td>
-      <td>Port</td>
-      <td>Master_id</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+———–+——+——+———–+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>111</td>
-      <td> </td>
-      <td>3306</td>
-      <td>101</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>112</td>
-      <td> </td>
-      <td>3306</td>
-      <td>101</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+———–+——+——+———–+</p>
-
-<p>2 rows in set (0.00 sec)</p>
-
-<p>[/sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+mysql&gt; show slave hosts;
+  
++----+--+--+----+
+  
+| Server\_id | Host | Port | Master\_id |
+  
++----+--+--+----+
+  
+| 111 | | 3306 | 101 |
+  
+| 112 | | 3306 | 101 |
+  
++----+--+--+----+
+  
+2 rows in set (0.00 sec)
+  
+</code></pre>
+</div>
 
 <p>ただしこの場合Hostの欄は上のように空になり、report-hostを設定するとその値がHost列に表示されるようになっている。</p>
 
@@ -482,7 +285,7 @@
 
       <footer class="footer">
         <small>
-          &copy; <time datetime="2016-04-01T11:15:44-07:00">2016</time>. All rights reserved.
+          &copy; <time datetime="2016-04-01T11:57:39-07:00">2016</time>. All rights reserved.
         </small>
       </footer>
     </div>

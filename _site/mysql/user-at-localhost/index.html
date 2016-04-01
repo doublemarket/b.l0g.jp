@@ -34,208 +34,113 @@
   <time datetime="2012-02-03T12:07:36-08:00" class="post-date">03 Feb 2012</time>
   <p>MySQLをインストールしたので、とりあえずワイルドカードでホスト名を指定してテスト用のユーザを作成。</p>
 
-<p>[sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>
+mysql&gt; show databases;
+  
++-------+
+  
+| Database |
+  
++-------+
+  
+| information_schema |
+  
+| hoge |
+  
+| mysql |
+  
+| performance_schema |
+  
+| test |
+  
++-------+
+  
+5 rows in set (0.00 sec)
 
-<p>mysql&gt; show databases;</p>
+mysql&gt; grant select on hoge.* to testuser@'%' identified by 'password';
+  
+Query OK, 0 rows affected (0.07 sec)
 
-<p>+——————–+</p>
+mysql&gt; select host,user from mysql.user;
+  
++----+----+
+  
+| host | user |
+  
++----+----+
+  
+| % | testuser |
+  
+| 127.0.0.1 | root |
+  
+| localhost | |
+  
+| localhost | root |
+  
++----+----+
+  
+7 rows in set (0.00 sec)
 
-<table>
-  <tbody>
-    <tr>
-      <td>Database</td>
-    </tr>
-  </tbody>
-</table>
+mysql&gt; quit
 
-<p>+——————–+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>information_schema</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>hoge</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>mysql</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>performance_schema</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>test</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+——————–+</p>
-
-<p>5 rows in set (0.00 sec)</p>
-
-<p>mysql&gt; grant select on hoge.* to testuser@’%’ identified by ‘password’;</p>
-
-<p>Query OK, 0 rows affected (0.07 sec)</p>
-
-<p>mysql&gt; select host,user from mysql.user;</p>
-
-<p>+———–+———-+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>host</td>
-      <td>user</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+———–+———-+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>%</td>
-      <td>testuser</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>127.0.0.1</td>
-      <td>root</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>localhost</td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>localhost</td>
-      <td>root</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+———–+———-+</p>
-
-<p>7 rows in set (0.00 sec)</p>
-
-<p>mysql&gt; quit</p>
-
-<p>[/sql]</p>
+</code></pre>
+</div>
 
 <p>この状態で、MySQLがインストールされているサーバ自体からそのままtestuserでログインしようとすると、アクセスが拒否される。</p>
 
-<p>[sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>
+testserver$ mysql -utestuser -p
+  
+Enter password:
+  
+ERROR 1045 (28000): Access denied for user 'testuser'@'localhost' (using password: YES)
 
-<p>testserver$ mysql -utestuser -p</p>
-
-<p>Enter password:</p>
-
-<p>ERROR 1045 (28000): Access denied for user ‘testuser’@’localhost’ (using password: YES)</p>
-
-<p>[/sql]</p>
+</code></pre>
+</div>
 
 <p>しかし、他のサーバからアクセスしてみると、接続は成功して、hogeデータベースへのアクセスもできる。</p>
 
-<p>[sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>
+anotherserver$ mysql -utestuser -p -h testserver hoge
+  
+Enter password:
+  
+Welcome to the MySQL monitor. Commands end with ; or \g.
+  
+Your MySQL connection id is 8
+  
+Server version: 5.5.17 MySQL Community Server (GPL)
 
-<p>anotherserver$ mysql -utestuser -p -h testserver hoge</p>
+Copyright (c) 2000, 2011, Oracle and/or its affiliates. All rights reserved.
 
-<p>Enter password:</p>
+Oracle is a registered trademark of Oracle Corporation and/or its
+  
+affiliates. Other names may be trademarks of their respective
+  
+owners.
 
-<p>Welcome to the MySQL monitor. Commands end with ; or \g.</p>
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-<p>Your MySQL connection id is 8</p>
+mysql&gt; show databases;
+  
++-------+
+  
+| Database |
+  
++-------+
+  
+| information_schema |
+  
+| hoge |
+  
+| test |
+  
++-------+
+  
+3 rows in set (0.00 sec)
 
-<p>Server version: 5.5.17 MySQL Community Server (GPL)</p>
-
-<p>Copyright (c) 2000, 2011, Oracle and/or its affiliates. All rights reserved.</p>
-
-<p>Oracle is a registered trademark of Oracle Corporation and/or its</p>
-
-<p>affiliates. Other names may be trademarks of their respective</p>
-
-<p>owners.</p>
-
-<p>Type ‘help;’ or ‘\h’ for help. Type ‘\c’ to clear the current input statement.</p>
-
-<p>mysql&gt; show databases;</p>
-
-<p>+——————–+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>Database</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+——————–+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>information_schema</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>hoge</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>test</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+——————–+</p>
-
-<p>3 rows in set (0.00 sec)</p>
-
-<p>[/sql]</p>
+</code></pre>
+</div>
 
 <p>「testuser@’%’」の「%」はワイルドカードなので、localhostも含めた全てのホストを指すものかと思ったら、どうやらそれは間違いのようだ。</p>
 
@@ -264,60 +169,25 @@
 
 <p>つまり、はじめの方に出てきたユーザのテーブルは、実際には以下のように並んでいることになる。</p>
 
-<p>[sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>
++----+----+
+  
+| host | user |
+  
++----+----+
+  
+| localhost | root |
+  
+| localhost | |
+  
+| 127.0.0.1 | root |
+  
+| % | testuser |
+  
++----+----+
 
-<p>+———–+———-+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>host</td>
-      <td>user</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+———–+———-+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>localhost</td>
-      <td>root</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>localhost</td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>127.0.0.1</td>
-      <td>root</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>%</td>
-      <td>testuser</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+———–+———-+</p>
-
-<p>[/sql]</p>
+</code></pre>
+</div>
 
 <p>ログイン時のユーザ名とホスト名の組み合わせは、このようにソートしたテーブルを上から順に検索していき、最初に一致したもので認証が行われる。</p>
 
@@ -325,45 +195,33 @@
 
 <p>この裏付けに、パスワードなしでtestuserでログインできるようにしてみると、確かに実際には匿名ユーザとしてログインしてしまっていることがわかる。</p>
 
-<p>[sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>
+$ mysql -utestuser
 
-<p>$ mysql -utestuser</p>
+mysql&gt; select current_user();
+  
++------+
+  
+| current_user() |
+  
++------+
+  
+| @localhost |
+  
++------+
+  
+1 row in set (0.00 sec)
 
-<p>mysql&gt; select current_user();</p>
-
-<p>+—————-+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>current_user()</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+—————-+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>@localhost</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+—————-+</p>
-
-<p>1 row in set (0.00 sec)</p>
-
-<p>[/sql]</p>
+</code></pre>
+</div>
 
 <p>従って、「testuser@localhost」としてログインしたいなら、明示的に</p>
 
-<p>[sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>
+mysql&gt; grant select on hoge.* to testuser@'localhost' identified by 'password';
 
-<p>mysql&gt; grant select on hoge.* to testuser@’localhost’ identified by ‘password’;</p>
-
-<p>[/sql]</p>
+</code></pre>
+</div>
 
 <p>とも実行して、「localhostのtestuser」を作成する必要がある。</p>
 
@@ -409,7 +267,7 @@
 
       <footer class="footer">
         <small>
-          &copy; <time datetime="2016-04-01T11:15:44-07:00">2016</time>. All rights reserved.
+          &copy; <time datetime="2016-04-01T11:57:39-07:00">2016</time>. All rights reserved.
         </small>
       </footer>
     </div>

@@ -42,208 +42,113 @@
 
     <p>MySQLをインストールしたので、とりあえずワイルドカードでホスト名を指定してテスト用のユーザを作成。</p>
 
-<p>[sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>
+mysql&gt; show databases;
+  
++-------+
+  
+| Database |
+  
++-------+
+  
+| information_schema |
+  
+| hoge |
+  
+| mysql |
+  
+| performance_schema |
+  
+| test |
+  
++-------+
+  
+5 rows in set (0.00 sec)
 
-<p>mysql&gt; show databases;</p>
+mysql&gt; grant select on hoge.* to testuser@'%' identified by 'password';
+  
+Query OK, 0 rows affected (0.07 sec)
 
-<p>+——————–+</p>
+mysql&gt; select host,user from mysql.user;
+  
++----+----+
+  
+| host | user |
+  
++----+----+
+  
+| % | testuser |
+  
+| 127.0.0.1 | root |
+  
+| localhost | |
+  
+| localhost | root |
+  
++----+----+
+  
+7 rows in set (0.00 sec)
 
-<table>
-  <tbody>
-    <tr>
-      <td>Database</td>
-    </tr>
-  </tbody>
-</table>
+mysql&gt; quit
 
-<p>+——————–+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>information_schema</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>hoge</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>mysql</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>performance_schema</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>test</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+——————–+</p>
-
-<p>5 rows in set (0.00 sec)</p>
-
-<p>mysql&gt; grant select on hoge.* to testuser@’%’ identified by ‘password’;</p>
-
-<p>Query OK, 0 rows affected (0.07 sec)</p>
-
-<p>mysql&gt; select host,user from mysql.user;</p>
-
-<p>+———–+———-+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>host</td>
-      <td>user</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+———–+———-+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>%</td>
-      <td>testuser</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>127.0.0.1</td>
-      <td>root</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>localhost</td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>localhost</td>
-      <td>root</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+———–+———-+</p>
-
-<p>7 rows in set (0.00 sec)</p>
-
-<p>mysql&gt; quit</p>
-
-<p>[/sql]</p>
+</code></pre>
+</div>
 
 <p>この状態で、MySQLがインストールされているサーバ自体からそのままtestuserでログインしようとすると、アクセスが拒否される。</p>
 
-<p>[sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>
+testserver$ mysql -utestuser -p
+  
+Enter password:
+  
+ERROR 1045 (28000): Access denied for user 'testuser'@'localhost' (using password: YES)
 
-<p>testserver$ mysql -utestuser -p</p>
-
-<p>Enter password:</p>
-
-<p>ERROR 1045 (28000): Access denied for user ‘testuser’@’localhost’ (using password: YES)</p>
-
-<p>[/sql]</p>
+</code></pre>
+</div>
 
 <p>しかし、他のサーバからアクセスしてみると、接続は成功して、hogeデータベースへのアクセスもできる。</p>
 
-<p>[sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>
+anotherserver$ mysql -utestuser -p -h testserver hoge
+  
+Enter password:
+  
+Welcome to the MySQL monitor. Commands end with ; or \g.
+  
+Your MySQL connection id is 8
+  
+Server version: 5.5.17 MySQL Community Server (GPL)
 
-<p>anotherserver$ mysql -utestuser -p -h testserver hoge</p>
+Copyright (c) 2000, 2011, Oracle and/or its affiliates. All rights reserved.
 
-<p>Enter password:</p>
+Oracle is a registered trademark of Oracle Corporation and/or its
+  
+affiliates. Other names may be trademarks of their respective
+  
+owners.
 
-<p>Welcome to the MySQL monitor. Commands end with ; or \g.</p>
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-<p>Your MySQL connection id is 8</p>
+mysql&gt; show databases;
+  
++-------+
+  
+| Database |
+  
++-------+
+  
+| information_schema |
+  
+| hoge |
+  
+| test |
+  
++-------+
+  
+3 rows in set (0.00 sec)
 
-<p>Server version: 5.5.17 MySQL Community Server (GPL)</p>
-
-<p>Copyright (c) 2000, 2011, Oracle and/or its affiliates. All rights reserved.</p>
-
-<p>Oracle is a registered trademark of Oracle Corporation and/or its</p>
-
-<p>affiliates. Other names may be trademarks of their respective</p>
-
-<p>owners.</p>
-
-<p>Type ‘help;’ or ‘\h’ for help. Type ‘\c’ to clear the current input statement.</p>
-
-<p>mysql&gt; show databases;</p>
-
-<p>+——————–+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>Database</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+——————–+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>information_schema</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>hoge</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>test</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+——————–+</p>
-
-<p>3 rows in set (0.00 sec)</p>
-
-<p>[/sql]</p>
+</code></pre>
+</div>
 
 <p>「testuser@’%’」の「%」はワイルドカードなので、localhostも含めた全てのホストを指すものかと思ったら、どうやらそれは間違いのようだ。</p>
 
@@ -272,60 +177,25 @@
 
 <p>つまり、はじめの方に出てきたユーザのテーブルは、実際には以下のように並んでいることになる。</p>
 
-<p>[sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>
++----+----+
+  
+| host | user |
+  
++----+----+
+  
+| localhost | root |
+  
+| localhost | |
+  
+| 127.0.0.1 | root |
+  
+| % | testuser |
+  
++----+----+
 
-<p>+———–+———-+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>host</td>
-      <td>user</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+———–+———-+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>localhost</td>
-      <td>root</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>localhost</td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>127.0.0.1</td>
-      <td>root</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>%</td>
-      <td>testuser</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+———–+———-+</p>
-
-<p>[/sql]</p>
+</code></pre>
+</div>
 
 <p>ログイン時のユーザ名とホスト名の組み合わせは、このようにソートしたテーブルを上から順に検索していき、最初に一致したもので認証が行われる。</p>
 
@@ -333,45 +203,33 @@
 
 <p>この裏付けに、パスワードなしでtestuserでログインできるようにしてみると、確かに実際には匿名ユーザとしてログインしてしまっていることがわかる。</p>
 
-<p>[sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>
+$ mysql -utestuser
 
-<p>$ mysql -utestuser</p>
+mysql&gt; select current_user();
+  
++------+
+  
+| current_user() |
+  
++------+
+  
+| @localhost |
+  
++------+
+  
+1 row in set (0.00 sec)
 
-<p>mysql&gt; select current_user();</p>
-
-<p>+—————-+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>current_user()</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+—————-+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>@localhost</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+—————-+</p>
-
-<p>1 row in set (0.00 sec)</p>
-
-<p>[/sql]</p>
+</code></pre>
+</div>
 
 <p>従って、「testuser@localhost」としてログインしたいなら、明示的に</p>
 
-<p>[sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>
+mysql&gt; grant select on hoge.* to testuser@'localhost' identified by 'password';
 
-<p>mysql&gt; grant select on hoge.* to testuser@’localhost’ identified by ‘password’;</p>
-
-<p>[/sql]</p>
+</code></pre>
+</div>
 
 <p>とも実行して、「localhostのtestuser」を作成する必要がある。</p>
 
@@ -394,177 +252,65 @@
 
     <p>テーブル内の行数を数えるのに一番簡単なのは、</p>
 
-<p>[sql]</p>
-
-<p>select count(*) from ‘テーブル名’;</p>
-
-<p>[/sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+select count(*) from 'テーブル名';
+  
+</code></pre>
+</div>
 
 <p>と実行することだが、これだと最悪そのテーブルを総なめすることになる。</p>
 
 <p>こういう時はinformation schemaから情報を引く。information_schema.tablesテーブルのtable_rowsカラムが行数。</p>
 
-<p>[sql]</p>
-
-<p>mysql&gt; select table_schema, table_name, table_rows from information_schema.tables</p>
-
-<p>-&gt; where table_schema = ‘hoge’;</p>
-
-<p>+——————–+—————————————+————+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>table_schema</td>
-      <td>table_name</td>
-      <td>table_rows</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+——————–+—————————————+————+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>hoge</td>
-      <td>wp_FollowMe_Links</td>
-      <td>2</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>hoge</td>
-      <td>wp_commentmeta</td>
-      <td>180</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>hoge</td>
-      <td>wp_comments</td>
-      <td>60</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>hoge</td>
-      <td>wp_ktaisession</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>hoge</td>
-      <td>wp_links</td>
-      <td>7</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>hoge</td>
-      <td>wp_options</td>
-      <td>236</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>hoge</td>
-      <td>wp_postmeta</td>
-      <td>509</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>hoge</td>
-      <td>wp_posts</td>
-      <td>323</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>hoge</td>
-      <td>wp_term_relationships</td>
-      <td>39</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>hoge</td>
-      <td>wp_term_taxonomy</td>
-      <td>9</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>hoge</td>
-      <td>wp_terms</td>
-      <td>9</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>hoge</td>
-      <td>wp_usermeta</td>
-      <td>31</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>hoge</td>
-      <td>wp_users</td>
-      <td>2</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+——————–+—————————————+————+</p>
-
-<p>[/sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+mysql&gt; select table\_schema, table\_name, table\_rows from information\_schema.tables
+      
+-&gt; where table_schema = 'hoge';
+  
++-------+-------------+----+
+  
+| table\_schema | table\_name | table_rows |
+  
++-------+-------------+----+
+  
+| hoge | wp\_FollowMe\_Links | 2 |
+  
+| hoge | wp_commentmeta | 180 |
+  
+| hoge | wp_comments | 60 |
+  
+| hoge | wp_ktaisession | 0 |
+  
+| hoge | wp_links | 7 |
+  
+| hoge | wp_options | 236 |
+  
+| hoge | wp_postmeta | 509 |
+  
+| hoge | wp_posts | 323 |
+  
+| hoge | wp\_term\_relationships | 39 |
+  
+| hoge | wp\_term\_taxonomy | 9 |
+  
+| hoge | wp_terms | 9 |
+  
+| hoge | wp_usermeta | 31 |
+  
+| hoge | wp_users | 2 |
+  
++-------+-------------+----+
+  
+</code></pre>
+</div>
 
 <p>showを使っても行数を引くことができるが、showの性質上表示させるカラムなどを細かく指定できず使いづらいこともあるので、information_schemaを引く方が好き。</p>
 
-<p>[sql]</p>
-
-<p>show table status;</p>
-
-<p>[/sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+show table status;
+  
+</code></pre>
+</div>
 
 <p>なおこれらのコマンドで引ける行数は、MyISAMなどのストレージエンジンでは正確な値だが、InnoDBの場合は概算値となる。なので、InnoDBの場合はselect count(*)するしかない。</p>
 
@@ -607,107 +353,107 @@
 
 <p>パッケージを展開し、コンパイル、インストール</p>
 
-<p>[text]</p>
-
-<p>$ unzip RTL8192CU_linux_v3.1.2590.20110922.zip</p>
-
-<p>$ cd RTL8192CU_8188CUS_8188CE-VAU_linux_v3.1.2590.20110922/</p>
-
-<p>$ sudo sh install.sh</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+$ unzip RTL8192CU\_linux\_v3.1.2590.20110922.zip
+  
+$ cd RTL8192CU\_8188CUS\_8188CE-VAU\_linux\_v3.1.2590.20110922/
+  
+$ sudo sh install.sh
+  
+</code></pre>
+</div>
 
 <p>※ Ubuntu Serverをインストールした直後は、makeやgccがインストールされないので、事前にsudo apt-get install make gccしておく。</p>
 
 <p>インストールされたら、ドライバモジュールがロードされていることを確認</p>
 
-<p>[text]</p>
-
-<p>$ lsmod</p>
-
-<p>Module Size Used by</p>
-
-<p>nls_utf8 12557 0</p>
-
-<p>isofs 40283 0</p>
-
-<p>vesafb 13761 1</p>
-
-<p>8192cu 508081 0 ← ロードされている</p>
-
-<p>lp 17789 0</p>
-
-<p>parport 46458 1 lp</p>
-
-<p>usbhid 46956 0</p>
-
-<p>hid 91020 1 usbhid</p>
-
-<p>tg3 141750 0</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+$ lsmod
+  
+Module Size Used by
+  
+nls_utf8 12557 0
+  
+isofs 40283 0
+  
+vesafb 13761 1
+  
+8192cu 508081 0 ← ロードされている
+  
+lp 17789 0
+  
+parport 46458 1 lp
+  
+usbhid 46956 0
+  
+hid 91020 1 usbhid
+  
+tg3 141750 0
+  
+</code></pre>
+</div>
 
 <h2 id="lan">無線LAN設定</h2>
 
 <p>WPA認証情報をファイルに書き込む。SSIDとキーは使用している無線LANアクセスポイントのものに置き換える。</p>
 
-<p>[text]</p>
-
-<p>$ wpa_passphrase [SSID] [キー] &gt; wpa_supplicant.conf</p>
-
-<p>$ sudo mv wpa_supplicant.conf /etc/wpa_supplicant/</p>
-
-<p>$ sudo chown root:root /etc/wpa_supplicant/wpa_supplicant.conf</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+$ wpa\_passphrase \[SSID\] \[キー\] &gt; wpa\_supplicant.conf
+  
+$ sudo mv wpa\_supplicant.conf /etc/wpa\_supplicant/
+  
+$ sudo chown root:root /etc/wpa\_supplicant/wpa\_supplicant.conf
+  
+</code></pre>
+</div>
 
 <p>認証の設定を/etc/network/interfaceに設定を書き込む。DHCPを使用する場合の例。3行目のSSIDは上と同じく置き換えること。</p>
 
-<p>[text]</p>
-
-<p>auto wlan0</p>
-
-<p>iface wlan0 inet dhcp</p>
-
-<p>wpa-essid [SSID]</p>
-
-<p>wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+auto wlan0
+  
+iface wlan0 inet dhcp
+  
+wpa-essid [SSID]
+  
+wpa-conf /etc/wpa\_supplicant/wpa\_supplicant.conf
+  
+</code></pre>
+</div>
 
 <p>マシンを再起動</p>
 
-<p>[text]</p>
-
-<p>$ sudo reboot</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+$ sudo reboot
+  
+</code></pre>
+</div>
 
 <p>再起動後、wlan0というインタフェースができており、ネットワークに接続できればOK。iwconfigコマンドで無線インタフェースの状態を確認できる。</p>
 
-<p>[text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+lo no wireless extensions.
 
-<p>lo no wireless extensions.</p>
+eth0 no wireless extensions.
 
-<p>eth0 no wireless extensions.</p>
-
-<p>wlan0 IEEE 802.11bgn ESSID:”aterm-xxxxxx-g” Nickname:”&lt;WIFI@REALTEK&gt;”</p>
-
-<p>Mode:Managed Frequency:2.412 GHz Access Point: xx:xx:xx:xx:xx:xx</p>
-
-<p>Bit Rate:150 Mb/s Sensitivity:0/0</p>
-
-<p>Retry:off RTS thr:off Fragment thr:off</p>
-
-<p>Power Management:off</p>
-
-<p>Link Quality=47/100 Signal level=47/100 Noise level=0/100</p>
-
-<p>Rx invalid nwid:0 Rx invalid crypt:0 Rx invalid frag:0</p>
-
-<p>Tx excessive retries:0 Invalid misc:0 Missed beacon:0</p>
-
-<p>[/text]</p>
+wlan0 IEEE 802.11bgn ESSID:"aterm-xxxxxx-g" Nickname:"&lt;WIFI@REALTEK&gt;"
+            
+Mode:Managed Frequency:2.412 GHz Access Point: xx:xx:xx:xx:xx:xx
+            
+Bit Rate:150 Mb/s Sensitivity:0/0
+            
+Retry:off RTS thr:off Fragment thr:off
+            
+Power Management:off
+            
+Link Quality=47/100 Signal level=47/100 Noise level=0/100
+            
+Rx invalid nwid:0 Rx invalid crypt:0 Rx invalid frag:0
+            
+Tx excessive retries:0 Invalid misc:0 Missed beacon:0
+  
+</code></pre>
+</div>
 
 <hr />
 
@@ -730,7 +476,7 @@
 
       <footer class="footer">
         <small>
-          &copy; <time datetime="2016-04-01T11:15:44-07:00">2016</time>. All rights reserved.
+          &copy; <time datetime="2016-04-01T11:57:39-07:00">2016</time>. All rights reserved.
         </small>
       </footer>
     </div>

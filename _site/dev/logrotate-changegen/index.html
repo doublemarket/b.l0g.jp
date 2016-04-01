@@ -38,63 +38,63 @@
 
 <p>具体的には、以下の例。当初logrotate.confで以下の設定をしていたとする。</p>
 
-<p>[text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+\# see "man logrotate" for details
+  
+\# rotate log files daily
+  
+daily
 
-<p># see “man logrotate” for details</p>
+\# keep 10 days worth of backlogs
+  
+rotate 10
 
-<p># rotate log files daily</p>
+\# create new (empty) log files after rotating old ones
+  
+create
 
-<p>daily</p>
+\# uncomment this if you want your log files compressed
+  
+#compress
 
-<p># keep 10 days worth of backlogs</p>
-
-<p>rotate 10</p>
-
-<p># create new (empty) log files after rotating old ones</p>
-
-<p>create</p>
-
-<p># uncomment this if you want your log files compressed</p>
-
-<p>#compress</p>
-
-<p># RPM packages drop log rotation information into this directory</p>
-
-<p>include /etc/logrotate.d</p>
-
-<p>[/text]</p>
+\# RPM packages drop log rotation information into this directory
+  
+include /etc/logrotate.d
+  
+</code></pre>
+</div>
 
 <p>この場合、1日1回ローテートされたファイルが10回分保存される。例えば以下のように。</p>
 
-<p>[text]</p>
-
-<p>ls -v /var/log/httpd/access_log*</p>
-
-<p>access_log access_log.4 access_log.8</p>
-
-<p>access_log.1 access_log.5 access_log.9</p>
-
-<p>access_log.2 access_log.6 access_log.10</p>
-
-<p>access_log.3 access_log.7</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+ls -v /var/log/httpd/access_log*
+  
+access\_log access\_log.4 access_log.8
+  
+access\_log.1 access\_log.5 access_log.9
+  
+access\_log.2 access\_log.6 access_log.10
+  
+access\_log.3 access\_log.7
+  
+</code></pre>
+</div>
 
 <p>ここで、アクセスログ1ファイルずつの容量が増えてきて、ディスク空き容量が減ってきた場合、保存する世代数を減らして対処する場合、「rotate 世代数」の世代数を減らしても、古い世代が一斉に削除されるわけではない。</p>
 
 <p>rotate 5とした場合、次のローテート後には以下のようになる。</p>
 
-<p>[text]</p>
-
-<p>access_log access_log.4 access_log.9</p>
-
-<p>access_log.1 access_log.5 access_log.10</p>
-
-<p>access_log.2 access_log.7</p>
-
-<p>access_log.3 access_log.8</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+access\_log access\_log.4 access_log.9
+  
+access\_log.1 access\_log.5 access_log.10
+  
+access\_log.2 access\_log.7
+  
+access\_log.3 access\_log.8
+  
+</code></pre>
+</div>
 
 <p>つまり、6世代目が消えるだけで、7世代目以降は自動的には削除されないため、手動で削除する必要がある。</p>
 
@@ -140,7 +140,7 @@
 
       <footer class="footer">
         <small>
-          &copy; <time datetime="2016-04-01T11:15:44-07:00">2016</time>. All rights reserved.
+          &copy; <time datetime="2016-04-01T11:57:39-07:00">2016</time>. All rights reserved.
         </small>
       </footer>
     </div>

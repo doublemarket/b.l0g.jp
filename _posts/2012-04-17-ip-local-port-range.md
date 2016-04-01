@@ -12,33 +12,33 @@ categories:
 
 Linuxで、TCP/IPの送信時に使用するポートの範囲を決めるのは、net.ipv4.ip\_local\_port_range というカーネルパラメータ。手元のCentOSでは以下がデフォルト値になっていた。
 
-[bash]
+```
   
 \# sysctl net.ipv4.ip\_local\_port_range
   
 net.ipv4.ip\_local\_port_range = 32768 61000
   
-[/bash]
+```
 
 これだと、32768 から 61000 までの 28232 個の中からランダムに選ばれたポートを使って、サーバ側にアクセスする。このポートが足りなくなった場合、/etc/sysctl.conf に設定を書き込んでOSを再起動することで、範囲を変えられる。
 
-[bash]
+```
   
 \# /etc/sysctl.conf に以下を追記
   
 net.ipv4.ip\_local\_port_range = 1024 65000
   
-[/bash]
+```
 
 再起動
 
-[bash]
+```
   
 \# sysctl net.ipv4.ip\_local\_port_range
   
 net.ipv4.ip\_local\_port_range = 1024 65000
   
-[/bash]
+```
 
 これで1024から65000までのポートを使用できるようになる。
 

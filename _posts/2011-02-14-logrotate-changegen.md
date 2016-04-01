@@ -16,9 +16,9 @@ logrotateを使ってログのローテートを行っている状況で、ロ�
 
 具体的には、以下の例。当初logrotate.confで以下の設定をしていたとする。
 
-[text]
+```
   
-\# see &#8220;man logrotate&#8221; for details
+\# see "man logrotate" for details
   
 \# rotate log files daily
   
@@ -40,11 +40,11 @@ create
   
 include /etc/logrotate.d
   
-[/text]
+```
 
 この場合、1日1回ローテートされたファイルが10回分保存される。例えば以下のように。
 
-[text]
+```
   
 ls -v /var/log/httpd/access_log*
   
@@ -56,13 +56,13 @@ access\_log.2 access\_log.6 access_log.10
   
 access\_log.3 access\_log.7
   
-[/text]
+```
 
 ここで、アクセスログ1ファイルずつの容量が増えてきて、ディスク空き容量が減ってきた場合、保存する世代数を減らして対処する場合、「rotate 世代数」の世代数を減らしても、古い世代が一斉に削除されるわけではない。
 
 rotate 5とした場合、次のローテート後には以下のようになる。
 
-[text]
+```
   
 access\_log access\_log.4 access_log.9
   
@@ -72,7 +72,7 @@ access\_log.2 access\_log.7
   
 access\_log.3 access\_log.8
   
-[/text]
+```
 
 つまり、6世代目が消えるだけで、7世代目以降は自動的には削除されないため、手動で削除する必要がある。
 

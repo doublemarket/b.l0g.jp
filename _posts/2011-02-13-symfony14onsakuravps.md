@@ -30,49 +30,49 @@ PHP5.1.6が含まれており、symfony 1.4.xが動作しないので、最新�
 
 PHP5.3のRPMパッケージはremiというリポジトリから配布されているので、yumのリポジトリに設定を追加。
 
-[text]
+```
   
 \# rpm -Uvh http://download.fedora.redhat.com/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm
   
 \# rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-5.rpm
   
-[/text]
+```
 
 ## ＜PHP5.3インストール＞
 
-[text]
+```
   
-\# yum install &#8211;enablerepo=remi php php-domxml php-devel php-mysql
+\# yum install -enablerepo=remi php php-domxml php-devel php-mysql
   
-[/text]
+```
 
 php.iniに以下を追記。追記しないとdate()の使用で警告が出る。
 
-[text]
+```
   
-date.timezone = &#8220;Asia/Tokyo&#8221;
+date.timezone = "Asia/Tokyo"
   
-[/text]
+```
 
 mb_string関連の関数を使用するために必要なのでphp-mbstringもインストール。
 
-[text]
+```
   
-\# yum install &#8211;enablerepo=remi php-mbstring
+\# yum install -enablerepo=remi php-mbstring
   
-[/text]
+```
 
 コンソールで文字を色付けするのに必要なのでphp-processもインストール。
   
-[text]
+```
   
-\# yum install &#8211;enablerepo=remi php-process
+\# yum install -enablerepo=remi php-process
   
-[/text]
+```
 
 symfonyで必要なものがそろっているか確認するスクリプトを実行。
 
-[text]
+```
   
 \# wget http://sf-to.org/1.4/check.php
   
@@ -140,39 +140,39 @@ OK php.ini has session.auto_start set to off
   
 OK PHP version is not 5.2.9
   
-[/text]
+```
 
 ## ＜pearインストール＞
 
 ※ pearでのインストールは推奨されていないが、簡単なのでこれで済ませる
   
-[text]
+```
   
-\# yum install &#8211;enablerepo=remi php-pear
+\# yum install -enablerepo=remi php-pear
   
 \# pear upgrade-all
   
-[/text]
+```
 
 ## ＜symfonyインストール＞
 
-[text]
+```
   
 \# pear channel-discover pear.symfony-project.com
   
 \# pear install symfony/symfony
   
-[/text]
+```
 
 以下のコマンドでバージョンが表示されたらインストール成功。
 
-[text]
+```
   
 \# symfony -V
   
 symfony version 1.4.8 (/usr/share/pear/symfony)
   
-[/text]
+```
 
 /usr/share/pear/symfonyにインストールされる
 
@@ -180,17 +180,17 @@ symfony version 1.4.8 (/usr/share/pear/symfony)
 
 PHPのアクセラレータであるAPCをインストールしておく。入れなくても動作するが、symfonyでは導入が推奨されているのと、入れただけで高速になるとのことなのでインストール。
 
-[text]
+```
   
 \# yum install httpd-devel
   
-\# yum install &#8211;enablerepo=remi php-pecl-apc
+\# yum install -enablerepo=remi php-pecl-apc
   
-[/text]
+```
 
 ## ＜httpd起動＞
 
-[text]
+```
   
 \# chkconfig httpd on
   
@@ -198,31 +198,31 @@ Syntax OK
   
 \# service httpd start
   
-[/text]
+```
 
 ブラウザから http://(サーバのIPアドレス)/ を確認し、phpinfoでapcが読み込まれていることを確認。
 
 ※ phpinfoはコマンドラインから以下を実行しても確認できる
 
-[text]
+```
   
-php &#8216;phpinfo();&#8217;
+php 'phpinfo();'
   
-[/text]
+```
 
 ## ＜MySQLインストール＞
 
-[text]
+```
   
-\# yum install &#8211;enablerepo=remi mysql-server
+\# yum install -enablerepo=remi mysql-server
   
-[/text]
+```
 
 ## ＜MySQL設定＞
 
 my.cnfに以下を追記して文字コードをUTF-8に
   
-[text]
+```
   
 [mysqld]
   
@@ -236,55 +236,55 @@ skip-character-set-client-handshake
   
 default-character-set=utf8
   
-[/text]
+```
 
-statusコマンドおよび&#8221;show variables like ‘char%’;&#8221;でUTF-8になっていることを確認(<a href="http://b.l0g.jp/dev/symfony%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92mysql%E3%81%AB%E3%83%AD%E3%83%BC%E3%83%89%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AEduplicate-entry%E3%82%A8%E3%83%A9%E3%83%BC/" target="_blank">過去エントリ</a>も参照)
+statusコマンドおよび"show variables like ‘char%’;"でUTF-8になっていることを確認(<a href="http://b.l0g.jp/dev/symfony%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92mysql%E3%81%AB%E3%83%AD%E3%83%BC%E3%83%89%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AEduplicate-entry%E3%82%A8%E3%83%A9%E3%83%BC/" target="_blank">過去エントリ</a>も参照)
 
 パスワードを設定
   
-[text]
+```
   
 \# mysqladmin -u root password パスワード
   
-[/text]
+```
   
 データベース作成
   
-[text]
+```
   
 \# mysql -uroot -p
   
 mysql> create database データベース名;
   
-[/text]
+```
 
 ## ＜postfixインストール＞
 
-[text]
+```
   
 \# yum remove sendmail
   
 \# yum install postfix
   
-[/text]
+```
 
 /etc/postfix/main.cf を編集
   
-[text]
+```
   
 \# chkconfig postfix on
   
 \# service postfix start
   
-[/text]
+```
 
 メール送信のテスト
   
-[text]
+```
   
 \# mail -s test あて先
   
-[/text]
+```
   
 ※ 本登録前のお試し期間中はOP25Bが有効なので、VPS上のサーバからメールを送信することはできない
 

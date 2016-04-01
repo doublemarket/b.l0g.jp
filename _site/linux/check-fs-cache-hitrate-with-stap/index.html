@@ -66,105 +66,105 @@
 
 <p>試してみたのはCentOS 6.2のマシン。systemtapがインストールされてなければインストールする。kernel-develも入っていないようであれば一緒に入れてしまうべし。</p>
 
-<p>[bash]</p>
-
-<p>$ sudo yum install systemtap kernel-devel</p>
-
-<p>[/bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+$ sudo yum install systemtap kernel-devel
+  
+</code></pre>
+</div>
 
 <p>上記リンク先にあるスクリプトをファイルに保存し、そのまま実行するとエラーになってしまう。</p>
 
-<p>[bash]</p>
-
-<p>$ sudo stap cache-hit-rate.stp</p>
-
-<p>semantic error: libdwfl failure (missing x86_64 kernel/module debuginfo under ‘/lib/modules/2.6.18-164.el5/build’): No such file or directory while resolving probe point kernel.function(“vfs_read”)</p>
-
-<p>semantic error: no match while resolving probe point vfs.read</p>
-
-<p>semantic error: no match while resolving probe point kernel.function(“generic_make_request”)</p>
-
-<p>semantic error: no match while resolving probe point ioblock.request</p>
-
-<p>Pass 2: analysis failed. Try again with another ‘–vp 01’ option.</p>
-
-<p>[/bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+$ sudo stap cache-hit-rate.stp
+  
+semantic error: libdwfl failure (missing x86\_64 kernel/module debuginfo under '/lib/modules/2.6.18-164.el5/build'): No such file or directory while resolving probe point kernel.function("vfs\_read")
+  
+semantic error: no match while resolving probe point vfs.read
+  
+semantic error: no match while resolving probe point kernel.function("generic\_make\_request")
+  
+semantic error: no match while resolving probe point ioblock.request
+  
+Pass 2: analysis failed. Try again with another '-vp 01' option.
+  
+</code></pre>
+</div>
 
 <p>カーネルのdebuginfoがないためのエラーのようだ。debuginfoは専用のリポジトリからダウンロードする必要があるため、CentOSのdebuginfoリポジトリを登録する。debuginfoはそれなりにサイズもあるので、既に運用しているサーバにこれから入れるのは少しためらわれることもありそうだ。</p>
 
 <p>/etc/yum.repos.d/CentOS-debuginfo.repo に以下の内容を書き込んで保存する。</p>
 
-<p>[text]</p>
-
-<p>[debuginfo]</p>
-
-<p>name=CentOS-$releasever – DebugInfo</p>
-
-<p>baseurl=http://debuginfo.centos.org/$releasever/$basearch/</p>
-
-<p>gpgcheck=0</p>
-
-<p>enabled=0</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+[debuginfo]
+  
+name=CentOS-$releasever - DebugInfo
+  
+baseurl=http://debuginfo.centos.org/$releasever/$basearch/
+  
+gpgcheck=0
+  
+enabled=0
+  
+</code></pre>
+</div>
 
 <p>kernel-debuginfoをインストールする。</p>
 
-<p>[bash]</p>
-
-<p>$ uname -a</p>
-
-<p>Linux centos62-64-01 2.6.32-220.el6.x86_64 #1 SMP Tue Dec 6 19:48:22 GMT 2011 x86_64 x86_64 x86_64 GNU/Linux</p>
-
-<p>$ sudo yum install –enablerepo=debuginfo kernel-debuginfo-2.6.32-220.el6.x86_64</p>
-
-<p>[/bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+$ uname -a
+  
+Linux centos62-64-01 2.6.32-220.el6.x86\_64 #1 SMP Tue Dec 6 19:48:22 GMT 2011 x86\_64 x86\_64 x86\_64 GNU/Linux
+  
+$ sudo yum install -enablerepo=debuginfo kernel-debuginfo-2.6.32-220.el6.x86_64
+  
+</code></pre>
+</div>
 
 <p>パッケージが大きいので時間がかかる。この時、unameでカーネルバージョンを調べて使用しているカーネルと同じバージョンのdebuginfoを指定すること。指定しないとリポジトリにある最新のカーネルのdebuginfoがインストールされてしまう。</p>
 
 <p>この状態でstapコマンドを実行すると、キャッシュのヒット率が5秒おきに15回表示される。</p>
 
-<p>[bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+$ sudo stap cache-hit-rate.stp
+  
+Starting…
 
-<p>$ sudo stap cache-hit-rate.stp</p>
-
-<p>Starting…</p>
-
-<p>Total Reads (KB) Cache Reads (KB) Disk Reads (KB) Miss Rate Hit Rate</p>
-
-<p>0 0 0 0.00% 0.00%</p>
-
-<p>0 0 0 0.00% 0.00%</p>
-
-<p>0 0 0 0.00% 0.00%</p>
-
-<p>58802 66 58736 99.88% 0.11%</p>
-
-<p>0 0 0 0.00% 0.00%</p>
-
-<p>0 0 0 0.00% 0.00%</p>
-
-<p>58785 58345 440 0.74% 99.25%</p>
-
-<p>0 0 0 0.00% 0.00%</p>
-
-<p>0 0 0 0.00% 0.00%</p>
-
-<p>^C</p>
-
-<p>Average Hit Rate: 49.67</p>
-
-<p>Average Miss Rate: 50.32</p>
-
-<p>[/bash]</p>
+Total Reads (KB) Cache Reads (KB) Disk Reads (KB) Miss Rate Hit Rate
+                   
+0 0 0 0.00% 0.00%
+                   
+0 0 0 0.00% 0.00%
+                   
+0 0 0 0.00% 0.00%
+               
+58802 66 58736 99.88% 0.11%
+                   
+0 0 0 0.00% 0.00%
+                   
+0 0 0 0.00% 0.00%
+               
+58785 58345 440 0.74% 99.25%
+                   
+0 0 0 0.00% 0.00%
+                   
+0 0 0 0.00% 0.00%
+  
+^C
+  
+Average Hit Rate: 49.67
+  
+Average Miss Rate: 50.32
+  
+</code></pre>
+</div>
 
 <p>キャッシュに読み込まれていないファイルを</p>
 
-<p>[bash]</p>
-
-<p>$ cat bigfile &gt; /dev/null</p>
-
-<p>[/bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+$ cat bigfile &gt; /dev/null
+  
+</code></pre>
+</div>
 
 <p>とやって読みだしたのが8行目で、ここではファイルのほぼ全てをディスクから読みだしている。もう一度同じコマンドを実行すると、1度目に実行したcatで読みだされた際にファイルがキャッシュに読み込まれているので、ほとんどディスクからの読み出しがなく、11行目のようにほぼキャッシュヒット率100%となり一瞬でファイルの全てにアクセスできる。</p>
 
@@ -253,7 +253,7 @@
 
       <footer class="footer">
         <small>
-          &copy; <time datetime="2016-04-01T11:15:44-07:00">2016</time>. All rights reserved.
+          &copy; <time datetime="2016-04-01T11:57:39-07:00">2016</time>. All rights reserved.
         </small>
       </footer>
     </div>

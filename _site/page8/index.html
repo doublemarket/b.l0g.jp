@@ -46,103 +46,103 @@
 
 <p>Ubuntuでは標準ではSNMPがインストールされていないので、まずはインストールする。</p>
 
-<p>[bash]</p>
-
-<p>target$ sudo apt-get install snmp snmpd</p>
-
-<p>[/bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+target$ sudo apt-get install snmp snmpd
+  
+</code></pre>
+</div>
 
 <p>/etc/snmp/snmpd.confにsnmpdのデフォルト設定ファイルが置かれるので、監視サーバから情報を取 得できるように編集する。</p>
 
 <p>まず、監視サーバからの読み出し許可設定を追記。SNMPコミュニティ名は「public」がデフォルト設定としては一般的だが、適宜設定。</p>
 
-<p>[text]</p>
-
-<p># 監視対象で設定</p>
-
-<p>rocommunity SNMPコミュニティ名 監視サーバのIP # 追記</p>
-
-<p>view all all # 追記</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+\# 監視対象で設定
+  
+rocommunity SNMPコミュニティ名 監視サーバのIP # 追記
+  
+view all all # 追記
+  
+</code></pre>
+</div>
 
 <p>全インタフェースからの接続を許可するよう設定。</p>
 
-<p>[text]</p>
-
-<p># 監視対象で設定</p>
-
-<p>#agentAddress udp:127.0.0.1:161 # この行はコメントアウト</p>
-
-<p>agentAddress udp:161 # 追記</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+\# 監視対象で設定
+  
+#agentAddress udp:127.0.0.1:161 # この行はコメントアウト
+  
+agentAddress udp:161 # 追記
+  
+</code></pre>
+</div>
 
 <p>snmpdを再起動した後、監視サーバから以下のコマンドを実行して応答があればSNMPの設定は完了。</p>
 
-<p>[bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+target$ sudo /etc/init.d/snmpd restart
+  
+</code></pre>
+</div>
 
-<p>target$ sudo /etc/init.d/snmpd restart</p>
-
-<p>[/bash]</p>
-
-<p>[bash]</p>
-
-<p>server$ snmpwalk -v1 -c public 監視対象IPアドレス .1.3.6.1.2.1.1.1.0</p>
-
-<p>SNMPv2-MIB::sysDescr.0 = STRING: Linux ubuntu1110s-01 2.6.38-8-server #42-Ubuntu SMP Mon Apr 11 03:49:04 UTC 2011 x86_64</p>
-
-<p>↑ 応答の例</p>
-
-<p>[/bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+server$ snmpwalk -v1 -c public 監視対象IPアドレス .1.3.6.1.2.1.1.1.0
+  
+SNMPv2-MIB::sysDescr.0 = STRING: Linux ubuntu1110s-01 2.6.38-8-server #42-Ubuntu SMP Mon Apr 11 03:49:04 UTC 2011 x86_64
+  
+↑ 応答の例
+  
+</code></pre>
+</div>
 
 <h2 id="snmpcentos">SNMPの設定(CentOSの場合)</h2>
 
 <p>通常、SNMPはデフォルトでインストールされるので、設定ファイルを編集して監視サーバから接続できるようにする。基本的にはUbuntuと同じ設定にすればよい。</p>
 
-<p>[bash]</p>
-
-<p># 監視対象で設定</p>
-
-<p>rocommunity SNMPコミュニティ名 監視サーバのIP # 追記</p>
-
-<p>view all all # 追記</p>
-
-<p>[/bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+\# 監視対象で設定
+  
+rocommunity SNMPコミュニティ名 監視サーバのIP # 追記
+  
+view all all # 追記
+  
+</code></pre>
+</div>
 
 <p>snmpdが自動起動するように設定し(どうやら初期設定では自動起動しないようになっている模様)、snmpdを再起動して設定を反映させる。</p>
 
-<p>[bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+target$ sudo chkconfig snmpd on
+  
+target$ sudo /etc/init.d/snmpd start
+  
+</code></pre>
+</div>
 
-<p>target$ sudo chkconfig snmpd on</p>
-
-<p>target$ sudo /etc/init.d/snmpd start</p>
-
-<p>[/bash]</p>
-
-<p>[bash]</p>
-
-<p>server$ snmpwalk -v1 -c public 監視対象IPアドレス .1.3.6.1.2.1.1.1.0</p>
-
-<p>SNMPv2-MIB::sysDescr.0 = STRING: Linux centos62-64-01 2.6.32-220.el6.x86_64 #1 SMP Tue Dec 6 19:48:22 GMT 2011 x86_64</p>
-
-<p>↑ 応答の例</p>
-
-<p>[/bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+server$ snmpwalk -v1 -c public 監視対象IPアドレス .1.3.6.1.2.1.1.1.0
+  
+SNMPv2-MIB::sysDescr.0 = STRING: Linux centos62-64-01 2.6.32-220.el6.x86\_64 #1 SMP Tue Dec 6 19:48:22 GMT 2011 x86\_64
+  
+↑ 応答の例
+  
+</code></pre>
+</div>
 
 <h2 id="cactimysql">Cacti監視のためのMySQL設定</h2>
 
 <p>Percona Monitoring Plugins for Cactiは、監視対象のMySQLにログインして、色々な種類のshowコ マンドを実行して得られた結果をグラフにするので、監視対象のMySQLにユーザを追加する必要があ る。ここで指定するユーザ名とパスワードは、<a title="MySQLの監視はCacti+Percona Monitoring Pluginsがおすすめ(監視サーバ構築編)" href="http://b.l0g.jp/mysql/install-cacti-to-monitor-mysql-1/" target="_blank">前回のエントリ</a>でss_get_mysql_stats.phpファイルに書いた、 $mysql_user と $mysql_pass と一致させること。</p>
 
-<p>[bash]</p>
-
-<p>target$ mysql -uroot</p>
-
-<p>mysql-target&gt; grant process, super on *.* to ユーザ名@監視サーバ identified by ‘パスワ ード’;</p>
-
-<p>mysql-target&gt; flush privileges;</p>
-
-<p>[/bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+target$ mysql -uroot
+  
+mysql-target&gt; grant process, super on \*.\* to ユーザ名@監視サーバ identified by 'パスワ ード';
+  
+mysql-target&gt; flush privileges;
+  
+</code></pre>
+</div>
 
 <h2 id="cacti">Cactiからの監視設定</h2>
 
@@ -263,15 +263,15 @@
 
 <p>RPMforgeリポジトリには最新のCactiが含まれているため、これを導入する。</p>
 
-<p>[bash]</p>
-
-<p>$ wget http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.2-2.el6.rf.x86_64.rpm</p>
-
-<p>$ sudo rpm -ihv rpmforge-release-0.5.2-2.el6.rf.x86_64.rpm</p>
-
-<p>$ sudo yum -y update rpmforge-release</p>
-
-<p>[/bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+$ wget http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.2-2.el6.rf.x86_64.rpm
+  
+$ sudo rpm -ihv rpmforge-release-0.5.2-2.el6.rf.x86_64.rpm
+  
+$ sudo yum -y update rpmforge-release
+  
+</code></pre>
+</div>
 
 <p>/etc/yum.repos.d/rpmforge.repo ファイルをエディタで開き、 enabled = 0 にする。これで、オプションを付けないとRPMforgeはリポジトリとして有効にならないようになる。</p>
 
@@ -279,11 +279,11 @@
 
 <p>Cactiと、あわせて必要なnet-snmpやhttpd、MySQLなどをインストール。</p>
 
-<p>[bash]</p>
-
-<p>$ sudo yum install –enablerepo=rpmforge cacti net-snmp-utils mysql-server</p>
-
-<p>[/bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+$ sudo yum install -enablerepo=rpmforge cacti net-snmp-utils mysql-server
+  
+</code></pre>
+</div>
 
 <p>指定したもの以外に、依存関係上httpd, mysql, perl, php, rrdtoolなどもインストールされる。</p>
 
@@ -293,117 +293,117 @@
 
 <p>[mysqld]セクションに以下を追加</p>
 
-<p>[text]</p>
-
-<p>skip-character-set-client-handshake</p>
-
-<p>character-set-server = utf8</p>
-
-<p>collation-server = utf8_general_ci</p>
-
-<p>init-connect = SET NAMES utf8</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+skip-character-set-client-handshake
+  
+character-set-server = utf8
+  
+collation-server = utf8\_general\_ci
+  
+init-connect = SET NAMES utf8
+  
+</code></pre>
+</div>
 
 <p>(2012.05.29) default-character-setは不要とnippondanjiさんからはてブコメントで指摘をいただいたので削除。直々にご指摘とは恐縮です。</p>
 
 <p>ここでMySQLを再起動する。</p>
 
-<p>[bash]</p>
-
-<p>$ sudo /etc/init.d/mysqld restart</p>
-
-<p>[/bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+$ sudo /etc/init.d/mysqld restart
+  
+</code></pre>
+</div>
 
 <p>statusコマンドで、charactersetがutf8であることを確認。</p>
 
-<p>[sql]</p>
-
-<p>mysql&gt; status;</p>
-
-<p>(略)</p>
-
-<p>Server characterset: utf8</p>
-
-<p>Db characterset: utf8</p>
-
-<p>Client characterset: utf8</p>
-
-<p>Conn. characterset: utf8</p>
-
-<p>(略)</p>
-
-<p>[/sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+mysql&gt; status;
+  
+(略)
+  
+Server characterset: utf8
+  
+Db characterset: utf8
+  
+Client characterset: utf8
+  
+Conn. characterset: utf8
+  
+(略)
+  
+</code></pre>
+</div>
 
 <p><a href="http://docs.cacti.net/manual:088:1_installation.1_install_unix.5_install_and_configure_cacti" target="_blank">Cactiのドキュメント</a>にしたがって、Cactiで使用するMySQLの設定を行う。</p>
 
-<p>[sql]</p>
-
-<p>$ mysqladmin –user=root create cacti</p>
-
-<p>$ mysql cacti &lt; cacti.sql</p>
-
-<p>$ mysql –user=root mysql</p>
-
-<p>mysql&gt; grant all on cacti.* to ユーザ名@localhost identified by ‘パスワード’;</p>
-
-<p>mysql&gt; flush privileges;</p>
-
-<p>[/sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+$ mysqladmin -user=root create cacti
+  
+$ mysql cacti &lt; cacti.sql
+  
+$ mysql -user=root mysql
+  
+mysql&gt; grant all on cacti.* to ユーザ名@localhost identified by 'パスワード';
+  
+mysql&gt; flush privileges;
+  
+</code></pre>
+</div>
 
 <h2 id="apachephp">Apache/PHPの設定</h2>
 
 <p>/var/www/cacti/include/config.php を上の項で作成したユーザに合わせて編集する。</p>
 
-<p>[text]</p>
-
-<p>$database_type = “mysql”;</p>
-
-<p>$database_default = “cacti”;</p>
-
-<p>$database_hostname = “localhost”; # DBサーバのホスト名</p>
-
-<p>$database_username = “cactiuser”; # 上の項で作成したユーザ</p>
-
-<p>$database_password = “cactipassword”; # 上の項で設定したパスワード</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+$database_type = "mysql";
+  
+$database_default = "cacti";
+  
+$database_hostname = "localhost"; # DBサーバのホスト名
+  
+$database_username = "cactiuser"; # 上の項で作成したユーザ
+  
+$database_password = "cactipassword"; # 上の項で設定したパスワード
+  
+</code></pre>
+</div>
 
 <p>/etc/httpd/conf.d/cacti.php が存在することを確認する。他のホストからCactiにアクセスする際は、以下の行を追加してhttpdを再起動する。</p>
 
-<p>[text]</p>
-
-<p>allow from 127.0.0.1</p>
-
-<p>allow from IPアドレス # 追記</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+allow from 127.0.0.1
+  
+allow from IPアドレス # 追記
+  
+</code></pre>
+</div>
 
 <p><a href="http://docs.cacti.net/manual:088:1_installation.1_install_unix.1_configure_php" target="_blank">Cactiのドキュメント</a>を参考に、/etc/php.ini および /etc/php.d/*.ini の記述を確認。設定を変更したら、Apacheを再起動する。</p>
 
-<p>[bash]</p>
-
-<p>$ sudo /etc/init.d/httpd restart</p>
-
-<p>[/bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+$ sudo /etc/init.d/httpd restart
+  
+</code></pre>
+</div>
 
 <h2 id="iptables">iptablesの設定</h2>
 
 <p>CentOS 6.2ではデフォルトでpingやSSHしか応答できないようにされているようなので、/etc/sysconfig/iptables に以下を追加してhttpのアクセスが可能なようにする。</p>
 
-<p>[text]</p>
-
-<p>-A INPUT -m state –state NEW -m tcp -p tcp –dport 80 -j ACCEPT</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+-A INPUT -m state -state NEW -m tcp -p tcp -dport 80 -j ACCEPT
+  
+</code></pre>
+</div>
 
 <p>iptablesを再起動</p>
 
-<p>[text]</p>
-
-<p>$ sudo /etc/init.d/iptables restart</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+$ sudo /etc/init.d/iptables restart
+  
+</code></pre>
+</div>
 
 <h2 id="section">設定完了</h2>
 
@@ -423,33 +423,33 @@
 
 <p><a href="http://www.percona.com/downloads/percona-monitoring-plugins/" target="_blank">Percona</a>からPercona monitoring pluginsをダウンロードし、ファイルを展開する。</p>
 
-<p>[bash]</p>
-
-<p>$ tar zxvf percona-monitoring-plugins-1.0.0.tar.gz</p>
-
-<p>$ cd percona-monitoring-plugins-1.0.0/cacti/scripts</p>
-
-<p>$ sudo cp ss_get_by_ssh.php ss_get_mysql_stats.php /var/www/cacti/scripts/</p>
-
-<p>[/bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+$ tar zxvf percona-monitoring-plugins-1.0.0.tar.gz
+  
+$ cd percona-monitoring-plugins-1.0.0/cacti/scripts
+  
+$ sudo cp ss\_get\_by\_ssh.php ss\_get\_mysql\_stats.php /var/www/cacti/scripts/
+  
+</code></pre>
+</div>
 
 <p>監視対象のMySQLにログインする際のアカウント情報を ss_get_mysql_stats.php に書き込む。</p>
 
-<p>[text]</p>
-
-<p>$mysql_user = ‘cactiuser’; # 監視対象にログインする際のMySQLユーザ</p>
-
-<p>$mysql_pass = ‘cactiuser’; # 監視対象にログインする際のパスワード</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+$mysql_user = 'cactiuser'; # 監視対象にログインする際のMySQLユーザ
+  
+$mysql_pass = 'cactiuser'; # 監視対象にログインする際のパスワード
+  
+</code></pre>
+</div>
 
 <p>Cacti管理画面からImport/Export → Import templatesを選択し、Import Template from Local Fileで以下を指定してImportボタンを押し、テンプレートファイルを読み込ませる。</p>
 
-<p>[text]</p>
-
-<p>percona-monitoring-plugins-1.0.0/cacti/templates/cacti_host_template_percona_mysql_server_ht_0.8.6i-sver1.0.0.xml</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+percona-monitoring-plugins-1.0.0/cacti/templates/cacti\_host\_template\_percona\_mysql\_server\_ht_0.8.6i-sver1.0.0.xml
+  
+</code></pre>
+</div>
 
 <p>成功すると、それぞれの監視項目に対応したテンプレートごとに[success]と表示される。</p>
 
@@ -540,45 +540,31 @@
 
 <p>key_buffer_sizeを大きくしたからといってパフォーマンスが上がるというわけではないのである。上の例から分かるように、全インデックスがメモリに乗らなくても、よく使うインデックスがほぼメモリに乗っていれば問題ない。常に<strong>key bufferヒット率が最大になり、ディスク読み出しが最小になる key_buffer_size を探ることが必要</strong>ということだ。サイズはオンラインでも変更できる。ただし、コマンドを実行するとkey bufferの中身は一旦空になり、改めてキャッシュが構築されるため一時的にディスクIOが大量に発生するので注意(停止できるサーバならキャッシュウォームアップをした方がよい)。</p>
 
-<p>[sql]</p>
-
-<p>mysql&gt; set global key_buffer_size = バイトでのサイズ(1GBなら1073741824);</p>
-
-<p>[/sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+mysql&gt; set global key\_buffer\_size = バイトでのサイズ(1GBなら1073741824);
+  
+</code></pre>
+</div>
 
 <p>確認は show variables で。以下は4GBの例。</p>
 
-<p>[sql]</p>
-
-<p>mysql&gt; show variables like ‘key_buffer_size’;</p>
-
-<p>+—————–+————+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>Variable_name</td>
-      <td>Value</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+—————–+————+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>key_buffer_size</td>
-      <td>4294967296</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+—————–+————+</p>
-
-<p>1 row in set (0.00 sec)</p>
-
-<p>[/sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+mysql&gt; show variables like 'key\_buffer\_size';
+  
++------+----+
+  
+| Variable_name | Value |
+  
++------+----+
+  
+| key\_buffer\_size | 4294967296 |
+  
++------+----+
+  
+1 row in set (0.00 sec)
+  
+</code></pre>
+</div>
 
 <p>そもそもインデックスがでか過ぎるのでシェイプアップすべきとか、テーブル分割を考えるべきといった別の解決方法も考えられるのだが、わかりやすいグラフが取れたのでひとつの例として。</p>
 
@@ -603,7 +589,7 @@
 
       <footer class="footer">
         <small>
-          &copy; <time datetime="2016-04-01T11:15:44-07:00">2016</time>. All rights reserved.
+          &copy; <time datetime="2016-04-01T11:57:39-07:00">2016</time>. All rights reserved.
         </small>
       </footer>
     </div>

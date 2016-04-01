@@ -36,61 +36,61 @@
 
 <p>while 文で以下のように指定すると、行ごとにファイルを読み込むことができる。</p>
 
-<p>[bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+<span class="c">#!/bin/sh</span>
 
-<p>#!/bin/sh</p>
+<span class="gp">\# </span>ファイルを1行ずつ読み込んで表示
 
-<p># ファイルを1行ずつ読み込んで表示</p>
+<span class="nv">TESTFILE</span><span class="o">=</span>./hoge.txt
 
-<p>TESTFILE=./hoge.txt</p>
-
-<p>while read line</p>
-
-<p>do</p>
-
-<p>echo $line</p>
-
-<p>done &lt; $TESTFILE</p>
-
-<p>[/bash]</p>
+<span class="k">while </span><span class="nb">read </span>line
+  
+<span class="k">do
+      
+</span><span class="nb">echo</span> <span class="nv">$line</span>
+  
+<span class="k">done</span> &lt; <span class="nv">$TESTFILE</span>
+  
+</code></pre>
+</div>
 
 <p>しかし、 while ループの中で ssh や rsh を実行すると、読み込むファイルが複数行あっても、1行目しか処理されない。</p>
 
-<p>[bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+<span class="c">#!/bin/sh</span>
 
-<p>#!/bin/sh</p>
+<span class="gp">\# </span>TESTFILEが複数行あっても1行目のみ処理されてループ終了
 
-<p># TESTFILEが複数行あっても1行目のみ処理されてループ終了</p>
-
-<p>while read line</p>
-
-<p>do</p>
-
-<p>ssh 192.168.0.1 touch $line</p>
-
-<p>done &lt; $TESTFILE</p>
-
-<p>[/bash]</p>
+<span class="k">while </span><span class="nb">read </span>line
+  
+<span class="k">do
+      
+</span>ssh 192.168.0.1 touch <span class="nv">$line</span>
+  
+<span class="k">done</span> &lt; <span class="nv">$TESTFILE</span>
+  
+</code></pre>
+</div>
 
 <p>SSH を実行すると、標準入力がそちらに振り向けられるため、read で読んだ1行のみならず、ファイル全体が SSH に渡されてしまう。従って、SSH を実行した後はもう読める行がないので while ループは1回で終了してしまう。</p>
 
 <p>これを防ぐには、ssh に -n オプションを付け、/dev/null をリダイレクトし、標準入力をリダイレクトしないようにする。</p>
 
-<p>[bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+<span class="c">#!/bin/sh</span>
 
-<p>#!/bin/sh</p>
+<span class="gp">\# </span>TESTFILEが複数行あればその行数分処理が実行される
 
-<p># TESTFILEが複数行あればその行数分処理が実行される</p>
-
-<p>while read line</p>
-
-<p>do</p>
-
-<p>ssh -n 192.168.0.1 touch $line</p>
-
-<p>done &lt; $TESTFILE</p>
-
-<p>[/bash]</p>
+<span class="k">while </span><span class="nb">read </span>line
+  
+<span class="k">do
+      
+</span>ssh -n 192.168.0.1 touch <span class="nv">$line</span>
+  
+<span class="k">done</span> &lt; <span class="nv">$TESTFILE</span>
+  
+</code></pre>
+</div>
 
 <p>なおこれは rsh コマンドでも同じ仕様になっているようだ。</p>
 
@@ -136,7 +136,7 @@
 
       <footer class="footer">
         <small>
-          &copy; <time datetime="2016-04-01T11:15:44-07:00">2016</time>. All rights reserved.
+          &copy; <time datetime="2016-04-01T11:57:39-07:00">2016</time>. All rights reserved.
         </small>
       </footer>
     </div>

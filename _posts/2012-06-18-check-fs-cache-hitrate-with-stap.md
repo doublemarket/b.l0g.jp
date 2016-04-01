@@ -48,39 +48,39 @@ systemtapは、カーネル内部の挙動をトレースするためのツー�
 
 試してみたのはCentOS 6.2のマシン。systemtapがインストールされてなければインストールする。kernel-develも入っていないようであれば一緒に入れてしまうべし。
 
-[bash]
+```
   
 $ sudo yum install systemtap kernel-devel
   
-[/bash]
+```
 
 上記リンク先にあるスクリプトをファイルに保存し、そのまま実行するとエラーになってしまう。
 
-[bash]
+```
   
 $ sudo stap cache-hit-rate.stp
   
-semantic error: libdwfl failure (missing x86\_64 kernel/module debuginfo under &#8216;/lib/modules/2.6.18-164.el5/build&#8217;): No such file or directory while resolving probe point kernel.function(&#8220;vfs\_read&#8221;)
+semantic error: libdwfl failure (missing x86\_64 kernel/module debuginfo under '/lib/modules/2.6.18-164.el5/build'): No such file or directory while resolving probe point kernel.function("vfs\_read")
   
 semantic error: no match while resolving probe point vfs.read
   
-semantic error: no match while resolving probe point kernel.function(&#8220;generic\_make\_request&#8221;)
+semantic error: no match while resolving probe point kernel.function("generic\_make\_request")
   
 semantic error: no match while resolving probe point ioblock.request
   
-Pass 2: analysis failed. Try again with another &#8216;&#8211;vp 01&#8217; option.
+Pass 2: analysis failed. Try again with another '-vp 01' option.
   
-[/bash]
+```
 
 カーネルのdebuginfoがないためのエラーのようだ。debuginfoは専用のリポジトリからダウンロードする必要があるため、CentOSのdebuginfoリポジトリを登録する。debuginfoはそれなりにサイズもあるので、既に運用しているサーバにこれから入れるのは少しためらわれることもありそうだ。
 
 /etc/yum.repos.d/CentOS-debuginfo.repo に以下の内容を書き込んで保存する。
 
-[text]
+```
   
 [debuginfo]
   
-name=CentOS-$releasever &#8211; DebugInfo
+name=CentOS-$releasever - DebugInfo
   
 baseurl=http://debuginfo.centos.org/$releasever/$basearch/
   
@@ -88,29 +88,29 @@ gpgcheck=0
   
 enabled=0
   
-[/text]
+```
 
 kernel-debuginfoをインストールする。
 
-[bash]
+```
   
 $ uname -a
   
 Linux centos62-64-01 2.6.32-220.el6.x86\_64 #1 SMP Tue Dec 6 19:48:22 GMT 2011 x86\_64 x86\_64 x86\_64 GNU/Linux
   
-$ sudo yum install &#8211;enablerepo=debuginfo kernel-debuginfo-2.6.32-220.el6.x86_64
+$ sudo yum install -enablerepo=debuginfo kernel-debuginfo-2.6.32-220.el6.x86_64
   
-[/bash]
+```
 
 パッケージが大きいので時間がかかる。この時、unameでカーネルバージョンを調べて使用しているカーネルと同じバージョンのdebuginfoを指定すること。指定しないとリポジトリにある最新のカーネルのdebuginfoがインストールされてしまう。
 
 この状態でstapコマンドを実行すると、キャッシュのヒット率が5秒おきに15回表示される。
 
-[bash]
+```
   
 $ sudo stap cache-hit-rate.stp
   
-Starting&#8230;
+Starting…
 
 Total Reads (KB) Cache Reads (KB) Disk Reads (KB) Miss Rate Hit Rate
                    
@@ -138,15 +138,15 @@ Average Hit Rate: 49.67
   
 Average Miss Rate: 50.32
   
-[/bash]
+```
 
 キャッシュに読み込まれていないファイルを
 
-[bash]
+```
   
 $ cat bigfile > /dev/null
   
-[/bash]
+```
 
 とやって読みだしたのが8行目で、ここではファイルのほぼ全てをディスクから読みだしている。もう一度同じコマンドを実行すると、1度目に実行したcatで読みだされた際にファイルがキャッシュに読み込まれているので、ほとんどディスクからの読み出しがなく、11行目のようにほぼキャッシュヒット率100%となり一瞬でファイルの全てにアクセスできる。
 

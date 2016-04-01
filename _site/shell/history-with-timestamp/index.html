@@ -34,43 +34,43 @@
   <time datetime="2011-11-24T16:05:53-08:00" class="post-date">24 Nov 2011</time>
   <p>bash 3.0以上(最近のLinuxは大抵3.0以上)を使用している場合は、「HISTTIMEFORMAT」というシェル変数に時刻のフォーマットを入れることで、historyコマンドの実行結果(ファイル)にコマンドだけではなく時刻も記録できる。以下はhistoryコマンドの実行結果の例。</p>
 
-<p>[text]</p>
-
-<p>100 2011-11-22 10:16:59 ls</p>
-
-<p>101 2011-11-22 10:17:03 cd /var/log/</p>
-
-<p>102 2011-11-22 10:17:04 ls</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+100 2011-11-22 10:16:59 ls
+  
+101 2011-11-22 10:17:03 cd /var/log/
+  
+102 2011-11-22 10:17:04 ls
+  
+</code></pre>
+</div>
 
 <p>ホームディレクトリ以下の.bashrcや/etc/profile(全ユーザに適用したい場合)に</p>
 
-<p>[text]</p>
-
-<p>HISTTIMEFORMAT=’%Y-%m-%d %T ‘</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+HISTTIMEFORMAT='%Y-%m-%d %T '
+  
+</code></pre>
+</div>
 
 <p>と書いておけばよい。時刻のフォーマットはdateコマンドと同じものが使えるようだ(man dateを参照)。</p>
 
 <p>なお、historyコマンドでは上記のようなフォーマットが有効だが、.bash_historyファイルには、</p>
 
-<p>[text]</p>
-
-<p>#1321924619</p>
-
-<p>ls</p>
-
-<p>#1321924623</p>
-
-<p>cd /var/log/</p>
-
-<p>#1321924624</p>
-
-<p>ls</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+#1321924619
+  
+ls
+  
+#1321924623
+  
+cd /var/log/
+  
+#1321924624
+  
+ls
+  
+</code></pre>
+</div>
 
 <p>のように、UNIX時刻が付加される形で記録される。</p>
 
@@ -114,7 +114,7 @@
 
       <footer class="footer">
         <small>
-          &copy; <time datetime="2016-04-01T11:15:44-07:00">2016</time>. All rights reserved.
+          &copy; <time datetime="2016-04-01T11:57:39-07:00">2016</time>. All rights reserved.
         </small>
       </footer>
     </div>

@@ -34,177 +34,65 @@
   <time datetime="2011-12-06T07:24:45-08:00" class="post-date">06 Dec 2011</time>
   <p>テーブル内の行数を数えるのに一番簡単なのは、</p>
 
-<p>[sql]</p>
-
-<p>select count(*) from ‘テーブル名’;</p>
-
-<p>[/sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+select count(*) from 'テーブル名';
+  
+</code></pre>
+</div>
 
 <p>と実行することだが、これだと最悪そのテーブルを総なめすることになる。</p>
 
 <p>こういう時はinformation schemaから情報を引く。information_schema.tablesテーブルのtable_rowsカラムが行数。</p>
 
-<p>[sql]</p>
-
-<p>mysql&gt; select table_schema, table_name, table_rows from information_schema.tables</p>
-
-<p>-&gt; where table_schema = ‘hoge’;</p>
-
-<p>+——————–+—————————————+————+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>table_schema</td>
-      <td>table_name</td>
-      <td>table_rows</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+——————–+—————————————+————+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>hoge</td>
-      <td>wp_FollowMe_Links</td>
-      <td>2</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>hoge</td>
-      <td>wp_commentmeta</td>
-      <td>180</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>hoge</td>
-      <td>wp_comments</td>
-      <td>60</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>hoge</td>
-      <td>wp_ktaisession</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>hoge</td>
-      <td>wp_links</td>
-      <td>7</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>hoge</td>
-      <td>wp_options</td>
-      <td>236</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>hoge</td>
-      <td>wp_postmeta</td>
-      <td>509</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>hoge</td>
-      <td>wp_posts</td>
-      <td>323</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>hoge</td>
-      <td>wp_term_relationships</td>
-      <td>39</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>hoge</td>
-      <td>wp_term_taxonomy</td>
-      <td>9</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>hoge</td>
-      <td>wp_terms</td>
-      <td>9</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>hoge</td>
-      <td>wp_usermeta</td>
-      <td>31</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>hoge</td>
-      <td>wp_users</td>
-      <td>2</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+——————–+—————————————+————+</p>
-
-<p>[/sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+mysql&gt; select table\_schema, table\_name, table\_rows from information\_schema.tables
+      
+-&gt; where table_schema = 'hoge';
+  
++-------+-------------+----+
+  
+| table\_schema | table\_name | table_rows |
+  
++-------+-------------+----+
+  
+| hoge | wp\_FollowMe\_Links | 2 |
+  
+| hoge | wp_commentmeta | 180 |
+  
+| hoge | wp_comments | 60 |
+  
+| hoge | wp_ktaisession | 0 |
+  
+| hoge | wp_links | 7 |
+  
+| hoge | wp_options | 236 |
+  
+| hoge | wp_postmeta | 509 |
+  
+| hoge | wp_posts | 323 |
+  
+| hoge | wp\_term\_relationships | 39 |
+  
+| hoge | wp\_term\_taxonomy | 9 |
+  
+| hoge | wp_terms | 9 |
+  
+| hoge | wp_usermeta | 31 |
+  
+| hoge | wp_users | 2 |
+  
++-------+-------------+----+
+  
+</code></pre>
+</div>
 
 <p>showを使っても行数を引くことができるが、showの性質上表示させるカラムなどを細かく指定できず使いづらいこともあるので、information_schemaを引く方が好き。</p>
 
-<p>[sql]</p>
-
-<p>show table status;</p>
-
-<p>[/sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+show table status;
+  
+</code></pre>
+</div>
 
 <p>なおこれらのコマンドで引ける行数は、MyISAMなどのストレージエンジンでは正確な値だが、InnoDBの場合は概算値となる。なので、InnoDBの場合はselect count(*)するしかない。</p>
 
@@ -248,7 +136,7 @@
 
       <footer class="footer">
         <small>
-          &copy; <time datetime="2016-04-01T11:15:44-07:00">2016</time>. All rights reserved.
+          &copy; <time datetime="2016-04-01T11:57:39-07:00">2016</time>. All rights reserved.
         </small>
       </footer>
     </div>

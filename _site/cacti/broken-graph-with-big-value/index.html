@@ -42,113 +42,113 @@
 
 <p><strong>トラフィックの場合、値を32ビットカウンタで取得していないか。</strong></p>
 
-<p>64ビットカウンタで値を取得しないと、桁あふれが起きてグラフが正常に描画されない。ホストの編集画面(Console → Devices → ホストをクリック)のAssociated Data Queriesで「SNMP – Interface Statistics 64bit only」を選ぶ。</p>
+<p>64ビットカウンタで値を取得しないと、桁あふれが起きてグラフが正常に描画されない。ホストの編集画面(Console → Devices → ホストをクリック)のAssociated Data Queriesで「SNMP - Interface Statistics 64bit only」を選ぶ。</p>
 
 <p><strong>そのグラフの扱える最大値を超えていないか。</strong></p>
 
-<p>グラフの編集画面(Console → Data Source → ホスト名 – 分類 – 項目(たとえば hogehoge-db01 – Traffic – eth0 のような)) のMaximum Valueの値が、小さく設定されているようなら、これを大きくしてみる。</p>
+<p>グラフの編集画面(Console → Data Source → ホスト名 - 分類 - 項目(たとえば hogehoge-db01 - Traffic - eth0 のような)) のMaximum Valueの値が、小さく設定されているようなら、これを大きくしてみる。</p>
 
 <p><strong>RRDファイルに設定されている最大値を超えていないか。</strong></p>
 
 <p>RRDファイルにも各値の最大値が設定されている。これを無限大に設定してやる。以下は、上の画像のようにトラフィックが途切れる場合の対策の例。</p>
 
-<p>[text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+$ rrdtool info hogehoge-db01\_traffic\_in_200.rrd
 
-<p>$ rrdtool info hogehoge-db01_traffic_in_200.rrd</p>
-
-<p>filename = “mwap-r10_traffic_in_200.rrd”</p>
-
-<p>rrd_version = “0003”</p>
-
-<p>step = 300</p>
-
-<p>last_update = 1352714073</p>
-
-<p>ds[traffic_in].type = “COUNTER”</p>
-
-<p>ds[traffic_in].minimal_heartbeat = 600</p>
-
-<p>ds[traffic_in].min = 0.0000000000e+00</p>
-
-<p>ds[traffic_in].max = 1.0000000000e+07 ← ここが最大値</p>
-
-<p>ds[traffic_in].last_ds = “3293068416”</p>
-
-<p>ds[traffic_in].value = 1.2345678909e+08</p>
-
-<p>ds[traffic_in].unknown_sec = 0</p>
-
-<p>ds[traffic_out].type = “COUNTER”</p>
-
-<p>ds[traffic_out].minimal_heartbeat = 600</p>
-
-<p>ds[traffic_out].min = 0.0000000000e+00</p>
-
-<p>ds[traffic_out].max = 1.0000000000e+07 ← ここが最大値</p>
-
-<p>ds[traffic_out].last_ds = “2054038296”</p>
-
-<p>ds[traffic_out].value = 1.2345678909e+08</p>
-
-<p>ds[traffic_out].unknown_sec = 0</p>
-
-<p>(後略)</p>
-
-<p>[/text]</p>
+filename = "mwap-r10\_traffic\_in_200.rrd"
+  
+rrd_version = "0003"
+  
+step = 300
+  
+last_update = 1352714073
+  
+ds[traffic_in].type = "COUNTER"
+  
+ds[traffic\_in].minimal\_heartbeat = 600
+  
+ds[traffic_in].min = 0.0000000000e+00
+  
+ds[traffic_in].max = 1.0000000000e+07 ← ここが最大値
+  
+ds[traffic\_in].last\_ds = "3293068416"
+  
+ds[traffic_in].value = 1.2345678909e+08
+  
+ds[traffic\_in].unknown\_sec = 0
+  
+ds[traffic_out].type = "COUNTER"
+  
+ds[traffic\_out].minimal\_heartbeat = 600
+  
+ds[traffic_out].min = 0.0000000000e+00
+  
+ds[traffic_out].max = 1.0000000000e+07 ← ここが最大値
+  
+ds[traffic\_out].last\_ds = "2054038296"
+  
+ds[traffic_out].value = 1.2345678909e+08
+  
+ds[traffic\_out].unknown\_sec = 0
+  
+(後略)
+  
+</code></pre>
+</div>
 
 <p>rrdtool tuneコマンドで変更</p>
 
-<p>[bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+$ sudo rrdtool tune hogehoge-db01\_traffic\_in\_200.rrd -a traffic\_in:U
+  
+$ sudo rrdtool tune hogehoge-db01\_traffic\_in\_200.rrd -a traffic\_out:U
+  
+</code></pre>
+</div>
 
-<p>$ sudo rrdtool tune hogehoge-db01_traffic_in_200.rrd -a traffic_in:U</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+$ rrdtool info hogehoge-db01\_traffic\_in_200.rrd
 
-<p>$ sudo rrdtool tune hogehoge-db01_traffic_in_200.rrd -a traffic_out:U</p>
-
-<p>[/bash]</p>
-
-<p>[text]</p>
-
-<p>$ rrdtool info hogehoge-db01_traffic_in_200.rrd</p>
-
-<p>filename = “mwap-r10_traffic_in_200.rrd”</p>
-
-<p>rrd_version = “0003”</p>
-
-<p>step = 300</p>
-
-<p>last_update = 1352714073</p>
-
-<p>ds[traffic_in].type = “COUNTER”</p>
-
-<p>ds[traffic_in].minimal_heartbeat = 600</p>
-
-<p>ds[traffic_in].min = 0.0000000000e+00</p>
-
-<p>ds[traffic_in].max = NaN ← 無限大に変わってる</p>
-
-<p>ds[traffic_in].last_ds = “3293068416”</p>
-
-<p>ds[traffic_in].value = 1.2345678909e+08</p>
-
-<p>ds[traffic_in].unknown_sec = 0</p>
-
-<p>ds[traffic_out].type = “COUNTER”</p>
-
-<p>ds[traffic_out].minimal_heartbeat = 600</p>
-
-<p>ds[traffic_out].min = 0.0000000000e+00</p>
-
-<p>ds[traffic_out].max = NaN ← 無限大に変わってる</p>
-
-<p>ds[traffic_out].last_ds = “2054038296”</p>
-
-<p>ds[traffic_out].value = 1.2345678909e+08</p>
-
-<p>ds[traffic_out].unknown_sec = 0</p>
-
-<p>(後略)</p>
-
-<p>[/text]</p>
+filename = "mwap-r10\_traffic\_in_200.rrd"
+  
+rrd_version = "0003"
+  
+step = 300
+  
+last_update = 1352714073
+  
+ds[traffic_in].type = "COUNTER"
+  
+ds[traffic\_in].minimal\_heartbeat = 600
+  
+ds[traffic_in].min = 0.0000000000e+00
+  
+ds[traffic_in].max = NaN ← 無限大に変わってる
+  
+ds[traffic\_in].last\_ds = "3293068416"
+  
+ds[traffic_in].value = 1.2345678909e+08
+  
+ds[traffic\_in].unknown\_sec = 0
+  
+ds[traffic_out].type = "COUNTER"
+  
+ds[traffic\_out].minimal\_heartbeat = 600
+  
+ds[traffic_out].min = 0.0000000000e+00
+  
+ds[traffic_out].max = NaN ← 無限大に変わってる
+  
+ds[traffic\_out].last\_ds = "2054038296"
+  
+ds[traffic_out].value = 1.2345678909e+08
+  
+ds[traffic\_out].unknown\_sec = 0
+  
+(後略)
+  
+</code></pre>
+</div>
 
 <hr />
 
@@ -190,7 +190,7 @@
 
       <footer class="footer">
         <small>
-          &copy; <time datetime="2016-04-01T11:15:44-07:00">2016</time>. All rights reserved.
+          &copy; <time datetime="2016-04-01T11:57:39-07:00">2016</time>. All rights reserved.
         </small>
       </footer>
     </div>

@@ -14,11 +14,11 @@ MySQLのエラーログに記録されるエラーコードは、MySQL自体が�
 
 例えば、レプリケーションがうまくいかない時に表示される
 
-[text]
+```
   
-Got fatal error 1236 from master when reading data from binary log: &#8216;Client requested master to start replication from impossible position&#8217;
+Got fatal error 1236 from master when reading data from binary log: 'Client requested master to start replication from impossible position'
   
-[/text]
+```
 
 というエラーの「1236」は、MySQL自体が判断した結果なので、以下のサイトで一覧が見られる。というか、表示されているままで、それ以上の情報はエラーログの前後や他のログ(OSログなど)を確認するしかない。
 
@@ -34,25 +34,25 @@ Got fatal error 1236 from master when reading data from binary log: &#8216;Clien
 
 一方、以下のようなエラーの場合、
 
-[text]
+```
   
-120326 16:56:45 [ERROR] /usr/sbin/mysqld: Incorrect key file for table &#8216;/tmp/#sql\_21b2\_0.MYI&#8217;; try to repair it
+120326 16:56:45 [ERROR] /usr/sbin/mysqld: Incorrect key file for table '/tmp/#sql\_21b2\_0.MYI'; try to repair it
   
 120326 16:56:45 [ERROR] Got an error from unknown thread, storage/myisam/mi_write.c:223
   
-120326 16:56:45 [ERROR] /usr/sbin/mysqld: Sort aborted: Error writing file &#8216;/tmp/MYK74Kpi&#8217; (Errcode: 28)
+120326 16:56:45 [ERROR] /usr/sbin/mysqld: Sort aborted: Error writing file '/tmp/MYK74Kpi' (Errcode: 28)
   
-[/text]
+```
 
 エラーコードを調べないままだと、ファイルへの書き出しで失敗したことまでは分かっても、その先何が起きているのかは分からない。ここで、「Errcode: 28」は、OSが返しているエラーを表示している。これがどのような意味かは、perrorコマンドで分かる。
 
-[bash]
+```
   
 $ perror 28
   
 OS error code 28: No space left on device
   
-[/bash]
+```
 
 エラーログだけでは判断がつかないが、エラーコード28の意味が分かると、単純な問題であることが判明する。MyISAMはディスクがいっぱいであるというエラーを正しく扱わないという問題があるので、このようなことになる。
 

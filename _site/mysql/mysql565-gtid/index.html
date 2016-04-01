@@ -40,11 +40,11 @@
 
 <p><a href="http://dev.mysql.com/downloads/mysql/#downloads" target="_blank">MySQLのダウンロードサイト</a>からDevelopment Releaseを選択し、5.6.5 m8をダウンロードする。自分はUbuntu 11.04を使ったので、debファイルをダウンロードし、以下のコマンドを実行したところ、/opt/mysql以下にインストールされた。</p>
 
-<p>[bash]</p>
-
-<p>dpkg -i mysql-5.6.5-m8-ubuntu10.04-x86_64.deb</p>
-
-<p>[/bash]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+dpkg -i mysql-5.6.5-m8-ubuntu10.04-x86_64.deb
+  
+</code></pre>
+</div>
 
 <p>ちなみに自分はマシンを2台用意できなかったので、/opt/mysql以下をコピーしてからmysql_install_dbコマンドを実行し、それぞれmy.cnfを作成して、1台の検証用サーバにポートを分けて2つのMySQLを起動した。</p>
 
@@ -52,17 +52,17 @@
 
 <p>GTIDを使用するには、レプリケーションを組むサーバ全体でGTIDを有効にする必要があり、それぞれのサーバのmy.cnfで以下のオプションを指定する。</p>
 
-<p>[text]</p>
-
-<p>log-bin</p>
-
-<p>log-slave-updates</p>
-
-<p>gtid-mode=ON</p>
-
-<p>disable-gtid-unsafe-statements</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+log-bin
+  
+log-slave-updates
+  
+gtid-mode=ON
+  
+disable-gtid-unsafe-statements
+  
+</code></pre>
+</div>
 
 <p>はじめの2つはレプリケーションを設定したことのある人なら見慣れたオプションだが、後半の2つが新しく追加されたもの。gtid-modeは単純にGTIDの機能を使用可能にするオプションで、disable-gtid-unsafe-statementsは、GTIDと互換性のない一部のSQLの実行を無効にするものである。</p>
 
@@ -70,310 +70,107 @@
 
 <p>これらの設定を行ってMySQLを起動すると、GTIDが有効になる。</p>
 
-<p>[sql]</p>
-
-<p>mysql&gt; show variables like ‘%gtid%’;</p>
-
-<p>+——————————–+———–+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>Variable_name</td>
-      <td>Value</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+——————————–+———–+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>disable_gtid_unsafe_statements</td>
-      <td>ON</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>gtid_done</td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>gtid_lost</td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>gtid_mode</td>
-      <td>ON</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>gtid_next</td>
-      <td>AUTOMATIC</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>gtid_owned</td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+——————————–+———–+</p>
-
-<p>6 rows in set (0.00 sec)</p>
-
-<p>[/sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+mysql&gt; show variables like '%gtid%';
+  
++-----------+----+
+  
+| Variable_name | Value |
+  
++-----------+----+
+  
+| disable\_gtid\_unsafe_statements | ON |
+  
+| gtid_done | |
+  
+| gtid_lost | |
+  
+| gtid_mode | ON |
+  
+| gtid_next | AUTOMATIC |
+  
+| gtid_owned | |
+  
++-----------+----+
+  
+6 rows in set (0.00 sec)
+  
+</code></pre>
+</div>
 
 <h2 id="section">レプリケーションの設定</h2>
 
 <p>GTIDを設定するとトランザクションごとにGTIDを持つと書いたが、まず簡単なcreate文を書いてみる。その後show binlog eventsでbinlogの中身を見てみると、クエリの情報の他にGTIDがセットされていることが分かる。</p>
 
-<p>[sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+mysql-master&gt; use test;
+  
+Database changed
+  
+mysql-master&gt; create table t1 (a INT);
+  
+Query OK, 0 rows affected (0.13 sec)
 
-<p>mysql-master&gt; use test;</p>
-
-<p>Database changed</p>
-
-<p>mysql-master&gt; create table t1 (a INT);</p>
-
-<p>Query OK, 0 rows affected (0.13 sec)</p>
-
-<p>mysql-master&gt; show binlog events;</p>
-
-<p>+——————+—–+—————-+———–+————-+——————————————————————-+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>Log_name</td>
-      <td>Pos</td>
-      <td>Event_type</td>
-      <td>Server_id</td>
-      <td>End_log_pos</td>
-      <td>Info</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+——————+—–+—————-+———–+————-+——————————————————————-+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>mysql-bin.000001</td>
-      <td>4</td>
-      <td>Format_desc</td>
-      <td>1</td>
-      <td>120</td>
-      <td>Server ver: 5.6.5-m8-log, Binlog ver: 4</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>mysql-bin.000001</td>
-      <td>120</td>
-      <td>Previous_gtids</td>
-      <td>1</td>
-      <td>147</td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>mysql-bin.000001</td>
-      <td>147</td>
-      <td>Gtid</td>
-      <td>1</td>
-      <td>191</td>
-      <td>SET @@SESSION.GTID_NEXT= ‘7C3125E9-8C6D-11E1-8BE6-2C4138876DB7:1’</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>mysql-bin.000001</td>
-      <td>191</td>
-      <td>Query</td>
-      <td>1</td>
-      <td>284</td>
-      <td>use `test`; create table t1 (a INT)</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+——————+—–+—————-+———–+————-+——————————————————————-+</p>
-
-<p>4 rows in set (0.00 sec)</p>
-
-<p>[/sql]</p>
+mysql-master&gt; show binlog events;
+  
++------+--+------+----+-----+-----------------------+
+  
+| Log\_name | Pos | Event\_type | Server\_id | End\_log_pos | Info |
+  
++------+--+------+----+-----+-----------------------+
+  
+| mysql-bin.000001 | 4 | Format_desc | 1 | 120 | Server ver: 5.6.5-m8-log, Binlog ver: 4 |
+  
+| mysql-bin.000001 | 120 | Previous_gtids | 1 | 147 | |
+  
+| mysql-bin.000001 | 147 | Gtid | 1 | 191 | SET @@SESSION.GTID_NEXT= '7C3125E9-8C6D-11E1-8BE6-2C4138876DB7:1' |
+  
+| mysql-bin.000001 | 191 | Query | 1 | 284 | use \`test\`; create table t1 (a INT) |
+  
++------+--+------+----+-----+-----------------------+
+  
+4 rows in set (0.00 sec)
+  
+</code></pre>
+</div>
 
 <p>この例で表示されている、’7C3125E9-8C6D-11E1-8BE6-2C4138876DB7:1’が、直後のcreate tableに割り当てられたGTIDである。さらにinsert文を発行してみる。</p>
 
-<p>[sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+mysql-master&gt; insert into t1 values (1);
+  
+Query OK, 1 row affected (0.13 sec)
 
-<p>mysql-master&gt; insert into t1 values (1);</p>
-
-<p>Query OK, 1 row affected (0.13 sec)</p>
-
-<p>mysql-master&gt; show binlog events;</p>
-
-<p>+——————+—–+—————-+———–+————-+——————————————————————-+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>Log_name</td>
-      <td>Pos</td>
-      <td>Event_type</td>
-      <td>Server_id</td>
-      <td>End_log_pos</td>
-      <td>Info</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+——————+—–+—————-+———–+————-+——————————————————————-+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>mysql-bin.000001</td>
-      <td>4</td>
-      <td>Format_desc</td>
-      <td>1</td>
-      <td>120</td>
-      <td>Server ver: 5.6.5-m8-log, Binlog ver: 4</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>mysql-bin.000001</td>
-      <td>120</td>
-      <td>Previous_gtids</td>
-      <td>1</td>
-      <td>147</td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>mysql-bin.000001</td>
-      <td>147</td>
-      <td>Gtid</td>
-      <td>1</td>
-      <td>191</td>
-      <td>SET @@SESSION.GTID_NEXT= ‘7C3125E9-8C6D-11E1-8BE6-2C4138876DB7:1’</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>mysql-bin.000001</td>
-      <td>191</td>
-      <td>Query</td>
-      <td>1</td>
-      <td>284</td>
-      <td>use `test`; create table t1 (a INT)</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>mysql-bin.000001</td>
-      <td>284</td>
-      <td>Gtid</td>
-      <td>1</td>
-      <td>328</td>
-      <td>SET @@SESSION.GTID_NEXT= ‘7C3125E9-8C6D-11E1-8BE6-2C4138876DB7:2’</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>mysql-bin.000001</td>
-      <td>328</td>
-      <td>Query</td>
-      <td>1</td>
-      <td>403</td>
-      <td>BEGIN</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>mysql-bin.000001</td>
-      <td>403</td>
-      <td>Query</td>
-      <td>1</td>
-      <td>498</td>
-      <td>use `test`; insert into t1 values (1)</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>mysql-bin.000001</td>
-      <td>498</td>
-      <td>Xid</td>
-      <td>1</td>
-      <td>525</td>
-      <td>COMMIT /* xid=10 */</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+——————+—–+—————-+———–+————-+——————————————————————-+</p>
-
-<p>8 rows in set (0.00 sec)</p>
-
-<p>[/sql]</p>
+mysql-master&gt; show binlog events;
+  
++------+--+------+----+-----+-----------------------+
+  
+| Log\_name | Pos | Event\_type | Server\_id | End\_log_pos | Info |
+  
++------+--+------+----+-----+-----------------------+
+  
+| mysql-bin.000001 | 4 | Format_desc | 1 | 120 | Server ver: 5.6.5-m8-log, Binlog ver: 4 |
+  
+| mysql-bin.000001 | 120 | Previous_gtids | 1 | 147 | |
+  
+| mysql-bin.000001 | 147 | Gtid | 1 | 191 | SET @@SESSION.GTID_NEXT= '7C3125E9-8C6D-11E1-8BE6-2C4138876DB7:1' |
+  
+| mysql-bin.000001 | 191 | Query | 1 | 284 | use \`test\`; create table t1 (a INT) |
+  
+| mysql-bin.000001 | 284 | Gtid | 1 | 328 | SET @@SESSION.GTID_NEXT= '7C3125E9-8C6D-11E1-8BE6-2C4138876DB7:2' |
+  
+| mysql-bin.000001 | 328 | Query | 1 | 403 | BEGIN |
+  
+| mysql-bin.000001 | 403 | Query | 1 | 498 | use \`test\`; insert into t1 values (1) |
+  
+| mysql-bin.000001 | 498 | Xid | 1 | 525 | COMMIT /\* xid=10 \*/ |
+  
++------+--+------+----+-----+-----------------------+
+  
+8 rows in set (0.00 sec)
+  
+</code></pre>
+</div>
 
 <p>insert文には、’7C3125E9-8C6D-11E1-8BE6-2C4138876DB7:2’というGUIDが振られたことが見て取れる。GUIDは、コロンの前のサーバのUUID(server_uuid変数)と、コロンの後の単純なトランザクションの通し番号からなっているのである。</p>
 
@@ -387,244 +184,133 @@
 
 <p>という手順が必要だった。一方5.6.5では、以下の文をスレーブで実行するだけで、マスタと同じ状態までレプリケーションが行われる。</p>
 
-<p>[sql]</p>
-
-<p>mysql-slave&gt; change master to</p>
-
-<p>master_host = ‘マスタのIP’,</p>
-
-<p>master_port=マスタのMySQLポート番号,</p>
-
-<p>master_user=’レプリ用ユーザ’,</p>
-
-<p>master_password=’レプリ用ユーザパスワード’,</p>
-
-<p>master_auto_position=1;</p>
-
-<p>mysql-slave&gt; start slave;</p>
-
-<p>[/sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+mysql-slave&gt; change master to
+    
+master_host = 'マスタのIP',
+    
+master_port=マスタのMySQLポート番号,
+    
+master_user='レプリ用ユーザ',
+    
+master_password='レプリ用ユーザパスワード',
+    
+master\_auto\_position=1;
+  
+mysql-slave&gt; start slave;
+  
+</code></pre>
+</div>
 
 <p>最後のmaster_auto_positionによって、GTIDを使って自動的にポジションが決まるので、ポジションを指定する必要がない。レプリケーションを始めた状態でshow slave status\Gを実行すると、手元の環境では以下のようになった(長いので一部の行を省略)。</p>
 
-<p>[sql]</p>
-
-<p>mysql-slave&gt; show slave status\G</p>
-
-<p>*<strong>*</strong>*<strong>*</strong>*<strong>*</strong>*<strong>*</strong>*\<em>* 1. row ***<strong>*</strong>*<strong>*</strong>*<strong>*</strong>*<strong>*</strong></em></p>
-
-<p>Slave_IO_State: Waiting for master to send event</p>
-
-<p>Master_Host: 127.0.0.1</p>
-
-<p>Master_User: root</p>
-
-<p>Master_Port: 3306</p>
-
-<p>Connect_Retry: 60</p>
-
-<p>Master_Log_File: mysql-bin.000001</p>
-
-<p>Read_Master_Log_Pos: 525</p>
-
-<p>Relay_Log_File: ubuntu-relay-bin.000002</p>
-
-<p>Relay_Log_Pos: 727</p>
-
-<p>Relay_Master_Log_File: mysql-bin.000001</p>
-
-<p>Exec_Master_Log_Pos: 525</p>
-
-<p>Relay_Log_Space: 924</p>
-
-<p>Seconds_Behind_Master: 0</p>
-
-<p>Master_Server_Id: 1</p>
-
-<p>Master_UUID: 7c3125e9-8c6d-11e1-8be6-2c4138876db7</p>
-
-<p>Master_Info_File: /opt/mysql3307/server-5.6/data/master.info</p>
-
-<p>SQL_Delay: 0</p>
-
-<p>SQL_Remaining_Delay: NULL</p>
-
-<p>Slave_SQL_Running_State: Slave has read all relay log; waiting for the slave I/O thread to update it</p>
-
-<p>Master_Retry_Count: 86400</p>
-
-<p>Retrieved_Gtid_Set: 7C3125E9-8C6D-11E1-8BE6-2C4138876DB7:1-2</p>
-
-<p>Executed_Gtid_Set: 7C3125E9-8C6D-11E1-8BE6-2C4138876DB7:1-2</p>
-
-<p>1 row in set (0.00 sec)</p>
-
-<p>[/sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+mysql-slave&gt; show slave status\G
+  
+\***\***\***\***\***\***\***\***\*\\*\* 1. row \*\*\***\***\***\***\***\***\***\****
+           
+Slave\_IO\_State: Waiting for master to send event
+              
+Master_Host: 127.0.0.1
+              
+Master_User: root
+              
+Master_Port: 3306
+            
+Connect_Retry: 60
+          
+Master\_Log\_File: mysql-bin.000001
+      
+Read\_Master\_Log_Pos: 525
+           
+Relay\_Log\_File: ubuntu-relay-bin.000002
+            
+Relay\_Log\_Pos: 727
+    
+Relay\_Master\_Log_File: mysql-bin.000001
+      
+Exec\_Master\_Log_Pos: 525
+          
+Relay\_Log\_Space: 924
+    
+Seconds\_Behind\_Master: 0
+         
+Master\_Server\_Id: 1
+              
+Master_UUID: 7c3125e9-8c6d-11e1-8be6-2c4138876db7
+         
+Master\_Info\_File: /opt/mysql3307/server-5.6/data/master.info
+                
+SQL_Delay: 0
+      
+SQL\_Remaining\_Delay: NULL
+  
+Slave\_SQL\_Running_State: Slave has read all relay log; waiting for the slave I/O thread to update it
+       
+Master\_Retry\_Count: 86400
+       
+Retrieved\_Gtid\_Set: 7C3125E9-8C6D-11E1-8BE6-2C4138876DB7:1-2
+        
+Executed\_Gtid\_Set: 7C3125E9-8C6D-11E1-8BE6-2C4138876DB7:1-2
+  
+1 row in set (0.00 sec)
+  
+</code></pre>
+</div>
 
 <p>最後の2行、Retrieved_Gtid_Setはマスタから転送してきたトランザクションのGTIDで、Executed_Gtid_Setはスレーブで実行されたトランザクションのGTIDである。ここでスレーブ側のbinlogの中身を見てみると、マスタで実行された文がそのまま実行されており、マスタのGTIDも保持されていることが分かる。</p>
 
-<p>[sql]</p>
-
-<p>mysql-slave&gt; show binlog events;</p>
-
-<p>+——————+—–+—————-+———–+————-+——————————————————————-+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>Log_name</td>
-      <td>Pos</td>
-      <td>Event_type</td>
-      <td>Server_id</td>
-      <td>End_log_pos</td>
-      <td>Info</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+——————+—–+—————-+———–+————-+——————————————————————-+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>mysql-bin.000001</td>
-      <td>4</td>
-      <td>Format_desc</td>
-      <td>13307</td>
-      <td>120</td>
-      <td>Server ver: 5.6.5-m8-log, Binlog ver: 4</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>mysql-bin.000001</td>
-      <td>120</td>
-      <td>Previous_gtids</td>
-      <td>13307</td>
-      <td>147</td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>mysql-bin.000001</td>
-      <td>147</td>
-      <td>Gtid</td>
-      <td>1</td>
-      <td>191</td>
-      <td>SET @@SESSION.GTID_NEXT= ‘7C3125E9-8C6D-11E1-8BE6-2C4138876DB7:1’</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>mysql-bin.000001</td>
-      <td>191</td>
-      <td>Query</td>
-      <td>1</td>
-      <td>284</td>
-      <td>use `test`; create table t1 (a INT)</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>mysql-bin.000001</td>
-      <td>284</td>
-      <td>Gtid</td>
-      <td>1</td>
-      <td>328</td>
-      <td>SET @@SESSION.GTID_NEXT= ‘7C3125E9-8C6D-11E1-8BE6-2C4138876DB7:2’</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>mysql-bin.000001</td>
-      <td>328</td>
-      <td>Query</td>
-      <td>1</td>
-      <td>403</td>
-      <td>BEGIN</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>mysql-bin.000001</td>
-      <td>403</td>
-      <td>Query</td>
-      <td>1</td>
-      <td>498</td>
-      <td>use `test`; insert into t1 values (1)</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>mysql-bin.000001</td>
-      <td>498</td>
-      <td>Xid</td>
-      <td>1</td>
-      <td>525</td>
-      <td>COMMIT /* xid=18 */</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+——————+—–+—————-+———–+————-+——————————————————————-+</p>
-
-<p>8 rows in set (0.00 sec)</p>
-
-<p>[/sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+mysql-slave&gt; show binlog events;
+  
++------+--+------+----+-----+-----------------------+
+  
+| Log\_name | Pos | Event\_type | Server\_id | End\_log_pos | Info |
+  
++------+--+------+----+-----+-----------------------+
+  
+| mysql-bin.000001 | 4 | Format_desc | 13307 | 120 | Server ver: 5.6.5-m8-log, Binlog ver: 4 |
+  
+| mysql-bin.000001 | 120 | Previous_gtids | 13307 | 147 | |
+  
+| mysql-bin.000001 | 147 | Gtid | 1 | 191 | SET @@SESSION.GTID_NEXT= '7C3125E9-8C6D-11E1-8BE6-2C4138876DB7:1' |
+  
+| mysql-bin.000001 | 191 | Query | 1 | 284 | use \`test\`; create table t1 (a INT) |
+  
+| mysql-bin.000001 | 284 | Gtid | 1 | 328 | SET @@SESSION.GTID_NEXT= '7C3125E9-8C6D-11E1-8BE6-2C4138876DB7:2' |
+  
+| mysql-bin.000001 | 328 | Query | 1 | 403 | BEGIN |
+  
+| mysql-bin.000001 | 403 | Query | 1 | 498 | use \`test\`; insert into t1 values (1) |
+  
+| mysql-bin.000001 | 498 | Xid | 1 | 525 | COMMIT /\* xid=18 \*/ |
+  
++------+--+------+----+-----+-----------------------+
+  
+8 rows in set (0.00 sec)
+  
+</code></pre>
+</div>
 
 <p>なお、以下のselect文で、最後に実行された文のGTIDが参照できる。この結果がマスタとスレーブで一致していれば、データは同一であるということになる。</p>
 
-<p>[sql]</p>
-
-<p>mysql-master&gt; SELECT @@GLOBAL.GTID_DONE;</p>
-
-<p>+——————————————+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>@@GLOBAL.GTID_DONE</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+——————————————+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>7C3125E9-8C6D-11E1-8BE6-2C4138876DB7:1-2</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+——————————————+</p>
-
-<p>1 row in set (0.00 sec)</p>
-
-<p>[/sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+mysql-master&gt; SELECT @@GLOBAL.GTID_DONE;
+  
++--------------+
+  
+| @@GLOBAL.GTID_DONE |
+  
++--------------+
+  
+| 7C3125E9-8C6D-11E1-8BE6-2C4138876DB7:1-2 |
+  
++--------------+
+  
+1 row in set (0.00 sec)
+  
+</code></pre>
+</div>
 
 <p>ここまでで確認できたのは、基本的なGTIDの機能だけだが、この他にも自動フェイルオーバーが可能なmysqlfailoverや、レプリケーションの状態を詳細に確認できるmysqlrpladminなど、興味深いツールもあるので、試してみたい。5.6ではレプリケーション関連の色々な機能追加があるので、これからも便利な機能が出てくるのではと楽しみである。</p>
 
@@ -668,7 +354,7 @@
 
       <footer class="footer">
         <small>
-          &copy; <time datetime="2016-04-01T11:15:44-07:00">2016</time>. All rights reserved.
+          &copy; <time datetime="2016-04-01T11:57:39-07:00">2016</time>. All rights reserved.
         </small>
       </footer>
     </div>

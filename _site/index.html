@@ -63,13 +63,13 @@
 
 <p>awscliの用意が済んだら、リポジトリをクローンしてきてコマンドを叩けばよい。</p>
 
-<p>[code lang=text]</p>
-
-<p>git clone https://github.com/colinbjohnson/aws-missing-tools.git</p>
-
-<p>cd aws-missing-tools/ec2-automate-backup</p>
-
-<p>[/code]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+git clone https://github.com/colinbjohnson/aws-missing-tools.git
+  
+cd aws-missing-tools/ec2-automate-backup
+  
+</code></pre>
+</div>
 
 <p>コマンドのオプションは<a href="https://github.com/colinbjohnson/aws-missing-tools/tree/master/ec2-automate-backup">README</a>に書いてあるが、イマイチわかりにくい。最低限以下がわかればとりあえずのバックアップは取れる。</p>
 
@@ -85,11 +85,11 @@
 
 <p>具体的には、以下のようにコマンドを実行する。これは「Backup=trueタグが付いたボリュームのスナップショットを作成し、7日以上経過したスナップショットを削除する」例。</p>
 
-<p>[code lang=text]</p>
-
-<p>bash ec2-automate-backup.sh -s tag -t ‘Backup,Values=true’ -r ap-northeast-1 -n -k 7 -p</p>
-
-<p>[/code]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+bash ec2-automate-backup.sh -s tag -t 'Backup,Values=true' -r ap-northeast-1 -n -k 7 -p
+  
+</code></pre>
+</div>
 
 <p>実際の挙動的には、<code class="highlighter-rouge">-k 7</code>オプションがあるので7日経つとスナップショットにPurgeAllow=trueタグが付けられ、次の実行で<code class="highlighter-rouge">-p</code>オプションが効いてPurgeAllow=trueがついているスナップショットが消される、という流れになる。</p>
 
@@ -298,7 +298,7 @@
 
       <footer class="footer">
         <small>
-          &copy; <time datetime="2016-04-01T11:15:44-07:00">2016</time>. All rights reserved.
+          &copy; <time datetime="2016-04-01T11:57:39-07:00">2016</time>. All rights reserved.
         </small>
       </footer>
     </div>

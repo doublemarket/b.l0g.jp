@@ -4,7 +4,7 @@
  <title>渋谷ではたらくインフラエンジニアのブログ</title>
  <link href="http://b.l0g.jp/atom.xml" rel="self"/>
  <link href="http://b.l0g.jp/"/>
- <updated>2016-04-01T11:51:38-07:00</updated>
+ <updated>2016-04-01T11:57:39-07:00</updated>
  <id>http://b.l0g.jp</id>
  <author>
    <name></name>
@@ -2235,22 +2235,14 @@ UCD-SNMP-MIB::laLoad.1 = STRING: 0.03
 &lt;p&gt;IPv6環境でnet-snmpを使うときは&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;net-snmp 5.0以降を使う
-    &lt;ul&gt;
-      &lt;li&gt;snmpd.confで、agentaddress udp6:161とcom2sec6を設定する
-        &lt;ul&gt;
-          &lt;li&gt;
-            &lt;p&gt;snmpwalkなどで値を取る時はアドレスの前にudp6:をつける &amp;lt;/ul&amp;gt;&lt;/p&gt;
-
-            &lt;hr /&gt;
-
-            &lt;p&gt;&lt;strong&gt;海外の役立つブログ記事などを人力で翻訳して公開する&lt;a href=&quot;https://yakst.com/ja&quot;&gt;Yakst&lt;/a&gt;というプロジェクトをやっています。よろしければそちらもどうぞ！&lt;/strong&gt;&lt;/p&gt;
-          &lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
+  &lt;li&gt;net-snmp 5.0以降を使う&lt;/li&gt;
+  &lt;li&gt;snmpd.confで、agentaddress udp6:161とcom2sec6を設定する&lt;/li&gt;
+  &lt;li&gt;snmpwalkなどで値を取る時はアドレスの前にudp6:をつける&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;海外の役立つブログ記事などを人力で翻訳して公開する&lt;a href=&quot;https://yakst.com/ja&quot;&gt;Yakst&lt;/a&gt;というプロジェクトをやっています。よろしければそちらもどうぞ！&lt;/strong&gt;&lt;/p&gt;
 </content>
  </entry>
  

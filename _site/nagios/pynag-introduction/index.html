@@ -46,57 +46,57 @@
 
 <p>Fedoraの最近のバージョンには標準で含まれており、CentOSやRHELならepelを使えるようにしておけばyumでインストールできる。</p>
 
-<p>[shell]</p>
-
-<p>$ sudo yum install http://ftp-srv2.kddilabs.jp/Linux/distributions/fedora/epel/6/x86_64/epel-release-6-8.noarch.rpm</p>
-
-<p>$ sudo yum install pynag</p>
-
-<p>[/shell]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+$ sudo yum install http://ftp-srv2.kddilabs.jp/Linux/distributions/fedora/epel/6/x86_64/epel-release-6-8.noarch.rpm
+  
+$ sudo yum install pynag
+  
+</code></pre>
+</div>
 
 <p>pipが使えるならpipでもインストールできる。</p>
 
-<p>[shell]</p>
-
-<p>$ sudo pip install pynag</p>
-
-<p>[/shell]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+$ sudo pip install pynag
+  
+</code></pre>
+</div>
 
 <h2 id="section-1">設定ファイルのパース</h2>
 
 <p>pynagパッケージのModelモジュールを使えば、 /etc/nagios など代表的なパスから nagios.cfg を探し出して読み込んでくれる。含まれるホストとそのホストに関連づいたContact groupを表示する例。</p>
 
-<p>[python]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+from pynag import Model
 
-<p>from pynag import Model</p>
-
-<p># Get all hosts</p>
-
-<p>all_hosts = Model.Host.objects.all</p>
-
-<p>for i in all_hosts:</p>
-
-<p>print i.host_name, i.contact_groups</p>
-
-<p>[/python]</p>
+# Get all hosts
+  
+all_hosts = Model.Host.objects.all
+  
+for i in all_hosts:
+      
+print i.host_name, i.contact_groups
+  
+</code></pre>
+</div>
 
 <h2 id="section-2">設定書き換え</h2>
 
 <p>同じようにして、設定を保存することもできる。ホスト名がexamplehostのホストのContact groupを「mycontactgroup」にする例。</p>
 
-<p>[python]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+from pynag import Model
 
-<p>from pynag import Model</p>
-
-<p>services = Model.Service.objects.filter(host_name=’examplehost’)</p>
-
-<p>for i in services:</p>
-
-<p>i.contactgroups = “mycontactgroup”</p>
-
-<p>i.save()</p>
-
-<p>[/python]</p>
+services = Model.Service.objects.filter(host_name='examplehost')
+  
+for i in services:
+    
+i.contactgroups = "mycontactgroup"
+    
+i.save()
+  
+</code></pre>
+</div>
 
 <h2 id="section-3">ステータスの取得</h2>
 
@@ -104,85 +104,85 @@
 
 <p>ホストグループ名とサービス名を引数に与えてやると、ホストグループに所属するホスト全てに関するサービスのステータスを返すスクリプト。</p>
 
-<p>[python]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+import sys
+  
+from pynag import Model
+  
+from pynag.Parsers import status
 
-<p>import sys</p>
+argvs = sys.argv
+  
+argc = len(argvs)
+  
+status = status()
 
-<p>from pynag import Model</p>
+if (argc != 3):
+          
+print
+          
+print("Usage: ./%s hostgroup service" % argvs[0])
+          
+print
+          
+sys.exit()
 
-<p>from pynag.Parsers import status</p>
-
-<p>argvs = sys.argv</p>
-
-<p>argc = len(argvs)</p>
-
-<p>status = status()</p>
-
-<p>if (argc != 3):</p>
-
-<p>print</p>
-
-<p>print(“Usage: ./%s hostgroup service” % argvs[0])</p>
-
-<p>print</p>
-
-<p>sys.exit()</p>
-
-<p>hostgroups = Model.Hostgroup.objects.filter(hostgroup_name=argvs[1])</p>
-
-<p>for hostgroup in hostgroups:</p>
-
-<p>print(“Hostgroup: %s” % hostgroup.hostgroup_name)</p>
-
-<p>print(“Member:”)</p>
-
-<p>for host in hostgroup.members.split(‘,’):</p>
-
-<p>print(“%s %s” % (host, status.get_servicestatus(host, argvs[2])[‘current_state’]))</p>
-
-<p>[/python]</p>
+hostgroups = Model.Hostgroup.objects.filter(hostgroup_name=argvs[1])
+  
+for hostgroup in hostgroups:
+          
+print("Hostgroup: %s" % hostgroup.hostgroup_name)
+          
+print("Member:")
+          
+for host in hostgroup.members.split(','):
+                  
+print("%s %s" % (host, status.get_servicestatus(host, argvs[2])['current_state']))
+  
+</code></pre>
+</div>
 
 <p>status.datのパースにはやや時間がかかるので、監視対象サーバの台数が多いと使用に耐えない。そういう場合は、高速にステータスを取得できる<a href="http://mathias-kettner.de/checkmk_livestatus.html" title="MK Livestatus" target="_blank">MK Livestatus</a>と組み合わせることもできる。インストール方法は割愛するのでWebページを参照するべし。MK Livestatusを使って、上のスクリプトと同じようにホストグループとサービス名を引数に与えてホストのステータスを取得する例。</p>
 
-<p>[python]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>
+import sys
+  
+from pynag import Model
+  
+from pynag.Parsers import mk_livestatus
 
-<p>import sys</p>
+argvs = sys.argv
+  
+argc = len(argvs)
+  
+livestatus = mk_livestatus()
 
-<p>from pynag import Model</p>
+if (argc != 3):
+          
+print
+          
+print("Usage: ./%s hostgroup service" % argvs[0])
+          
+print
+          
+sys.exit()
 
-<p>from pynag.Parsers import mk_livestatus</p>
-
-<p>argvs = sys.argv</p>
-
-<p>argc = len(argvs)</p>
-
-<p>livestatus = mk_livestatus()</p>
-
-<p>if (argc != 3):</p>
-
-<p>print</p>
-
-<p>print(“Usage: ./%s hostgroup service” % argvs[0])</p>
-
-<p>print</p>
-
-<p>sys.exit()</p>
-
-<p>hostgroups = Model.Hostgroup.objects.filter(hostgroup_name=argvs[1])</p>
-
-<p>for hostgroup in hostgroups:</p>
-
-<p>print(“Hostgroup: %s” % hostgroup.hostgroup_name)</p>
-
-<p>print(“Member:”)</p>
-
-<p>for host in hostgroup.members.split(‘,’):</p>
-
-<p>print(host)</p>
-
-<p>print(livestatus.get_service(host,argvs[2])[‘host_services_with_info’])</p>
-
-<p>[/python]</p>
+hostgroups = Model.Hostgroup.objects.filter(hostgroup_name=argvs[1])
+  
+for hostgroup in hostgroups:
+          
+print("Hostgroup: %s" % hostgroup.hostgroup_name)
+          
+print("Member:")
+          
+for host in hostgroup.members.split(','):
+                  
+print(host)
+                  
+print(livestatus.get_service(host,argvs[2])['host_services_with_info'])
+  
+</code></pre>
+</div>
 
 <h2 id="section-4">コマンドラインから使う</h2>
 
@@ -190,47 +190,47 @@
 
 <p>全ホストオブジェクトを表示する例。</p>
 
-<p>[shell]</p>
-
-<p>$ pynag list where object_type=host</p>
-
-<p>object_type shortname filename</p>
-
-<p>——————————————————————————–</p>
-
-<p>host server01 /etc/nagios/Default_collector/hosts.cfg</p>
-
-<p>host server02 /etc/nagios/Default_collector/hosts.cfg</p>
-
-<p>(中略)</p>
-
-<p>———-123 objects matches search condition———————————-</p>
-
-<p>[/shell]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+$ pynag list where object_type=host
+  
+object_type shortname filename
+  
+——————————————————————————-
+  
+host server01 /etc/nagios/Default_collector/hosts.cfg
+  
+host server02 /etc/nagios/Default_collector/hosts.cfg
+  
+(中略)
+  
+———-123 objects matches search condition———————————-
+  
+</code></pre>
+</div>
 
 <p>MySQL_Connect_cというサービスのチェックコマンドを表示する例。</p>
 
-<p>[shell]</p>
-
-<p>$ pynag list effective_command_line where service_description=MySQL_Connect_c</p>
-
-<p>effective_command_line</p>
-
-<p>——————————————————————————–</p>
-
-<p>/usr/lib64/nagios/plugins/check_mysql_health –hostname –user nagios –password nagios –mode connection-time –database test –critical 1</p>
-
-<p>———-1 objects matches search condition————————————</p>
-
-<p>[/shell]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+$ pynag list effective_command_line where service_description=MySQL_Connect_c
+  
+effective_command_line
+  
+——————————————————————————-
+  
+/usr/lib64/nagios/plugins/check_mysql_health -hostname -user nagios -password nagios -mode connection-time -database test -critical 1
+  
+———-1 objects matches search condition————————————
+  
+</code></pre>
+</div>
 
 <p>もちろんコマンドラインから設定の変更も可能。ホスト名server01をserver02に変更する例。</p>
 
-<p>[shell]</p>
-
-<p>$ pynag update set host_name=server02 where host_name=server01 and object_type=host</p>
-
-<p>[/shell]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+$ pynag update set host_name=server02 where host_name=server01 and object_type=host
+  
+</code></pre>
+</div>
 
 <p>where句にはlikeのような部分一致が使えないようだ。複雑なクエリを発行したいときは、pythonスクリプトとして作った方がいいかもしれない。コマンドラインでの使い方は<a href="https://github.com/pynag/pynag/wiki/Pynag-command-line-utility" title="pynag wiki" target="_blank">Wiki</a>にもう少し詳しく書いてある。</p>
 
@@ -240,229 +240,201 @@
 
 <p>/proc/loadavgの中身から、ロードアベレージを引いてくる簡単な例。</p>
 
-<p>[python]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+<span class="c">#!/usr/bin/python</span>
+  
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span><span class="nn">sys</span>
 
-<p>#!/usr/bin/python</p>
+<span class="c">## プラグインのオプションを生成</span>
+  
+<span class="n">np</span> <span class="o">=</span> <span class="n">Plugin</span><span class="p">()</span>
 
-<p>import os,sys</p>
+<span class="c">## コマンドライン引数を追加</span>
+  
+<span class="n">np</span><span class="o">.</span><span class="n">add_arg</span><span class="p">(</span><span class="s">"l"</span><span class="p">,</span><span class="s">"load-file"</span><span class="p">,</span> <span class="s">"Enter a load average file"</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 
-<p>## プラグインのオプションを生成</p>
+<span class="c">## プラグインをアクティベート</span>
+  
+<span class="n">np</span><span class="o">.</span><span class="n">activate</span><span class="p">()</span>
 
-<p>np = Plugin()</p>
+<span class="c">## load-fileオプションが指定されたらそのファイルからLAを読み込む</span>
+  
+<span class="c">## デバッグと、add_argメソッドのサンプルとして</span>
+  
+<span class="k">if</span> <span class="n">np</span><span class="p">[</span><span class="s">'load-file'</span><span class="p">]:</span>
+      
+<span class="n">load_file</span> <span class="o">=</span> <span class="n">np</span><span class="p">[</span><span class="s">'load-file'</span><span class="p">]</span>
+  
+<span class="k">else</span><span class="p">:</span>
+      
+<span class="n">load_file</span> <span class="o">=</span> <span class="s">"/proc/loadavg"</span>
 
-<p>## コマンドライン引数を追加</p>
+<span class="c">## ちょっとしたエラーチェック</span>
+  
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">load_file</span><span class="p">):</span>
+      
+<span class="n">np</span><span class="o">.</span><span class="n">nagios_exit</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">UNKNOWN</span><span class="p">,</span> <span class="s">"Missing Load average file </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">load_file</span><span class="p">)</span>
 
-<p>np.add_arg(“l”,”load-file”, “Enter a load average file”, required=None)</p>
+<span class="c">## チェックに使う値を取得</span>
+  
+<span class="n">current_load</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s">"cat </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">load_file</span><span class="p">)</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
 
-<p>## プラグインをアクティベート</p>
+<span class="c">## パフォーマンスデータを付加</span>
+  
+<span class="n">np</span><span class="o">.</span><span class="n">add_perfdata</span><span class="p">(</span><span class="s">"1min"</span><span class="p">,</span> <span class="n">current_load</span><span class="p">)</span>
 
-<p>np.activate()</p>
-
-<p>## load-fileオプションが指定されたらそのファイルからLAを読み込む</p>
-
-<p>## デバッグと、add_argメソッドのサンプルとして</p>
-
-<p>if np[‘load-file’]:</p>
-
-<p>load_file = np[‘load-file’]</p>
-
-<p>else:</p>
-
-<p>load_file = “/proc/loadavg”</p>
-
-<p>## ちょっとしたエラーチェック</p>
-
-<p>if not os.path.isfile(load_file):</p>
-
-<p>np.nagios_exit(np.UNKNOWN, “Missing Load average file %s” % load_file)</p>
-
-<p>## チェックに使う値を取得</p>
-
-<p>current_load = os.popen(“cat %s” % load_file).readline().split()[0]</p>
-
-<p>## パフォーマンスデータを付加</p>
-
-<p>np.add_perfdata(“1min”, current_load)</p>
-
-<p>## チェック実行</p>
-
-<p>np.check_range(current_load)</p>
-
-<p>[/python]</p>
+<span class="c">## チェック実行</span>
+  
+<span class="n">np</span><span class="o">.</span><span class="n">check_range</span><span class="p">(</span><span class="n">current_load</span><span class="p">)</span>
+  
+</code></pre>
+</div>
 
 <p>上のスクリプトをcheck_cpu.pyとして保存しておく。5行目のPlugin()で、プラグインとして必要なオプションが用意されるので、以下のようにスクリプトに引数を指定しないで実行しただけで、簡易ヘルプが表示される。</p>
 
-<p>[shell]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+$ ./check_load.py
+  
+usage: check_load.py [options]
 
-<p>$ ./check_load.py</p>
-
-<p>usage: check_load.py [options]</p>
-
-<p>check_load.py: error: You must provide a WARNING and/or CRITICAL value</p>
-
-<p>[/shell]</p>
+check_load.py: error: You must provide a WARNING and/or CRITICAL value
+  
+</code></pre>
+</div>
 
 <p>さらに、-hオプションをつけると、詳細なヘルプが表示される。</p>
 
-<p>[shell]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+$ ./check_load.py -h
+  
+usage: check_load.py [options]
 
-<p>$ ./check_load.py -h</p>
+options:
+    
+-h, -help show this help message and exit
+    
+-l LOAD-FILE, -load-file=LOAD-FILE
+                          
+Enter a load average file
+    
+-v VERBOSE, -verbose=VERBOSE
+                          
+Verbosity Level
+    
+-H HOST, -host=HOST Target Host
+    
+-t TIMEOUT, -timeout=TIMEOUT
+                          
+Connection Timeout
+    
+-c CRITICAL, -critical=CRITICAL
+                          
+Critical Threshhold
+    
+-w WARNING, -warning=WARNING
+                          
+Warn Threshhold
+  
+</code></pre>
+</div>
 
-<p>usage: check_load.py [options]</p>
-
-<p>options:</p>
-
-<p>-h, –help show this help message and exit</p>
-
-<p>-l LOAD-FILE, –load-file=LOAD-FILE</p>
-
-<p>Enter a load average file</p>
-
-<p>-v VERBOSE, –verbose=VERBOSE</p>
-
-<p>Verbosity Level</p>
-
-<p>-H HOST, –host=HOST Target Host</p>
-
-<p>-t TIMEOUT, –timeout=TIMEOUT</p>
-
-<p>Connection Timeout</p>
-
-<p>-c CRITICAL, –critical=CRITICAL</p>
-
-<p>Critical Threshhold</p>
-
-<p>-w WARNING, –warning=WARNING</p>
-
-<p>Warn Threshhold</p>
-
-<p>[/shell]</p>
-
-<p>ここで、スクリプト内の8行目、add_argメソッドで追加したオプションが、ヘルプの中に「-l LOAD-FILE, –load-file=LOAD-FILE」として表示されている。また、-Hでの監視対象ホスト指定や-c,-wによる閾値の指定オプションがはじめから用意されていることがわかる。自作スクリプトを書くたびにオプションのパースから書いていた事を考えれば、なんという簡単さ！</p>
+<p>ここで、スクリプト内の8行目、add_argメソッドで追加したオプションが、ヘルプの中に「-l LOAD-FILE, -load-file=LOAD-FILE」として表示されている。また、-Hでの監視対象ホスト指定や-c,-wによる閾値の指定オプションがはじめから用意されていることがわかる。自作スクリプトを書くたびにオプションのパースから書いていた事を考えれば、なんという簡単さ！</p>
 
 <p>もちろん、ヘルプでみたとおりのオプションを与えてやれば、プラグインとして使用可能。</p>
 
-<p>[shell]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+$ uptime
+   
+13:16:19 up 396 days, 22:32, 3 users, load average: 0.60, 1.08, 1.04
 
-<p>$ uptime</p>
-
-<p>13:16:19 up 396 days, 22:32, 3 users, load average: 0.60, 1.08, 1.04</p>
-
-<p>$ ./check_load.py -w 1 127.0.0.1</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>OK: 0.60 is inside warning=1 and critical=None</td>
-      <td>‘1min’=0.60;;;;</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>[/shell]</p>
+$ ./check_load.py -w 1 127.0.0.1
+  
+OK: 0.60 is inside warning=1 and critical=None | '1min'=0.60;;;;
+  
+</code></pre>
+</div>
 
 <p>元々やりたかったのは「同一ホストグループ内のある台数のチェック失敗まではWARNING、その台数以上のチェック失敗でCRITICALアラートを上げたい」ということだったのだが、以下のような短いプラグインスクリプトで実現できた。</p>
 
-<p>[python]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+<span class="c">#!/usr/bin/python</span>
 
-<p>#!/usr/bin/python</p>
+<span class="kn">import</span> <span class="nn">sys</span>
+  
+<span class="kn">from</span> <span class="nn">pynag</span> <span class="kn">import</span> <span class="n">Model</span>
+  
+<span class="kn">from</span> <span class="nn">pynag.Parsers</span> <span class="kn">import</span> <span class="n">status</span>
+  
+<span class="kn">from</span> <span class="nn">pynag.Plugins</span> <span class="kn">import</span> <span class="n">simple</span> <span class="k">as</span> <span class="n">Plugin</span>
 
-<p>import sys</p>
+<span class="n">np</span> <span class="o">=</span> <span class="n">Plugin</span><span class="p">()</span>
+  
+<span class="n">status</span> <span class="o">=</span> <span class="n">status</span><span class="p">()</span>
 
-<p>from pynag import Model</p>
+<span class="n">np</span><span class="o">.</span><span class="n">add_arg</span><span class="p">(</span><span class="s">"g"</span><span class="p">,</span> <span class="s">"hostgroup"</span><span class="p">,</span> <span class="s">"Hostgroup name"</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+  
+<span class="n">np</span><span class="o">.</span><span class="n">add_arg</span><span class="p">(</span><span class="s">"s"</span><span class="p">,</span> <span class="s">"service"</span><span class="p">,</span> <span class="s">"Service name"</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<p>from pynag.Parsers import status</p>
+<span class="n">np</span><span class="o">.</span><span class="n">activate</span><span class="p">()</span>
 
-<p>from pynag.Plugins import simple as Plugin</p>
+<span class="n">errornum</span> <span class="o">=</span> <span class="mi">0</span>
+  
+<span class="n">hostgroups</span> <span class="o">=</span> <span class="n">Model</span><span class="o">.</span><span class="n">Hostgroup</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="nb">filter</span><span class="p">(</span><span class="n">hostgroup_name</span><span class="o">=</span><span class="n">np</span><span class="p">[</span><span class="s">'hostgroup'</span><span class="p">])</span>
+  
+<span class="k">for</span> <span class="n">hostgroup</span> <span class="ow">in</span> <span class="n">hostgroups</span><span class="p">:</span>
+          
+<span class="k">for</span> <span class="n">host</span> <span class="ow">in</span> <span class="n">hostgroup</span><span class="o">.</span><span class="n">members</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">','</span><span class="p">):</span>
+                  
+<span class="k">if</span> <span class="n">status</span><span class="o">.</span><span class="n">get_servicestatus</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">np</span><span class="p">[</span><span class="s">'service'</span><span class="p">])[</span><span class="s">'current_state'</span><span class="p">]</span> <span class="o">!=</span> <span class="s">"0"</span><span class="p">:</span>
+                          
+<span class="n">errornum</span> <span class="o">=</span> <span class="n">errornum</span> <span class="o">+</span> <span class="mi">1</span>
+  
+<span class="n">np</span><span class="o">.</span><span class="n">add_perfdata</span><span class="p">(</span><span class="s">"WARN/CRIT"</span><span class="p">,</span> <span class="n">errornum</span><span class="p">)</span>
 
-<p>np = Plugin()</p>
-
-<p>status = status()</p>
-
-<p>np.add_arg(“g”, “hostgroup”, “Hostgroup name”, required=1)</p>
-
-<p>np.add_arg(“s”, “service”, “Service name”, required=1)</p>
-
-<p>np.activate()</p>
-
-<p>errornum = 0</p>
-
-<p>hostgroups = Model.Hostgroup.objects.filter(hostgroup_name=np[‘hostgroup’])</p>
-
-<p>for hostgroup in hostgroups:</p>
-
-<p>for host in hostgroup.members.split(‘,’):</p>
-
-<p>if status.get_servicestatus(host, np[‘service’])[‘current_state’] != “0”:</p>
-
-<p>errornum = errornum + 1</p>
-
-<p>np.add_perfdata(“WARN/CRIT”, errornum)</p>
-
-<p>np.check_range(errornum)</p>
-
-<p>[/python]</p>
+<span class="n">np</span><span class="o">.</span><span class="n">check_range</span><span class="p">(</span><span class="n">errornum</span><span class="p">)</span>
+  
+</code></pre>
+</div>
 
 <p>2台のチェックに失敗している時の例。</p>
 
-<p>[shell]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+# 2より多いとwarn、3より多いとcrit
+  
+$ python check_wipeout.py -hostgroup=common_dbs -service=ifSpeed_eth0_w -w 2 -c 3
+  
+OK: 2 is inside warning=2 and critical=3 | 'WARN/CRIT'=2;;;;
 
-<p># 2より多いとwarn、3より多いとcrit</p>
+$ echo $?
+  
 
-<p>$ python check_wipeout.py –hostgroup=common_dbs –service=ifSpeed_eth0_w -w 2 -c 3</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>OK: 2 is inside warning=2 and critical=3</td>
-      <td>‘WARN/CRIT’=2;;;;</td>
-    </tr>
-  </tbody>
-</table>
+# 1より多いとwarn、3より多いとcrit
+  
+$ python check_wipeout.py -hostgroup=common_dbs -service=ifSpeed_eth0_w -w 1 -c 3
+  
+WARNING: 2 is outside warning range: 1 | 'WARN/CRIT'=2;;;;
 
-<p>$ echo $?</p>
+$ echo $?
+  
+1
 
-<p># 1より多いとwarn、3より多いとcrit</p>
-
-<p>$ python check_wipeout.py –hostgroup=common_dbs –service=ifSpeed_eth0_w -w 1 -c 3</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>WARNING: 2 is outside warning range: 1</td>
-      <td>‘WARN/CRIT’=2;;;;</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>$ echo $?</p>
-
-<p>1</p>
-
-<p># 1より多いとcrit</p>
-
-<p>$ python check_wipeout.py –hostgroup=common_dbs –service=ifSpeed_eth0_w -c 1</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>CRITICAL: 2 is outside critical range: 1</td>
-      <td>‘WARN/CRIT’=2;;;;</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>$ echo $?</p>
-
-<p>2</p>
-
-<p>[/shell]</p>
+# 1より多いとcrit
+  
+$ python check_wipeout.py -hostgroup=common_dbs -service=ifSpeed_eth0_w -c 1
+  
+CRITICAL: 2 is outside critical range: 1 | 'WARN/CRIT'=2;;;;
+  
+$ echo $?
+  
+2
+  
+</code></pre>
+</div>
 
 <p>というわけで、pynagがあるとNagiosプラグインを書くのが超簡単になる！ pynag万歳！</p>
 
-<p>ドキュメントは<a href="https://github.com/pynag/pynag/wiki" title="pynag wiki" target="_blank">Github上のWiki</a>を見るとよい。Wikiからだと分からない部分も多いが、<a href="https://github.com/pynag/pynag" title="pynag" target="_blank">ソース自体</a>はそれほど複雑ではないので読んでみればわかるのでは。&lt;table norder=0&gt;</p>
-
-<p>&lt;/table&gt;</p>
+<p>ドキュメントは<a href="https://github.com/pynag/pynag/wiki" title="pynag wiki" target="_blank">Github上のWiki</a>を見るとよい。Wikiからだと分からない部分も多いが、<a href="https://github.com/pynag/pynag" title="pynag" target="_blank">ソース自体</a>はそれほど複雑ではないので読んでみればわかるのでは。</p>
 
 <hr />
 
@@ -504,7 +476,7 @@
 
       <footer class="footer">
         <small>
-          &copy; <time datetime="2016-04-01T11:15:44-07:00">2016</time>. All rights reserved.
+          &copy; <time datetime="2016-04-01T11:57:39-07:00">2016</time>. All rights reserved.
         </small>
       </footer>
     </div>

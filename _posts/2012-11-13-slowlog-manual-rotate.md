@@ -16,7 +16,7 @@ MySQLのスローログは、通常それほど大量に出るものではない
 
 この例は、MySQLのデータディレクトリ(datadir)が /var/lib/mysql で、スローログファイル名(slow\_query\_log_file)がmysql-slow.logの場合。
 
-[sql]
+```
   
 $ cd /var/lib/mysql
   
@@ -28,25 +28,25 @@ $ mysqladmin flush-logs
   
 mysql> flush logs;
   
-[/sql]
+```
 
 mysqladmin flush-logs あるいは flush logs で、ログファイルを開き直すことができる。
 
 なお、5.1.12以降だとログ出力をコンソールからオフにできるので、オフにしてからflush-logsし、その後オンに戻すとよいだろう。
 
-[sql]
+```
   
-mysql> set global slow\_query\_log = &#8216;OFF&#8217;;
+mysql> set global slow\_query\_log = 'OFF';
   
-mysql> set global slow\_query\_log = &#8216;ON&#8217;;
+mysql> set global slow\_query\_log = 'ON';
   
-[/sql]
+```
 
 ここで、MySQL5.1以前のバージョンでは「mysqladmin flush-logs」を実行すると、バイナリログや一般クエリログも全部まとめてローテートされてしまう。binlogを有効にしているサーバ(レプリケーションしている構成のマスタなど)では注意した方がいいかもしれない。
 
 なお、5.5からは、
 
-[sql]
+```
 
 # スローログだけ開き直す
 
@@ -64,7 +64,7 @@ mysql> flush binary logs;
 
 mysql> flush error logs;
   
-[/sql]
+```
 
 というように、種類を指定できるようになっている。
   

@@ -34,27 +34,27 @@
   <time datetime="2011-02-23T15:42:16-08:00" class="post-date">23 Feb 2011</time>
   <p>Linuxで、ディスクデバイスではなく、ディレクトリをディレクトリにマウントしたい時は</p>
 
-<p>[text]</p>
-
-<p>mount –bind マウントしたいディレクトリ マウントポイント</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+mount -bind マウントしたいディレクトリ マウントポイント
+  
+</code></pre>
+</div>
 
 <p>fstabに書いてしまうときは以下のように書く。</p>
 
-<p>[text]</p>
-
-<p>マウントしたいディレクトリ マウントポイント none bind 0 0</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+マウントしたいディレクトリ マウントポイント none bind 0 0
+  
+</code></pre>
+</div>
 
 <p>例えば /home を /hoge/home としてマウントしたい時は</p>
 
-<p>[text]</p>
-
-<p>/home /hoge/home none bind 0 0</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+/home /hoge/home none bind 0 0
+  
+</code></pre>
+</div>
 
 <p>なお、マウントしたいディレクトリ(上の例では/hoge)よりも後にこの行を書かないと、マウントできないので注意。</p>
 
@@ -98,7 +98,7 @@
 
       <footer class="footer">
         <small>
-          &copy; <time datetime="2016-04-01T11:15:44-07:00">2016</time>. All rights reserved.
+          &copy; <time datetime="2016-04-01T11:57:39-07:00">2016</time>. All rights reserved.
         </small>
       </footer>
     </div>

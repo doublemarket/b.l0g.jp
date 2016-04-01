@@ -38,233 +38,143 @@
 
 <p>MySQLのプロンプトを開いたままで、ロードアベレージを見たいとか、SQLを書いておいたファイル名を見たい、という時は、OSのシェルで実行できるコマンドをMySQLシェルから実行するsystemコマンドを使えばよい。</p>
 
-<p>[sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+mysql&gt; system uptime
+  
+10:47:48 up 24 min, 5 users, load average: 3.94, 3.68, 2.57
 
-<p>mysql&gt; system uptime</p>
-
-<p>10:47:48 up 24 min, 5 users, load average: 3.94, 3.68, 2.57</p>
-
-<p>mysql&gt; system ls</p>
-
-<p>test.sh sample01.sql</p>
-
-<p>[/sql]</p>
+mysql&gt; system ls
+  
+test.sh sample01.sql
+  
+</code></pre>
+</div>
 
 <h3 id="tee">teeコマンド</h3>
 
 <p>実行結果をターミナルにも表示するがファイルにも保存しておきたい時はteeコマンド。ファイルへの書き出しをやめる時はnotee。ファイルには、プロンプトから入力した文字列なども全部追記されていく。</p>
 
-<p>[sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+mysql&gt; tee output.txt
+  
+mysql&gt; show tables;
+  
++-------------+
+  
+| Tables\_in\_test |
+  
++-------------+
+  
+| TABLE01 |
+  
+| TABLE02 |
+  
+| TABLE03 |
+  
++-------------+
+  
+3 rows in set (0.00 sec)
+  
+mysql&gt; notee
+  
+Outfile disabled.
+  
+mysql&gt; quit
 
-<p>mysql&gt; tee output.txt</p>
-
-<p>mysql&gt; show tables;</p>
-
-<p>+————————————-+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>Tables_in_test</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+————————————-+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>TABLE01</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>TABLE02</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>TABLE03</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+————————————-+</p>
-
-<p>3 rows in set (0.00 sec)</p>
-
-<p>mysql&gt; notee</p>
-
-<p>Outfile disabled.</p>
-
-<p>mysql&gt; quit</p>
-
-<p>$ cat output.txt</p>
-
-<p>mysql&gt; show tables;</p>
-
-<p>+————————————-+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>Tables_in_test</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+————————————-+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>TABLE01</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>TABLE02</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>TABLE03</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+————————————-+</p>
-
-<p>3 rows in set (0.00 sec)</p>
-
-<p>3 rows in set (0.00 sec)</p>
-
-<p>mysql&gt; notee</p>
-
-<p>$</p>
-
-<p>[/sql]</p>
+$ cat output.txt
+  
+mysql&gt; show tables;
+  
++-------------+
+  
+| Tables\_in\_test |
+  
++-------------+
+  
+| TABLE01 |
+  
+| TABLE02 |
+  
+| TABLE03 |
+  
++-------------+
+  
+3 rows in set (0.00 sec)
+  
+3 rows in set (0.00 sec)
+  
+mysql&gt; notee
+  
+$
+  
+</code></pre>
+</div>
 
 <h3 id="pager">pagerコマンド</h3>
 
-<p>[sql]</p>
-
-<p>mysql&gt; pager less;</p>
-
-<p>[/sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+mysql&gt; pager less;
+  
+</code></pre>
+</div>
 
 <p>で、ページャをlessにできるので、実行結果が長い時などに重宝する。これは結構有名な気がするが、それだけではなく、grepなどのコマンドをセットすることもできるので、いろんなことができる。ちなみにlessの -S オプションをつけると、カラムが多くて横に広がってしまう結果も横スクロールできるようになる。</p>
 
-<p>[sql]</p>
-
-<p>mysql&gt; pager grep Behind</p>
-
-<p>PAGER set to ‘grep Behind’</p>
-
-<p>mysql&gt; show slave status\G</p>
-
-<p>Seconds_Behind_Master: 3133</p>
-
-<p>1 row in set (0.00 sec)</p>
-
-<p>[/sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+mysql&gt; pager grep Behind
+  
+PAGER set to 'grep Behind'
+  
+mysql&gt; show slave status\G
+  
+Seconds\_Behind\_Master: 3133
+  
+1 row in set (0.00 sec)
+  
+</code></pre>
+</div>
 
 <p>こんな感じで必要な行だけを取り出すこともできる。また、パイプも使うことができるので、以下のように組み合わせることも可能。あんまりいい例が考え付かなくて微妙ｗ</p>
 
-<p>[sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+mysql&gt; select * from test;
+  
++--+--+--+--+--+--+--+--+
+  
+| a | b | c | d | e | f | g | h |
+  
++--+--+--+--+--+--+--+--+
+  
+| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+  
++--+--+--+--+--+--+--+--+
+  
+1 row in set (0.01 sec)
 
-<p>mysql&gt; select * from test;</p>
-
-<p>+——+——+——+——+——+——+——+——+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>a</td>
-      <td>b</td>
-      <td>c</td>
-      <td>d</td>
-      <td>e</td>
-      <td>f</td>
-      <td>g</td>
-      <td>h</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+——+——+——+——+——+——+——+——+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>2</td>
-      <td>3</td>
-      <td>4</td>
-      <td>5</td>
-      <td>6</td>
-      <td>7</td>
-      <td>8</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+——+——+——+——+——+——+——+——+</p>
-
-<p>1 row in set (0.01 sec)</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>mysql&gt; pager grep -v ‘-‘</td>
-      <td>tr -d ‘</td>
-      <td>’</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>PAGER set to ‘grep -v ‘-‘</td>
-      <td>tr -d ‘</td>
-      <td>”</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>mysql&gt; select * from test;</p>
-
-<p>a b c d e f g h</p>
-
-<p>1 2 3 4 5 6 7 8</p>
-
-<p>1 row in set (0.00 sec)</p>
-
-<p>[/sql]</p>
+mysql&gt; pager grep -v '-' | tr -d '|'
+  
+PAGER set to 'grep -v '-' | tr -d '|"
+  
+mysql&gt; select * from test;
+  
+a b c d e f g h
+  
+1 2 3 4 5 6 7 8
+  
+1 row in set (0.00 sec)
+  
+</code></pre>
+</div>
 
 <p>ページャを元に(標準出力に)戻すには</p>
 
-<p>[sql]</p>
-
-<p>mysql&gt; nopager;</p>
-
-<p>PAGER set to stdout</p>
-
-<p>[/sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+mysql&gt; nopager;
+  
+PAGER set to stdout
+  
+</code></pre>
+</div>
 
 <hr />
 
@@ -306,7 +216,7 @@
 
       <footer class="footer">
         <small>
-          &copy; <time datetime="2016-04-01T11:15:44-07:00">2016</time>. All rights reserved.
+          &copy; <time datetime="2016-04-01T11:57:39-07:00">2016</time>. All rights reserved.
         </small>
       </footer>
     </div>

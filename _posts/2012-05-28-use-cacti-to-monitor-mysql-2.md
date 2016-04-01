@@ -17,17 +17,17 @@ categories:
 
 Ubuntuでは標準ではSNMPがインストールされていないので、まずはインストールする。
 
-[bash]
+```
   
 target$ sudo apt-get install snmp snmpd
   
-[/bash]
+```
 
 /etc/snmp/snmpd.confにsnmpdのデフォルト設定ファイルが置かれるので、監視サーバから情報を取 得できるように編集する。
 
 まず、監視サーバからの読み出し許可設定を追記。SNMPコミュニティ名は「public」がデフォルト設定としては一般的だが、適宜設定。
 
-[text]
+```
   
 \# 監視対象で設定
   
@@ -35,11 +35,11 @@ rocommunity SNMPコミュニティ名 監視サーバのIP # 追記
   
 view all all # 追記
   
-[/text]
+```
 
 全インタフェースからの接続を許可するよう設定。
 
-[text]
+```
   
 \# 監視対象で設定
   
@@ -47,17 +47,17 @@ view all all # 追記
   
 agentAddress udp:161 # 追記
   
-[/text]
+```
 
 snmpdを再起動した後、監視サーバから以下のコマンドを実行して応答があればSNMPの設定は完了。
 
-[bash]
+```
   
 target$ sudo /etc/init.d/snmpd restart
   
-[/bash]
+```
   
-[bash]
+```
   
 server$ snmpwalk -v1 -c public 監視対象IPアドレス .1.3.6.1.2.1.1.1.0
   
@@ -65,13 +65,13 @@ SNMPv2-MIB::sysDescr.0 = STRING: Linux ubuntu1110s-01 2.6.38-8-server #42-Ubuntu
   
 ↑ 応答の例
   
-[/bash]
+```
 
 ## SNMPの設定(CentOSの場合)
 
 通常、SNMPはデフォルトでインストールされるので、設定ファイルを編集して監視サーバから接続できるようにする。基本的にはUbuntuと同じ設定にすればよい。
 
-[bash]
+```
   
 \# 監視対象で設定
   
@@ -79,19 +79,19 @@ rocommunity SNMPコミュニティ名 監視サーバのIP # 追記
   
 view all all # 追記
   
-[/bash]
+```
 
 snmpdが自動起動するように設定し(どうやら初期設定では自動起動しないようになっている模様)、snmpdを再起動して設定を反映させる。
 
-[bash]
+```
   
 target$ sudo chkconfig snmpd on
   
 target$ sudo /etc/init.d/snmpd start
   
-[/bash]
+```
   
-[bash]
+```
   
 server$ snmpwalk -v1 -c public 監視対象IPアドレス .1.3.6.1.2.1.1.1.0
   
@@ -99,21 +99,21 @@ SNMPv2-MIB::sysDescr.0 = STRING: Linux centos62-64-01 2.6.32-220.el6.x86\_64 #1 
   
 ↑ 応答の例
   
-[/bash]
+```
 
 ## Cacti監視のためのMySQL設定
 
 Percona Monitoring Plugins for Cactiは、監視対象のMySQLにログインして、色々な種類のshowコ マンドを実行して得られた結果をグラフにするので、監視対象のMySQLにユーザを追加する必要があ る。ここで指定するユーザ名とパスワードは、<a title="MySQLの監視はCacti+Percona Monitoring Pluginsがおすすめ(監視サーバ構築編)" href="http://b.l0g.jp/mysql/install-cacti-to-monitor-mysql-1/" target="_blank">前回のエントリ</a>でss\_get\_mysql\_stats.phpファイルに書いた、 $mysql\_user と $mysql_pass と一致させること。
 
-[bash]
+```
   
 target$ mysql -uroot
   
-mysql-target> grant process, super on \*.\* to ユーザ名@監視サーバ identified by &#8216;パスワ ード&#8217;;
+mysql-target> grant process, super on \*.\* to ユーザ名@監視サーバ identified by 'パスワ ード';
   
 mysql-target> flush privileges;
   
-[/bash]
+```
 
 ## Cactiからの監視設定
 

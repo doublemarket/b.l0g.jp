@@ -44,149 +44,141 @@
 
 <p>監視サーバをnagios01、監視対象ホストをclient01とした時の例。</p>
 
-<p>[text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+client01$ sudo yum install net-snmp net-snmp-utils
+  
+client01$ sudo /etc/init.d/snmpd start
+  
+</code></pre>
+</div>
 
-<p>client01$ sudo yum install net-snmp net-snmp-utils</p>
-
-<p>client01$ sudo /etc/init.d/snmpd start</p>
-
-<p>[/text]</p>
-
-<p>[text]</p>
-
-<p>nagios01$ snmpwalk -v 1 -c public client01 UCD-SNMP-MIB::laLoad.1</p>
-
-<p>No log handling enabled – turning on stderr logging</p>
-
-<p>getaddrinfo: client01 Name or service not known</p>
-
-<p>snmpwalk: Unknown host (client01)</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+nagios01$ snmpwalk -v 1 -c public client01 UCD-SNMP-MIB::laLoad.1
+  
+No log handling enabled - turning on stderr logging
+  
+getaddrinfo: client01 Name or service not known
+  
+snmpwalk: Unknown host (client01)
+  
+</code></pre>
+</div>
 
 <p>snmpwalkなどでIPv6のサーバへ問い合わせる場合は、ホスト名の前に「udp6」を明示的に指定する必要があるようだ。しかし、</p>
 
-<p>[text]</p>
-
-<p>nagios01$ snmpwalk -v 1 -c public udp6:client01 UCD-SNMP-MIB::laLoad.1</p>
-
-<p>Timeout: No Response from udp6:client01</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+nagios01$ snmpwalk -v 1 -c public udp6:client01 UCD-SNMP-MIB::laLoad.1
+  
+Timeout: No Response from udp6:client01
+  
+</code></pre>
+</div>
 
 <p>タイムアウトになってしまう。ちなみに、<a href="http://www.net-snmp.org/docs/NEWS.html" target="_blank">net-snmpは5.0以降IPv6に対応している</a>ということなので、5.0以降がインストールされていれば、snmpwalkコマンドもIPv6を扱えるはず。</p>
 
 <p>クライアント側を見てみる。</p>
 
-<p>[text]</p>
-
-<p>client01$ netstat -lanp</p>
-
-<p>Active Internet connections (servers and established)</p>
-
-<p>Proto Recv-Q Send-Q Local Address Foreign Address State PID/Program name</p>
-
-<p>(中略)</p>
-
-<p>udp 0 0 0.0.0.0:161 0.0.0.0:* 12403/snmpd</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+client01$ netstat -lanp
+  
+Active Internet connections (servers and established)
+  
+Proto Recv-Q Send-Q Local Address Foreign Address State PID/Program name
+  
+(中略)
+  
+udp 0 0 0.0.0.0:161 0.0.0.0:* 12403/snmpd
+  
+</code></pre>
+</div>
 
 <p>0.0.0.0:161ってことは、IPv4だけで、IPv6でリッスンしていない。</p>
 
 <p>設定ファイルを見てみる。</p>
 
-<p>[text]</p>
-
-<p>client01$ cat /etc/snmp/snmpd.conf</p>
-
-<p>(以下抜粋)</p>
-
-<p>com2sec notConfigUser localhost public</p>
-
-<p>com2sec notConfigUser nagios01 public</p>
-
-<p>group notConfigGroup v1 nogConfigUser</p>
-
-<p>access notConfigGroup “” any noauth exact systemview none none</p>
-
-<p>syslocation Unknown (edit /etc/snmp/snmpd.conf)</p>
-
-<p>syscontact Root <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#114;&#111;&#111;&#116;&#064;&#108;&#111;&#099;&#097;&#108;&#104;&#111;&#115;&#116;">&#114;&#111;&#111;&#116;&#064;&#108;&#111;&#099;&#097;&#108;&#104;&#111;&#115;&#116;</a> (configure /etc/snmp/snmp.local.conf)</p>
-
-<p>view all included .1 80</p>
-
-<p>dontLogTCPWrappersConnects yes</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+client01$ cat /etc/snmp/snmpd.conf
+  
+(以下抜粋)
+  
+com2sec notConfigUser localhost public
+  
+com2sec notConfigUser nagios01 public
+  
+group notConfigGroup v1 nogConfigUser
+  
+access notConfigGroup "" any noauth exact systemview none none
+  
+syslocation Unknown (edit /etc/snmp/snmpd.conf)
+  
+syscontact Root &lt;root@localhost&gt; (configure /etc/snmp/snmp.local.conf)
+  
+view all included .1 80
+  
+dontLogTCPWrappersConnects yes
+  
+</code></pre>
+</div>
 
 <p>どうやら、デフォルトの設定では、IPv4しかリッスンしない設定らしい。以下のように、明示的にv6でも使えるように追記。</p>
 
-<p>[text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+\# 以下の4行を追記(下の2行は実際の設定に応じて変更)
+  
+agentaddress udp:161
+  
+agentaddress udp6:161
 
-<p># 以下の4行を追記(下の2行は実際の設定に応じて変更)</p>
-
-<p>agentaddress udp:161</p>
-
-<p>agentaddress udp6:161</p>
-
-<p>com2sec6 notConfigUser localhost public</p>
-
-<p>com2sec6 notConfigUser nagios01 public</p>
-
-<p>[/text]</p>
+com2sec6 notConfigUser localhost public
+  
+com2sec6 notConfigUser nagios01 public
+  
+</code></pre>
+</div>
 
 <p>snmpd を再起動すると、v6でもリッスンするようになった。</p>
 
-<p>[text]</p>
-
-<p>client01$ sudo /etc/init.d/snmpd restart</p>
-
-<p>client01$ netstat -lanp</p>
-
-<p>Active Internet connections (servers and established)</p>
-
-<p>Proto Recv-Q Send-Q Local Address Foreign Address State PID/Program name</p>
-
-<p>(中略)</p>
-
-<p>udp 0 0 0.0.0.0:161 0.0.0.0:* 12442/snmpd</p>
-
-<p>udp 0 0 :::161 :::* 12442/snmpd</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+client01$ sudo /etc/init.d/snmpd restart
+  
+client01$ netstat -lanp
+  
+Active Internet connections (servers and established)
+  
+Proto Recv-Q Send-Q Local Address Foreign Address State PID/Program name
+  
+(中略)
+  
+udp 0 0 0.0.0.0:161 0.0.0.0:* 12442/snmpd
+  
+udp 0 0 :::161 :::* 12442/snmpd
+  
+</code></pre>
+</div>
 
 <p>これで値を取れるようになった。</p>
 
-<p>[text]</p>
-
-<p>nagios01$ snmpwalk -v 1 -c public udp6:client01 UCD-SNMP-MIB::laLoad.1</p>
-
-<p>UCD-SNMP-MIB::laLoad.1 = STRING: 0.03</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+nagios01$ snmpwalk -v 1 -c public udp6:client01 UCD-SNMP-MIB::laLoad.1
+  
+UCD-SNMP-MIB::laLoad.1 = STRING: 0.03
+  
+</code></pre>
+</div>
 
 <p><strong>まとめ</strong></p>
 
 <p>IPv6環境でnet-snmpを使うときは</p>
 
 <ul>
-  <li>net-snmp 5.0以降を使う
-    <ul>
-      <li>snmpd.confで、agentaddress udp6:161とcom2sec6を設定する
-        <ul>
-          <li>
-            <p>snmpwalkなどで値を取る時はアドレスの前にudp6:をつける &lt;/ul&gt;</p>
-
-            <hr />
-
-            <p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
+  <li>net-snmp 5.0以降を使う</li>
+  <li>snmpd.confで、agentaddress udp6:161とcom2sec6を設定する</li>
+  <li>snmpwalkなどで値を取る時はアドレスの前にudp6:をつける</li>
 </ul>
+
+<hr />
+
+<p><strong>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</strong></p>
 
   </article>
   
@@ -331,11 +323,11 @@ exit ${RET}
 
 <p>以下のカーネルコンフィグオプションの設定でモジュラーカーネルをビルドすることができる。</p>
 
-<p>[text]</p>
-
-<p>Enable loadable module support (CONFIG_MODULES) [Y/n/?]</p>
-
-<p>[/text]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+Enable loadable module support (CONFIG_MODULES) [Y/n/?]
+  
+</code></pre>
+</div>
 
 <p>このオプションにYと答えるとモジュラーカーネルとなり、各機能やドライバそれぞれに関して3つの選択肢が現われる。</p>
 
@@ -418,7 +410,7 @@ exit ${RET}
 
       <footer class="footer">
         <small>
-          &copy; <time datetime="2016-04-01T11:15:44-07:00">2016</time>. All rights reserved.
+          &copy; <time datetime="2016-04-01T11:57:39-07:00">2016</time>. All rights reserved.
         </small>
       </footer>
     </div>

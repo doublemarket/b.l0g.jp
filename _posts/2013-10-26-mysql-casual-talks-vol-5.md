@@ -26,10 +26,10 @@ categories:
   <strong> <a title="MySQL5.6でGTIDを試してそっと閉じた" href="https://www.slideshare.net/Yuryu/mysql56gtid" target="_blank">MySQL5.6でGTIDを試してそっと閉じた</a> </strong> from <strong><a href="http://www.slideshare.net/Yuryu" target="_blank">Haruka Iwao</a></strong>
 </div>
 
-  * GTID &#8211; 全てのトランザクションを一意に識別、一貫性保証
+  * GTID - 全てのトランザクションを一意に識別、一貫性保証
   * マスタを切り替えると、マスタのUUIDが変わるのでGTIDが2個になる
   * 利点 
-      * change master to &#8230; master\_auto\_position=1で簡単にレプリをはれる
+      * change master to … master\_auto\_position=1で簡単にレプリをはれる
       * mysql workbenchのmysqlfailoverとか使える
   * 欠点 
       * クラスタ全部GTID有効にする必要
@@ -95,7 +95,7 @@ categories:
   * MariaDB 10からもGTIDが使えるようになった(ただしMySQLとは結構違う)
   * ログ用テーブル 
       * 突っ込みどころたくさんww
-  * インデックス名はidx\_カラム名\_カラム名_&#8230;とすると長いけどexplainのときに分かりやすい
+  * インデックス名はidx\_カラム名\_カラム名_…とすると長いけどexplainのときに分かりやすい
   * フレームワークが作る通りではなくDBの特性を考える
   * SQL文を見るだけでどのインデックスを使うかなどの意図が分かる名前付け
 
@@ -125,7 +125,7 @@ categories:
 ## <a href="https://twitter.com/RKajiyama" target="_blank">@RKajiyama</a>さん 5.7 Multi-source replication
 
 <div style="margin-bottom:5px">
-  <strong> <a href="https://www.slideshare.net/rkajiyama/20131025-casual-uppt" title="MySQL Casual Talks vol.5 - MySQL Labs - @RKajiyama" target="_blank">MySQL Casual Talks vol.5 &#8211; MySQL Labs &#8211; @RKajiyama</a> </strong> from <strong><a href="http://www.slideshare.net/rkajiyama" target="_blank">rkajiyama</a></strong>
+  <strong> <a href="https://www.slideshare.net/rkajiyama/20131025-casual-uppt" title="MySQL Casual Talks vol.5 - MySQL Labs - @RKajiyama" target="_blank">MySQL Casual Talks vol.5 - MySQL Labs - @RKajiyama</a> </strong> from <strong><a href="http://www.slideshare.net/rkajiyama" target="_blank">rkajiyama</a></strong>
 </div>
 
   * labsにはDMR以前のものがありますよ 

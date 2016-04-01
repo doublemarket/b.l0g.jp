@@ -38,55 +38,55 @@
 
 <p>この例は、MySQLのデータディレクトリ(datadir)が /var/lib/mysql で、スローログファイル名(slow_query_log_file)がmysql-slow.logの場合。</p>
 
-<p>[sql]</p>
-
-<p>$ cd /var/lib/mysql</p>
-
-<p>$ mv mysql-slow.log mysql-slow.log.old</p>
-
-<p>$ mysqladmin flush-logs</p>
-
-<p>または</p>
-
-<p>mysql&gt; flush logs;</p>
-
-<p>[/sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+$ cd /var/lib/mysql
+  
+$ mv mysql-slow.log mysql-slow.log.old
+  
+$ mysqladmin flush-logs
+  
+または
+  
+mysql&gt; flush logs;
+  
+</code></pre>
+</div>
 
 <p>mysqladmin flush-logs あるいは flush logs で、ログファイルを開き直すことができる。</p>
 
 <p>なお、5.1.12以降だとログ出力をコンソールからオフにできるので、オフにしてからflush-logsし、その後オンに戻すとよいだろう。</p>
 
-<p>[sql]</p>
-
-<p>mysql&gt; set global slow_query_log = ‘OFF’;</p>
-
-<p>mysql&gt; set global slow_query_log = ‘ON’;</p>
-
-<p>[/sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+mysql&gt; set global slow\_query\_log = 'OFF';
+  
+mysql&gt; set global slow\_query\_log = 'ON';
+  
+</code></pre>
+</div>
 
 <p>ここで、MySQL5.1以前のバージョンでは「mysqladmin flush-logs」を実行すると、バイナリログや一般クエリログも全部まとめてローテートされてしまう。binlogを有効にしているサーバ(レプリケーションしている構成のマスタなど)では注意した方がいいかもしれない。</p>
 
 <p>なお、5.5からは、</p>
 
-<p>[sql]</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>
+# スローログだけ開き直す
 
-<h1 id="section">スローログだけ開き直す</h1>
+mysql&gt; flush slow logs;
 
-<p>mysql&gt; flush slow logs;</p>
+# 一般クエリログだけ開き直す
 
-<h1 id="section-1">一般クエリログだけ開き直す</h1>
+mysql&gt; flush general logs;
 
-<p>mysql&gt; flush general logs;</p>
+# バイナリログだけローテート
 
-<h1 id="section-2">バイナリログだけローテート</h1>
+mysql&gt; flush binary logs;
 
-<p>mysql&gt; flush binary logs;</p>
+# エラーログだけローテート
 
-<h1 id="section-3">エラーログだけローテート</h1>
-
-<p>mysql&gt; flush error logs;</p>
-
-<p>[/sql]</p>
+mysql&gt; flush error logs;
+  
+</code></pre>
+</div>
 
 <p>というように、種類を指定できるようになっている。</p>
 
@@ -145,7 +145,7 @@
 
       <footer class="footer">
         <small>
-          &copy; <time datetime="2016-04-01T11:15:44-07:00">2016</time>. All rights reserved.
+          &copy; <time datetime="2016-04-01T11:57:39-07:00">2016</time>. All rights reserved.
         </small>
       </footer>
     </div>

@@ -24,11 +24,11 @@ Xを起動するようにしていると(ランレベル5)、ログイン画面�
 
 /etc/inputrc に以下の行を追加する(コメントアウトされた状態で既に記述があるはず)
 
-[text]
+```
 
 set bell-style none
 
-[/text]
+```
 
 ログインしなおすと、設定が有効になりビープ音は鳴らなくなる。
 
@@ -38,11 +38,11 @@ vi(vim)を使用していると、コマンドを間違えた時などにビー�
 
 viの設定ファイル(ホームディレクトリの.vimrcや/etc/skel/.vimrcなど)に以下の行を追加する。
 
-[text]
+```
 
 set visualbell
 
-[/text]
+```
 
 記述してからviを起動すると、ビープ音は鳴らなくなる。
 
@@ -52,11 +52,11 @@ set visualbell
 
 /etc/modprobe.d/blacklist ファイルに以下の行を追加する。
 
-[text]
+```
 
 blacklist pcspkr
 
-[/text]
+```
 
 #### **＜VMware Playerを使用している場合＞**
 
@@ -64,11 +64,11 @@ VMware Playerを使用している時には、ゲストOSでビープ音が鳴�
 
 C:\Users\(ユーザ名)\AppData\Roaming\VMware\preferences.ini ファイルと、対象になる仮想マシンの設定ファイル(.vmx)に以下の行を追加する。
 
-[text]
+```
 
 mks.noBeep = "TRUE"
 
-[/text]
+```
 
 出典 : <a href="http://kb.vmware.com/kb/1664" target="_blank">VMwareのKnowledge base</a>
 

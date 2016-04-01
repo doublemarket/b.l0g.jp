@@ -12,7 +12,7 @@ categories:
 
 何だか広告みたいなタイトルになってしまったが、なかなかすごい機能だと思ったのでご紹介。
 
-最近、Windows 7がインストールされたノートパソコン(Panasonic Let&#8217;s note S9)を衝動買いしてしまった。これには、Windows Liveフォトギャラリーというソフトが付属しており、デジカメで撮った写真などを管理することができる。SDカードからそのまま写真を取り込めるので、このソフトをそのまま使っている。別にPanasonicのPCにだけ付属しているソフトではなく、Windows 7には必ずインストールされているはず。
+最近、Windows 7がインストールされたノートパソコン(Panasonic Let's note S9)を衝動買いしてしまった。これには、Windows Liveフォトギャラリーというソフトが付属しており、デジカメで撮った写真などを管理することができる。SDカードからそのまま写真を取り込めるので、このソフトをそのまま使っている。別にPanasonicのPCにだけ付属しているソフトではなく、Windows 7には必ずインストールされているはず。
 
 [<img class="alignnone size-medium wp-image-461" title="Windows Liveフォトギャラリー" src="http://b.l0g.jp/wp-content/uploads/WS000000-300x197.jpg" alt="" width="300" height="197" />](http://b.l0g.jp/wp-content/uploads/2010/09/WS000000.jpg)
 
