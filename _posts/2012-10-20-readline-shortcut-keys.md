@@ -492,6 +492,3 @@ Alt-*とかどういう時に使う想定なんだろうか。
   
 参考2 : [GNU Readline Library Documentation](http://tiswww.case.edu/php/chet/readline/readline.html)
 
-* * *
-
-**海外の役立つブログ記事などを人力で翻訳して公開する[Yakst](https://yakst.com/ja)というプロジェクトをやっています。よろしければそちらもどうぞ！**

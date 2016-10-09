@@ -194,6 +194,3 @@ categories:
       * 機能をバックポートして[activerecord-mysql-awesome作った](http://qiita.com/kamipo/items/11b55caf329210923a9a)
   * kamipoさんはすごいひと
 
-* * *
-
-**海外の役立つブログ記事などを人力で翻訳して公開する[Yakst](https://yakst.com/ja)というプロジェクトをやっています。よろしければそちらもどうぞ！**

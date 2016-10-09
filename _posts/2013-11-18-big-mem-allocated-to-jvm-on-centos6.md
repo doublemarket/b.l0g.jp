@@ -94,6 +94,3 @@ Tomcat動かしてて気づいたのでタイトルが「TomcatのJVMが～」�
 
 参考4 : <a href="http://udrepper.livejournal.com/20948.html" target="_blank">上述glibcコミッタUlrich Drepper氏の記事</a>
 
-* * *
-
-**海外の役立つブログ記事などを人力で翻訳して公開する[Yakst](https://yakst.com/ja)というプロジェクトをやっています。よろしければそちらもどうぞ！**

@@ -201,6 +201,3 @@ mysql> grant select on hoge.* to testuser@'localhost' identified by 'password';
 
 <span style="text-decoration: underline;">注 : セキュリティ上、ホストを「%」でワイルドカード指定するのはよろしくないので、やらないようにしましょう(汗)</span>
 
-* * *
-
-**海外の役立つブログ記事などを人力で翻訳して公開する[Yakst](https://yakst.com/ja)というプロジェクトをやっています。よろしければそちらもどうぞ！**

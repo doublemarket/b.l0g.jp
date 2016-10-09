@@ -412,6 +412,3 @@ $ echo $?
 
 ドキュメントは<a href="https://github.com/pynag/pynag/wiki" title="pynag wiki" target="_blank">Github上のWiki</a>を見るとよい。Wikiからだと分からない部分も多いが、<a href="https://github.com/pynag/pynag" title="pynag" target="_blank">ソース自体</a>はそれほど複雑ではないので読んでみればわかるのでは。
 
-* * *
-
-**海外の役立つブログ記事などを人力で翻訳して公開する[Yakst](https://yakst.com/ja)というプロジェクトをやっています。よろしければそちらもどうぞ！**

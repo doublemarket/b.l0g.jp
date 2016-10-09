@@ -70,6 +70,3 @@ rpm -ivh http://ftp.riken.jp/Linux/fedora/epel/5/i386/epel-release-5-4.noarch.rp
 
 ※ パスの中で「5-4」はepelのバージョンによって変わる。
 
-* * *
-
-**海外の役立つブログ記事などを人力で翻訳して公開する[Yakst](https://yakst.com/ja)というプロジェクトをやっています。よろしければそちらもどうぞ！**

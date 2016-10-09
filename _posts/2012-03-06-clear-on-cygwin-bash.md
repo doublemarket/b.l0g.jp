@@ -16,6 +16,3 @@ categories:
 
 どうやらclearコマンドが欲しい場合は、ncursesを入れると使えるようになるようだ。Cygwinのsetup.exeで、「Utils → ncurses」をインストールするようにチェックを入れれば、めでたくclearできるようになる。
 
-* * *
-
-**海外の役立つブログ記事などを人力で翻訳して公開する[Yakst](https://yakst.com/ja)というプロジェクトをやっています。よろしければそちらもどうぞ！**

@@ -33,6 +33,3 @@ categories:
   * emobile  
      <a href="http://developer.emnet.ne.jp/ipaddress.html" target="_blank">http://developer.emnet.ne.jp/ipaddress.html</a>
 
-* * *
-
-**海外の役立つブログ記事などを人力で翻訳して公開する[Yakst](https://yakst.com/ja)というプロジェクトをやっています。よろしければそちらもどうぞ！**

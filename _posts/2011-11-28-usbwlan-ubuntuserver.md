@@ -136,6 +136,3 @@ Tx excessive retries:0 Invalid misc:0 Missed beacon:0
   
 ```
 
-* * *
-
-**海外の役立つブログ記事などを人力で翻訳して公開する[Yakst](https://yakst.com/ja)というプロジェクトをやっています。よろしければそちらもどうぞ！**

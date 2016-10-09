@@ -298,6 +298,3 @@ http://(サーバのIP)/nagios/ を開いて、左側のCurrent Status → Servi
 
 
 
-* * *
-
-**海外の役立つブログ記事などを人力で翻訳して公開する[Yakst](https://yakst.com/ja)というプロジェクトをやっています。よろしければそちらもどうぞ！**

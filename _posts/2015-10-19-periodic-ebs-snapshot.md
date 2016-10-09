@@ -61,6 +61,3 @@ bash ec2-automate-backup.sh -s tag -t 'Backup,Values=true' -r ap-northeast-1 -n 
 
 これをcrontabに書いておくなりJenkinsで定期実行するなりしておけば、うっかりファイルを消してしまったとか、データベースがぶっ壊れたみたいな時にもサクッと戻せて幸せになれる。
 
-* * *
-
-**海外の役立つブログ記事などを人力で翻訳して公開する[Yakst](https://yakst.com/ja)というプロジェクトをやっています。よろしければそちらもどうぞ！**

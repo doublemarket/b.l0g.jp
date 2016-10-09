@@ -194,6 +194,3 @@ $ cat bigfile > /dev/null
                 
                 <hr />
                 
-                <p>
-                  <b>海外の役立つブログ記事などを人力で翻訳して公開する<a href="https://yakst.com/ja">Yakst</a>というプロジェクトをやっています。よろしければそちらもどうぞ！</b>
-                </p>

@@ -1,9 +1,10 @@
-title: どこかではたらくエンジニアのブログ
+title: b.l0g.jp
 url: http://b.l0g.jp
 name: b.l0g.jp
 permalink: pretty
 paginate: 3
 baseurl: ""
+timezone: Japan/Tokyo
 sass:
   sass_dir: _sass
   style: :compressed
@@ -11,3 +12,9 @@ gems:
   - jekyll-paginate
   - jekyll-gist
   - jekyll-sitemap
+exclude:
+  - vendor
+pages_list:
+  About: /about
+  Archive: /archive
+  Feed: /feed

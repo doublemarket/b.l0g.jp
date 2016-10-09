@@ -109,6 +109,3 @@ Enable loadable module support (CONFIG_MODULES) [Y/n/?]
 
 
 
-* * *
-
-**海外の役立つブログ記事などを人力で翻訳して公開する[Yakst](https://yakst.com/ja)というプロジェクトをやっています。よろしければそちらもどうぞ！**

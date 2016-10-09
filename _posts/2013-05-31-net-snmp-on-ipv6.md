@@ -145,6 +145,3 @@ IPv6環境でnet-snmpを使うときは
   * snmpd.confで、agentaddress udp6:161とcom2sec6を設定する 
   * snmpwalkなどで値を取る時はアドレスの前にudp6:をつける
 
-* * *
-
-**海外の役立つブログ記事などを人力で翻訳して公開する[Yakst](https://yakst.com/ja)というプロジェクトをやっています。よろしければそちらもどうぞ！**

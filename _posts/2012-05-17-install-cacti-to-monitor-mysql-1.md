@@ -239,6 +239,3 @@ percona-monitoring-plugins-1.0.0/cacti/templates/cacti\_host\_template\_percona\
 
 [MySQLの監視はCacti+Percona Monitoring Pluginsがおすすめ(監視対象設定編)](http://b.l0g.jp/mysql/use-cacti-to-monitor-mysql-2/ "MySQLの監視はCacti+Percona Monitoring Pluginsがおすすめ(監視対象設定編)")
 
-* * *
-
-**海外の役立つブログ記事などを人力で翻訳して公開する[Yakst](https://yakst.com/ja)というプロジェクトをやっています。よろしければそちらもどうぞ！**
