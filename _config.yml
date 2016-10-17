@@ -23,7 +23,7 @@ feed:
 pages_list:
   About: /about/
   Archive: /archive/
-  Feed: /feed/
+  Feed: /feed/index.xml
 twitter:
   username: dblmkt
 author: doublemarket
