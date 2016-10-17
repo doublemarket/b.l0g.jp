@@ -19,7 +19,7 @@ gems:
 exclude:
   - vendor
 feed:
-  path: /feed/index.xml
+  path: feed/index.xml
 pages_list:
   About: /about/
   Archive: /archive/
