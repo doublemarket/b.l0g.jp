@@ -15,14 +15,13 @@ gems:
   - jekyll-sitemap
   - jekyll-seo-tag
   - jekyll-feed
-feed:
-    path: feed
+  - jekyll-redirect-from
 exclude:
   - vendor
 pages_list:
-  About: /about
-  Archive: /archive
-  Feed: /feed
+  About: /about/
+  Archive: /archive/
+  Feed: /feed/
 twitter:
   username: dblmkt
 author: doublemarket
