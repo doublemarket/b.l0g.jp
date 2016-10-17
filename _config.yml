@@ -19,6 +19,6 @@ exclude:
 pages_list:
   About: /about
   Archive: /archive
-  Feed: /feed
+  Feed: /feed/
 twitter:
   username: dblmkt
