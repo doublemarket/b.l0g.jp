@@ -14,11 +14,15 @@ gems:
   - jekyll-gist
   - jekyll-sitemap
   - jekyll-seo-tag
+  - jekyll-feed
+feed:
+    path: feed/
 exclude:
   - vendor
 pages_list:
   About: /about
   Archive: /archive
-  Feed: /feed/
+  Feed: /feed
 twitter:
   username: dblmkt
+author: doublemarket
