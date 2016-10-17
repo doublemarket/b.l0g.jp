@@ -16,7 +16,7 @@ gems:
   - jekyll-seo-tag
   - jekyll-feed
 feed:
-    path: feed/
+    path: feed
 exclude:
   - vendor
 pages_list:
