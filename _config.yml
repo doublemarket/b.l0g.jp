@@ -18,10 +18,12 @@ gems:
   - jekyll-redirect-from
 exclude:
   - vendor
+feed:
+  path: /feed/index.xml
 pages_list:
   About: /about/
   Archive: /archive/
-  Feed: /feed.xml
+  Feed: /feed/
 twitter:
   username: dblmkt
 author: doublemarket
