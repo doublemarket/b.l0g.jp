@@ -20,12 +20,12 @@ The English version is at the end of this post.
 
 ---
 
-I gave a talk "How index work in relational databases" based on the book [SQL Performance Explained](http://sql-performance-explained.jp/) at [Tokyo Rubyist Meetup held on Feb. 10](https://trbmeetup.doorkeeper.jp/events/56308).
+I gave a talk "How indexes work in relational databases" based on the book [SQL Performance Explained](http://sql-performance-explained.jp/) at [Tokyo Rubyist Meetup held on Feb. 10](https://trbmeetup.doorkeeper.jp/events/56308).
 
 (See the material above.)
 
 [Tokyo Rubyist Meetup](https://trbmeetup.doorkeeper.jp/) is a tech meetup for English speaking Ruby engineers organized by the CEO of Doorkeeper Inc. [Paul McMahon](https://www.doorkeeper.jp/team/paul). One day, he gave me an email and suggested me to talk about a topic related to databases. I decided to talk something to practice my English, to promote the book, and to reorganize my thought on databases. Thank you very much Paul, this was my precious experience!
 
-The talk was basically the summary of the chapter one of [SQL Performance Explained](http://sql-performance-explained.com/), including basic topics like why indexes are needed and how B-tree indexes search a record. The talk was for developers who use Active Record and don't have enough knowledge about indexes and what I wanted to say for them is that don't be afraid of indexes. I intentionally avoid to write about a specific database management system (MySQL, PostgreSQL, etc.) to focus on how indexes work in general but because of that, the talk might be too abstract. Hopefully, the talk was a good introduction to dive into the internal of databases for attendees.
+The talk was basically the summary of the chapter one of [SQL Performance Explained](http://sql-performance-explained.com/), including basic topics like why indexes are needed and how B-tree indexes search a record. The talk was for developers who use Active Record and don't have enough knowledge about indexes and what I wanted to say for them is that don't be afraid of indexes. I intentionally avoid to write about a specific database management system (MySQL, PostgreSQL, etc.) to focus on how indexes work in general but because of that, the talk might be too abstract. Hopefully, the talk was a good introduction to the internal of databases for attendees.
 
 I'm going to talk at some more events in this year to improve my English skill.
