@@ -8,7 +8,7 @@ categories:
 
 The English version is at the end of this post.
 
-[2月10(金)に開催されたTokyo Rubyist Meetup](https://trbmeetup.doorkeeper.jp/events/56308)というイベントで、自分が翻訳した[SQLパフォーマンス詳解](http://sql-performance-explained.jp/)という本をベースにして「How indexes work in relational database」という題で発表した。題名からわかるように、英語での発表。
+[2月10(金)に開催されたTokyo Rubyist Meetup](https://trbmeetup.doorkeeper.jp/events/56308)というイベントで、自分が翻訳した[SQLパフォーマンス詳解](http://sql-performance-explained.jp/)という本をベースにして「How indexes work in relational databases」という題で発表した。題名からわかるように、英語での発表。
 
 <script async class="speakerdeck-embed" data-id="a54c372ef22749ff9af1d235dcaa7fe8" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
 
