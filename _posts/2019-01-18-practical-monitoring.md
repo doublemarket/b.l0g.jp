@@ -8,6 +8,8 @@ categories:
 
 サーバやネットワーク、セキュリティなどシステムの監視に関わる心構えや取り組み方を解説した「[入門 監視](https://www.oreilly.co.jp/books/9784873118642/)」という本が、2019年1月17日にオライリー・ジャパンさんから出版されました。原書は「[Practical Monitoring](http://shop.oreilly.com/product/0636920050773.do)」という本で、それを私が翻訳したものです。私が訳した本としては3冊目、オライリー・ジャパンさんから出版されるものとしては「[入門Kubernetes](https://www.oreilly.co.jp/books/9784873118406/)」に続いて2冊目です。
 
+<center><img border="1" src="/images/2019-01-18-practical-monitoring/practical-monitoring.jpg"></center>
+
 - [目次](https://www.oreilly.co.jp/books/9784873118642/#toc)
 - [Amazonの書籍詳細](https://www.amazon.co.jp/dp/4873118646/)
 
