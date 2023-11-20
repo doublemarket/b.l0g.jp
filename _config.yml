@@ -4,12 +4,12 @@ name: b.l0g.jp
 permalink: pretty
 paginate: 3
 baseurl: ""
-timezone: Japan/Tokyo
+timezone: Asia/Tokyo
 analytics_id: UA-17325326-1
 sass:
   sass_dir: _sass
   style: :compressed
-gems:
+plugins:
   - jekyll-paginate
   - jekyll-gist
   - jekyll-sitemap
